@@ -1,0 +1,33 @@
+
+.navbar {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* CSS styles for the  */
+.nav_link {
+    border: 1px solid black;
+    border-radius: 15px; 
+    padding: 5px;
+}
+/* CSS styles for the actual links. */
+.nav_link a {
+    text-decoration: none;
+}
+
+/* CSS styles for the Logout button*/
+.nav_logout {
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+/* CSS styles for the logout link. */
+.nav_logout a {
+    text-decoration: none;
+}
+
+

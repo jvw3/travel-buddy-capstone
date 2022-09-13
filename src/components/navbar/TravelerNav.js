@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
+import "./NavBar.css"
 
 
 export const TravelerNavBar = () => {
@@ -7,13 +8,16 @@ export const TravelerNavBar = () => {
 
     return (
         <ul className="navbar">
-            <li className="nav_locations">
+            <li className="nav_link">
+                <Link className="navbar_link_home" to="/locations">Home</Link>
+            </li>
+            <li className="nav_link">
                 <Link className="navbar_link" to="/locations">Community</Link>
             </li>
-            <li className="nav_products">
+            <li className="nav_link">
                 <Link className="navbar_link" to="products">My Trips</Link>
             </li>
-            <li className="nav_findcandy">
+            <li className="nav_link">
                 <Link className="navbar_link" to="candy">Profile</Link>
             </li>
             <li className="nav_logout">

@@ -24,12 +24,3 @@ export const AdminView = () => {
 		</Routes>
 	)
 }
-{/* <Route path="home" element={ <HomePageView />} />
-
-				<Route path="locations" element={ <LocationList />} />
-
-				<Route path="products" element={ <ProductList /> } />
-
-				<Route path="candy" element={ <CandyContainer /> } />
-
-				<Route path="candycart" element={ <CandyCart /> } /> */}

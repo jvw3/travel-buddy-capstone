@@ -9,13 +9,16 @@ export const TravelerNavBar = () => {
     return (
         <ul className="navbar">
             <li className="nav_link">
-                <Link className="navbar_link_home" to="/locations">Home</Link>
+                <Link className="navbar_link_home" to="home">Home</Link>
             </li>
             <li className="nav_link">
                 <Link className="navbar_link" to="/locations">Community</Link>
             </li>
             <li className="nav_link">
-                <Link className="navbar_link" to="products">My Trips</Link>
+                <Link className="navbar_link" to="trips">My Trips</Link>
+            </li>
+            <li className="nav_link">
+                <Link className="navbar_link" to="createnewtrip">Create New Trip</Link>
             </li>
             <li className="nav_link">
                 <Link className="navbar_link" to="candy">Profile</Link>

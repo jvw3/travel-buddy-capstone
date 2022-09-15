@@ -1,9 +1,7 @@
 import { Route, Routes, Outlet } from "react-router-dom"
+import { ItineraryForm } from "../itineraries/ItineraryForm"
+import { UserItineraries } from "../itineraries/MyTrips"
 import { HomePageView } from "./TravelerHomePage"
-
-
-
-
 
 export const TravelerViews = () => {
 	return (
@@ -15,25 +13,13 @@ export const TravelerViews = () => {
 					<Outlet />
 				</>
 			}>
-
-
-				
 			</Route>
-			
-			
-			
-			
+            
+            <Route path="home" element={ <HomePageView />} />
 
+            <Route path="trips" element={ <UserItineraries />} />
 
+            <Route path="createnewtrip" element={ <ItineraryForm />} />
 		</Routes>
 	)
 }
-{/* <Route path="home" element={ <HomePageView />} />
-
-				<Route path="locations" element={ <LocationList />} />
-
-				<Route path="products" element={ <ProductList /> } />
-
-				<Route path="candy" element={ <CandyContainer /> } />
-
-				<Route path="candycart" element={ <CandyCart /> } /> */}

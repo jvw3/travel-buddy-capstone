@@ -12,7 +12,7 @@ export const TravelerNavBar = () => {
                 <Link className="navbar_link_home" to="home">Home</Link>
             </li>
             <li className="nav_link">
-                <Link className="navbar_link" to="/locations">Community</Link>
+                <Link className="navbar_link" to="community">Community</Link>
             </li>
             <li className="nav_link">
                 <Link className="navbar_link" to="trips">My Trips</Link>
@@ -21,7 +21,7 @@ export const TravelerNavBar = () => {
                 <Link className="navbar_link" to="createnewtrip">Create New Trip</Link>
             </li>
             <li className="nav_link">
-                <Link className="navbar_link" to="candy">Profile</Link>
+                <Link className="navbar_link" to="profile">Profile</Link>
             </li>
             <li className="nav_logout">
                 <Link className="navbar_link" to="" onClick={() => {

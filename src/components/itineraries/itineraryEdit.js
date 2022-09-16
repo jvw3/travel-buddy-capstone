@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import "./itineraryform.css"
+import { useNavigate, useParams } from "react-router-dom"
+import { useState, useEffect } from "react"
 
-// I need to make 3 post requests when I make this form
-// 1st Post request is creating the itinerary.
-// 2nd Post request is creating the user Itinerary object (bridge table data).
-// 3rd Post request is creating the itinerary Location object (bridge table data).
-// For the 2nd and 3rd post requests, I need the itineraryId from the first post request.
+export const EditItinerary = ({}) => {
 
-export const ItineraryForm = () => {
-const[itinerary, update ] = useState({
+
+    const {usertripId} = useParams()
+
+    const navigate = useNavigate()
+
+    const[itinerary, update] = useState({
     travelMethod: "",
     departureDate: "",
     returnDate: "",
@@ -24,11 +23,10 @@ const[itinerary, update ] = useState({
     reservationTime: "",
     carDropOffTime: "",
     rentalCompany: "",
-    reservationNum: "",
-    accessCode: 0
-})
-
-const[itineraryLocation, updateItineraryLocation] = useState({ locationId: 0
+    reservationNum: ""
+    })
+    const[itineraryLocation, updateItineraryLocation] = useState({
+    locationId: 0
 })
 
 const [locations, setLocations] = useState([])
@@ -43,110 +41,53 @@ useEffect(
         }, []
     )
 
-const navigate = useNavigate()
-const localAppUser = localStorage.getItem("travelbuddy_user")
-const appUserObject = JSON.parse(localAppUser)
+    useEffect(() => {
+        fetch(`http://localhost:8099/userItineraries?_expand=itinerary&itineraryId=${usertripId}`)
+        .then((res) => res.json())
+        .then(
+            // TicketData will already be an object instead of an array so we don't need to get it at index 0.
+            (myItinerary) => {
+                const myEditTrip = myItinerary[0]
+                update(myEditTrip)
+            })
+    },[usertripId]
+    )
 
-const postUserItinerary = (itineraryId) => {
 
-    const userItineraryToApi = {
-        userId: appUserObject.id,
-        itineraryId: itineraryId
-    }
-    return fetch(`http://localhost:8099/userItineraries`, {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(userItineraryToApi)
-    })
-    .then(res => res.json())
-    .then(
-        () => {}
-    )}
 
-const postItineraryLocation = (itineraryId) => {
-
-    const itineraryLocationToApi = {
-        itineraryId: itineraryId,
-        locationId: parseInt(itineraryLocation.locationId)
-    }
-    return fetch(`http://localhost:8099/itineraryLocations`, {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(itineraryLocationToApi)
-    })
-    .then(res => res.json())
-    .then(
-        () => {
-            navigate("/mytrips")
-        }
-    )}
-// This function creates a new itinerary. 
-const createItinerary = (event) => {
+    const UpdateItinearyButton = (event) => {
         event.preventDefault()
 
-        const generateAccesscode = () => {
-            return Math.floor(Math.random() * 100000) + 10000; 
-        }
-
-        let code = generateAccesscode()
-
-        const itineraryToApi = {
-            travelMethod: itinerary.travelMethod,
-            flightInfo: {
-                flightToDestinationTime: itinerary.flightToDestinationTime,
-                returnFlightTime: itinerary.returnFlight,
-                departingAirport: itinerary.departingAirport,
-                returnAiport: itinerary.returnAirport,
-                departingAirline: itinerary.airline,
-                returningAirline: itinerary.airline,
-                departflightNum: itinerary.departingFlightNumber,
-                returnFlightNum: itinerary.returningFlightNumber
-            },
-            rentalCarInfo: {
-                reservationTime: itinerary.reservationTime,
-                carDropOffTime: itinerary.carDropOffTime,
-                rentalCompany: itinerary.rentalCompany,
-                reservationNum: itinerary.reservationNum
-            },
-            departureDate: itinerary.departureDate,
-            returnDate: itinerary.returnDate,
-            isShared: false,
-            isComplete: false,
-            isCurrent: false,
-            accessCode: code
-        }
-
-    
-    return fetch(`http://localhost:8099/itineraries`, {
-        method: 'POST',
+        return fetch(`http://localhost:8088/itineraries/${itinerary?.itinerary?.id}`, 
+        {method: "PUT",
         headers: {
             "Content-Type": "application/json"
-        },
-        body: JSON.stringify(itineraryToApi)
+        }, 
+        body: JSON.stringify(itinerary)
     })
-    .then(res => res.json())
-    .then((itineraryObject) => {
-        postUserItinerary(itineraryObject.id)
-        postItineraryLocation(itineraryObject.id)
-    })
+        .then(res => res.json())
+        //After Put request has been sent to API, and javascript has been parsed into JSON, the user will receive a feedback string. 
+        .then(() => {
+                navigate("/trips")
+            })
+
+        /*
+        
+            TODO: Perform the PUT fetch() call here to update the profile.
+            Navigate user to home page when done.
+        */
     }
 
-// This function creates the JSX that will render form fields for rental car information.
 const displayRentalCarInfo = () => {
 return <>
-<h3>Rental Car Info:</h3>
 <fieldset>
                 <div className="form-group">
                     <label htmlFor="description">Reservation Time:</label>
                     <input
-                        
+                        required autoFocus
                         type="datetime-local"
                         className="form-control"
-                        value={itinerary.reservationTime}
+                        value={itinerary?.itinerary?.rentalCarInfo?.reservationTime}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -160,10 +101,10 @@ return <>
                 <div className="form-group">
                     <label htmlFor="description">Drop off Time:</label>
                     <input
-                        
+                        required autoFocus
                         type="datetime-local"
                         className="form-control"
-                        value={itinerary.carDropOffTime}
+                        value={itinerary?.itinerary?.rentalCarInfo?.carDropOffTime}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -177,10 +118,10 @@ return <>
                 <div className="form-group">
                     <label htmlFor="description">Rental Company:</label>
                     <input
-                        
+                        required autoFocus
                         type="text"
                         className="form-control"
-                        value={itinerary.rentalCompany}
+                        value={itinerary?.itinerary?.rentalCarInfo?.rentalCompany}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -197,7 +138,7 @@ return <>
                         required autoFocus
                         type="number"
                         className="form-control"
-                        value={itinerary.reservationNum}
+                        value={itinerary?.itinerary?.rentalCarInfo?.reservationNum}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -209,10 +150,9 @@ return <>
             </fieldset>
             </>
 }
-// This function creates the JSX that will render the form fields for flight information. 
+
 const displayFlightInfo = () => {
-    return <>
-    <h3>Flight info:</h3>
+    return  <>
     <fieldset>
                 <div className="form_departingairline">
                     <label htmlFor="description">Departing Airline:</label>
@@ -220,11 +160,11 @@ const displayFlightInfo = () => {
                         required autoFocus
                         type="text"
                         className="form-control-departingAirline"
-                        value={itinerary.departingAirline}
+                        value={itinerary?.itinerary?.flightInfo?.departingAirline}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
-                                copy.departingAirline = evt.target.value
+                                copy.itinerary.flightInfo.departingAirline = evt.target.value
                                 update(copy)
                             }
                         } />
@@ -237,11 +177,11 @@ const displayFlightInfo = () => {
                         required autoFocus
                         type="text"
                         className="form-control"
-                        value={itinerary.returningAirline}
+                        value={itinerary?.itinerary?.flightInfo?.returningAirline}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
-                                copy.returningAirline = evt.target.value
+                                copy.itinerary.flightInfo.returningAirline = evt.target.value
                                 update(copy)
                             }
                         } />
@@ -254,11 +194,11 @@ const displayFlightInfo = () => {
                         required autoFocus
                         type="text"
                         className="form-control"
-                        value={itinerary.departingAirport}
+                        value={itinerary?.itinerary?.flightInfo?.departingAirport}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
-                                copy.departingAirport = evt.target.value
+                                copy.itinerary.flightInfo.departingAirport = evt.target.value
                                 update(copy)
                             }
                         } />
@@ -271,11 +211,11 @@ const displayFlightInfo = () => {
                         required autoFocus
                         type="text"
                         className="form-control"
-                        value={itinerary.returnAirport}
+                        value={itinerary?.itinerary?.flightInfo?.returnAirport}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
-                                copy.returnAirport = evt.target.value
+                                copy.itinerary.flightInfo.returnAirport = evt.target.value
                                 update(copy)
                             }
                         } />
@@ -288,7 +228,7 @@ const displayFlightInfo = () => {
                         required autoFocus
                         type="time"
                         className="form-control"
-                        value={itinerary.flightToDestinationTime}
+                        value={itinerary?.itinerary?.flightInfo?.flightToDestinationTime}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -305,7 +245,7 @@ const displayFlightInfo = () => {
                         required autoFocus
                         type="time"
                         className="form-control"
-                        value={itinerary.returnFlight}
+                        value={itinerary?.itinerary?.flightInfo?.returnFlight}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -322,8 +262,7 @@ const displayFlightInfo = () => {
                         required autoFocus
                         type="text"
                         className="form-control"
-                        placeholder="Name your product! "
-                        value={itinerary.returningFlightNumber}
+                        value={itinerary?.itinerary?.flightInfo?.returningFlightNumber}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -340,24 +279,23 @@ const displayFlightInfo = () => {
                         required autoFocus
                         type="text"
                         className="form-control"
-                        placeholder="Name your product!"
-                        value={itinerary.departingFlightNumber}
+                        value={itinerary?.itinerary?.flightInfo?.departingFlightNumber}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
-                                copy.departingFlightNumber = evt.target.value
+                                copy.itinerary.flightInfo.departingFlightNumber = evt.target.value
                                 update(copy)
                             }
                         } />
                 </div>
             </fieldset>
-            </>
+        </>
 }
-// This function creates the JSX that will render the top (first four) form fields of the itinerary form. 
+
 const displayMainTripInfo = () => {
     return <>
     <fieldset>
-                <div className="form-group">
+                <div className="form-group"> 
                     <label htmlFor="name">Where are you traveling?</label>
                     <select value={itineraryLocation.locationId}
                     onChange={ 
@@ -377,7 +315,7 @@ const displayMainTripInfo = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">How are you traveling?</label>
-                    <select value={itinerary.travelMethod}
+                    <select value={itinerary?.itinerary?.travelMethod}
                     onChange={ 
                             (evt) => {
                                 const copy = {...itinerary}
@@ -391,15 +329,14 @@ const displayMainTripInfo = () => {
                     </select>
                 </div>
             </fieldset>
-            <div className="depatureandarrival">
             <fieldset>
-                <div className="departure">
+                <div className="form-group">
                     <label htmlFor="description">Departure Date:</label>
                     <input
                         required autoFocus
                         type="date"
-                        className="form-control-departureDate"
-                        value={itinerary.departureDate}
+                        className="form-control"
+                        value={itinerary?.itinerary?.departureDate}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -410,43 +347,42 @@ const displayMainTripInfo = () => {
                 </div>
             </fieldset>
             <fieldset>
-                <div className="return">
+                <div className="form-group">
                     <label htmlFor="description">Return Date:</label>
                     <input
                         required autoFocus
                         type="date"
                         className="form-control"
-                        value={itinerary.returnDate}
+                        value={itinerary?.itinerary?.returnDate}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
-                                copy.returnDate = evt.target.value
+                                copy.itinerary.returnDate = evt.target.value
                                 update(copy)
                             }
                         } />
                 </div>
             </fieldset>
-            </div>
-            </>
+    </>
 }
 
 return (
-    <main className="maincontainer">
         <form className="itineraryForm">
-            <h2 className="ticketForm__title">Create New Itinerary</h2>
+            <h2 className="ticketForm__title">Edit Your Itinerary:</h2>
             {displayMainTripInfo()}
             {displayFlightInfo()}
             {displayRentalCarInfo()}
             <button
-                onClick={(clickEvent) => createItinerary(clickEvent)}
+                onClick={(clickEvent) => UpdateItinearyButton(clickEvent)}
             className="btn btn-primary">
-                Create New Itinerary!
+                Save Changes
             </button>
         </form>
-        <div>
-            <input></input>
-        </div>
-        </main>
     )
+
+
+
+
+
 
 }

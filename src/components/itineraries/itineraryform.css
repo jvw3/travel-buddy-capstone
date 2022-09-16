@@ -1,8 +1,42 @@
 
+.main {
+    display: flex;
+    flex-direction: row;
+}
+
+.itineraryForm {
+    width: 50%;
+}
+
+input {
+    width: 50%;
+}
 
 .form-control-departingAirline {
     width: 20vw;
     height: 2vw;
     border-radius: 5px;
-    border: 0.25px solid lightgray;
+    border: 0.9px solid indigo;
+    padding: 12px;
+}
+
+.form-control-departureDate {
+    width: 20vw;
+        height: 2vw;
+        border-radius: 5px;
+        border: 0.9px solid indigo;
+        padding: 12px;
+}
+
+.departure {
+    width: 30%;
+}
+
+.return {
+    width: 30%;
+}
+
+.departureandarrival div{
+    display: flex;
+    flex-direction: row;
 }

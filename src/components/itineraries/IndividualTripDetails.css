@@ -1,0 +1,104 @@
+h2 {
+    text-align: center;
+    color: white
+}
+
+.accessCode {
+    text-align: center;
+    color: white
+}
+
+.departuredate {
+    color: white
+}
+
+.returndate {
+    color: white
+}
+
+.deletetrip {
+    width: 200px;
+}
+
+.schedulelist {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+
+.full-trip-view {
+    display: flex;
+    flex-direction: column;
+}
+
+.scheduleitem {
+    border: 1px solid black;
+    padding: 5px;
+    width: 20vw;
+    border-radius: 10px;
+    height: 20vh;
+    transition: ease all 0.25s;
+}
+
+.scheduleitem:hover {
+    transform: scale(1.05);
+}
+
+.headereditlink {
+    width: 200px;
+}
+
+.Miamitripheader {
+    background-image: url(/public/images/Miamipicdetailedpage.jpg);
+    height: 40vh;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.Chicagotripheader {
+    background-image: url(/public/images/Chicagopicdetailedpage.jpg);
+    height: 40vh;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.headeroverlay {
+    height: 40vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+}
+
+.transportationinfo {
+    display: flex;
+    justify-content: space-around;
+}
+
+.flightinfo {
+    border: 1px solid black;
+    box-sizing: border-box;
+    padding: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.rentalinfo {
+    border: 1px solid black;
+    box-sizing: border-box;
+    padding: 10px;
+    flex-grow: 1;
+    display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+}

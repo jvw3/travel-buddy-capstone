@@ -3,11 +3,12 @@ import { useState, useEffect } from "react"
 
 export const EditItinerary = ({}) => {
 
-
+// getting 
     const {usertripId} = useParams()
 
     const navigate = useNavigate()
 
+    //data for the PUT request 
     const[itinerary, update] = useState({
     travelMethod: "",
     departureDate: "",
@@ -15,16 +16,20 @@ export const EditItinerary = ({}) => {
     flightToDestinationTime: "",
     returnFlight: "",
     departingAirport: "",
-    departingFlightNumber: "",
-    returningFlightNumber: "",
+    departFlightNum: "",
+    returnFlightNum: "",
     returnAirport: "",
     departingAirline: "",
     returningAirline: "",
     reservationTime: "",
     carDropOffTime: "",
     rentalCompany: "",
-    reservationNum: ""
+    reservationNum: "",
+    isShared: false,
+    isCurrent: false,
+    isComplete: false
     })
+
     const[itineraryLocation, updateItineraryLocation] = useState({
     locationId: 0
 })
@@ -41,6 +46,7 @@ useEffect(
         }, []
     )
 
+    // This useEffect Hook will fetch the current trip for the user. update will use the element stored in myEditTrip, and  
     useEffect(() => {
         fetch(`http://localhost:8099/userItineraries?_expand=itinerary&itineraryId=${usertripId}`)
         .then((res) => res.json())
@@ -54,6 +60,16 @@ useEffect(
     )
 
 
+    const updateTravelLocation = () => {
+        return fetch(`http://localhost:8088/itineraryLocations/${usertripId}}`, 
+        {method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        }, 
+        body: JSON.stringify(itinerary)
+    })
+        .then(res => res.json())
+    }
 
     const UpdateItinearyButton = (event) => {
         event.preventDefault()
@@ -245,11 +261,11 @@ const displayFlightInfo = () => {
                         required autoFocus
                         type="time"
                         className="form-control"
-                        value={itinerary?.itinerary?.flightInfo?.returnFlight}
+                        value={itinerary?.itinerary?.flightInfo?.returnFlightTime}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
-                                copy.returnFlight = evt.target.value
+                                copy.itinerary.flightInfo.returnFlightTime = evt.target.value
                                 update(copy)
                             }
                         } />
@@ -262,11 +278,11 @@ const displayFlightInfo = () => {
                         required autoFocus
                         type="text"
                         className="form-control"
-                        value={itinerary?.itinerary?.flightInfo?.returningFlightNumber}
+                        value={itinerary?.itinerary?.flightInfo?.returnFlightNum}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
-                                copy.returningFlightNumber = evt.target.value
+                                copy.returnFlightNum = evt.target.value
                                 update(copy)
                             }
                         } />
@@ -279,11 +295,11 @@ const displayFlightInfo = () => {
                         required autoFocus
                         type="text"
                         className="form-control"
-                        value={itinerary?.itinerary?.flightInfo?.departingFlightNumber}
+                        value={itinerary?.itinerary?.flightInfo?.departFlightNum}
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
-                                copy.itinerary.flightInfo.departingFlightNumber = evt.target.value
+                                copy.itinerary.flightInfo.departFlightNum = evt.target.value
                                 update(copy)
                             }
                         } />
@@ -379,10 +395,4 @@ return (
             </button>
         </form>
     )
-
-
-
-
-
-
 }

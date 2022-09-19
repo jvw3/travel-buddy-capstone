@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { Country, State, City } from "country-state-city"
+import { form } from "bootstrap"
+
 import "./itineraryform.css"
 
 // I need to make 3 post requests when I make this form
@@ -9,6 +12,11 @@ import "./itineraryform.css"
 // For the 2nd and 3rd post requests, I need the itineraryId from the first post request.
 
 export const ItineraryForm = () => {
+
+    const allCountries = State.getStatesOfCountry("US")
+    const allCities = City.getCitiesOfState("US", "TN")
+
+
 const[itinerary, update ] = useState({
     travelMethod: "",
     departureDate: "",
@@ -28,7 +36,8 @@ const[itinerary, update ] = useState({
     accessCode: 0
 })
 
-const[itineraryLocation, updateItineraryLocation] = useState({ locationId: 0
+const[itineraryLocation, updateItineraryLocation] = useState({ 
+    locationId: 0
 })
 
 const [locations, setLocations] = useState([])
@@ -81,7 +90,7 @@ const postItineraryLocation = (itineraryId) => {
     .then(res => res.json())
     .then(
         () => {
-            navigate("/mytrips")
+            navigate("/trips")
         }
     )}
 // This function creates a new itinerary. 
@@ -100,10 +109,10 @@ const createItinerary = (event) => {
                 flightToDestinationTime: itinerary.flightToDestinationTime,
                 returnFlightTime: itinerary.returnFlight,
                 departingAirport: itinerary.departingAirport,
-                returnAiport: itinerary.returnAirport,
-                departingAirline: itinerary.airline,
-                returningAirline: itinerary.airline,
-                departflightNum: itinerary.departingFlightNumber,
+                returnAirport: itinerary.returnAirport,
+                departingAirline: itinerary.departingAirline,
+                returningAirline: itinerary.returningAirline,
+                departFlightNum: itinerary.departingFlightNumber,
                 returnFlightNum: itinerary.returningFlightNumber
             },
             rentalCarInfo: {
@@ -120,7 +129,6 @@ const createItinerary = (event) => {
             accessCode: code
         }
 
-    
     return fetch(`http://localhost:8099/itineraries`, {
         method: 'POST',
         headers: {
@@ -140,13 +148,14 @@ const displayRentalCarInfo = () => {
 return <>
 <h3>Rental Car Info:</h3>
 <fieldset>
-                <div className="form-group">
+                <div className="row mb-3">
                     <label htmlFor="description">Reservation Time:</label>
                     <input
                         
                         type="datetime-local"
                         className="form-control"
                         value={itinerary.reservationTime}
+                        required
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -164,6 +173,7 @@ return <>
                         type="datetime-local"
                         className="form-control"
                         value={itinerary.carDropOffTime}
+                        required
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -181,6 +191,7 @@ return <>
                         type="text"
                         className="form-control"
                         value={itinerary.rentalCompany}
+                        required
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -194,10 +205,11 @@ return <>
                 <div className="form-group">
                     <label htmlFor="description">Rental reservation Number:</label>
                     <input
-                        required autoFocus
+                        
                         type="number"
                         className="form-control"
                         value={itinerary.reservationNum}
+                        required
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -217,10 +229,11 @@ const displayFlightInfo = () => {
                 <div className="form_departingairline">
                     <label htmlFor="description">Departing Airline:</label>
                     <input
-                        required autoFocus
+                        
                         type="text"
                         className="form-control-departingAirline"
                         value={itinerary.departingAirline}
+                        required
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -234,10 +247,11 @@ const displayFlightInfo = () => {
                 <div className="form-group">
                     <label htmlFor="description">Returning Airline:</label>
                     <input
-                        required autoFocus
+                        
                         type="text"
                         className="form-control"
                         value={itinerary.returningAirline}
+                        required
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -251,10 +265,11 @@ const displayFlightInfo = () => {
                 <div className="form-group">
                     <label htmlFor="description">Departing Airport:</label>
                     <input
-                        required autoFocus
+                        
                         type="text"
                         className="form-control"
                         value={itinerary.departingAirport}
+                        required
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -268,10 +283,11 @@ const displayFlightInfo = () => {
                 <div className="form-group">
                     <label htmlFor="description">Return Airport:</label>
                     <input
-                        required autoFocus
+                        
                         type="text"
                         className="form-control"
                         value={itinerary.returnAirport}
+                        required
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -285,10 +301,11 @@ const displayFlightInfo = () => {
                 <div className="form-group">
                     <label htmlFor="description">Departing Flight Time:</label>
                     <input
-                        required autoFocus
+                        
                         type="time"
                         className="form-control"
                         value={itinerary.flightToDestinationTime}
+                        required
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -302,10 +319,11 @@ const displayFlightInfo = () => {
                 <div className="form-group">
                     <label htmlFor="description">Returning Flight Time:</label>
                     <input
-                        required autoFocus
+                        
                         type="time"
                         className="form-control"
                         value={itinerary.returnFlight}
+                        required
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -319,11 +337,11 @@ const displayFlightInfo = () => {
                 <div className="form-group">
                     <label htmlFor="description">Returning Flight Number:</label>
                     <input
-                        required autoFocus
+                        
                         type="text"
                         className="form-control"
-                        placeholder="Name your product! "
                         value={itinerary.returningFlightNumber}
+                        required
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -337,11 +355,11 @@ const displayFlightInfo = () => {
                 <div className="form-group">
                     <label htmlFor="description">Departing Flight Number:</label>
                     <input
-                        required autoFocus
+                        
                         type="text"
                         className="form-control"
-                        placeholder="Name your product!"
                         value={itinerary.departingFlightNumber}
+                        required
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -359,7 +377,9 @@ const displayMainTripInfo = () => {
     <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Where are you traveling?</label>
-                    <select value={itineraryLocation.locationId}
+                    <select className="form-control"
+                    value={itineraryLocation.locationId}
+                    required autoFocus
                     onChange={ 
                             (evt) => {
                                 const copy = {...itineraryLocation}
@@ -368,16 +388,18 @@ const displayMainTripInfo = () => {
                             } 
                             }> 
                             <option value="0">Choose your destination</option>
-                            {locations.map(location => {
-                                return <option value={location.id} key={location.id}>{location.city}, {location.state} {location.country}</option>
+                            {allCities.map(location => {
+                                return <option value={location.id} key={location.id}>{location.name}, {location.stateCode} {location.countryCode}</option>
                             })}
                     </select>
                 </div>
-            </fieldset>
+                </fieldset>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">How are you traveling?</label>
-                    <select value={itinerary.travelMethod}
+                    <select className="form-control"
+                    value={itinerary.travelMethod}
+                    required
                     onChange={ 
                             (evt) => {
                                 const copy = {...itinerary}
@@ -396,10 +418,11 @@ const displayMainTripInfo = () => {
                 <div className="departure">
                     <label htmlFor="description">Departure Date:</label>
                     <input
-                        required autoFocus
+                        
+                        className="form-control"
                         type="date"
-                        className="form-control-departureDate"
                         value={itinerary.departureDate}
+                        required
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -413,10 +436,11 @@ const displayMainTripInfo = () => {
                 <div className="return">
                     <label htmlFor="description">Return Date:</label>
                     <input
-                        required autoFocus
+                        
                         type="date"
                         className="form-control"
                         value={itinerary.returnDate}
+                        required
                         onChange={
                             (evt) => {
                                 const copy = {...itinerary}
@@ -443,9 +467,6 @@ return (
                 Create New Itinerary!
             </button>
         </form>
-        <div>
-            <input></input>
-        </div>
         </main>
     )
 

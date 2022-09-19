@@ -5,6 +5,9 @@
     flex-direction: row;
     justify-content: center;
     gap: 2rem;
+    height: 30%;
+    background-color: #1F0322;
+    transition: ease all 0.5s
 }
 
 /* CSS styles for the  */
@@ -12,10 +15,23 @@
     border: 1px solid black;
     border-radius: 15px; 
     padding: 5px;
+    background-color:#E4D9FF;
+    transition: ease all 0.25s;
 }
+
+.nav_link:hover {
+    background-color: #9c92b6;
+}
+
+
 /* CSS styles for the actual links. */
 .nav_link a {
     text-decoration: none;
+    color: black
+}
+
+.nav_link a:hover {
+    color: black
 }
 
 /* CSS styles for the Logout button*/

@@ -26,22 +26,9 @@ useEffect(
 
     const displayedUpcomingTrips = userItineraries.slice(0,3)
 
-    // console.log(displayedUpcomingTrips?.itinerary)
-
-    console.log(displayedUpcomingTrips[0]?.itinerary?.travelMethod)
-    
-
-    // const tripOne = displayedUpcomingTrips[0]
-    // const tripTwo = displayedUpcomingTrips[1]
-    // const tripThree = displayedUpcomingTrips[2]
-
-    // console.log(tripOne)
-    // console.log(displayedUpcomingTrips)
-
-
     return <>
     <div className="topsection">
-        <div>
+        <div class="topsectionoverlay">
         <h1>Travel Buddy</h1>
         <Link className="getStarted" to="/createnewtrip">Get started!</Link>
         </div>

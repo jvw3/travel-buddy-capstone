@@ -10,6 +10,15 @@
     background-image: url(../views/HomePagesImages/eva-darron-oCdVtGFeDC0-unsplash\ \(1\).jpg);
     background-size: cover;
     background-position: center;
+    
+}
+
+.topsectionoverlay {
+    height: 50vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    background-color: #1f0322a4;
     padding-left: 20px;
 }
 

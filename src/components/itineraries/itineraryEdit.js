@@ -61,7 +61,7 @@ useEffect(
 
 
     const updateTravelLocation = () => {
-        return fetch(`http://localhost:8088/itineraryLocations/${usertripId}}`, 
+        return fetch(`http://localhost:8099/itineraryLocations/${usertripId}}`, 
         {method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -74,7 +74,7 @@ useEffect(
     const UpdateItinearyButton = (event) => {
         event.preventDefault()
 
-        return fetch(`http://localhost:8088/itineraries/${itinerary?.itinerary?.id}`, 
+        return fetch(`http://localhost:8099/itineraries/${itinerary?.itinerary?.id}`, 
         {method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -86,12 +86,6 @@ useEffect(
         .then(() => {
                 navigate("/trips")
             })
-
-        /*
-        
-            TODO: Perform the PUT fetch() call here to update the profile.
-            Navigate user to home page when done.
-        */
     }
 
 const displayRentalCarInfo = () => {

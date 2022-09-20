@@ -38,11 +38,25 @@ useEffect(
             .then(
                 (myItinerariesArray) => {
                     setUserItineraries(myItinerariesArray)
-                    
                 }
             )
         }, []
     )
+
+    // const renderDeleteButton = () => {
+    // return <button onClick={() => {
+    //     fetch(`http://localhost:8099/itineraries/${foundItinerary.id}`, {
+    //         method: "DELETE"
+    //     })
+    //             .then(
+    //         () => {
+    //             getUpdatedItineraryListForUser()
+    //         })
+    //         .then( 
+    //             (userItineraries) => setUserItineraries(userItineraries)
+    //         )
+    // }}className="deletebutton">Delete Trip</button>
+    // }
 
     
 // If isCurrent=true, display trip in CurrentTrip
@@ -62,6 +76,7 @@ useEffect(
             isCurrent={itinerary.itinerary.isCurrent}
             userItineraries={userItineraries}
             userItineraryObject={itinerary}
+            setUserItineraries={setUserItineraries}
             />)
         }
         </div>

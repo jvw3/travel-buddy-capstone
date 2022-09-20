@@ -10,7 +10,7 @@ export const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault()
 
-        return fetch(`http://localhost:8088/users?email=${email}`)
+        return fetch(`http://localhost:8099/users?email=${email}`)
             .then(res => res.json())
             .then(foundUsers => {
                 if (foundUsers.length === 1) {
@@ -30,8 +30,9 @@ export const Login = () => {
 
     return (
         <main className="container--login">
+        <img src="./"></img>
             <section>
-                <form className="form--login" onSubmit={handleLogin}>
+                <form className="form-outline mb-3" onSubmit={handleLogin}>
                     <h1>Travel Buddy</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
@@ -44,9 +45,7 @@ export const Login = () => {
                             required autoFocus />
                     </fieldset>
                     <fieldset>
-                        <button type="submit">
-                            Sign in
-                        </button>
+                        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
                     </fieldset>
                 </form>
             </section>

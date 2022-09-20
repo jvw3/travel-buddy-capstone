@@ -1,5 +1,56 @@
 
 
+.topsection {
+    height: 50vh;
+    width: 100vw;
+    background-color: #1F0322;
+    box-shadow: 10px 8px 20px 5px;
+    display: flex;
+    align-items: center;
+    background-image: url(../views/HomePagesImages/eva-darron-oCdVtGFeDC0-unsplash\ \(1\).jpg);
+    background-size: cover;
+    background-position: center;
+    padding-left: 20px;
+}
+
+.getStarted {
+    border: 1px solid white;
+    padding: 5px;
+    background-color: white;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.bottomsection {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
 h1 {
     text-align: center;
+    color: white;
+}
+
+.upcomingtripcontainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    padding-top: 40px;
+}
+
+
+.upcomingtrip {
+    border: 1px solid black;
+    padding: 5px;
+    width: 30vw;
+    border-radius: 10px;
+    height: 30vh;
+    transition: ease all 0.25s;
+}
+
+.upcomingtrip:hover {
+    transform: scale(1.025);
 }

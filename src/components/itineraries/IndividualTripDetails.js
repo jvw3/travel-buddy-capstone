@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Navigate, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ActivitySchedule } from "./ActivitySchedule";
@@ -10,10 +10,12 @@ import { getAllActivities } from "../api/APImanager";
 export const IndividualTripDetails = ({}) => {
   const { usertripId } = useParams();
   const [activities, setActivities] = useState([]);
+  const [itineraries, setItineraries] = useState([]);
   const [userItinerary, updateUserItinerary] = useState();
   const [destination, updateDestination] = useState();
   const [itineraryActivities, setItineraryActivities] = useState([]);
   const [activityFormVisibility, setFormVisibility] = useState(false);
+  const navigate = useNavigate();
 
   // useEffect(
   //     () => {
@@ -40,9 +42,21 @@ export const IndividualTripDetails = ({}) => {
     isComplete: "",
   });
 
-  //This useEffect fetches the array of itineraries from the API, stores it as activitiesData, then setActivities setterFunction uses activitiesData to set the activities stateVariable.
+  const [activity, updateActivity] = useState({
+    name: "",
+  });
+
   useEffect(() => {
     fetch(`http://localhost:8099/itineraries`)
+      .then((res) => res.json())
+      .then((itinerariesData) => {
+        setItineraries(itinerariesData);
+      });
+  }, []);
+
+  //This useEffect fetches the array of itineraries from the API, stores it as activitiesData, then setActivities setterFunction uses activitiesData to set the activities stateVariable.
+  useEffect(() => {
+    fetch(`http://localhost:8099/activities`)
       .then((res) => res.json())
       .then((activitiesData) => {
         setActivities(activitiesData);
@@ -59,7 +73,23 @@ export const IndividualTripDetails = ({}) => {
       });
   }, []);
 
-  console.log(userItinerary?.itineraryId);
+  const getUpdatedActivityListForUser = () => {
+    fetch(
+      `http://localhost:8099/itineraryActivities?_expand=activity&itineraryId=${usertripId}`
+    )
+      .then((res) => res.json())
+      .then((itineraryActivitiesArray) => {
+        setItineraryActivities(itineraryActivitiesArray);
+      });
+  };
+
+  const getUpdatedActivitiesList = () => {
+    fetch(`http://localhost:8099/activities`)
+      .then((res) => res.json())
+      .then((activitiesArray) => {
+        setActivities(activitiesArray);
+      });
+  };
 
   const postItineraryActivity = (event) => {
     event.preventDefault();
@@ -84,8 +114,15 @@ export const IndividualTripDetails = ({}) => {
       body: JSON.stringify(itineraryActivityToAPI),
     })
       .then((res) => res.json())
-      .then(() => {});
+      .then(() => {
+        getUpdatedActivityListForUser();
+      });
   };
+
+  //map through itineraries and if itineraryId === userItineraryObject.itineraryId
+  // const foundItinerary = itineraries.find(
+  //   (itinerary) => itinerary.id === userItinerary?.itineraryId
+  // );
 
   // This useEffect hook fetches the specific itinerary for the current user.
   useEffect(() => {
@@ -120,26 +157,58 @@ export const IndividualTripDetails = ({}) => {
       });
   }, []);
 
-  // When Add Activity button is clicked, a new activity form is created
-  // const generateActivityForm = () => {
-  //     return <form>
-  // <fieldset>
-  // <label>Activity</label>
-  //     <input type="text">
-  //     </input>
-  // </fieldset>
-  // <fieldset>
-  //     <label>Activity Date</label>
-  //     <input type="text">
-  //     </input>
-  // </fieldset>
-  // <fieldset>
-  //     <label>Activity Address</label>
-  //     <input type="text">
-  //     </input>
-  // </fieldset>
-  //     </form>
-  // }
+  const foundItinerary = itineraries.find(
+    (itinerary) => itinerary.id === userItinerary?.itineraryId
+  );
+
+  const renderDeleteItineraryButton = () => {
+    return (
+      <button
+        onClick={() => {
+          fetch(`http://localhost:8099/itineraries/${foundItinerary.id}`, {
+            method: "DELETE",
+          }).then(() => {
+            navigate("/trips");
+          });
+        }}
+        className="deletebutton"
+      >
+        Delete Trip
+      </button>
+    );
+  };
+
+  const postActivity = (event) => {
+    event.preventDefault();
+
+    const activityToAPI = {
+      name: activity.name,
+    };
+
+    return fetch(`http://localhost:8099/activities`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(activityToAPI),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        getUpdatedActivitiesList();
+      });
+  };
+
+  const addActivityButton = () => {
+    return (
+      <button
+        onClick={(event) => {
+          postActivity(event);
+        }}
+      >
+        Add activity!
+      </button>
+    );
+  };
 
   return (
     <>
@@ -159,7 +228,7 @@ export const IndividualTripDetails = ({}) => {
             >
               Edit your Itinerary
             </Link>
-            <button className="deletetrip">Delete Trip</button>
+            {renderDeleteItineraryButton()}
             <h3 class="departuredate">
               Leaving on: {userItinerary?.itinerary?.departureDate}
             </h3>
@@ -252,9 +321,26 @@ export const IndividualTripDetails = ({}) => {
               </fieldset>
               <fieldset>
                 <div className="departure">
-                  <label htmlFor="description">Description:</label>
+                  <label htmlFor="description">Add Activity:</label>
                   <input
                     required
+                    autoFocus
+                    className="form-control"
+                    type="text"
+                    value={activity.name}
+                    onChange={(evt) => {
+                      const copy = { ...activity };
+                      copy.name = evt.target.value;
+                      updateActivity(copy);
+                    }}
+                  />
+                </div>
+                {addActivityButton()}
+              </fieldset>
+              <fieldset>
+                <div className="departure">
+                  <label htmlFor="description">Description:</label>
+                  <input
                     autoFocus
                     className="form-control"
                     type="text"
@@ -271,7 +357,6 @@ export const IndividualTripDetails = ({}) => {
                 <div className="departure">
                   <label htmlFor="description">Activity Time and Date:</label>
                   <input
-                    required
                     autoFocus
                     className="form-control"
                     type="datetime-local"
@@ -288,7 +373,6 @@ export const IndividualTripDetails = ({}) => {
                 <div className="departure">
                   <label htmlFor="description">Activity Address:</label>
                   <input
-                    required
                     autoFocus
                     className="form-control"
                     type="text"
@@ -325,7 +409,9 @@ export const IndividualTripDetails = ({}) => {
               activityDescription={itineraryActivity?.description}
               activityAddress={itineraryActivity?.address}
               activityDateTime={itineraryActivity?.activityDateTime}
-              setActivities={setItineraryActivities}
+              setItineraryActivities={setItineraryActivities}
+              id={itineraryActivity?.id}
+              itineraryId={itineraryActivity?.itineraryId}
             />
           ))}
         </section>

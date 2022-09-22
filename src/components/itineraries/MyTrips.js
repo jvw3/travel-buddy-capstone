@@ -63,7 +63,7 @@ useEffect(
 // If isCurrent === false && isCompleted === false, display in Upcoming Trips
 // If isCompleted === true, display trips in CompletedTrips
     return <>
-    <article>
+    <section>
         <h2 className="mytripsheader">My Trips</h2>
         <div class="tripsContainer">
         {
@@ -73,6 +73,7 @@ useEffect(
             departureDate={itinerary.itinerary.departureDate}
             returnDate={itinerary.itinerary.returnDate}
             id={itinerary?.id}
+            itineraryId={itinerary?.itineraryId}
             isCurrent={itinerary.itinerary.isCurrent}
             userItineraries={userItineraries}
             userItineraryObject={itinerary}
@@ -80,6 +81,9 @@ useEffect(
             />)
         }
         </div>
-    </article>
+    </section>
+    <section>
+        <h2 className="mytripsheader">Completed Trips</h2>
+    </section>
     </>
 }

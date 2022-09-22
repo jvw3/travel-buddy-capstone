@@ -11,6 +11,8 @@ export const IndividualTrip = ({
   isCurrent,
   userItineraryObject,
   setUserItineraries,
+  itineraryId,
+  userItineraries
 }) => {
   // iterate through itineraries, and the find the itinerary.Id that matches the itineraryId on the userItineraryObject.
   const [itineraries, setItineraries] = useState([]);
@@ -72,6 +74,19 @@ export const IndividualTrip = ({
     });
 };
 
+
+// fetch the specific itinerary that we want to edit. 
+  useEffect(() => {
+    fetch(
+      `http://localhost:8099/userItineraries?_expand=itinerary&itineraryId=${itineraryId}`
+    )
+      .then((res) => res.json())
+      .then((myItinerary) => {
+        const itineraryToEdit = myItinerary[0];
+        update(itineraryToEdit);
+      });
+  }, []);
+
   // This function will create the class that will display the image for your destination.
   // map through itineraryLocations, and if itinerary Id matches the other itinerary Id, than display the
 
@@ -103,33 +118,55 @@ export const IndividualTrip = ({
   };
 
   //when start trip is clicked, a copy of the trip will displayed in
-  const startTripOnClick = () => {
+  const completeTripOnClick = () => {
     return (
       <button
-        onClick={() => {
-          {
-            const copy = { ...itinerary };
-            copy.isCurrent = true;
-            update(copy);
-          }
-
-          return fetch(
-            `http://localhost:8088/itineraries/${foundItinerary.Id}}`,
-            {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              // body: JSON.stringify(PutRequestForItinerary)
-            }
-          ).then((res) => res.json());
+        onClick={(event) => {
+          completeTripstatusPut(event)
         }}
         className="startbutton"
       >
-        Start Trip
+        Finish Trip
       </button>
     );
   };
+
+  const completeTripstatusPut = (event) => {
+    
+
+   const itineraryPutToApi = {
+     travelMethod: itinerary.travelMethod,
+     flightInfo: {
+       flightToDestinationTime: itinerary.flightToDestinationTime,
+       returnFlightTime: itinerary.returnFlight,
+       departingAirport: itinerary.departingAirport,
+       returnAirport: itinerary.returnAirport,
+       departingAirline: itinerary.departingAirline,
+       returningAirline: itinerary.returningAirline,
+       departFlightNum: itinerary.departingFlightNumber,
+       returnFlightNum: itinerary.returningFlightNumber,
+     },
+     rentalCarInfo: {
+       reservationTime: itinerary.reservationTime,
+       carDropOffTime: itinerary.carDropOffTime,
+       rentalCompany: itinerary.rentalCompany,
+       reservationNum: itinerary.reservationNum,
+     },
+     departureDate: itinerary.departureDate,
+     returnDate: itinerary.returnDate,
+     isShared: false,
+     isComplete: true,
+     isCurrent: false,
+   };
+
+   return fetch(`http://localhost:8088/itineraries/${foundItinerary.Id}}`, {
+     method: "PUT",
+     headers: {
+       "Content-Type": "application/json",
+     },
+     body: JSON.stringify(itineraryPutToApi),
+   }).then((res) => res.json());
+  }
 
   return (
     <>
@@ -139,7 +176,7 @@ export const IndividualTrip = ({
           <div>Departing on: {departureDate}</div>
           <div>Returning on: {returnDate}</div>
           <div className="buttonsandlinks">
-            {startTripOnClick()}
+            {completeTripOnClick()}
             <Link to={`/trips/${userItineraryObject.itineraryId}/view`}>
               Expand Trip View
             </Link>

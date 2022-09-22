@@ -1,7 +1,7 @@
 
 
 .topsection {
-    height: 50vh;
+    height: 100vh;
     width: 100vw;
     background-color: #1F0322;
     box-shadow: 10px 8px 20px 5px;
@@ -17,12 +17,19 @@
     color: white;
 }
 
+.welcomemessage {
+    align-self: flex-start;
+}
+
+.getstartedtext {
+    align-self: center;
+}
+
 .topsectionoverlay {
-    height: 50vh;
+    height: 100vh;
     width: 100vw;
     display: flex;
-    align-items: center;
-    background-color: #1f0322a4;
+    background-image: linear-gradient(#1F0322, #1f032210);
     padding-left: 20px;
 }
 
@@ -35,10 +42,9 @@
 }
 
 .bottomsection {
-    height: 50vh;
+    height: 40vh;
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
 }
 
 h1 {
@@ -51,17 +57,24 @@ h1 {
     align-items: center;
     justify-content: center;
     justify-content: space-between;
-    padding-top: 40px;
+}
+
+.upcomingtripsheader {
+    background: #1F0322;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
 .upcomingtrip {
     border: 1px solid black;
     padding: 5px;
-    width: 30vw;
-    border-radius: 10px;
+    /* width: 30vw; */
     height: 30vh;
     transition: ease all 0.25s;
+    flex-grow: 1;
 }
 
 .upcomingtrip:hover {

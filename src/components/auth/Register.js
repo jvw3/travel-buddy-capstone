@@ -83,7 +83,7 @@ export const Register = (props) => {
           />
         </fieldset>
         <fieldset>
-          <button type="submit"> Register </button>
+          <button type="submit"> Create Account </button>
         </fieldset>
       </form>
     </main>

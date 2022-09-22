@@ -9,10 +9,11 @@ export const IndividualTrip = ({
   departureDate,
   returnDate,
   isCurrent,
+  isComplete,
   userItineraryObject,
   setUserItineraries,
   itineraryId,
-  userItineraries
+  userItineraries,
 }) => {
   // iterate through itineraries, and the find the itinerary.Id that matches the itineraryId on the userItineraryObject.
   const [itineraries, setItineraries] = useState([]);
@@ -71,19 +72,15 @@ export const IndividualTrip = ({
       .then((res) => res.json())
       .then((userItinerariesArray) => {
         setUserItineraries(userItinerariesArray);
-    });
-};
+      });
+  };
 
-
-// fetch the specific itinerary that we want to edit. 
+  // fetch the specific itinerary that we want to edit.
   useEffect(() => {
-    fetch(
-      `http://localhost:8099/userItineraries?_expand=itinerary&itineraryId=${itineraryId}`
-    )
+    fetch(`http://localhost:8099/itineraries/${itineraryId}`)
       .then((res) => res.json())
       .then((myItinerary) => {
-        const itineraryToEdit = myItinerary[0];
-        update(itineraryToEdit);
+        update(myItinerary);
       });
   }, []);
 
@@ -122,7 +119,7 @@ export const IndividualTrip = ({
     return (
       <button
         onClick={(event) => {
-          completeTripstatusPut(event)
+          completeTripstatusPut(event);
         }}
         className="startbutton"
       >
@@ -132,45 +129,51 @@ export const IndividualTrip = ({
   };
 
   const completeTripstatusPut = (event) => {
-    
+    const itineraryPutToApi = {
+      travelMethod: itinerary.travelMethod,
+      flightInfo: {
+        flightToDestinationTime: itinerary.flightInfo.flightToDestinationTime,
+        returnFlightTime: itinerary.flightInfo.returnFlightTime,
+        departingAirport: itinerary.flightInfo.departingAirport,
+        returnAirport: itinerary.flightInfo.returnAirport,
+        departingAirline: itinerary.flightInfo.departingAirline,
+        returningAirline: itinerary.flightInfo.returningAirline,
+        departFlightNum: itinerary?.flightInfo?.departFlightNum,
+        returnFlightNum: itinerary.flightInfo.returnFlightNum,
+      },
+      rentalCarInfo: {
+        reservationTime: itinerary.rentalCarInfo.reservationTime,
+        carDropOffTime: itinerary.rentalCarInfo.carDropOffTime,
+        rentalCompany: itinerary.rentalCarInfo.rentalCompany,
+        reservationNum: itinerary.rentalCarInfo.reservationNum,
+      },
+      departureDate: itinerary.departureDate,
+      returnDate: itinerary.returnDate,
+      isShared: false,
+      isComplete: true,
+      isCurrent: false,
+      accessCode: itinerary.accessCode,
+    };
 
-   const itineraryPutToApi = {
-     travelMethod: itinerary.travelMethod,
-     flightInfo: {
-       flightToDestinationTime: itinerary.flightToDestinationTime,
-       returnFlightTime: itinerary.returnFlight,
-       departingAirport: itinerary.departingAirport,
-       returnAirport: itinerary.returnAirport,
-       departingAirline: itinerary.departingAirline,
-       returningAirline: itinerary.returningAirline,
-       departFlightNum: itinerary.departingFlightNumber,
-       returnFlightNum: itinerary.returningFlightNumber,
-     },
-     rentalCarInfo: {
-       reservationTime: itinerary.reservationTime,
-       carDropOffTime: itinerary.carDropOffTime,
-       rentalCompany: itinerary.rentalCompany,
-       reservationNum: itinerary.reservationNum,
-     },
-     departureDate: itinerary.departureDate,
-     returnDate: itinerary.returnDate,
-     isShared: false,
-     isComplete: true,
-     isCurrent: false,
-   };
-
-   return fetch(`http://localhost:8088/itineraries/${foundItinerary.Id}}`, {
-     method: "PUT",
-     headers: {
-       "Content-Type": "application/json",
-     },
-     body: JSON.stringify(itineraryPutToApi),
-   }).then((res) => res.json());
-  }
+    return fetch(`http://localhost:8099/itineraries/${foundItinerary?.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(itineraryPutToApi),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        getUpdatedItineraryListForUser();
+      });
+  };
 
   return (
     <>
-      <div className="mytrips-container">
+    {
+      isCurrent || isComplete
+      ? ""
+      : <div className="mytrips-container">
         <section className="itinerary">
           <div className={foundLocation?.location.city + "pic"}></div>
           <div>Departing on: {departureDate}</div>
@@ -184,7 +187,7 @@ export const IndividualTrip = ({
           </div>
         </section>
       </div>
-      <div></div>
+    }
     </>
   );
 };

@@ -5,8 +5,8 @@ export const Register = (props) => {
   const [user, setUser] = useState({
     name: "",
     email: "",
-    profilePicture:"",
-    isAdmin: false
+    profilePicture: "",
+    isAdmin: false,
   });
   let navigate = useNavigate();
 
@@ -58,15 +58,13 @@ export const Register = (props) => {
   return (
     <main style={{ textAlign: "center" }}>
       <form className="form--login" onSubmit={handleRegister}>
-        <h1 className="">
-          Please Register for Travel Buddy
-        </h1>
+        <h1 className="">Please Register for Travel Buddy</h1>
         <fieldset>
-          <label htmlFor="fullName"> Full Name </label>
+          <label htmlFor="name"> Full Name </label>
           <input
             onChange={updateUser}
             type="text"
-            id="fullName"
+            id="name"
             className="form-control"
             placeholder="Enter your name"
             required

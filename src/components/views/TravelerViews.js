@@ -4,28 +4,42 @@ import { ItineraryForm } from "../itineraries/ItineraryForm"
 import { UserItineraries } from "../itineraries/MyTrips"
 import { HomePageView } from "./TravelerHomePage"
 import { EditItinerary} from "../itineraries/itineraryEdit"
+import { EditActivity } from "../itineraries/ActivityEdit"
 
 export const TravelerViews = () => {
 	return (
-		<Routes>
-			<Route path='/' element={
-				<>
-					<HomePageView />
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <HomePageView />
 
-					<Outlet />
-				</>
-			}>
-			</Route>
-            
-            <Route path="home" element={ <HomePageView />} />
+            <Outlet />
+          </>
+        }
+      ></Route>
 
-            <Route path="trips" element={ <UserItineraries />} />
+      <Route path="home" element={<HomePageView />} />
 
-            <Route path="createnewtrip" element={ <ItineraryForm />} />
+      <Route path="trips" element={<UserItineraries />} />
 
-			<Route path="trips/:usertripId/view" element={ <IndividualTripDetails/> } />
+      <Route path="createnewtrip" element={<ItineraryForm />} />
 
-			<Route path="trips/:usertripId/editItinerary" element={ <EditItinerary/> } />
-		</Routes>
-	)
+      <Route
+        path="trips/:usertripId/view"
+        element={<IndividualTripDetails />}
+      />
+
+      <Route
+        path="trips/:usertripId/editItinerary"
+        element={<EditItinerary />}
+      />
+
+      <Route
+        path="trips/:itineraryActivityId/:itineraryId/editActivity"
+        element={<EditActivity />}
+      />
+    </Routes>
+  );
 }

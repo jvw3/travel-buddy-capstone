@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
+import { useEffect, useState} from "react"
 import "./NavBar.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -6,6 +7,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //This component renders the NavBar for users taht are logged in as travelers.
 export const TravelerNavBar = () => {
     const navigate = useNavigate()
+
+
+    // const localAppUser = localStorage.getItem("travelbuddy_user");
+    // const appUserObject = JSON.parse(localAppUser);
+
+    //   useEffect(() => {
+    //     fetch(`http://localhost:8099/itineraries/${itineraryId}`)
+    //       .then((res) => res.json())
+    //       .then((myItinerary) => {
+    //         update(myItinerary);
+    //       });
+    //   }, []);
 
 
     return (

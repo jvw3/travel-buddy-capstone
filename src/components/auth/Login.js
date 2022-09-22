@@ -30,17 +30,16 @@ export const Login = () => {
 
     return (
         <main className="container--login">
-        <img src="./"></img>
             <section>
                 <form className="form-outline mb-3" onSubmit={handleLogin}>
-                    <h1>Travel Buddy</h1>
+                    <h1 className="header">Travel Buddy</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
                         <input type="email"
                             value={email}
                             onChange={evt => set(evt.target.value)}
-                            className="form-control"
+                            className="emaillogin"
                             placeholder="Email address"
                             required autoFocus />
                     </fieldset>

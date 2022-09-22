@@ -1,8 +1,12 @@
 
 
-.h1,
-h1 {
+.header {
     font-size: 2.5rem;
+    color: black;
+}
+
+.emaillogin {
+    width: 50vw;
 }
 
 fieldset {

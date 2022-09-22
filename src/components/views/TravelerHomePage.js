@@ -31,7 +31,7 @@ export const HomePageView = () => {
       });
   }, []);
 
-  //   const displayedUpcomingTrips = userItineraries.slice(0, 3);
+    const displayedUpcomingTrips = userItineraries.slice(0, 3);
 
   return (
     <>
@@ -49,9 +49,11 @@ export const HomePageView = () => {
         </div>
       </div>
       <div className="bottomsection">
-        <h2>Upcoming Trips</h2>
+        <div class="upcomingtripsheader">
+        <h2 class="bottomsectionheader">Upcoming Trips</h2>
+        </div>
         <section className="upcomingtripcontainer">
-          {userItineraries.map((trip) => (
+          {displayedUpcomingTrips.map((trip) => (
             <UpcomingTrip
               key={`itinerary--${trip?.id}`}
               tripObject={trip}

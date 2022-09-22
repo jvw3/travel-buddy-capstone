@@ -1,7 +1,7 @@
 
 
 .topsection {
-    height: 50vh;
+    height: 100vh;
     width: 100vw;
     background-color: #1F0322;
     box-shadow: 10px 8px 20px 5px;
@@ -17,12 +17,19 @@
     color: white;
 }
 
+.welcomemessage {
+    align-self: flex-start;
+}
+
+.getstartedtext {
+    align-self: center;
+}
+
 .topsectionoverlay {
-    height: 50vh;
+    height: 100vh;
     width: 100vw;
     display: flex;
-    align-items: center;
-    background-color: #1f0322a4;
+    background-image: linear-gradient(#1F0322, #1f032210);
     padding-left: 20px;
 }
 
@@ -35,7 +42,7 @@
 }
 
 .bottomsection {
-    height: 50vh;
+    height: 40vh;
     display: flex;
     flex-direction: column;
     padding-top: 20px;

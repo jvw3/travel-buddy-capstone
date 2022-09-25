@@ -12,57 +12,161 @@
     height: 50vh;
 }
 
-.completedtripscontainer {
+/* .completedtripscontainer {
     display: flex;
     flex-direction: row;
     padding-top: 20px;
+} */
+
+.currenttripcontainer {
+    display: flex;
+    justify-content: center;
+}
+
+.allcompletedtrips {
+    display: flex;
+    flex-direction: row;
+    height: 50vh;
+}
+
+.showcompletedtrips {
+    background-color: #1F0322;
+    color: white;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.hidecompletedtrips {
+    background-color: #1F0322;
+    color: white;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .itinerary {
     border: 1px solid black;
     padding: 5px;
-    width: 20vw;
+    width: 40vw;
     border-radius: 10px;
     height: 30vh;
     transition: ease all 0.25s;
+}
+/* CSS styling for the overlay on each itinerary card */
+.itineraryoverlay {
+    background-color: rgba(0, 0, 0, 0.421);
+    height: 100%;
+    flex: 1;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+
+.buttonsandlinks {
+    display: flex;
+    justify-content: space-evenly;
+    justify-self: flex-end;
+}
+
+.currenttrip {
+    border: 1px solid black;
+    padding: 5px;
+    width: 80vw;
+    border-radius: 10px;
+    height: 40vh;
+    transition: ease all 0.25s;
+}
+
+.currenttripoverlay {
+    background-color: rgba(0, 0, 0, 0.421);
+    height: 100%;
 }
 
 .itinerary:hover {
     transform: scale(1.05);
 }
 
-.buttonsandlinks {
+
+
+/* CSS Styling for the city name on each itinerary card */
+.traveldestination {
+    color: white
+}
+
+/* CSS Styling for the finish trip button */
+.finishtripbutton {
+    flex-grow: 1;
+    border-width: 0.1px;
+    background-color: white;
+    color: green;
+    transition: ease all 0.25s;
+}
+/* CSS Styling for when user hovers on the finish trip button */
+.finishtripbutton:hover {
+    background-color: rgb(0, 36, 0);
+}
+
+/* CSS Styling for the delete itinerary button */
+.deletebutton {
+    flex-grow: 1;
+    background-color: white;
+    color: red;
+    border-width: 0.1px;
+    transition: ease all 0.25s;
+}
+
+/* CSS Styling for when user hovers on the delete trip button */
+.deletebutton:hover {
+    background-color: rgb(46, 0, 0);
+}
+/* CSS Styling for the delete itinerary button */
+.starttripbutton {
+    flex-grow: 1;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-width: 0.1px;
+    transition: ease all 0.25s;
+}
+
+/* CSS Styling for when user hovers on the delete trip button */
+.deletebutton:hover {
+    background-color: rgb(245, 202, 202);
+}
+
+.fulltripview {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+.tripdates {
     display: flex;
     justify-content: space-evenly;
 }
 
-.startbutton {
+
+.carddepature {
+    color: black;
+    background-color: white;
+    width: fit-content;
+    padding: 2px;
     border-radius: 10px;
-    border-width: 0.1px;
-    background-color: rgb(24, 77, 24);
-    color: white;
-    transition: ease all 0.25s;
+    font-size: 0.8rem
 }
 
-.deletebutton {
-    border-radius: 10px;
-    background-color: rgb(123, 0, 0);
-    color: white;
-    border-width: 0.1px;
-    transition: ease all 0.25s;
-}
-
-.deletebutton:hover {
-    background-color: rgb(46, 0, 0);
-}
-
-.startbutton:hover {
-    background-color: rgb(0, 36, 0);
+.cardreturn {
+    color: black;
+        background-color: white;
+        width: fit-content;
+        padding: 2px;
+        border-radius: 10px;
+        font-size: 0.8rem
 }
 
 .Miamipic {
 width: 100%;
-height: 100px;
+height: 50%;
+
+flex-direction: column;
 background-image: url(https://images.unsplash.com/photo-1562517634-baa2da3acfbf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80);
 background-size: cover;
 background-position: center;
@@ -70,18 +174,18 @@ background-position: center;
 
 .Chicagopic {
     width: 100%;
-        height: 100px;
-        background-image: url(/public/images/max-bender-yb7Yg3Rv7WA-unsplash.jpg);
+    height: 100%;
+    background-image: url(/public/images/max-bender-yb7Yg3Rv7WA-unsplash.jpg);
     background-size: cover;
     background-position: center;
 }
 
 .Bostonpic {
     width: 100%;
-        height: 100px;
-        background-image: url(/public/images/jimmy-woo-man-tsing-SUMtPksZXBE-unsplash.jpg);
-        background-size: cover;
-        background-position: center;
+    height: 100%;
+    background-image: url(/public/images/jimmy-woo-man-tsing-SUMtPksZXBE-unsplash.jpg);
+    background-size: cover;
+    background-position: center;
 }
 
 .mytripsheader {

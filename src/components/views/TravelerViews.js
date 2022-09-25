@@ -5,6 +5,7 @@ import { UserItineraries } from "../itineraries/MyTrips"
 import { HomePageView } from "./TravelerHomePage"
 import { EditItinerary} from "../itineraries/itineraryEdit"
 import { EditActivity } from "../itineraries/ActivityEdit"
+import { FinishActivity } from "../itineraries/FinishActivity"
 
 export const TravelerViews = () => {
 	return (
@@ -39,6 +40,9 @@ export const TravelerViews = () => {
       <Route
         path="trips/:itineraryActivityId/:itineraryId/editActivity"
         element={<EditActivity />}
+      />
+
+      <Route path="/finishactivity/:id" element={<FinishActivity />}
       />
     </Routes>
   );

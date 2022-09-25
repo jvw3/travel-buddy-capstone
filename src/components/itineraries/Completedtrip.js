@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect} from "react"
+import { useState, useEffect } from "react";
+import { Card, Image, Text, Button, Badge } from "@mantine/core";
 
 export const CompletedTrip = ({
-  isCurrent,
   isComplete,
   departureDate,
   returnDate,
@@ -43,11 +43,15 @@ export const CompletedTrip = ({
     return (
       <button
         onClick={() => {
-          fetch(`http://localhost:8099/itineraries/${itineraryId}`, {
-            method: "DELETE",
-          }).then(() => {
-            getUpdatedItineraryListForUser();
-          });
+          if (window.confirm("Press OK to confirm your delete.")) {
+            fetch(`http://localhost:8099/itineraries/${itineraryId}`, {
+              method: "DELETE",
+            }).then(() => {
+              getUpdatedItineraryListForUser();
+            });
+          } else {
+            return "";
+          }
         }}
         className="deletebutton"
       >
@@ -58,23 +62,22 @@ export const CompletedTrip = ({
 
   return (
     <>
-    {
-        isComplete
-        ?  <div className="completedtripscontainer">
-        <section className="itinerary">
-          <div className={foundLocation?.location.city + "pic"}></div>
-          <div>Departing on: {departureDate}</div>
-          <div>Returning on: {returnDate}</div>
-          <div className="buttonsandlinks">
-            <Link to={`/trips/${userItineraryObject.itineraryId}/view`}>
-              Expand Trip View
-            </Link>
-            {renderDeleteButton()}
-          </div>
-        </section>
-      </div>
-      : ""
-    }
+      {isComplete ? (
+          <Card withBorder>
+            <div className={foundLocation?.location.city + "pic"}></div>
+            <Badge color="green">Completed</Badge>
+            <div>Departing on: {departureDate}</div>
+            <div>Returning on: {returnDate}</div>
+            <div className="buttonsandlinks">
+              <Link to={`/trips/${userItineraryObject.itineraryId}/view`}>
+                Expand Trip View
+              </Link>
+              {renderDeleteButton()}
+            </div>
+          </Card>
+      ) : (
+        ""
+      )}
     </>
   );
 };

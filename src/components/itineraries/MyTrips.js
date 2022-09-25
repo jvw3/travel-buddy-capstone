@@ -1,7 +1,9 @@
 //I need to get all the itineraries for a user.
 import { useEffect, useState } from "react";
 import { IndividualTrip } from "./Itinerary";
+import { CurrentTrip } from "./CurrentTrip";
 import { CompletedTrip } from "./Completedtrip";
+import { Button } from "@mantine/core"
 // import { CurrentTrip } from "./CurrentTrip"
 // import { button } from "bootstrap"
 import "./itinerary.css";
@@ -55,7 +57,26 @@ export const UserItineraries = () => {
   return (
     <>
       <section>
-        <h2 className="mytripsheader">My Trips</h2>
+        <h2 className="mytripsheader">Current Trip</h2>
+        <div class="currenttripcontainer">
+          {userItineraries.map((itinerary) => (
+            <CurrentTrip
+              key={`itinerary--${itinerary?.id}`}
+              travelMethod={itinerary.itinerary.travelMethod}
+              departureDate={itinerary.itinerary.departureDate}
+              returnDate={itinerary.itinerary.returnDate}
+              id={itinerary?.id}
+              itineraryId={itinerary?.itineraryId}
+              isCurrent={itinerary?.itinerary?.isCurrent}
+              userItineraries={userItineraries}
+              userItineraryObject={itinerary}
+              setUserItineraries={setUserItineraries}
+            />
+          ))}
+        </div>
+      </section>
+      <section>
+        <h2 className="mytripsheader">My Upcoming Trips</h2>
         <div class="tripsContainer">
           {userItineraries.map((itinerary) => (
             <IndividualTrip
@@ -75,21 +96,26 @@ export const UserItineraries = () => {
         </div>
       </section>
       <section>
-        <h2 className="mytripsheader">Completed Trips</h2>
-        <button
-          onClick={() => {
-            setCompletedTripsVisibility(true);
-          }}
-        >
-          Show Completed Trips
-        </button>
-        <button
-          onClick={() => {
-            setCompletedTripsVisibility(false);
-          }}
-        >
-          Hide Completed Trips
-        </button>
+        <div className="completedstatusbuttons">
+          <Button
+            color="violet"
+            variant="light"
+            onClick={() => {
+              setCompletedTripsVisibility(true);
+            }}
+          >
+            Show Completed Trips
+          </Button>
+          <Button
+            color="violet"
+            variant="light"
+            onClick={() => {
+              setCompletedTripsVisibility(false);
+            }}
+          >
+            Hide Completed Trips
+          </Button>
+        </div>
         {completedTripsVisibility ? (
           <div class="allcompletedtrips">
             {userItineraries.map((itinerary) => (

@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Button, Timeline, Text, Card } from "@mantine/core";
+import "./schedule.css";
 
 export const ActivitySchedule = ({
   itineraryActivityObject,
@@ -12,6 +14,8 @@ export const ActivitySchedule = ({
   itineraryId,
 }) => {
   const [itineraries, setItineraries] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:8099/itineraries`)
@@ -38,32 +42,67 @@ export const ActivitySchedule = ({
   // This function renders the delete button and when clicked, will delete an itinerary.
   const renderDeleteButton = () => {
     return (
-      <button
+      <Button
+        color="red"
         onClick={() => {
-          fetch(
-            `http://localhost:8099/itineraryActivities/${itineraryActivityObject?.id}`,
-            {
-              method: "DELETE",
-            }
-          ).then(() => {
-            getItineraryActivitiesForUser();
-          });
+          if (window.confirm("Press OK to confirm your delete.")) {
+            fetch(
+              `http://localhost:8099/itineraryActivities/${itineraryActivityObject?.id}`,
+              {
+                method: "DELETE",
+              }
+            ).then(() => {
+              getItineraryActivitiesForUser();
+            });
+          } else {
+            return "";
+          }
         }}
-        className="deletebutton"
       >
         Delete Activity
-      </button>
+      </Button>
     );
   };
 
   return (
-    <section class="scheduleitem">
-      <div>{activity}</div>
-      <div>{activityDescription}</div>
-      <div>Where:{activityAddress}</div>
-      <div>When: {activityDateTime}</div>
-      {renderDeleteButton()}
-      <Link to={`/trips/${id}/${itineraryId}/editActivity`}>Edit Activity</Link>
-    </section>
+    <>
+      <Timeline.Item>
+        <div className="timelineitem">
+          <Text>{activity}</Text>
+          <Text>{activityDescription}</Text>
+          <div>Where:{activityAddress}</div>
+          <div>When: {activityDateTime}</div>
+          {renderDeleteButton()}
+          <Button
+            color="blue"
+            onClick={() => {
+              navigate(`/trips/${id}/${itineraryId}/editActivity`);
+            }}
+          >
+            <Text size="sm">Edit Activity</Text>
+          </Button>
+          <Button
+            color="green"
+            onClick={() => {
+              navigate(`/finishactivity/:${id}`);
+            }}
+          >
+            Complete Activity
+          </Button>
+        </div>
+      </Timeline.Item>
+    </>
   );
 };
+
+{/* <Button
+  radius="md"
+  color="blue"
+  onClick={() => {
+    navigate(`/trips/${id}/${itineraryId}/editActivity`);
+  }}
+>
+  <Text size="lg">Create New Trip</Text>
+</Button>; */}
+
+// to={`/trips/${id}/${itineraryId}/editActivity`}

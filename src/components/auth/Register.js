@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Register = (props) => {
   const [user, setUser] = useState({
-    name: "",
+    fullName: "",
     email: "",
     profilePicture: "",
     isAdmin: false,
@@ -60,11 +60,11 @@ export const Register = (props) => {
       <form className="form--login" onSubmit={handleRegister}>
         <h1 className="">Please Register for Travel Buddy</h1>
         <fieldset>
-          <label htmlFor="name"> Full Name </label>
+          <label htmlFor="fullName"> Full Name </label>
           <input
             onChange={updateUser}
             type="text"
-            id="name"
+            id="fullName"
             className="form-control"
             placeholder="Enter your name"
             required

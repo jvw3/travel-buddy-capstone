@@ -4,8 +4,6 @@ import "./HomePage.css";
 import { UserItineraries } from "../itineraries/MyTrips";
 import { UpcomingTrip } from "./HomePageUpcomingTrips";
 
-
-
 export const HomePageView = () => {
   const [userItineraries, setUserItineraries] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
@@ -31,26 +29,36 @@ export const HomePageView = () => {
       });
   }, []);
 
-    const displayedUpcomingTrips = userItineraries.slice(0, 3);
+  const displayedUpcomingTrips = userItineraries.slice(0, 3);
+
+  let currentUserName = { currentUser };
+
+  const displayWelcomeMessage = () => {
+    let splitName = currentUserName.fullName.split(" ");
+
+    let userFirstName = splitName[0]
+
+    return <h1>Welcome Back, {userFirstName}</h1>;
+  };
 
   return (
     <>
       <div className="topsection">
         <div class="topsectionoverlay">
           <div class="welcomemessage">
-            <h1>Welcome Back, {currentUser?.name}</h1>
+            <h1>Welcome Back, {currentUser?.fullName}</h1>
           </div>
           <div className="getstartedtext">
-          <h2 className="homepageheader">Travel Buddy</h2>
-          <Link className="getStarted" to="/createnewtrip">
-            Get started!
-          </Link>
+            <h2 className="homepageheader">Travel Buddy</h2>
+            <Link className="getStarted" to="/createnewtrip">
+              Get started!
+            </Link>
           </div>
         </div>
       </div>
       <div className="bottomsection">
         <div class="upcomingtripsheader">
-        <h2 class="bottomsectionheader">Upcoming Trips</h2>
+          <h2 class="bottomsectionheader">Upcoming Trips</h2>
         </div>
         <section className="upcomingtripcontainer">
           {displayedUpcomingTrips.map((trip) => (

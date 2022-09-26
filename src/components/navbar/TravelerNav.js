@@ -2,8 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./NavBar.css";
 import { Button } from "@mantine/core";
-import { Text, Avatar } from "@mantine/core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Text, Avatar, Group } from "@mantine/core";
+import { IconUser, IconLogout, IconCirclePlus } from "@tabler/icons";
+import { ThemeIcon } from "@mantine/core";
 
 //This component renders the NavBar for users taht are logged in as travelers.
 export const TravelerNavBar = () => {
@@ -44,7 +45,6 @@ export const TravelerNavBar = () => {
 
   return (
     <nav className="navbar navbar-inverse">
-      <div className="container-fluid">
         <ul className="navbar">
           <Button
             radius="md"
@@ -54,7 +54,7 @@ export const TravelerNavBar = () => {
               navigate("/home");
             }}
           >
-            <Text size="lg">Home</Text>
+            <Text size="md">Home</Text>
           </Button>
           <Button
             radius="md"
@@ -64,7 +64,7 @@ export const TravelerNavBar = () => {
               navigate("/community");
             }}
           >
-            <Text size="lg">Community</Text>
+            <Text size="md">Community</Text>
           </Button>
           <Button
             radius="md"
@@ -74,7 +74,7 @@ export const TravelerNavBar = () => {
               navigate("/trips");
             }}
           >
-            <Text size="lg">My Trips</Text>
+            <Text size="md">My Trips</Text>
           </Button>
           <Button
             radius="md"
@@ -84,29 +84,30 @@ export const TravelerNavBar = () => {
               navigate("/createnewtrip");
             }}
           >
-            <Text size="lg">Create New Trip</Text>
+          <IconCirclePlus size={18}/> <Text size="md">Create New Trip</Text>
           </Button>
-          <li className="nav_link">
-            <Link className="navbar_link" to="profile">
-              Profile
-            </Link>
-          </li>
-          <li></li>
-          <li className="nav_logout">
-            <Link
-              className="navbar_link"
-              to=""
-              onClick={() => {
-                localStorage.removeItem("travelbuddy_user");
-                navigate("/landingpage", { replace: true });
-              }}
-            >
-              Logout
-            </Link>
-          </li>
-          {/* {findInitials()} */}
+          <Button
+            radius="md"
+            variant="gradient"
+            gradient={{ from: "purple", to: "blue" }}
+            onClick={() => {
+              navigate("/profile");
+            }}
+          >
+              <IconUser />
+          </Button>
+          <Button
+            radius="md"
+            variant="gradient"
+            gradient={{ from: "purple", to: "blue" }}
+            onClick={() => {
+              localStorage.removeItem("travelbuddy_user");
+              navigate("/landingpage", { replace: true });
+            }}
+          >
+              <IconLogout />
+          </Button>
         </ul>
-      </div>
     </nav>
   );
 };

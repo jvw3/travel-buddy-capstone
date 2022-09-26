@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Button, Timeline, Text, Card } from "@mantine/core";
-import "./schedule.css";
+import { Button, Timeline, Text, Card, Modal } from "@mantine/core";
+import "./activities.css";
 
+// This component handles the creation of the activity schedule. Props are being passed from IndividualTripDetails component to this component, using deconstruction.
 export const ActivitySchedule = ({
   itineraryActivityObject,
   activity,
@@ -13,21 +14,22 @@ export const ActivitySchedule = ({
   id,
   itineraryId,
 }) => {
-  const [itineraries, setItineraries] = useState([]);
+  // const [itineraries, setItineraries] = useState([]);
 
+  //
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch(`http://localhost:8099/itineraries`)
-      .then((res) => res.json())
-      .then((itinerariesArray) => {
-        setItineraries(itinerariesArray);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(`http://localhost:8099/itineraries`)
+  //     .then((res) => res.json())
+  //     .then((itinerariesArray) => {
+  //       setItineraries(itinerariesArray);
+  //     });
+  // }, []);
 
   const getItineraryActivitiesForUser = () => {
     fetch(
-      `http://localhost:8099/itineraryActivities?_expand=activity&itineraryId=${foundItinerary.id}`
+      `http://localhost:8099/itineraryActivities?_expand=activity&itineraryId=${itineraryId}`
     )
       .then((res) => res.json())
       .then((userItineraryActivitiesArray) => {
@@ -35,9 +37,9 @@ export const ActivitySchedule = ({
       });
   };
 
-  const foundItinerary = itineraries.find(
-    (itinerary) => itinerary.id === itineraryActivityObject.itineraryId
-  );
+  // const foundItinerary = itineraries.find(
+  //   (itinerary) => itinerary.id === itineraryActivityObject.itineraryId
+  // );
 
   // This function renders the delete button and when clicked, will delete an itinerary.
   const renderDeleteButton = () => {
@@ -64,6 +66,8 @@ export const ActivitySchedule = ({
     );
   };
 
+  console.log(id)
+
   return (
     <>
       <Timeline.Item>
@@ -81,28 +85,19 @@ export const ActivitySchedule = ({
           >
             <Text size="sm">Edit Activity</Text>
           </Button>
+          <Button>
+            Complete Activity
+          </Button>
           <Button
             color="green"
             onClick={() => {
-              navigate(`/finishactivity/:${id}`);
+              navigate(`/trips/${id}/finishactivity`);
             }}
           >
-            Complete Activity
+            Leave a Review!
           </Button>
         </div>
       </Timeline.Item>
     </>
   );
 };
-
-{/* <Button
-  radius="md"
-  color="blue"
-  onClick={() => {
-    navigate(`/trips/${id}/${itineraryId}/editActivity`);
-  }}
->
-  <Text size="lg">Create New Trip</Text>
-</Button>; */}
-
-// to={`/trips/${id}/${itineraryId}/editActivity`}

@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { IndividualTrip } from "./Itinerary";
 import { CurrentTrip } from "./CurrentTrip";
 import { CompletedTrip } from "./Completedtrip";
-import { Button } from "@mantine/core"
+import { Button, Tabs } from "@mantine/core"
+import { IconSettings, IconMessageCircle, IconChecks, IconPlaneInflight, IconPlaneDeparture } from "@tabler/icons";
 // import { CurrentTrip } from "./CurrentTrip"
 // import { button } from "bootstrap"
 import "./itinerary.css";
@@ -56,88 +57,109 @@ export const UserItineraries = () => {
   // If isCompleted === true, display trips in CompletedTrips
   return (
     <>
-      <section>
-        <h2 className="mytripsheader">Current Trip</h2>
-        <div class="currenttripcontainer">
-          {userItineraries.map((itinerary) => (
-            <CurrentTrip
-              key={`itinerary--${itinerary?.id}`}
-              travelMethod={itinerary.itinerary.travelMethod}
-              departureDate={itinerary.itinerary.departureDate}
-              returnDate={itinerary.itinerary.returnDate}
-              id={itinerary?.id}
-              itineraryId={itinerary?.itineraryId}
-              isCurrent={itinerary?.itinerary?.isCurrent}
-              userItineraries={userItineraries}
-              userItineraryObject={itinerary}
-              setUserItineraries={setUserItineraries}
-            />
-          ))}
-        </div>
-      </section>
-      <section>
-        <h2 className="mytripsheader">My Upcoming Trips</h2>
-        <div class="tripsContainer">
-          {userItineraries.map((itinerary) => (
-            <IndividualTrip
-              key={`itinerary--${itinerary?.id}`}
-              travelMethod={itinerary.itinerary.travelMethod}
-              departureDate={itinerary.itinerary.departureDate}
-              returnDate={itinerary.itinerary.returnDate}
-              id={itinerary?.id}
-              itineraryId={itinerary?.itineraryId}
-              isCurrent={itinerary.itinerary.isCurrent}
-              isComplete={itinerary.itinerary.isComplete}
-              userItineraries={userItineraries}
-              userItineraryObject={itinerary}
-              setUserItineraries={setUserItineraries}
-            />
-          ))}
-        </div>
-      </section>
-      <section>
-        <div className="completedstatusbuttons">
-          <Button
-            color="violet"
-            variant="light"
-            onClick={() => {
-              setCompletedTripsVisibility(true);
-            }}
-          >
-            Show Completed Trips
-          </Button>
-          <Button
-            color="violet"
-            variant="light"
-            onClick={() => {
-              setCompletedTripsVisibility(false);
-            }}
-          >
-            Hide Completed Trips
-          </Button>
-        </div>
-        {completedTripsVisibility ? (
-          <div class="allcompletedtrips">
-            {userItineraries.map((itinerary) => (
-              <CompletedTrip
-                key={`itinerary--${itinerary?.id}`}
-                travelMethod={itinerary.itinerary.travelMethod}
-                departureDate={itinerary.itinerary.departureDate}
-                returnDate={itinerary.itinerary.returnDate}
-                id={itinerary?.id}
-                itineraryId={itinerary?.itineraryId}
-                isCurrent={itinerary.itinerary.isCurrent}
-                isComplete={itinerary?.itinerary?.isComplete}
-                userItineraries={userItineraries}
-                userItineraryObject={itinerary}
-                setUserItineraries={setUserItineraries}
-              />
-            ))}
-          </div>
-        ) : (
-          ""
-        )}
-      </section>
+      <Tabs variant="pills" defaultValue="gallery">
+        <Tabs.List>
+          <Tabs.Tab value="gallery" icon={<IconPlaneInflight size={14} />}>
+            Current
+          </Tabs.Tab>
+          <Tabs.Tab value="messages" icon={<IconPlaneDeparture size={14} />}>
+            Upcoming
+          </Tabs.Tab>
+          <Tabs.Tab value="settings" icon={<IconChecks size={14} />}>
+            Completed
+          </Tabs.Tab>
+        </Tabs.List>
+
+        <Tabs.Panel value="gallery" pt="xs">
+          <section>
+            <h2 className="mytripsheader">Current Trip</h2>
+            <div class="currenttripcontainer">
+              {userItineraries.map((itinerary) => (
+                <CurrentTrip
+                  key={`itinerary--${itinerary?.id}`}
+                  travelMethod={itinerary.itinerary.travelMethod}
+                  departureDate={itinerary.itinerary.departureDate}
+                  returnDate={itinerary.itinerary.returnDate}
+                  id={itinerary?.id}
+                  itineraryId={itinerary?.itineraryId}
+                  isCurrent={itinerary?.itinerary?.isCurrent}
+                  userItineraries={userItineraries}
+                  userItineraryObject={itinerary}
+                  setUserItineraries={setUserItineraries}
+                />
+              ))}
+            </div>
+          </section>
+        </Tabs.Panel>
+        <Tabs.Panel value="messages" pt="xs">
+          <section>
+            <h2 className="mytripsheader">My Upcoming Trips</h2>
+            <div class="tripsContainer">
+              {userItineraries.map((itinerary) => (
+                <IndividualTrip
+                  key={`itinerary--${itinerary?.id}`}
+                  travelMethod={itinerary.itinerary.travelMethod}
+                  departureDate={itinerary.itinerary.departureDate}
+                  returnDate={itinerary.itinerary.returnDate}
+                  id={itinerary?.id}
+                  itineraryId={itinerary?.itineraryId}
+                  isCurrent={itinerary.itinerary.isCurrent}
+                  isComplete={itinerary.itinerary.isComplete}
+                  userItineraries={userItineraries}
+                  userItineraryObject={itinerary}
+                  setUserItineraries={setUserItineraries}
+                />
+              ))}
+            </div>
+          </section>
+        </Tabs.Panel>
+
+        <Tabs.Panel value="settings" pt="xs">
+          <section>
+            <div className="completedstatusbuttons">
+              <Button
+                color="violet"
+                variant="light"
+                onClick={() => {
+                  setCompletedTripsVisibility(true);
+                }}
+              >
+                Show Completed Trips
+              </Button>
+              <Button
+                color="violet"
+                variant="light"
+                onClick={() => {
+                  setCompletedTripsVisibility(false);
+                }}
+              >
+                Hide Completed Trips
+              </Button>
+            </div>
+            {completedTripsVisibility ? (
+              <div class="allcompletedtrips">
+                {userItineraries.map((itinerary) => (
+                  <CompletedTrip
+                    key={`itinerary--${itinerary?.id}`}
+                    travelMethod={itinerary.itinerary.travelMethod}
+                    departureDate={itinerary.itinerary.departureDate}
+                    returnDate={itinerary.itinerary.returnDate}
+                    id={itinerary?.id}
+                    itineraryId={itinerary?.itineraryId}
+                    isCurrent={itinerary.itinerary.isCurrent}
+                    isComplete={itinerary?.itinerary?.isComplete}
+                    userItineraries={userItineraries}
+                    userItineraryObject={itinerary}
+                    setUserItineraries={setUserItineraries}
+                  />
+                ))}
+              </div>
+            ) : (
+              ""
+            )}
+          </section>
+        </Tabs.Panel>
+      </Tabs>
     </>
   );
 };

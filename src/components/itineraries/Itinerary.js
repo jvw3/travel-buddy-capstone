@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import "./itinerary.css";
 import { Card, Image, Text, Button, Badge } from "@mantine/core";
 import { IndividualTripDetails } from "./IndividualTripDetails";
-import { Snackbar } from "@mui/material";
+import { showNotification } from "@mantine/notifications";
 
 // This component is used to display an Individual Trip view on the page.
+// Props are being passed from itinerary component.
 export const IndividualTrip = ({
   travelMethod,
   departureDate,
@@ -98,11 +99,12 @@ export const IndividualTrip = ({
     (itinerary) => itinerary.id === userItineraryObject.itineraryId
   );
 
-  // This function renders the delete button and when clicked, will delete an itinerary.
+  // This function renders the delete button and when clicked, will delete an itinerary. A fetch call will be made to get the updated List of itineraries, then a notification will be sent to the screen telling the user that their trip was deleted. 
   const renderDeleteButton = () => {
     return (
       <Button
         color="red"
+        variant="light"
         onClick={() => {
           if (window.confirm("Press OK to confirm your delete.")) {
             fetch(`http://localhost:8099/itineraries/${foundItinerary.id}`, {
@@ -110,6 +112,12 @@ export const IndividualTrip = ({
             })
               .then(() => {
                 getUpdatedItineraryListForUser();
+              })
+              .then(() => {
+                showNotification({
+                  title: "Notification",
+                  message: "Your trip has been deleted.",
+                });
               });
           } else {
             return "";
@@ -121,10 +129,11 @@ export const IndividualTrip = ({
     );
   };
 
-  //when start trip is clicked, a copy of the trip will displayed in
+  //when complete trip button is clicked, CompleteTripStatusPut function runs which performs the following function: put request is made to the api to change isComplete from false to true.
   const completeTripOnClick = () => {
     return (
       <Button
+        variant="light"
         onClick={(event) => {
           completeTripstatusPut(event);
         }}
@@ -134,10 +143,12 @@ export const IndividualTrip = ({
     );
   };
 
+  // When start trip button is clicked, CompleteTripStatusPut function runs which performs the following function: put request is made to the api to change isCurrent from false to true.
   const startTripOnClick = () => {
     return (
       <Button
         color="green"
+        variant="light"
         onClick={(event) => {
           startTripStatusPut(event);
         }}
@@ -147,6 +158,7 @@ export const IndividualTrip = ({
     );
   };
 
+  // This function sends a put request to the API to change the value of the isCurrent property from false to true.
   const startTripStatusPut = (event) => {
     const itineraryPutToApi = {
       travelMethod: itinerary.travelMethod,
@@ -186,6 +198,7 @@ export const IndividualTrip = ({
       });
   };
 
+  // This function sends a put request to the API to change the value of the isComplete property from false to true.
   const completeTripstatusPut = (event) => {
     const itineraryPutToApi = {
       travelMethod: itinerary.travelMethod,
@@ -226,25 +239,25 @@ export const IndividualTrip = ({
       });
   };
 
+  // In JSX below, ternary statement runs with the following condition: If isCurrent OR isComplete property of an itinerary is TRUE, an empty string will be returned. For all other conditoins, we will display the itinerary.
   return (
     <>
       {isCurrent || isComplete ? (
         ""
       ) : (
-        <Card shadow="md" radius="md" withBorder>
+        <Card shadow="lg" radius="md" withBorder>
           <div className={foundLocation?.location.city + "pic"}></div>
           <Text size="xl">{foundLocation?.location.city}</Text>
           <Badge>Upcoming</Badge>
-          <Link
-            className="fulltripview"
-            to={`/trips/${userItineraryObject.itineraryId}/view`}
-          >
-            Expand Trip View
-          </Link>
-          <div className="tripdates">
-            <div className="carddepature">Departing on: {departureDate}</div>
-            <div className="cardreturn">Returning on: {returnDate}</div>
-          </div>
+          <Card.Section>
+            <Link to={`/trips/${userItineraryObject.itineraryId}/view`}>
+              Expand Trip View
+            </Link>
+            <div className="tripdates">
+              <Text>Departing on: {departureDate}</Text>
+              <Text>Returning on: {returnDate}</Text>
+            </div>
+          </Card.Section>
           <div className="buttonsandlinks">
             {startTripOnClick()}
             {completeTripOnClick()}

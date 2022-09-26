@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Title } from "@mantine/core";
 
 import "./itineraryform.css";
 
@@ -431,7 +432,7 @@ export const ItineraryForm = () => {
   return (
     <main className="maincontainer">
       <form className="itineraryForm">
-        <h2 className="ticketForm__title">Create New Itinerary</h2>
+        <Title order={1}>Create New Itinerary</Title>
         {displayMainTripInfo()}
         {displayFlightInfo()}
         {displayRentalCarInfo()}

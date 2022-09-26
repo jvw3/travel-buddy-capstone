@@ -1,11 +1,11 @@
 import { Route, Routes, Outlet } from "react-router-dom";
 import { IndividualTripDetails } from "../itineraries/IndividualTripDetails";
 import { ItineraryForm } from "../itineraries/ItineraryForm";
-import { UserItineraries } from "../itineraries/MyTrips";
+import { MyTrips } from "../itineraries/MyTrips";
 import { HomePageView } from "./TravelerHomePage";
 import { EditItinerary } from "../itineraries/itineraryEdit";
 import { EditActivity } from "../itineraries/ActivityEdit";
-import { FinishActivity } from "../itineraries/FinishActivity";
+import { ActivityReview } from "../itineraries/ActivityReview";
 
 export const TravelerViews = () => {
   return (
@@ -23,7 +23,7 @@ export const TravelerViews = () => {
 
       <Route path="home" element={<HomePageView />} />
 
-      <Route path="trips" element={<UserItineraries />} />
+      <Route path="trips" element={<MyTrips />} />
 
       <Route path="createnewtrip" element={<ItineraryForm />} />
 
@@ -42,7 +42,7 @@ export const TravelerViews = () => {
         element={<EditActivity />}
       />
 
-      <Route path="trips/:itineraryActivityId/finishactivity" element={<FinishActivity />} />
+      <Route path="trips/:itineraryActivityId/finishactivity" element={<ActivityReview />} />
     </Routes>
   );
 };

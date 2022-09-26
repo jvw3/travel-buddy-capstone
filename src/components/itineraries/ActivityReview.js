@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Text, Textarea, Card, NumberInput } from "@mantine/core";
 import { IconStar } from "@tabler/icons";
 
-export const FinishActivity = () => {
+export const ActivityReview = () => {
   const { itineraryActivityId } = useParams();
 
   const navigate = useNavigate();

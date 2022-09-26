@@ -7,7 +7,7 @@ import { showNotification } from "@mantine/notifications";
 
 // This component is used to display an Individual Trip view on the page.
 // Props are being passed from itinerary component.
-export const IndividualTrip = ({
+export const Itinerary = ({
   travelMethod,
   departureDate,
   returnDate,

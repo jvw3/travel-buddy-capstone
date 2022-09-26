@@ -1,6 +1,6 @@
 //I need to get all the itineraries for a user.
 import { useEffect, useState } from "react";
-import { IndividualTrip } from "./Itinerary";
+import { Itinerary } from "./Itinerary";
 import { CurrentTrip } from "./CurrentTrip";
 import { CompletedTrip } from "./Completedtrip";
 import { Button, Tabs } from "@mantine/core"
@@ -9,7 +9,7 @@ import { IconSettings, IconMessageCircle, IconChecks, IconPlaneInflight, IconPla
 // import { button } from "bootstrap"
 import "./itinerary.css";
 
-export const UserItineraries = () => {
+export const MyTrips = () => {
   const [userItineraries, setUserItineraries] = useState([]);
   const [activities, setActivities] = useState([]);
   const [completedTripsVisibility, setCompletedTripsVisibility] =
@@ -96,7 +96,7 @@ export const UserItineraries = () => {
             <h2 className="mytripsheader">My Upcoming Trips</h2>
             <div class="tripsContainer">
               {userItineraries.map((itinerary) => (
-                <IndividualTrip
+                <Itinerary
                   key={`itinerary--${itinerary?.id}`}
                   travelMethod={itinerary.itinerary.travelMethod}
                   departureDate={itinerary.itinerary.departureDate}

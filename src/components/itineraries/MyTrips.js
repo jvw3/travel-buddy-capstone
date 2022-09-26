@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Itinerary } from "./Itinerary";
 import { CurrentTrip } from "./CurrentTrip";
 import { CompletedTrip } from "./Completedtrip";
-import { Button, Tabs } from "@mantine/core"
+import { Button, Tabs, Badge } from "@mantine/core"
 import { IconSettings, IconMessageCircle, IconChecks, IconPlaneInflight, IconPlaneDeparture } from "@tabler/icons";
 // import { CurrentTrip } from "./CurrentTrip"
 // import { button } from "bootstrap"
@@ -11,20 +11,19 @@ import "./itinerary.css";
 
 export const MyTrips = () => {
   const [userItineraries, setUserItineraries] = useState([]);
-  const [activities, setActivities] = useState([]);
   const [completedTripsVisibility, setCompletedTripsVisibility] =
     useState(false);
 
   const localAppUser = localStorage.getItem("travelbuddy_user");
   const appUserObject = JSON.parse(localAppUser);
 
-  useEffect(() => {
-    fetch(`http://localhost:8099/activities`)
-      .then((res) => res.json())
-      .then((activitiesData) => {
-        setActivities(activitiesData);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(`http://localhost:8099/activities`)
+  //     .then((res) => res.json())
+  //     .then((activitiesData) => {
+  //       setActivities(activitiesData);
+  //     });
+  // }, []);
 
   // This use Effect fetches all of the itineraries for a user.
   useEffect(() => {
@@ -37,20 +36,26 @@ export const MyTrips = () => {
       });
   }, []);
 
-  // const renderDeleteButton = () => {
-  // return <button onClick={() => {
-  //     fetch(`http://localhost:8099/itineraries/${foundItinerary.id}`, {
-  //         method: "DELETE"
-  //     })
-  //             .then(
-  //         () => {
-  //             getUpdatedItineraryListForUser()
-  //         })
-  //         .then(
-  //             (userItineraries) => setUserItineraries(userItineraries)
-  //         )
-  // }}className="deletebutton">Delete Trip</button>
-  // }
+const findTotalUpcomingTrips = () => {
+  let upcomingCounter = 0
+  for (const itinerary of userItineraries) {
+    if (itinerary.itinerary.isCurrent === false && itinerary.itinerary.isComplete === false) {
+      upcomingCounter++;
+    } else {
+      return ""
+    }
+  } return upcomingCounter;
+}
+
+// const totalUpcoming = userItineraries.filter((trip) => {
+//   return (
+//     trip.itinerary.IsCurrent === false && trip.itinerary.IsComplete === false
+//   );
+// });
+
+// console.log(totalUpcoming.length)
+
+
 
   // If isCurrent=true, display trip in CurrentTrip
   // If isCurrent === false && isCompleted === false, display in Upcoming Trips
@@ -62,10 +67,18 @@ export const MyTrips = () => {
           <Tabs.Tab value="gallery" icon={<IconPlaneInflight size={14} />}>
             Current
           </Tabs.Tab>
-          <Tabs.Tab value="messages" icon={<IconPlaneDeparture size={14} />}>
+          <Tabs.Tab
+            rightSection={<Badge></Badge>}
+            value="messages"
+            icon={<IconPlaneDeparture size={14} />}
+          >
             Upcoming
           </Tabs.Tab>
-          <Tabs.Tab value="settings" icon={<IconChecks size={14} />}>
+          <Tabs.Tab
+            rightSection={<Badge></Badge>}
+            value="settings"
+            icon={<IconChecks size={14} />}
+          >
             Completed
           </Tabs.Tab>
         </Tabs.List>

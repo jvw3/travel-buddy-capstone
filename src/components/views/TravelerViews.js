@@ -6,6 +6,7 @@ import { HomePageView } from "./TravelerHomePage";
 import { EditItinerary } from "../itineraries/itineraryEdit";
 import { EditActivity } from "../itineraries/ActivityEdit";
 import { ActivityReview } from "../itineraries/ActivityReview";
+import { CommunityPage } from "../community/Community"
 
 export const TravelerViews = () => {
   return (
@@ -26,6 +27,8 @@ export const TravelerViews = () => {
       <Route path="trips" element={<MyTrips />} />
 
       <Route path="createnewtrip" element={<ItineraryForm />} />
+
+      <Route path="community" element={<CommunityPage />} />
 
       <Route
         path="trips/:usertripId/view"

@@ -309,6 +309,7 @@ export const IndividualTripDetails = ({}) => {
                     isComplete={itineraryActivity?.isComplete}
                     id={itineraryActivity?.id}
                     itineraryId={itineraryActivity?.itineraryId}
+                    isPublic={itineraryActivity?.isPublic}
                   />
                 ))}
               </Timeline>

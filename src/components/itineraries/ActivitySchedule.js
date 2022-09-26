@@ -14,7 +14,8 @@ export const ActivitySchedule = ({
   id,
   itineraryId,
   isComplete,
-  review
+  review,
+  isPublic
 }) => {
   // const [itineraries, setItineraries] = useState([]);
 
@@ -97,6 +98,19 @@ export const ActivitySchedule = ({
       );
     };
 
+    const shareActivityOnClick = () => {
+      return (
+        <Button
+          variant="light"
+          onClick={(event) => {
+            shareActivityStatusPut(event);
+          }}
+        >
+          Share Review
+        </Button>
+      );
+    };
+
   const completeActivityStatusPut = (event) => {
 
     const itineraryActivityPutToApi = {
@@ -126,6 +140,35 @@ export const ActivitySchedule = ({
       });
   };
 
+  const shareActivityStatusPut = (event) => {
+    const itineraryActivityPutToApi = {
+      itineraryId: itineraryActivity.itineraryId,
+      activityId: itineraryActivity.activityId,
+      description: itineraryActivity.description,
+      address: itineraryActivity.address,
+      activityDateTime: itineraryActivity.activityDateTime,
+      review: {
+        rating: itineraryActivity.review.rating,
+        description: itineraryActivity.review.description,
+      },
+      isPublic: true,
+      isComplete: itineraryActivity.isComplete,
+    };
+
+    return fetch(`http://localhost:8099/itineraryActivities/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(itineraryActivityPutToApi),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        getItineraryActivitiesForUser();
+      });
+
+  }
+
 // Display different text depending on if the user has written any text for their review. 
   const displayReviewButtonText = () => {
     if (review === "") {
@@ -137,7 +180,8 @@ export const ActivitySchedule = ({
 
   return (
     <>
-      {isComplete ? (
+      {isComplete 
+      ? (
         <Timeline.Item>
           <div className="timelineitem">
             <Badge color="green">Completed</Badge>
@@ -162,7 +206,7 @@ export const ActivitySchedule = ({
             >
               {displayReviewButtonText()}
             </Button>
-            <Button>Share Review</Button>
+            {shareActivityOnClick()}
           </div>
         </Timeline.Item>
       ) : (

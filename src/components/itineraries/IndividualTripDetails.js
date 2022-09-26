@@ -304,7 +304,9 @@ export const IndividualTripDetails = ({}) => {
                     activityDescription={itineraryActivity?.description}
                     activityAddress={itineraryActivity?.address}
                     activityDateTime={itineraryActivity?.activityDateTime}
+                    review={itineraryActivity?.review?.description}
                     setItineraryActivities={setItineraryActivities}
+                    isComplete={itineraryActivity?.isComplete}
                     id={itineraryActivity?.id}
                     itineraryId={itineraryActivity?.itineraryId}
                   />

@@ -5,9 +5,7 @@
     color: black;
 }
 
-.emaillogin {
-    width: 50vw;
-}
+
 
 fieldset {
     min-width: 0;
@@ -71,8 +69,46 @@ fieldset {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    width: 100%;
 }
 
 .logincard {
-    border: 1px solid black;
+    justify-self: center;
+    width: 30vw;
+}
+
+.loginscreen {
+    display: flex;
+    flex-direction: row;
+}
+
+.logincontainerright {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 40vw;
+}
+
+.emaillogin {
+}
+
+.logincontainerleft {
+    width: 60vw;
+    height: 100vh;
+    background-image: url(/public/images/tom-barrett-M0AWNxnLaMw-unsplash.jpg);
+    
+    background-size: cover;
+}
+
+html, body {
+    height: 100%;
+}
+
+.submitbutton {
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
 }

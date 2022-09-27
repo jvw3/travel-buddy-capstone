@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@mui/material"
+import { BackgroundImage, Button, Card, TextInput } from "@mantine/core"
 import "./Login.css";
 
 export const Login = () => {
@@ -32,33 +32,46 @@ export const Login = () => {
   };
 
   return (
-    <main className="container--login">
-      <section className="loginincard">
-        <form className="form-outline mb-3" onSubmit={handleLogin}>
-          <h1 className="header">Travel Buddy</h1>
-          <h2>Please sign in</h2>
-          <fieldset>
-            <label htmlFor="inputEmail"> Email address </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(evt) => set(evt.target.value)}
-              className="emaillogin"
-              placeholder="Email address"
-              required
-              autoFocus
-            />
-          </fieldset>
-          <fieldset>
-            <Button type="submit" class="btn btn-primary btn-block">
-              Sign in
-            </Button>
-          </fieldset>
-        </form>
-      </section>
-      <section className="link--register">
-        <Link to="/register">Not a member yet? Create a new account!</Link>
-      </section>
-    </main>
+    <>
+      <main className="loginscreen">
+        <section className="logincontainerleft"></section>
+        <section className="logincontainerright">
+          <div className="logincard">
+            <Card shadow="xl" withBorder>
+              <form className="form-outline mb-3" onSubmit={handleLogin}>
+                <h1 className="header">Travel Buddy</h1>
+                <h2>Please sign in</h2>
+                <fieldset>
+                  <TextInput
+                    type="email"
+                    label="Email Address"
+                    description="Please enter a valid email"
+                    value={email}
+                    onChange={(evt) => set(evt.target.value)}
+                    className="emaillogin"
+                    placeholder="Email address"
+                    required
+                    autoFocus
+                  />
+                </fieldset>
+                <fieldset>
+                  <button className="submitbutton">Sign in</button>
+                </fieldset>
+              </form>
+              <Button
+                radius="md"
+                color="violet"
+                variant="outline"
+                onClick={() => {
+                  navigate("/register");
+                }}
+              >
+                Not a member yet? Create a new account!
+              </Button>
+            </Card>
+          </div>
+        </section>
+      </main>
+    </>
   );
 };

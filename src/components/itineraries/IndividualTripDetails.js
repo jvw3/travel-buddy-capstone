@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ActivitySchedule } from "./ActivitySchedule";
 import "./IndividualTripDetails.css";
-import { TextInput, Button, Timeline } from "@mantine/core";
+import { TextInput, Button, Timeline, Text } from "@mantine/core";
 import { MultiSelect } from "@mantine/core";
 import { getAllActivities } from "../api/APImanager";
 
@@ -102,8 +102,10 @@ export const IndividualTripDetails = ({}) => {
       description: itineraryActivity.description,
       address: itineraryActivity.address,
       activityDateTime: itineraryActivity.activityDateTime,
-      rating: "",
-      review: "",
+      review: {
+        rating: "",
+        description: ""
+      },
       isPublic: false,
       isComplete: false,
     };
@@ -233,12 +235,17 @@ export const IndividualTripDetails = ({}) => {
               <div className="accessCode">
                 Access code: {userItinerary?.itinerary?.accessCode}
               </div>
-              <Link
-                className="headereditlink"
-                to={`/trips/${userItinerary?.itineraryId}/editItinerary`}
+              <Button
+                radius="md"
+                variant="white"
+                onClick={() => {
+                  navigate(
+                    `/trips/${userItinerary?.itineraryId}/editItinerary`
+                  );
+                }}
               >
-                Edit your Itinerary
-              </Link>
+                <Text size="sm" color="green">Edit Itinerary</Text>
+              </Button>
               {renderDeleteItineraryButton()}
               <h3 class="departuredate">
                 Leaving on: {userItinerary?.itinerary?.departureDate}
@@ -297,9 +304,12 @@ export const IndividualTripDetails = ({}) => {
                     activityDescription={itineraryActivity?.description}
                     activityAddress={itineraryActivity?.address}
                     activityDateTime={itineraryActivity?.activityDateTime}
+                    review={itineraryActivity?.review?.description}
                     setItineraryActivities={setItineraryActivities}
+                    isComplete={itineraryActivity?.isComplete}
                     id={itineraryActivity?.id}
                     itineraryId={itineraryActivity?.itineraryId}
+                    isPublic={itineraryActivity?.isPublic}
                   />
                 ))}
               </Timeline>

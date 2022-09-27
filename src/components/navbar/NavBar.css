@@ -1,13 +1,9 @@
 
 .navbar {
-    list-style-type: none;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    /* gap: 2rem; */
-    /* height: 30%; */
+    justify-content: space-evenly;
     background-color: black;
-    transition: ease all 0.5s
 }
 
 /* CSS styles for the  */
@@ -19,31 +15,31 @@
     transition: ease all 0.25s;
 }
 
-.nav_link:hover {
+/* .nav_link:hover {
     background-color: #9c92b6;
-}
+} */
 
 
 /* CSS styles for the actual links. */
-.nav_link a {
+/* .nav_link a {
     text-decoration: none;
     color: white
-}
+} */
 
-.nav_link a:hover {
+/* .nav_link a:hover {
     color: white
-}
+} */
 
 /* CSS styles for the Logout button*/
-.nav_logout {
+/* .nav_logout {
     border: 1px solid #1F0322;
     border-radius: 15px;
     padding: 5px;
-}
+} */
 
 /* CSS styles for the logout link. */
-.nav_logout a {
+/* .nav_logout a {
     text-decoration: none;
-}
+} */
 
 

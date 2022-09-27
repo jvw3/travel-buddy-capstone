@@ -18,8 +18,10 @@ const navigate = useNavigate()
         description: "",
         address: "",
         activityDateTime: "",
-        rating: "",
-        review: "",
+        review: {
+          rating: 0,
+          description: ""
+        },
         isPublic: false,
         isComplete: false
     })

@@ -1,9 +1,10 @@
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./itinerary.css";
-import { Card, Image, Text, Button, Badge } from "@mantine/core";
+import { Card, Image, Text, Button, Badge, Transition } from "@mantine/core";
 import { IndividualTripDetails } from "./IndividualTripDetails";
 import { showNotification } from "@mantine/notifications";
+import { openConfirmModal } from "@mantine/modals";
 
 // This component is used to display an Individual Trip view on the page.
 // Props are being passed from itinerary component.
@@ -134,14 +135,28 @@ export const Itinerary = ({
     return (
       <Button
         variant="light"
-        onClick={(event) => {
-          completeTripstatusPut(event);
+        onClick={() => {
+          finishTripConfirmation()
         }}
       >
         Finish Trip
       </Button>
     );
   };
+
+  //This function renders a popup confirmation from the user to finish their trip. This popup is from Mantine UI and it is called a Modal. When Finish trip button is clicked, Modal is rendered, and an action will be completed depending on user clicking confirm or cancel. 
+  const finishTripConfirmation = () =>
+    openConfirmModal({
+      title: "Do you want to finish your trip?",
+      children: (
+        <Text size="sm">
+          Please click one of these buttons to proceed.
+        </Text>
+      ),
+      labels: { confirm: "Confirm", cancel: "Cancel" },
+      onCancel: () => "",
+      onConfirm: (event) => completeTripstatusPut(event)
+    });
 
   // When start trip button is clicked, CompleteTripStatusPut function runs which performs the following function: put request is made to the api to change isCurrent from false to true.
   const startTripOnClick = () => {

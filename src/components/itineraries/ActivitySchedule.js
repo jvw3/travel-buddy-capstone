@@ -17,7 +17,7 @@ export const ActivitySchedule = ({
   review,
   isPublic
 }) => {
-  // const [itineraries, setItineraries] = useState([]);
+ const[userFullName, setFullName] = useState ({})
 
   //
   const navigate = useNavigate();
@@ -34,7 +34,20 @@ export const ActivitySchedule = ({
      },
      isPublic: false,
      isComplete: false,
+     reviewIdentity: ""
    });
+
+
+    const localAppUser = localStorage.getItem("travelbuddy_user");
+    const appUserObject = JSON.parse(localAppUser);
+  
+  useEffect(() => {
+    fetch(`http://localhost:8099/users/${appUserObject?.id}`)
+      .then((res) => res.json())
+      .then((currentUser) => {
+        setFullName(currentUser);
+      });
+  }, []);
 
 
 
@@ -124,7 +137,8 @@ export const ActivitySchedule = ({
         description: itineraryActivity.review.description
       },
       isPublic: itineraryActivity.isPublic,
-      isComplete: true
+      isComplete: true,
+      reviewIdentity: ""
     };
 
     return fetch(`http://localhost:8099/itineraryActivities/${id}`, {
@@ -153,6 +167,7 @@ export const ActivitySchedule = ({
       },
       isPublic: true,
       isComplete: itineraryActivity.isComplete,
+      reviewIdentity: userFullName.fullName
     };
 
     return fetch(`http://localhost:8099/itineraryActivities/${id}`, {

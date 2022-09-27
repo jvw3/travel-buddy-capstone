@@ -12,6 +12,9 @@ export const ActivityReviewsList = () => {
       });
   }, []);
 
+// How to find the user who posted the review.
+
+
   return (
     <>
       <div class="reviewscontainer">
@@ -26,6 +29,7 @@ export const ActivityReviewsList = () => {
             isPublic={itineraryActivity?.isPublic}
             itineraryActivityObject={itineraryActivity}
             reviewDescription={itineraryActivity?.review?.description}
+            reviewerName={itineraryActivity?.reviewIdentity}
           />
         ))}
       </div>

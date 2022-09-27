@@ -108,6 +108,7 @@ export const IndividualTripDetails = ({}) => {
       },
       isPublic: false,
       isComplete: false,
+      reviewIdentity: ""
     };
 
     return fetch(`http://localhost:8099/itineraryActivities`, {

@@ -8,14 +8,19 @@ export const ActivityReview = ({
     activityDateTime,
     isPublic,
     itineraryActivityObject,
-    reviewDescription
+    reviewDescription,
+    reviewerName
 }) => {
 
 
 
     return <>
     <Card withBorder>
-        <Text></Text>
+        <Text>{reviewerName}</Text>
+        <Text>{activity}</Text>
+        <Text>{activityDescription}</Text>
+        <Text>{activityAddress}</Text>
+        <Text>{reviewDescription}</Text>
     </Card>
     
     </>

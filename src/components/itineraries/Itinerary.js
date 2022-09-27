@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./itinerary.css";
 import { Card, Image, Text, Button, Badge, Transition } from "@mantine/core";
@@ -261,7 +261,8 @@ export const Itinerary = ({
         ""
       ) : (
         <Card shadow="lg" radius="md" withBorder>
-          <div className={foundLocation?.location.city + "pic"}></div>
+          
+          <Image width={335} className="" src={foundLocation?.location?.tripsviewcitypic}/>
           <Text size="xl">{foundLocation?.location.city}</Text>
           <Badge>Upcoming</Badge>
           <Card.Section>

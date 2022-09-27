@@ -1,16 +1,23 @@
 import { Blockquote, Group, Card, Text, Image, Button} from "@mantine/core";
 import "./community.css";
+import { useNavigate } from "react-router-dom";
 
 export const CommunityPage = () => {
   
-  
+  const navigate = useNavigate();
   
     return (
       <>
         <Blockquote>
           A journey well shared is a journey well enjoyed.
         </Blockquote>
-        <Button>Reviews</Button>
+        <Button
+          onClick={() => {
+            navigate("/community/reviews");
+          }}
+        >
+          Reviews
+        </Button>
         <Button>Shared Trips</Button>
         <Group grow>
           <Card className="communitycard" withBorder>

@@ -6,11 +6,13 @@
     box-shadow: 10px 8px 20px 5px;
     display: flex;
     align-items: center;
-    background-image: url(../views/HomePagesImages/eva-darron-oCdVtGFeDC0-unsplash\ \(1\).jpg);
+    background-image: url(/public/images/charlotte-noelle-98WPMlTl5xo-unsplash\ \(2\).jpg);
     background-size: cover;
     background-position: center;
     
 }
+
+
 
 .adminheader {
     color: black
@@ -32,7 +34,8 @@
     height: 100vh;
     width: 100vw;
     display: flex;
-    background-image: linear-gradient(#1F0322, #1f032210);
+    background-color: rgba(0, 0, 0, 0.563);
+    /* background-image: linear-gradient(#000000, #1f032210); */
     padding-left: 20px;
 }
 
@@ -45,7 +48,8 @@
 }
 
 .bottomsection {
-    height: 40vh;
+    height: 1500px;
+    background: #1F0322;
     display: flex;
     flex-direction: column;
 }
@@ -62,24 +66,35 @@ h1 {
     justify-content: space-between;
 }
 
-.upcomingtripsheader {
-    background: #1F0322;
-    height: 300px;
+
+
+.infocardsbox {
+    height: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: center;
+    gap: 100px;
 }
 
+.firstcard {
+    display: flex;
+    width: 100%;
+    height: 30%;
+}
 
-.upcomingtrip {
-    border: 1px solid black;
-    padding: 5px;
-    /* width: 30vw; */
-    height: 30vh;
-    transition: ease all 0.25s;
+.homepagecard {
     flex-grow: 1;
 }
 
-.upcomingtrip:hover {
-    transform: scale(1.025);
+.logocontainer {
+    flex-grow: 1;
+
 }
+
+
+
+/* .upcomingtrip:hover {
+    transform: scale(1.025);
+} */

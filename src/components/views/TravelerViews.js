@@ -8,6 +8,7 @@ import { EditActivity } from "../itineraries/ActivityEdit";
 import { ActivityReviewsList } from "../community/ActivityReviews";
 import { UserActivityReview } from "../itineraries/UserActivityReview"
 import { CommunityPage } from "../community/Community"
+import { Profile } from "../profile/Profile";
 
 export const TravelerViews = () => {
   return (
@@ -34,8 +35,9 @@ export const TravelerViews = () => {
 
       <Route path="community/reviews" element={<ActivityReviewsList />} />
 
-      
+      <Route path="profile" element={<Profile />} />
 
+    
       <Route
         path="trips/:usertripId/view"
         element={<IndividualTripDetails />}

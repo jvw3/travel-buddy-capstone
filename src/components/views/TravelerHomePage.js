@@ -1,39 +1,63 @@
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./HomePage.css";
-import { Button } from "@mantine/core";
-import { UpcomingTrip } from "./HomePageUpcomingTrips";
+import { Button, Card, Text, Blockquote } from "@mantine/core";
 
 export const HomePageView = () => {
-  const [userItineraries, setUserItineraries] = useState([]);
-  const [currentUser, setCurrentUser] = useState({});
-
-  const localAppUser = localStorage.getItem("travelbuddy_user");
-  const appUserObject = JSON.parse(localAppUser);
-
-
+const navigate= useNavigate();
 
   return (
     <>
       <div className="topsection">
         <div class="topsectionoverlay">
-          <div class="welcomemessage">
-            <h1>Welcome Back, {currentUser?.fullName}</h1>
-          </div>
+          <div class="welcomemessage"></div>
           <div className="getstartedtext">
-            <h2 className="homepageheader">Travel Buddy</h2>
-            <Button></Button>
-            <Link className="getStarted" to="/createnewtrip">
-              Get started!
-            </Link>
+            <h2 className="homepageheader">
+              Plan the trip of your dreams today!
+            </h2>
+            <Button
+              color="violet"
+              onClick={() => {
+                navigate("/createnewtrip");
+              }}
+            >
+              Get Started
+            </Button>
           </div>
         </div>
       </div>
-      <div className="bottomsection">
-        <div class="upcomingtripsheader">
-          <h2 class="bottomsectionheader">Upcoming Trips</h2>
+      <section className="bottomsection">
+        <div class="infocardsbox">
+          <h2>How it works</h2>
+          <section className="firstcard">
+            <Card className="homepagecard">
+              <Text>Plan</Text>
+            </Card>
+            <div class="logocontainer">
+              <h2>Travel Buddy</h2>
+            </div>
+          </section>
+          <section className="firstcard">
+            <div class="logocontainer">
+              <h2>Travel Buddy</h2>
+            </div>
+            <Card className="homepagecard">
+              <Text>Travel</Text>
+            </Card>
+          </section>
+          <section className="firstcard">
+            <Card className="homepagecard">
+              <Text>Share</Text>
+              <Blockquote color="violet">
+                Traveling – it leaves you speechless, then turns you into a
+                storyteller.
+              </Blockquote>
+            </Card>
+            <div class="logocontainer">
+            </div>
+          </section>
         </div>
-      </div>
+      </section>
+      <footer></footer>
     </>
   );
 };

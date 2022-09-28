@@ -104,11 +104,11 @@ export const IndividualTripDetails = ({}) => {
       activityDateTime: itineraryActivity.activityDateTime,
       review: {
         rating: "",
-        description: ""
+        description: "",
       },
       isPublic: false,
       isComplete: false,
-      reviewIdentity: ""
+      reviewIdentity: "",
     };
 
     return fetch(`http://localhost:8099/itineraryActivities`, {
@@ -236,18 +236,20 @@ export const IndividualTripDetails = ({}) => {
               <div className="accessCode">
                 Access code: {userItinerary?.itinerary?.accessCode}
               </div>
-              <Button
-                radius="md"
-                variant="white"
-                onClick={() => {
-                  navigate(
-                    `/trips/${userItinerary?.itineraryId}/editItinerary`
-                  );
-                }}
-              >
-                <Text size="sm" color="green">Edit Itinerary</Text>
-              </Button>
-              {renderDeleteItineraryButton()}
+              <div>
+                <Button
+                  radius="md"
+                  variant="white"
+                  onClick={() => {
+                    navigate(
+                      `/trips/${userItinerary?.itineraryId}/editItinerary`
+                    );
+                  }}
+                >
+                  <Text color="violet">Edit Itinerary</Text>
+                </Button>
+                {renderDeleteItineraryButton()}
+              </div>
               <h3 class="departuredate">
                 Leaving on: {userItinerary?.itinerary?.departureDate}
               </h3>
@@ -320,6 +322,7 @@ export const IndividualTripDetails = ({}) => {
             <section>
               <h3>Activities</h3>
               <Button
+              color="violet"
                 onClick={() => {
                   setFormVisibility(true);
                 }}
@@ -327,6 +330,7 @@ export const IndividualTripDetails = ({}) => {
                 Display Activity Form
               </Button>
               <Button
+              color="violet"
                 onClick={() => {
                   setFormVisibility(false);
                 }}
@@ -365,11 +369,11 @@ export const IndividualTripDetails = ({}) => {
                       </fieldset>
                       <fieldset>
                         <div className="col-md-6">
-                          <label htmlFor="description">Add Activity:</label>
-                          <input
+                          <TextInput
                             required
                             autoFocus
-                            className="form-control"
+                            label="Add Activity"
+                            description='Any created activity can be chosen from dropdown, after "Add Activity" button is clicked.'
                             type="text"
                             value={activity.name}
                             onChange={(evt) => {
@@ -435,6 +439,7 @@ export const IndividualTripDetails = ({}) => {
                       </div>
                     </fieldset>
                     <Button
+                      color="violet"
                       onClick={(clickEvent) =>
                         postItineraryActivity(clickEvent)
                       }

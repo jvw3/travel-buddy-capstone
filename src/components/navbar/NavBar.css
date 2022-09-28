@@ -2,8 +2,34 @@
 .navbar {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
     background-color: black;
+    padding-top: 20px;
+    padding-bottom: 7px;
+}
+
+.logoandnavtextcontainer {
+    flex-grow: 3;
+    display: flex;
+    flex-direction: row;
+}
+
+.navtext {
+    color: white;
+    font-size: 2rem;
+}
+
+.navbuttoncontainer {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.travelbuddylogo {
+    background-image: url(/public/images/travelbuddynavlogo.svg);
+    background-position: center;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
 }
 
 /* CSS styles for the  */

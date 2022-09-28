@@ -12,13 +12,13 @@ export const CommunityPage = () => {
           A journey well shared is a journey well enjoyed.
         </Blockquote>
         <Button
+        color="violet"
           onClick={() => {
             navigate("/community/reviews");
           }}
         >
           Reviews
         </Button>
-        <Button>Shared Trips</Button>
         <Group grow>
           <Card className="communitycard" withBorder>
             <Image

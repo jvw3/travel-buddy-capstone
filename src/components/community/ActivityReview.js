@@ -18,9 +18,9 @@ export const ActivityReview = ({
     <Card withBorder>
         <Text>{reviewerName}</Text>
         <Text>{activity}</Text>
-        <Text>{activityDescription}</Text>
-        <Text>{activityAddress}</Text>
-        <Text>{reviewDescription}</Text>
+        <Text>Description: {activityDescription}</Text>
+        <Text>Address:{activityAddress}</Text>
+        <Text>Review: {reviewDescription}</Text>
     </Card>
     
     </>

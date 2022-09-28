@@ -36,20 +36,20 @@ export const MyTrips = () => {
       });
   }, []);
 
-const findTotalUpcomingTrips = () => {
-  let upcomingCounter = 0
-  for (const itinerary of userItineraries) {
-    if (itinerary.itinerary.isCurrent === false && itinerary.itinerary.isComplete === false) {
-      upcomingCounter++;
-    } else {
-      return ""
-    }
-  } return upcomingCounter;
-}
+// const findTotalUpcomingTrips = () => {
+//   let upcomingCounter = 0
+//   for (const itinerary of userItineraries) {
+//     if (itinerary?.itinerary?.isCurrent === false && itinerary?.itinerary?.isComplete === false) {
+//       upcomingCounter++;
+//     } else {
+//       return ""
+//     }
+//   } return upcomingCounter;
+// }
 
 // const totalUpcoming = userItineraries.filter((trip) => {
 //   return (
-//     trip.itinerary.IsCurrent === false && trip.itinerary.IsComplete === false
+//     trip?.itinerary?.IsCurrent === false 
 //   );
 // });
 
@@ -60,30 +60,40 @@ const findTotalUpcomingTrips = () => {
   // If isCurrent=true, display trip in CurrentTrip
   // If isCurrent === false && isCompleted === false, display in Upcoming Trips
   // If isCompleted === true, display trips in CompletedTrips
+
+  const setDefaultTab = () => {
+    for (const trip of userItineraries) {
+      if (trip.itinerary.isCurrent === true) {
+        return "current"
+      } else {
+        return "upcoming"
+      }
+    }
+  }
   return (
     <>
-      <Tabs variant="pills" defaultValue="gallery">
-        <Tabs.List>
-          <Tabs.Tab value="gallery" icon={<IconPlaneInflight size={14} />}>
+      <Tabs color="violet" variant="pills" defaultValue="upcoming">
+        <Tabs.List position="center">
+          <Tabs.Tab value="current" icon={<IconPlaneInflight size={14} />}>
             Current
           </Tabs.Tab>
           <Tabs.Tab
             rightSection={<Badge></Badge>}
-            value="messages"
+            value="upcoming"
             icon={<IconPlaneDeparture size={14} />}
           >
             Upcoming
           </Tabs.Tab>
           <Tabs.Tab
             rightSection={<Badge></Badge>}
-            value="settings"
+            value="completed"
             icon={<IconChecks size={14} />}
           >
             Completed
           </Tabs.Tab>
         </Tabs.List>
 
-        <Tabs.Panel value="gallery" pt="xs">
+        <Tabs.Panel value="current" pt="xs">
           <section>
             <h2 className="mytripsheader">Current Trip</h2>
             <div class="currenttripcontainer">
@@ -104,7 +114,7 @@ const findTotalUpcomingTrips = () => {
             </div>
           </section>
         </Tabs.Panel>
-        <Tabs.Panel value="messages" pt="xs">
+        <Tabs.Panel value="upcoming" pt="xs">
           <section>
             <h2 className="mytripsheader">My Upcoming Trips</h2>
             <div class="tripsContainer">
@@ -127,7 +137,7 @@ const findTotalUpcomingTrips = () => {
           </section>
         </Tabs.Panel>
 
-        <Tabs.Panel value="settings" pt="xs">
+        <Tabs.Panel value="completed" pt="xs">
           <section>
             <div className="completedstatusbuttons">
               <Button

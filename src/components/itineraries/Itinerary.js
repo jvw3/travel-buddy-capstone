@@ -261,8 +261,11 @@ export const Itinerary = ({
         ""
       ) : (
         <Card shadow="lg" radius="md" withBorder>
-          
-          <Image width={335} className="" src={foundLocation?.location?.tripsviewcitypic}/>
+          <Image
+            width={335}
+            className=""
+            src={foundLocation?.location?.tripsviewcitypic}
+          />
           <Text size="xl">{foundLocation?.location.city}</Text>
           <Badge>Upcoming</Badge>
           <Card.Section>
@@ -275,9 +278,11 @@ export const Itinerary = ({
             </div>
           </Card.Section>
           <div className="buttonsandlinks">
-            {startTripOnClick()}
-            {completeTripOnClick()}
-            {renderDeleteButton()}
+            <Button.Group>
+              {startTripOnClick()}
+              {completeTripOnClick()}
+              {renderDeleteButton()}
+            </Button.Group>
           </div>
         </Card>
       )}

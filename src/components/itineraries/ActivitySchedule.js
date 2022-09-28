@@ -195,38 +195,40 @@ export const ActivitySchedule = ({
 
   return (
     <>
-      {isComplete 
-      ? (
+      {isComplete ? (
         <Timeline.Item>
           <div className="timelineitem">
-            <Badge color="green">Completed</Badge>
-            <Text>{activity}</Text>
-            <Text>{activityDescription}</Text>
-            <div>Where:{activityAddress}</div>
-            <div>When: {activityDateTime}</div>
-            {renderDeleteButton()}
-            <Button
-              color="blue"
-              onClick={() => {
-                navigate(`/trips/${id}/${itineraryId}/editActivity`);
-              }}
-            >
-              <Text size="sm">Edit Activity</Text>
-            </Button>
-            <Button
-              color="green"
-              onClick={() => {
-                navigate(`/trips/${id}/finishactivity`);
-              }}
-            >
-              {displayReviewButtonText()}
-            </Button>
-            {shareActivityOnClick()}
+            <Card withBorder shadow="md">
+              <Badge color="green">Completed</Badge>
+              <Text>{activity}</Text>
+              <Text>{activityDescription}</Text>
+              <div>Where:{activityAddress}</div>
+              <div>When: {activityDateTime}</div>
+              {renderDeleteButton()}
+              <Button
+                color="blue"
+                onClick={() => {
+                  navigate(`/trips/${id}/${itineraryId}/editActivity`);
+                }}
+              >
+                <Text size="sm">Edit Activity</Text>
+              </Button>
+              <Button
+                color="green"
+                onClick={() => {
+                  navigate(`/trips/${id}/finishactivity`);
+                }}
+              >
+                {displayReviewButtonText()}
+              </Button>
+              {shareActivityOnClick()}
+            </Card>
           </div>
         </Timeline.Item>
       ) : (
         <Timeline.Item>
           <div className="timelineitem">
+          <Card withBorder shadow="md">
             <Text>{activity}</Text>
             <Text>{activityDescription}</Text>
             <div>Where:{activityAddress}</div>
@@ -241,6 +243,7 @@ export const ActivitySchedule = ({
               <Text size="sm">Edit Activity</Text>
             </Button>
             {completeActivityOnClick()}
+            </Card>
           </div>
         </Timeline.Item>
       )}

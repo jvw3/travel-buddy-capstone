@@ -33,7 +33,7 @@ const navigate= useNavigate();
               <Text>Plan</Text>
             </Card>
             <div class="logocontainer">
-              <h2>Travel Buddy</h2>
+              <div class="firstcardlogo"></div>
             </div>
           </section>
           <section className="firstcard">
@@ -47,13 +47,12 @@ const navigate= useNavigate();
           <section className="firstcard">
             <Card className="homepagecard">
               <Text>Share</Text>
-              <Blockquote color="violet">
+              <Blockquote cite="– Ibn Battuta" color="violet">
                 Traveling – it leaves you speechless, then turns you into a
                 storyteller.
               </Blockquote>
             </Card>
-            <div class="logocontainer">
-            </div>
+            <div class="logocontainer"></div>
           </section>
         </div>
       </section>

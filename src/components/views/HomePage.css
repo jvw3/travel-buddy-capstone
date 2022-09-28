@@ -84,6 +84,15 @@ h1 {
     height: 30%;
 }
 
+.firstcardlogo {
+    background-image: url(/public/images/travelbuddylogowithtext.svg);
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .homepagecard {
     flex-grow: 1;
 }

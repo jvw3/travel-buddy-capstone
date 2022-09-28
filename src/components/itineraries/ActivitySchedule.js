@@ -115,6 +115,7 @@ export const ActivitySchedule = ({
       return (
         <Button
           variant="light"
+          color="violet"
           onClick={(event) => {
             shareActivityStatusPut(event);
           }}
@@ -204,9 +205,9 @@ export const ActivitySchedule = ({
               <Text>{activityDescription}</Text>
               <div>Where:{activityAddress}</div>
               <div>When: {activityDateTime}</div>
-              {renderDeleteButton()}
               <Button
-                color="blue"
+                color="violet"
+                variant="light"
                 onClick={() => {
                   navigate(`/trips/${id}/${itineraryId}/editActivity`);
                 }}
@@ -214,7 +215,7 @@ export const ActivitySchedule = ({
                 <Text size="sm">Edit Activity</Text>
               </Button>
               <Button
-                color="green"
+                color="violet"
                 onClick={() => {
                   navigate(`/trips/${id}/finishactivity`);
                 }}
@@ -222,6 +223,7 @@ export const ActivitySchedule = ({
                 {displayReviewButtonText()}
               </Button>
               {shareActivityOnClick()}
+                {renderDeleteButton()}
             </Card>
           </div>
         </Timeline.Item>

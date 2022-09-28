@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Card, Image, Text, Button, Badge } from "@mantine/core";
+import { showNotification } from "@mantine/notifications";
+import { openConfirmModal } from "@mantine/modals";
 
 export const CompletedTrip = ({
   isComplete,
@@ -39,42 +41,71 @@ export const CompletedTrip = ({
       });
   };
 
-  const renderDeleteButton = () => {
-    return (
-      <button
-        onClick={() => {
-          if (window.confirm("Press OK to confirm your delete.")) {
-            fetch(`http://localhost:8099/itineraries/${itineraryId}`, {
-              method: "DELETE",
-            }).then(() => {
-              getUpdatedItineraryListForUser();
+    const deleteTripOnClick = () => {
+      return (
+        <Button
+        fullWidth
+          color="red"
+          onClick={() => {
+            deleteTripConfirmation();
+          }}
+        >
+          Delete Trip
+        </Button>
+      );
+    };
+
+    const deleteTripConfirmation = () => {
+      openConfirmModal({
+        title: "Are you sure you want to delete your trip?",
+        children: (
+          <Text size="sm">Please click confirm or cancel to proceed.</Text>
+        ),
+        labels: { confirm: "Confirm", cancel: "Cancel" },
+        onCancel: () => "",
+        onConfirm: () => deleteTripRequest(),
+      });
+    };
+
+      const deleteTripRequest = () => {
+        return fetch(`http://localhost:8099/itineraries/${itineraryId}`, {
+          method: "DELETE",
+        })
+          .then(() => {
+            getUpdatedItineraryListForUser();
+          })
+          .then(() => {
+            showNotification({
+              title: "Notification",
+              message: "Your trip has been deleted.",
             });
-          } else {
-            return "";
-          }
-        }}
-        className="deletebutton"
-      >
-        Delete Trip
-      </button>
-    );
-  };
+          });
+      };
 
   return (
     <>
       {isComplete ? (
-          <Card withBorder>
-            <div className={foundLocation?.location.city + "pic"}></div>
-            <Badge color="green">Completed</Badge>
-            <div>Departing on: {departureDate}</div>
-            <div>Returning on: {returnDate}</div>
-            <div className="buttonsandlinks">
-              <Link to={`/trips/${userItineraryObject.itineraryId}/view`}>
-                Expand Trip View
-              </Link>
-              {renderDeleteButton()}
+          <Card className="itineraryCard" shadow="xl" radius="md" p="sm" withBorder>
+          <Image
+            width={335}
+            className="itineraryimage"
+            src={foundLocation?.location?.tripsviewcitypic}
+          />
+          <Text size="xl">{foundLocation?.location.city}</Text>
+          <Badge>Upcoming</Badge>
+          <Card.Section>
+            <Link to={`/trips/${userItineraryObject.itineraryId}/view`}>
+              Expand Trip View
+            </Link>
+            <div className="tripdates">
+              <Text>Departing on: {departureDate}</Text>
+              <Text>Returning on: {returnDate}</Text>
             </div>
-          </Card>
+          </Card.Section>
+          <div className="buttonsandlinks">  
+              {deleteTripOnClick()}
+          </div>
+        </Card>
       ) : (
         ""
       )}

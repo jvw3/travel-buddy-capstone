@@ -1,4 +1,6 @@
-
+body {
+    background-color: #e8e6e6;
+}
 /* .mytrips-container {
     display: flex;
     flex-direction: row;
@@ -12,15 +14,30 @@
     height: 50vh;
 }
 
+
 /* .completedtripscontainer {
     display: flex;
     flex-direction: row;
     padding-top: 20px;
 } */
 
+.upcomingtrips {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    height: 60vh;
+    overflow-y: auto;
+}
+
 .currenttripcontainer {
     display: flex;
     justify-content: center;
+}
+
+.tripspageheader {
+    background-image: url();
 }
 
 .allcompletedtrips {
@@ -63,8 +80,11 @@
 
 .buttonsandlinks {
     display: flex;
-    justify-content: space-evenly;
-    justify-self: flex-end;
+    width: 100%;
+}
+
+.startbutton {
+    flex-grow: 4;
 }
 
 .currenttrip {
@@ -85,51 +105,15 @@
     transform: scale(1.05);
 }
 
+.itineraryCard {
+    width: 30vw;
+    height: 30vw
+}
 
 
 /* CSS Styling for the city name on each itinerary card */
 .traveldestination {
     color: white
-}
-
-/* CSS Styling for the finish trip button */
-.finishtripbutton {
-    flex-grow: 1;
-    border-width: 0.1px;
-    background-color: white;
-    color: green;
-    transition: ease all 0.25s;
-}
-/* CSS Styling for when user hovers on the finish trip button */
-.finishtripbutton:hover {
-    background-color: rgb(0, 36, 0);
-}
-
-/* CSS Styling for the delete itinerary button */
-.deletebutton {
-    flex-grow: 1;
-    background-color: white;
-    color: red;
-    border-width: 0.1px;
-    transition: ease all 0.25s;
-}
-
-/* CSS Styling for when user hovers on the delete trip button */
-.deletebutton:hover {
-    background-color: rgb(46, 0, 0);
-}
-/* CSS Styling for the delete itinerary button */
-.starttripbutton {
-    flex-grow: 1;
-    background-color: rgb(255, 255, 255);
-    color: black;
-    border-width: 0.1px;
-    transition: ease all 0.25s;
-}
-
-/* CSS Styling for when user hovers on the delete trip button */
-.deletebutton:hover {
-    background-color: rgb(245, 202, 202);
 }
 
 .fulltripview {
@@ -142,7 +126,6 @@
     display: flex;
     justify-content: space-evenly;
 }
-
 
 .carddepature {
     color: black;
@@ -163,11 +146,11 @@
 }
 
 .Miamipic {
-height: 50%;
+
+width: fit-content;
 background-position: center;
 background-size: cover;
 }
-
 
 
 .Chicagopic {

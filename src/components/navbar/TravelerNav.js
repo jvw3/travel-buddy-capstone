@@ -55,7 +55,7 @@ export const TravelerNavBar = () => {
           closeDelay={100}
         >
           <Menu.Target>
-            <Button size="md" color="cyan">
+            <Button size="md" color="violet">
               Community
             </Button>
           </Menu.Target>

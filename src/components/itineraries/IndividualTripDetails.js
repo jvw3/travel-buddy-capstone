@@ -6,6 +6,7 @@ import "./IndividualTripDetails.css";
 import { TextInput, Button, Timeline, Text } from "@mantine/core";
 import { MultiSelect } from "@mantine/core";
 import { getAllActivities } from "../api/APImanager";
+import { openModal } from "@mantine/modals";
 
 //
 
@@ -223,6 +224,132 @@ export const IndividualTripDetails = ({}) => {
     );
   };
 
+      const openActivityModalOnClick = () => {
+        return (
+          <Button
+            fullWidth
+            color="violet"
+            onClick={() => {
+              renderActivityFormModal();
+            }}
+          >
+            Add Activity
+          </Button>
+        );
+      };
+
+      const renderActivityFormModal = () => {
+        
+        openModal({
+          title: "Are you sure you want to delete your trip?",
+          children: (
+            <form>
+              <div className="row g-3">
+                <fieldset>
+                  <div className="col-md-6">
+                    <label htmlFor="name">Choose Activity:</label>
+                    <select
+                      value={itineraryActivity.activityId}
+                      required
+                      autoFocus
+                      onChange={(evt) => {
+                        const copy = { ...itineraryActivity };
+                        copy.activityId = evt.target.value;
+                        updateItineraryActivity(copy);
+                      }}
+                    >
+                      <option value="0">Choose your Activity</option>
+                      {activities.map((activity) => {
+                        return (
+                          <option value={activity.id} key={activity.id}>
+                            {activity.name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <div className="col-md-6">
+                    <TextInput
+                      required
+                      autoFocus
+                      label="Add Activity"
+                      description='Any created activity can be chosen from dropdown, after "Add Activity" button is clicked.'
+                      type="text"
+                      value={activity.name}
+                      onChange={(evt) => {
+                        const copy = { ...activity };
+                        copy.name = evt.target.value;
+                        updateActivity(copy);
+                      }}
+                    />
+                  </div>
+                  {addActivityButton()}
+                </fieldset>
+              </div>
+              <fieldset>
+                <div>
+                  <TextInput
+                    autoFocus
+                    label="Description"
+                    description="Describe the Activity"
+                    type="text"
+                    width={300}
+                    value={itineraryActivity.description}
+                    onChange={(evt) => {
+                      const copy = { ...itineraryActivity };
+                      copy.description = evt.target.value;
+                      updateItineraryActivity(copy);
+                    }}
+                  />
+                </div>
+              </fieldset>
+              <fieldset>
+                <div className="departure">
+                  <label htmlFor="description">Activity Time and Date:</label>
+                  <input
+                    autoFocus
+                    className="form-control"
+                    type="datetime-local"
+                    value={itineraryActivity.activityDateTime}
+                    onChange={(evt) => {
+                      const copy = { ...itineraryActivity };
+                      copy.activityDateTime = evt.target.value;
+                      updateItineraryActivity(copy);
+                    }}
+                  />
+                </div>
+              </fieldset>
+              <fieldset>
+                <div>
+                  <TextInput
+                    autoFocus
+                    description="Where is this activity located?"
+                    label="Activity Address"
+                    type="text"
+                    width={300}
+                    value={itineraryActivity.address}
+                    onChange={(evt) => {
+                      const copy = { ...itineraryActivity };
+                      copy.address = evt.target.value;
+                      updateItineraryActivity(copy);
+                    }}
+                  />
+                </div>
+              </fieldset>
+              <Button
+                color="violet"
+                onClick={(clickEvent) => postItineraryActivity(clickEvent)}
+                className="btn btn-primary"
+              >
+                Add to Itinerary!
+              </Button>
+            </form>
+          )
+        });
+      };
+
   return (
     <>
       <main>
@@ -320,6 +447,7 @@ export const IndividualTripDetails = ({}) => {
           </section>
           <div class="activitiesform">
             <section>
+              {openActivityModalOnClick()}
               <h3>Activities</h3>
               <Button
               color="violet"
@@ -341,6 +469,7 @@ export const IndividualTripDetails = ({}) => {
             {activityFormVisibility ? (
               <>
                 <section>
+                  <Text>The form below allows you to add trips to your schedule, or add activities to a saved list of activities. </Text>
                   <form>
                     <div className="row g-3">
                       <fieldset>

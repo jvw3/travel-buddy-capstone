@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./itinerary.css";
-import { Card, Image, Text, Button, Badge, Transition } from "@mantine/core";
+import { Card, Image, Text, Button, Badge, Transition, Grid } from "@mantine/core";
 import { IndividualTripDetails } from "./IndividualTripDetails";
 import { showNotification } from "@mantine/notifications";
 import { openConfirmModal } from "@mantine/modals";
@@ -101,28 +101,13 @@ export const Itinerary = ({
   );
 
   // This function renders the delete button and when clicked, will delete an itinerary. A fetch call will be made to get the updated List of itineraries, then a notification will be sent to the screen telling the user that their trip was deleted. 
-  const renderDeleteButton = () => {
+  const deleteTripOnClick = () => {
     return (
       <Button
         color="red"
-        variant="light"
+
         onClick={() => {
-          if (window.confirm("Press OK to confirm your delete.")) {
-            fetch(`http://localhost:8099/itineraries/${foundItinerary.id}`, {
-              method: "DELETE",
-            })
-              .then(() => {
-                getUpdatedItineraryListForUser();
-              })
-              .then(() => {
-                showNotification({
-                  title: "Notification",
-                  message: "Your trip has been deleted.",
-                });
-              });
-          } else {
-            return "";
-          }
+          deleteTripConfirmation()
         }}
       >
         Delete Trip
@@ -130,11 +115,27 @@ export const Itinerary = ({
     );
   };
 
+  const deleteTripRequest = () => {
+    return fetch(`http://localhost:8099/itineraries/${foundItinerary.id}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        getUpdatedItineraryListForUser();
+      })
+      .then(() => {
+        showNotification({
+          title: "Notification",
+          message: "Your trip has been deleted.",
+        });
+      });
+  }
+
   //when complete trip button is clicked, CompleteTripStatusPut function runs which performs the following function: put request is made to the api to change isComplete from false to true.
   const completeTripOnClick = () => {
     return (
       <Button
         variant="light"
+        color="violet"
         onClick={() => {
           finishTripConfirmation()
         }}
@@ -147,10 +148,10 @@ export const Itinerary = ({
   //This function renders a popup confirmation from the user to finish their trip. This popup is from Mantine UI and it is called a Modal. When Finish trip button is clicked, Modal is rendered, and an action will be completed depending on user clicking confirm or cancel. 
   const finishTripConfirmation = () =>
     openConfirmModal({
-      title: "Do you want to finish your trip?",
+      title: "Are you sure you want to finish your trip?",
       children: (
         <Text size="sm">
-          Please click one of these buttons to proceed.
+          Please click confirm or cancel to proceed.
         </Text>
       ),
       labels: { confirm: "Confirm", cancel: "Cancel" },
@@ -158,12 +159,23 @@ export const Itinerary = ({
       onConfirm: (event) => completeTripstatusPut(event)
     });
 
+  const deleteTripConfirmation = () => {
+    openConfirmModal({
+      title: "Are you sure you want to delete your trip?",
+      children: (
+        <Text size="sm">Please click confirm or cancel to proceed.</Text>
+      ),
+      labels: { confirm: "Confirm", cancel: "Cancel" },
+      onCancel: () => "",
+      onConfirm: () => deleteTripRequest(),
+    });
+  }
+
   // When start trip button is clicked, CompleteTripStatusPut function runs which performs the following function: put request is made to the api to change isCurrent from false to true.
   const startTripOnClick = () => {
     return (
       <Button
-        color="green"
-        variant="light"
+        color="violet"
         onClick={(event) => {
           startTripStatusPut(event);
         }}
@@ -251,8 +263,12 @@ export const Itinerary = ({
       .then((res) => res.json())
       .then(() => {
         getUpdatedItineraryListForUser();
-      });
-  };
+      }).then(() => {
+        showNotification({
+          title: "Notification",
+          message: "Your trip has been deleted.",
+        });
+  })};
 
   // In JSX below, ternary statement runs with the following condition: If isCurrent OR isComplete property of an itinerary is TRUE, an empty string will be returned. For all other conditoins, we will display the itinerary.
   return (
@@ -260,10 +276,10 @@ export const Itinerary = ({
       {isCurrent || isComplete ? (
         ""
       ) : (
-        <Card shadow="lg" radius="md" withBorder>
+        <Card className="itineraryCard" shadow="xl" radius="md" p="sm" withBorder>
           <Image
             width={335}
-            className=""
+            className="itineraryimage"
             src={foundLocation?.location?.tripsviewcitypic}
           />
           <Text size="xl">{foundLocation?.location.city}</Text>
@@ -277,12 +293,10 @@ export const Itinerary = ({
               <Text>Returning on: {returnDate}</Text>
             </div>
           </Card.Section>
-          <div className="buttonsandlinks">
-            <Button.Group>
+          <div className="buttonsandlinks">  
               {startTripOnClick()}
               {completeTripOnClick()}
-              {renderDeleteButton()}
-            </Button.Group>
+              {deleteTripOnClick()}
           </div>
         </Card>
       )}

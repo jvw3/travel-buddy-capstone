@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Itinerary } from "./Itinerary";
 import { CurrentTrip } from "./CurrentTrip";
 import { CompletedTrip } from "./Completedtrip";
-import { Button, Tabs, Badge } from "@mantine/core"
+import { Button, Tabs, Badge, SimpleGrid } from "@mantine/core"
 import { IconSettings, IconMessageCircle, IconChecks, IconPlaneInflight, IconPlaneDeparture } from "@tabler/icons";
 // import { CurrentTrip } from "./CurrentTrip"
 // import { button } from "bootstrap"
@@ -72,6 +72,7 @@ export const MyTrips = () => {
   }
   return (
     <>
+      <section className="tripspageheader"></section>
       <Tabs color="violet" variant="pills" defaultValue="upcoming">
         <Tabs.List position="center">
           <Tabs.Tab value="current" icon={<IconPlaneInflight size={14} />}>
@@ -96,28 +97,27 @@ export const MyTrips = () => {
         <Tabs.Panel value="current" pt="xs">
           <section>
             <h2 className="mytripsheader">Current Trip</h2>
-            <div class="currenttripcontainer">
-              {userItineraries.map((itinerary) => (
-                <CurrentTrip
-                  key={`itinerary--${itinerary?.id}`}
-                  travelMethod={itinerary.itinerary.travelMethod}
-                  departureDate={itinerary.itinerary.departureDate}
-                  returnDate={itinerary.itinerary.returnDate}
-                  id={itinerary?.id}
-                  itineraryId={itinerary?.itineraryId}
-                  isCurrent={itinerary?.itinerary?.isCurrent}
-                  userItineraries={userItineraries}
-                  userItineraryObject={itinerary}
-                  setUserItineraries={setUserItineraries}
-                />
-              ))}
-            </div>
+
+            {userItineraries.map((itinerary) => (
+              <CurrentTrip
+                key={`itinerary--${itinerary?.id}`}
+                travelMethod={itinerary.itinerary.travelMethod}
+                departureDate={itinerary.itinerary.departureDate}
+                returnDate={itinerary.itinerary.returnDate}
+                id={itinerary?.id}
+                itineraryId={itinerary?.itineraryId}
+                isCurrent={itinerary?.itinerary?.isCurrent}
+                userItineraries={userItineraries}
+                userItineraryObject={itinerary}
+                setUserItineraries={setUserItineraries}
+              />
+            ))}
           </section>
         </Tabs.Panel>
         <Tabs.Panel value="upcoming" pt="xs">
           <section>
             <h2 className="mytripsheader">My Upcoming Trips</h2>
-            <div class="tripsContainer">
+            <div className="upcomingtrips">
               {userItineraries.map((itinerary) => (
                 <Itinerary
                   key={`itinerary--${itinerary?.id}`}
@@ -139,47 +139,24 @@ export const MyTrips = () => {
 
         <Tabs.Panel value="completed" pt="xs">
           <section>
-            <div className="completedstatusbuttons">
-              <Button
-                color="violet"
-                variant="light"
-                onClick={() => {
-                  setCompletedTripsVisibility(true);
-                }}
-              >
-                Show Completed Trips
-              </Button>
-              <Button
-                color="violet"
-                variant="light"
-                onClick={() => {
-                  setCompletedTripsVisibility(false);
-                }}
-              >
-                Hide Completed Trips
-              </Button>
+            <h2 className="mytripsheader">My Completed Trips</h2>
+            <div className="upcomingtrips">
+              {userItineraries.map((itinerary) => (
+                <CompletedTrip
+                  key={`itinerary--${itinerary?.id}`}
+                  travelMethod={itinerary.itinerary.travelMethod}
+                  departureDate={itinerary.itinerary.departureDate}
+                  returnDate={itinerary.itinerary.returnDate}
+                  id={itinerary?.id}
+                  itineraryId={itinerary?.itineraryId}
+                  isCurrent={itinerary.itinerary.isCurrent}
+                  isComplete={itinerary?.itinerary?.isComplete}
+                  userItineraries={userItineraries}
+                  userItineraryObject={itinerary}
+                  setUserItineraries={setUserItineraries}
+                />
+              ))}
             </div>
-            {completedTripsVisibility ? (
-              <div class="allcompletedtrips">
-                {userItineraries.map((itinerary) => (
-                  <CompletedTrip
-                    key={`itinerary--${itinerary?.id}`}
-                    travelMethod={itinerary.itinerary.travelMethod}
-                    departureDate={itinerary.itinerary.departureDate}
-                    returnDate={itinerary.itinerary.returnDate}
-                    id={itinerary?.id}
-                    itineraryId={itinerary?.itineraryId}
-                    isCurrent={itinerary.itinerary.isCurrent}
-                    isComplete={itinerary?.itinerary?.isComplete}
-                    userItineraries={userItineraries}
-                    userItineraryObject={itinerary}
-                    setUserItineraries={setUserItineraries}
-                  />
-                ))}
-              </div>
-            ) : (
-              ""
-            )}
           </section>
         </Tabs.Panel>
       </Tabs>

@@ -8,8 +8,20 @@
     width: 50%;
 }
 
+.flightform {
+    width: 30vw;
+}
 input {
     width: 50%;
+}
+
+.mainformbox {
+    height: 20vh;
+    display: flex;
+}
+
+.otherformsbox {
+    height: 60vh;
 }
 
 .form-control-departingAirline {

@@ -15,13 +15,18 @@ export const ActivityReview = ({
 
 
     return <>
-    <Card withBorder>
+    {
+        isPublic 
+        ?  <Card withBorder>
         <Text>{reviewerName}</Text>
         <Text>{activity}</Text>
         <Text>Description: {activityDescription}</Text>
         <Text>Address:{activityAddress}</Text>
         <Text>Review: {reviewDescription}</Text>
     </Card>
+    : ""
+    }
+    
     
     </>
 

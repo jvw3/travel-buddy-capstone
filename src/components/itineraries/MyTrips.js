@@ -36,16 +36,16 @@ export const MyTrips = () => {
       });
   }, []);
 
-// const findTotalUpcomingTrips = () => {
-//   let upcomingCounter = 0
-//   for (const itinerary of userItineraries) {
-//     if (itinerary?.itinerary?.isCurrent === false && itinerary?.itinerary?.isComplete === false) {
-//       upcomingCounter++;
-//     } else {
-//       return ""
-//     }
-//   } return upcomingCounter;
-// }
+const findTotalUpcomingTrips = () => {
+  let upcomingCounter = 0
+  for (const itinerary of userItineraries) {
+    if (itinerary?.itinerary?.isCurrent === false && itinerary?.itinerary?.isComplete === false) {
+      upcomingCounter++;
+    } else {
+      return ""
+    }
+  } return upcomingCounter;
+}
 
 // const totalUpcoming = userItineraries.filter((trip) => {
 //   return (
@@ -55,6 +55,20 @@ export const MyTrips = () => {
 
 // console.log(totalUpcoming.length)
 
+const displayCompletedTripCount = () => {
+  let completedCounter = 0
+  for (const itinerary of userItineraries) {
+    if (
+      itinerary?.itinerary?.isCurrent === false &&
+      itinerary?.itinerary?.isComplete === false
+    ) {
+      completedCounter++;
+    } else {
+      return "";
+    }
+  }
+  return completedCounter;
+}
 
 
   // If isCurrent=true, display trip in CurrentTrip

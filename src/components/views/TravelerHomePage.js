@@ -1,78 +1,65 @@
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./HomePage.css";
-import { UserItineraries } from "../itineraries/MyTrips";
-import { UpcomingTrip } from "./HomePageUpcomingTrips";
+import { Button, Card, Text, Blockquote } from "@mantine/core";
 
 export const HomePageView = () => {
-  const [userItineraries, setUserItineraries] = useState([]);
-  const [currentUser, setCurrentUser] = useState({});
-
-  const localAppUser = localStorage.getItem("travelbuddy_user");
-  const appUserObject = JSON.parse(localAppUser);
-
-  useEffect(() => {
-    fetch(
-      `http://localhost:8099/userItineraries?_expand=user&_expand=itinerary&userId=${appUserObject?.id}`
-    )
-      .then((res) => res.json())
-      .then((myItinerariesArray) => {
-        setUserItineraries(myItinerariesArray);
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch(`http://localhost:8099/users/${appUserObject?.id}`)
-      .then((res) => res.json())
-      .then((currentUser) => {
-        setCurrentUser(currentUser);
-      });
-  }, []);
-
-  const displayedUpcomingTrips = userItineraries.slice(0, 3);
-
-  let currentUserName = { currentUser };
-
-  const displayWelcomeMessage = () => {
-    let splitName = currentUserName.fullName.split(" ");
-
-    let userFirstName = splitName[0]
-
-    return <h1>Welcome Back, {userFirstName}</h1>;
-  };
+const navigate= useNavigate();
 
   return (
     <>
       <div className="topsection">
         <div class="topsectionoverlay">
-          <div class="welcomemessage">
-            <h1>Welcome Back, {currentUser?.fullName}</h1>
-          </div>
+          <div class="welcomemessage"></div>
           <div className="getstartedtext">
-            <h2 className="homepageheader">Travel Buddy</h2>
-            <Link className="getStarted" to="/createnewtrip">
-              Get started!
-            </Link>
+            <h2 className="homepageheader">
+              Plan the trip of your dreams today!
+            </h2>
+            <Button
+              color="violet"
+              onClick={() => {
+                navigate("/createnewtrip");
+              }}
+            >
+              Get Started
+            </Button>
           </div>
         </div>
       </div>
-      <div className="bottomsection">
-        <div class="upcomingtripsheader">
-          <h2 class="bottomsectionheader">Upcoming Trips</h2>
+      <section className="bottomsection">
+        <div class="infocardsbox">
+          <h2>How it works</h2>
+          <section className="firstcard">
+            <Card className="homepagecard">
+              <Text>Plan</Text>
+              <Text>Travel Buddy allows for users to plan for trips by creating itineraries. Users can add transportation and accommodation information, and also create a schedule of activities for their trip. </Text>
+            </Card>
+            <div class="logocontainer">
+              <div class="firstcardlogo"></div>
+            </div>
+          </section>
+          <section className="firstcard">
+            <div class="logocontainer">
+              <h2>Travel Buddy</h2>
+            </div>
+            <Card className="homepagecard">
+              <Text>Travel</Text>
+              <Text>Go on an adventure and make memories!</Text>
+            </Card>
+          </section>
+          <section className="firstcard">
+            <Card className="homepagecard">
+              <Text>Share</Text>
+              <Blockquote cite="– Ibn Battuta" color="violet">
+                Traveling – it leaves you speechless, then turns you into a
+                storyteller.
+              </Blockquote>
+              <Text>Don't keep your thoughts to yourself. Share the reviews of your activities and experiences, with other travelers!</Text>
+            </Card>
+            <div class="logocontainer"></div>
+          </section>
         </div>
-        <section className="upcomingtripcontainer">
-          {displayedUpcomingTrips.map((trip) => (
-            <UpcomingTrip
-              key={`itinerary--${trip?.id}`}
-              tripObject={trip}
-              departureDate={trip?.itinerary?.departureDate}
-              returnDate={trip?.itinerary?.returnDate}
-              id={trip?.id}
-              userItineraries={userItineraries}
-            />
-          ))}
-        </section>
-      </div>
+      </section>
+      <footer></footer>
     </>
   );
 };

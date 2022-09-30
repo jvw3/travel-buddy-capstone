@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./itinerary.css";
-
+import { Button } from "@mantine/core"
 
 export const EditActivity = () => {
 
@@ -23,7 +23,8 @@ const navigate = useNavigate()
           description: ""
         },
         isPublic: false,
-        isComplete: false
+        isComplete: false,
+        reviewIdentity: ""
     })
 
 
@@ -155,13 +156,14 @@ const navigate = useNavigate()
           </div>
         </fieldset>
         <fieldset></fieldset>
-        <button
+        <Button
+        color="violet"
         onClick={(clickEvent) => itineraryActivityPutRequest(clickEvent)}
           className="btn btn-primary"
           
         >
           Save Changes!
-        </button>
+        </Button>
       </form>
     );
     

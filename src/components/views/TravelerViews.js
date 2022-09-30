@@ -5,8 +5,12 @@ import { MyTrips } from "../itineraries/MyTrips";
 import { HomePageView } from "./TravelerHomePage";
 import { EditItinerary } from "../itineraries/itineraryEdit";
 import { EditActivity } from "../itineraries/ActivityEdit";
-import { ActivityReview } from "../itineraries/ActivityReview";
+import { UserActivityReview } from "../itineraries/UserActivityReview"
 import { CommunityPage } from "../community/Community"
+import { Profile } from "../profile/Profile";
+import { ActivityContainer } from "../profile/ActivityContainer";
+import { ActivityReviewContainer } from "../community/ActivityReviewContainer";
+import { MyActivities } from "../profile/MyActivities";
 
 export const TravelerViews = () => {
   return (
@@ -30,6 +34,17 @@ export const TravelerViews = () => {
 
       <Route path="community" element={<CommunityPage />} />
 
+
+      <Route path="community/reviews" element={<ActivityReviewContainer />} />
+
+      <Route path="profile" element={<Profile />} />
+
+      <Route path="profile/myactivities" element={<ActivityContainer />} />
+
+
+      
+
+    
       <Route
         path="trips/:usertripId/view"
         element={<IndividualTripDetails />}
@@ -45,7 +60,7 @@ export const TravelerViews = () => {
         element={<EditActivity />}
       />
 
-      <Route path="trips/:itineraryActivityId/finishactivity" element={<ActivityReview />} />
+      <Route path="trips/:itineraryActivityId/finishactivity" element={<UserActivityReview />} />
     </Routes>
   );
 };

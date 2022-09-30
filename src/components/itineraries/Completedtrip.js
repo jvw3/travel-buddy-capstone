@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Card, Image, Text, Button, Badge } from "@mantine/core";
+import { Card, Image, Text, Button, Badge, Menu, ActionIcon } from "@mantine/core";
+import { showNotification } from "@mantine/notifications";
+import { openConfirmModal } from "@mantine/modals";
+import { IconDots } from "@tabler/icons";
+import { IconTrash } from "@tabler/icons";
 
 export const CompletedTrip = ({
   isComplete,
@@ -8,12 +12,14 @@ export const CompletedTrip = ({
   returnDate,
   userItineraryObject,
   itineraryId,
-  setUserItineraries,
+  setUserItineraries, 
 }) => {
   const [itineraryLocations, setItineraryLocations] = useState([]);
 
   const localAppUser = localStorage.getItem("travelbuddy_user");
   const appUserObject = JSON.parse(localAppUser);
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch(
@@ -39,42 +45,99 @@ export const CompletedTrip = ({
       });
   };
 
-  const renderDeleteButton = () => {
-    return (
-      <button
-        onClick={() => {
-          if (window.confirm("Press OK to confirm your delete.")) {
-            fetch(`http://localhost:8099/itineraries/${itineraryId}`, {
-              method: "DELETE",
-            }).then(() => {
-              getUpdatedItineraryListForUser();
+    const deleteTripOnClick = () => {
+      return (
+        <Button
+        fullWidth
+          color="red"
+          onClick={() => {
+            deleteTripConfirmation();
+          }}
+        >
+          Delete Trip
+        </Button>
+      );
+    };
+
+    const deleteTripConfirmation = () => {
+      openConfirmModal({
+        title: "Are you sure you want to delete your trip?",
+        children: (
+          <Text size="sm">Please click confirm or cancel to proceed.</Text>
+        ),
+        labels: { confirm: "Confirm", cancel: "Cancel" },
+        onCancel: () => "",
+        onConfirm: () => deleteTripRequest(),
+      });
+    };
+
+      const deleteTripRequest = () => {
+        return fetch(`http://localhost:8099/itineraries/${itineraryId}`, {
+          method: "DELETE",
+        })
+          .then(() => {
+            getUpdatedItineraryListForUser();
+          })
+          .then(() => {
+            showNotification({
+              title: "Notification",
+              message: "Your trip has been deleted.",
             });
-          } else {
-            return "";
-          }
-        }}
-        className="deletebutton"
-      >
-        Delete Trip
-      </button>
-    );
-  };
+          });
+      };
 
   return (
     <>
       {isComplete ? (
-          <Card withBorder>
-            <div className={foundLocation?.location.city + "pic"}></div>
-            <Badge color="green">Completed</Badge>
-            <div>Departing on: {departureDate}</div>
-            <div>Returning on: {returnDate}</div>
-            <div className="buttonsandlinks">
-              <Link to={`/trips/${userItineraryObject.itineraryId}/view`}>
-                Expand Trip View
-              </Link>
-              {renderDeleteButton()}
+        <Card
+          className="itineraryCard"
+          shadow="xl"
+          radius="md"
+          p="sm"
+          withBorder
+        >
+          <Menu withinPortal position="right-start" withArrow shadow="sm">
+            <Menu.Target>
+              <ActionIcon>
+                <IconDots size={16} />
+              </ActionIcon>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Item
+                icon={<IconTrash size={14} />}
+                onClick={() => {
+                  deleteTripConfirmation();
+                }}
+                color="red"
+              >
+                Delete Trip
+              </Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
+          <Image
+            fit="contain"
+            height={275}
+            className="itineraryimage"
+            src={foundLocation?.location?.tripsviewcitypic}
+          />
+          <Text size="xl">{foundLocation?.location.city}</Text>
+          <Badge>Upcoming</Badge>
+          <Card.Section>
+            <div className="tripdates">
+              <Text>Departing on: {departureDate}</Text>
+              <Text>Returning on: {returnDate}</Text>
             </div>
-          </Card>
+          </Card.Section>
+          <Button
+          fullWidth
+            color="violet"
+            onClick={() => {
+              navigate(`/trips/${userItineraryObject.itineraryId}/view`);
+            }}
+          >
+            View Completed Trip Details
+          </Button>
+        </Card>
       ) : (
         ""
       )}

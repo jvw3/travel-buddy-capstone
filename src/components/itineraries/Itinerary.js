@@ -1,9 +1,19 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./itinerary.css";
-import { Card, Image, Text, Button, Badge } from "@mantine/core";
+import {
+  Card,
+  Image,
+  Text,
+  Button,
+  Badge,
+  Menu,
+  ActionIcon,
+} from "@mantine/core";
+import { IconDots, IconFileZip, IconEye, IconTrash, IconCheck } from "@tabler/icons";
 import { IndividualTripDetails } from "./IndividualTripDetails";
 import { showNotification } from "@mantine/notifications";
+import { openConfirmModal } from "@mantine/modals";
 
 // This component is used to display an Individual Trip view on the page.
 // Props are being passed from itinerary component.
@@ -99,29 +109,13 @@ export const Itinerary = ({
     (itinerary) => itinerary.id === userItineraryObject.itineraryId
   );
 
-  // This function renders the delete button and when clicked, will delete an itinerary. A fetch call will be made to get the updated List of itineraries, then a notification will be sent to the screen telling the user that their trip was deleted. 
-  const renderDeleteButton = () => {
+  // This function renders the delete button and when clicked, will delete an itinerary. A fetch call will be made to get the updated List of itineraries, then a notification will be sent to the screen telling the user that their trip was deleted.
+  const deleteTripOnClick = () => {
     return (
       <Button
         color="red"
-        variant="light"
         onClick={() => {
-          if (window.confirm("Press OK to confirm your delete.")) {
-            fetch(`http://localhost:8099/itineraries/${foundItinerary.id}`, {
-              method: "DELETE",
-            })
-              .then(() => {
-                getUpdatedItineraryListForUser();
-              })
-              .then(() => {
-                showNotification({
-                  title: "Notification",
-                  message: "Your trip has been deleted.",
-                });
-              });
-          } else {
-            return "";
-          }
+          deleteTripConfirmation();
         }}
       >
         Delete Trip
@@ -129,13 +123,29 @@ export const Itinerary = ({
     );
   };
 
+  const deleteTripRequest = () => {
+    return fetch(`http://localhost:8099/itineraries/${foundItinerary.id}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        getUpdatedItineraryListForUser();
+      })
+      .then(() => {
+        showNotification({
+          title: "Notification",
+          message: "Your trip has been deleted.",
+        });
+      });
+  };
+
   //when complete trip button is clicked, CompleteTripStatusPut function runs which performs the following function: put request is made to the api to change isComplete from false to true.
   const completeTripOnClick = () => {
     return (
       <Button
         variant="light"
-        onClick={(event) => {
-          completeTripstatusPut(event);
+        color="violet"
+        onClick={() => {
+          finishTripConfirmation();
         }}
       >
         Finish Trip
@@ -143,12 +153,36 @@ export const Itinerary = ({
     );
   };
 
+  //This function renders a popup confirmation from the user to finish their trip. This popup is from Mantine UI and it is called a Modal. When Finish trip button is clicked, Modal is rendered, and an action will be completed depending on user clicking confirm or cancel.
+  const finishTripConfirmation = () =>
+    openConfirmModal({
+      title:
+        "Trip has not been started. Are you sure you want to finish your trip?",
+      children: (
+        <Text size="sm">Please click confirm or cancel to proceed.</Text>
+      ),
+      labels: { confirm: "Confirm", cancel: "Cancel" },
+      onCancel: () => "",
+      onConfirm: (event) => completeTripstatusPut(event),
+    });
+
+  const deleteTripConfirmation = () => {
+    openConfirmModal({
+      title: "Are you sure you want to delete your trip?",
+      children: (
+        <Text size="sm">Please click confirm or cancel to proceed.</Text>
+      ),
+      labels: { confirm: "Confirm", cancel: "Cancel" },
+      onCancel: () => "",
+      onConfirm: () => deleteTripRequest(),
+    });
+  };
+
   // When start trip button is clicked, CompleteTripStatusPut function runs which performs the following function: put request is made to the api to change isCurrent from false to true.
   const startTripOnClick = () => {
     return (
       <Button
-        color="green"
-        variant="light"
+        color="violet"
         onClick={(event) => {
           startTripStatusPut(event);
         }}
@@ -236,6 +270,12 @@ export const Itinerary = ({
       .then((res) => res.json())
       .then(() => {
         getUpdatedItineraryListForUser();
+      })
+      .then(() => {
+        showNotification({
+          title: "Notification",
+          message: "Your trip has been deleted.",
+        });
       });
   };
 
@@ -245,26 +285,73 @@ export const Itinerary = ({
       {isCurrent || isComplete ? (
         ""
       ) : (
-        <Card shadow="lg" radius="md" withBorder>
-          <div className={foundLocation?.location.city + "pic"}></div>
-          <Text size="xl">{foundLocation?.location.city}</Text>
-          <Badge>Upcoming</Badge>
-          <Card.Section>
-            <Link to={`/trips/${userItineraryObject.itineraryId}/view`}>
-              Expand Trip View
-            </Link>
+        <Card
+          className="itineraryCard"
+          shadow="xl"
+          radius="md"
+          p="sm"
+          withBorder
+        >
+          <Menu withinPortal position="right-start" withArrow shadow="sm">
+            <Menu.Target>
+              <ActionIcon>
+                <IconDots size={16} />
+              </ActionIcon>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Item
+                icon={<IconCheck size={14} />}
+                onClick={() => {
+                  finishTripConfirmation();
+                }}
+              >
+                Finish Trip
+              </Menu.Item>
+              <Menu.Item
+                icon={<IconTrash size={14} />}
+                onClick={() => {
+                  deleteTripConfirmation();
+                }}
+                color="red"
+              >
+                Delete Trip
+              </Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
+          <Image
+            fit="contain"
+            height={275}
+            className="itineraryimage"
+            src={foundLocation?.location?.tripsviewcitypic}
+            />
+            <Badge color="violet">Upcoming</Badge>
+          <div className="citybadge">
+            <Text size="xl">{foundLocation?.location.city}</Text>
             <div className="tripdates">
-              <Text>Departing on: {departureDate}</Text>
-              <Text>Returning on: {returnDate}</Text>
+              <Text>Departing: {departureDate}</Text>
+              <Text>Returning: {returnDate}</Text>
             </div>
-          </Card.Section>
+          </div>
+          <Card.Section withBorder p={7}>
           <div className="buttonsandlinks">
             {startTripOnClick()}
-            {completeTripOnClick()}
-            {renderDeleteButton()}
+            <Button
+              color="violet"
+              variant="light"
+              onClick={() => {
+                navigate(`/trips/${userItineraryObject.itineraryId}/view`);
+              }}
+            >
+              View Trip Details
+            </Button>
           </div>
+          </Card.Section>
         </Card>
       )}
     </>
   );
 };
+
+// <Link to={`/trips/${userItineraryObject.itineraryId}/view`}>
+//   Expand Trip View
+// </Link>;

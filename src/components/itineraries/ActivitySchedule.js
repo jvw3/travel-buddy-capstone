@@ -17,7 +17,7 @@ export const ActivitySchedule = ({
   review,
   isPublic
 }) => {
-  // const [itineraries, setItineraries] = useState([]);
+ const[userFullName, setFullName] = useState ({})
 
   //
   const navigate = useNavigate();
@@ -34,7 +34,20 @@ export const ActivitySchedule = ({
      },
      isPublic: false,
      isComplete: false,
+     reviewIdentity: ""
    });
+
+
+    const localAppUser = localStorage.getItem("travelbuddy_user");
+    const appUserObject = JSON.parse(localAppUser);
+  
+  useEffect(() => {
+    fetch(`http://localhost:8099/users/${appUserObject?.id}`)
+      .then((res) => res.json())
+      .then((currentUser) => {
+        setFullName(currentUser);
+      });
+  }, []);
 
 
 
@@ -102,6 +115,7 @@ export const ActivitySchedule = ({
       return (
         <Button
           variant="light"
+          color="violet"
           onClick={(event) => {
             shareActivityStatusPut(event);
           }}
@@ -124,7 +138,8 @@ export const ActivitySchedule = ({
         description: itineraryActivity.review.description
       },
       isPublic: itineraryActivity.isPublic,
-      isComplete: true
+      isComplete: true,
+      reviewIdentity: ""
     };
 
     return fetch(`http://localhost:8099/itineraryActivities/${id}`, {
@@ -153,6 +168,7 @@ export const ActivitySchedule = ({
       },
       isPublic: true,
       isComplete: itineraryActivity.isComplete,
+      reviewIdentity: userFullName.fullName
     };
 
     return fetch(`http://localhost:8099/itineraryActivities/${id}`, {
@@ -180,38 +196,41 @@ export const ActivitySchedule = ({
 
   return (
     <>
-      {isComplete 
-      ? (
+      {isComplete ? (
         <Timeline.Item>
           <div className="timelineitem">
-            <Badge color="green">Completed</Badge>
-            <Text>{activity}</Text>
-            <Text>{activityDescription}</Text>
-            <div>Where:{activityAddress}</div>
-            <div>When: {activityDateTime}</div>
-            {renderDeleteButton()}
-            <Button
-              color="blue"
-              onClick={() => {
-                navigate(`/trips/${id}/${itineraryId}/editActivity`);
-              }}
-            >
-              <Text size="sm">Edit Activity</Text>
-            </Button>
-            <Button
-              color="green"
-              onClick={() => {
-                navigate(`/trips/${id}/finishactivity`);
-              }}
-            >
-              {displayReviewButtonText()}
-            </Button>
-            {shareActivityOnClick()}
+            <Card withBorder shadow="md">
+              <Badge color="green">Completed</Badge>
+              <Text>{activity}</Text>
+              <Text>{activityDescription}</Text>
+              <div>Where:{activityAddress}</div>
+              <div>When: {activityDateTime}</div>
+              <Button
+                color="violet"
+                variant="light"
+                onClick={() => {
+                  navigate(`/trips/${id}/${itineraryId}/editActivity`);
+                }}
+              >
+                <Text size="sm">Edit Activity</Text>
+              </Button>
+              <Button
+                color="violet"
+                onClick={() => {
+                  navigate(`/trips/${id}/finishactivity`);
+                }}
+              >
+                {displayReviewButtonText()}
+              </Button>
+              {shareActivityOnClick()}
+                {renderDeleteButton()}
+            </Card>
           </div>
         </Timeline.Item>
       ) : (
         <Timeline.Item>
           <div className="timelineitem">
+          <Card withBorder shadow="md">
             <Text>{activity}</Text>
             <Text>{activityDescription}</Text>
             <div>Where:{activityAddress}</div>
@@ -226,6 +245,7 @@ export const ActivitySchedule = ({
               <Text size="sm">Edit Activity</Text>
             </Button>
             {completeActivityOnClick()}
+            </Card>
           </div>
         </Timeline.Item>
       )}

@@ -1,4 +1,5 @@
-import { Blockquote, Group, Card, Text, Image, Button} from "@mantine/core";
+import { Blockquote, Group, Card, Text, Image, Button, Title} 
+from "@mantine/core";
 import "./community.css";
 import { useNavigate } from "react-router-dom";
 
@@ -8,37 +9,43 @@ export const CommunityPage = () => {
   
     return (
       <>
-        <Blockquote>
-          A journey well shared is a journey well enjoyed.
-        </Blockquote>
-        <Button
-        color="violet"
-          onClick={() => {
-            navigate("/community/reviews");
-          }}
-        >
-          Reviews
-        </Button>
-        <Group grow>
-          <Card className="communitycard" withBorder>
-            <Image
-              height={200}
-              src="https://images.unsplash.com/photo-1473625247510-8ceb1760943f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1711&q=80"
-            />
-            <Text>Travel</Text>
-          </Card>
-          <Card className="communitycard" withBorder>
-            <Text>Review</Text>
-          </Card>
-          <Card className="communitycard" withBorder>
-            <Image
-              height={200}
-              fit="contain"
-              src="https://images.unsplash.com/photo-1575198917159-b60629bdb09a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
-            />
-            <Text>Share</Text>
-          </Card>
-        </Group>
+        <div className="commmunitybackground">
+          <div className="backgroundoverlay">
+            <div className="communityheader">
+              <Title color="white" order={1} size={100}>
+                Plan.{" "}
+              </Title>
+              <Title color="white" order={1} size={100}>
+                Travel.{" "}
+              </Title>
+              <Title color="white" order={1} size={100}>
+                Share.
+              </Title>
+            </div>
+            <Card className="headerimagecard">
+              <Card.Section withBorder p={10}>
+              <Blockquote cite="-Unknown" color="violet">
+                A journey well shared is a journey well enjoyed.
+              </Blockquote>
+              </Card.Section>
+              <Text>
+                Share reviews of activities and experiences with your fellow
+                travelers. Your review could lead to an amazing experience for someone else!
+              </Text>
+              <Card.Section withBorder p={10}>
+                <Button
+                  fullWidth
+                  color="violet"
+                  onClick={() => {
+                    navigate("/community/reviews");
+                  }}
+                >
+                  Reviews
+                </Button>
+              </Card.Section>
+            </Card>
+          </div>
+        </div>
       </>
     );
 };

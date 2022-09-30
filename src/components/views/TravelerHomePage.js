@@ -31,6 +31,7 @@ const navigate= useNavigate();
           <section className="firstcard">
             <Card className="homepagecard">
               <Text>Plan</Text>
+              <Text>Travel Buddy allows for users to plan for trips by creating itineraries. Users can add transportation and accommodation information, and also create a schedule of activities for their trip. </Text>
             </Card>
             <div class="logocontainer">
               <div class="firstcardlogo"></div>
@@ -42,6 +43,7 @@ const navigate= useNavigate();
             </div>
             <Card className="homepagecard">
               <Text>Travel</Text>
+              <Text>Go on an adventure and make memories!</Text>
             </Card>
           </section>
           <section className="firstcard">
@@ -51,6 +53,7 @@ const navigate= useNavigate();
                 Traveling – it leaves you speechless, then turns you into a
                 storyteller.
               </Blockquote>
+              <Text>Don't keep your thoughts to yourself. Share the reviews of your activities and experiences, with other travelers!</Text>
             </Card>
             <div class="logocontainer"></div>
           </section>

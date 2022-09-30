@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ActivitySchedule } from "./ActivitySchedule";
 import "./IndividualTripDetails.css";
 import { TextInput, Button, Timeline, Text } from "@mantine/core";
-import { MultiSelect } from "@mantine/core";
+import { Card } from "@mantine/core";
 import { getAllActivities } from "../api/APImanager";
 import { openModal } from "@mantine/modals";
 
@@ -386,7 +386,7 @@ export const IndividualTripDetails = ({}) => {
             </div>
           </section>
           <div className="transportationinfo">
-            <section className="flightinfo">
+            <Card className="flightinfo" >
               <h4>Flight Info:</h4>
               <div>
                 Flight to {destination?.location?.city}:{" "}
@@ -399,8 +399,8 @@ export const IndividualTripDetails = ({}) => {
                 {userItinerary?.itinerary?.flightInfo?.returnFlightNum} leaving
                 at: {userItinerary?.itinerary?.flightInfo?.returnFlightTime}{" "}
               </div>
-            </section>
-            <section className="rentalinfo">
+            </Card>
+            <Card className="rentalinfo" >
               <h4>Rental Car Info:</h4>
               <div>
                 Renting from:
@@ -418,7 +418,7 @@ export const IndividualTripDetails = ({}) => {
                 Car Drop off Time:{" "}
                 {userItinerary?.itinerary?.rentalCarInfo?.carDropOffTime}
               </div>
-            </section>
+            </Card>
           </div>
         </section>
         <div className="scheduleandactivities">

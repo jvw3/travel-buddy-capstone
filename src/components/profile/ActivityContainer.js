@@ -1,6 +1,7 @@
 import { ActivitySearch } from "./ActivitySearch"
 import { Profile } from "./Profile";
 import { useState } from "react";
+import { MyActivities } from "./MyActivities";
 
 
 
@@ -11,7 +12,7 @@ const [searchTerms, setActivitySearchTerms] = useState("");
   return (
     <>
     <ActivitySearch setterFunction={setActivitySearchTerms} />
-    <Profile searchTermState={searchTerms} />
+    <MyActivities searchTermState={searchTerms} />
     </>
   );
 };

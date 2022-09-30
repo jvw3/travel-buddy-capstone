@@ -76,14 +76,15 @@ justify-content: space-between;
 
 .transportationinfo {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    padding-top: 20px;
+ 
 }
 
 .flightinfo {
-    border: 1px solid black;
     box-sizing: border-box;
     padding: 10px;
-    flex-grow: 1;
+    width: 30vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -92,10 +93,9 @@ justify-content: space-between;
 }
 
 .rentalinfo {
-    border: 1px solid black;
     box-sizing: border-box;
     padding: 10px;
-    flex-grow: 1;
+    width: 30vw;
     display: flex;
         flex-direction: column;
         justify-content: center;

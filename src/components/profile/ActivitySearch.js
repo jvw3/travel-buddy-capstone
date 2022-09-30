@@ -1,18 +1,17 @@
-
+import { TextInput } from "@mantine/core";
 
 export const ActivitySearch = ({ setterFunction }) => {
   return (
     <div className="search_header">
       <div>
-        <label htmlFor="search">What candy are you looking for?</label>
       </div>
       <div>
-        <input
+        <TextInput
           onChange={(changeEvent) => {
             setterFunction(changeEvent.target.value);
           }}
           type="text"
-          placeholder="Search Activities"
+          placeholder="Search activities by description"
         />
       </div>
     </div>

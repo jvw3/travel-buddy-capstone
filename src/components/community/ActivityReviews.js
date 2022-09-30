@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
-import { ActivityReview } from "./ActivityReview"
+import { ActivityReview } from "./ActivityReview";
+import "./community.css";
 
-export const ActivityReviewsList = () => {
+export const ActivityReviewsList = ({
+  descriptionSearchTermState,
+  reviewSearchTermState,
+}) => {
   const [itineraryActivities, setItineraryActivities] = useState([]);
+  const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:8099/itineraryActivities?_expand=activity`)
@@ -12,13 +17,30 @@ export const ActivityReviewsList = () => {
       });
   }, []);
 
-// How to find the user who posted the review.
+  useEffect(() => {
+    const searchedReviewsByDescription = itineraryActivities.filter(
+      (activity) => {
+        return activity.description
+          .toLowerCase()
+          .includes(descriptionSearchTermState.toLowerCase());
+      }
+    );
+    setFiltered(searchedReviewsByDescription);
+  }, [descriptionSearchTermState]);
 
+  useEffect(() => {
+    const searchedReviewsByReview = itineraryActivities.filter((activity) => {
+      return activity.review.description
+        .toLowerCase()
+        .includes(reviewSearchTermState.toLowerCase());
+    });
+    setFiltered(searchedReviewsByReview);
+  }, [reviewSearchTermState]);
 
   return (
     <>
       <div class="reviewscontainer">
-        {itineraryActivities.map((itineraryActivity) => (
+        {filtered.map((itineraryActivity) => (
           <ActivityReview
             key={`itineraryactivity--${itineraryActivity?.id}`}
             id={itineraryActivity?.id}

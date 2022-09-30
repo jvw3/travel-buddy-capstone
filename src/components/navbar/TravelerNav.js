@@ -56,38 +56,6 @@ export const TravelerNavBar = () => {
         >
           <Menu.Target>
             <Button size="md" color="violet">
-              Community
-            </Button>
-          </Menu.Target>
-
-          <Menu.Dropdown>
-            <Menu.Label>Community Hub</Menu.Label>
-            <Menu.Item
-              icon={<IconFriends size={14} />}
-              onClick={() => {
-                navigate("/community");
-              }}
-            >
-              Community Home Page
-            </Menu.Item>
-            <Menu.Item
-              icon={<IconNotebook size={14} />}
-              onClick={() => {
-                navigate("/community/reviews");
-              }}
-            >
-              Reviews
-            </Menu.Item>
-          </Menu.Dropdown>
-        </Menu>
-        <Menu
-          transition="scale"
-          trigger="hover"
-          openDelay={50}
-          closeDelay={100}
-        >
-          <Menu.Target>
-            <Button size="md" color="violet">
               Trips
             </Button>
           </Menu.Target>
@@ -120,6 +88,38 @@ export const TravelerNavBar = () => {
         >
           <Menu.Target>
             <Button size="md" color="violet">
+              Community
+            </Button>
+          </Menu.Target>
+
+          <Menu.Dropdown>
+            <Menu.Label>Community Hub</Menu.Label>
+            <Menu.Item
+              icon={<IconFriends size={14} />}
+              onClick={() => {
+                navigate("/community");
+              }}
+            >
+              Community Home Page
+            </Menu.Item>
+            <Menu.Item
+              icon={<IconNotebook size={14} />}
+              onClick={() => {
+                navigate("/community/reviews");
+              }}
+            >
+              Reviews
+            </Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
+        <Menu
+          transition="scale"
+          trigger="hover"
+          openDelay={50}
+          closeDelay={100}
+        >
+          <Menu.Target>
+            <Button size="md" color="violet">
             <IconUserCircle /> {currentUser.fullName}
             </Button>
           </Menu.Target>
@@ -137,7 +137,7 @@ export const TravelerNavBar = () => {
             <Menu.Item
               icon={<IconBookmarks size={14} />}
               onClick={() => {
-                navigate("/profile");
+                navigate("/profile/myactivities");
               }}
             >
               My Activities

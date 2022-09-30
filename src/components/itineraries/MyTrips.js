@@ -5,8 +5,6 @@ import { CurrentTrip } from "./CurrentTrip";
 import { CompletedTrip } from "./Completedtrip";
 import { Button, Tabs, Badge, SimpleGrid } from "@mantine/core"
 import { IconSettings, IconMessageCircle, IconChecks, IconPlaneInflight, IconPlaneDeparture } from "@tabler/icons";
-// import { CurrentTrip } from "./CurrentTrip"
-// import { button } from "bootstrap"
 import "./itinerary.css";
 
 export const MyTrips = () => {
@@ -36,16 +34,18 @@ export const MyTrips = () => {
       });
   }, []);
 
-const findTotalUpcomingTrips = () => {
-  let upcomingCounter = 0
-  for (const itinerary of userItineraries) {
-    if (itinerary?.itinerary?.isCurrent === false && itinerary?.itinerary?.isComplete === false) {
-      upcomingCounter++;
-    } else {
-      return ""
-    }
-  } return upcomingCounter;
-}
+  
+
+// const findTotalUpcomingTrips = () => {
+//   let upcomingCounter = 0
+//   for (const itinerary of userItineraries) {
+//     if (itinerary?.itinerary?.isCurrent === false && itinerary?.itinerary?.isComplete === false) {
+//       upcomingCounter++;
+//     } else {
+//       return ""
+//     }
+//   } return upcomingCounter;
+// }
 
 // const totalUpcoming = userItineraries.filter((trip) => {
 //   return (
@@ -55,35 +55,36 @@ const findTotalUpcomingTrips = () => {
 
 // console.log(totalUpcoming.length)
 
-const displayCompletedTripCount = () => {
-  let completedCounter = 0
-  for (const itinerary of userItineraries) {
-    if (
-      itinerary?.itinerary?.isCurrent === false &&
-      itinerary?.itinerary?.isComplete === false
-    ) {
-      completedCounter++;
-    } else {
-      return "";
-    }
-  }
-  return completedCounter;
-}
 
+
+// const displayCompletedTripCount = () => {
+//   let completedTrips = 0
+//   for (const travel of userItineraries) {
+//     if (
+//       travel.itinerary.isComplete === true
+//     ) {
+//       completedTrips++
+//     } else {
+      
+//     }
+//   }
+//   console.log(completedTrips.length) 
+// }
+// console.log(userItineraries)
 
   // If isCurrent=true, display trip in CurrentTrip
   // If isCurrent === false && isCompleted === false, display in Upcoming Trips
   // If isCompleted === true, display trips in CompletedTrips
 
-  const setDefaultTab = () => {
-    for (const trip of userItineraries) {
-      if (trip.itinerary.isCurrent === true) {
-        return "current"
-      } else {
-        return "upcoming"
-      }
-    }
-  }
+  // const setDefaultTab = () => {
+  //   for (const trip of userItineraries) {
+  //     if (trip.itinerary.isCurrent === true) {
+  //       return "current"
+  //     } else {
+  //       return "upcoming"
+  //     }
+  //   }
+  // }
   return (
     <>
       <section className="tripspageheader"></section>
@@ -93,14 +94,12 @@ const displayCompletedTripCount = () => {
             Current
           </Tabs.Tab>
           <Tabs.Tab
-            rightSection={<Badge></Badge>}
             value="upcoming"
             icon={<IconPlaneDeparture size={14} />}
           >
             Upcoming
           </Tabs.Tab>
           <Tabs.Tab
-            rightSection={<Badge></Badge>}
             value="completed"
             icon={<IconChecks size={14} />}
           >

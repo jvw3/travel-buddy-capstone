@@ -17,7 +17,7 @@ export const TravelBuddy = () => {
 				<>
 					<NavBar />
 					<ApplicationViews />
-					<Footer />
+					
 				</>
 			</Authorized>
 

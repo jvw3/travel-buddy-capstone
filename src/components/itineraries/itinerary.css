@@ -1,5 +1,5 @@
 body {
-    background-color: #e8e6e6;
+    background-color: #EDE7F6
 }
 /* .mytrips-container {
     display: flex;
@@ -11,9 +11,13 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 50vh;
+    height: 60vh;
 }
 
+.citybadge {
+    display: flex;
+    flex-direction: row;
+}
 
 /* .completedtripscontainer {
     display: flex;
@@ -27,7 +31,7 @@ body {
     flex-wrap: wrap;
     gap: 50px;
     justify-content: center;
-    height: 60vh;
+    height: 65vh;
     overflow-y: auto;
 }
 
@@ -46,19 +50,19 @@ body {
     height: 50vh;
 }
 
-.showcompletedtrips {
+/* .showcompletedtrips {
     background-color: #1F0322;
     color: white;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-}
+} */
 
-.hidecompletedtrips {
+/* .hidecompletedtrips {
     background-color: #1F0322;
     color: white;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-}
+} */
 
 .itinerary {
     border: 1px solid black;
@@ -83,9 +87,9 @@ body {
     width: 100%;
 }
 
-.startbutton {
+/* .startbutton {
     flex-grow: 4;
-}
+} */
 
 .currenttrip {
     border: 1px solid black;
@@ -107,7 +111,7 @@ body {
 
 .itineraryCard {
     width: 30vw;
-    height: 30vw
+    height: 54vh;
 }
 
 

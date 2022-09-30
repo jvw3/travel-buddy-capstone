@@ -5,10 +5,12 @@ import { MyTrips } from "../itineraries/MyTrips";
 import { HomePageView } from "./TravelerHomePage";
 import { EditItinerary } from "../itineraries/itineraryEdit";
 import { EditActivity } from "../itineraries/ActivityEdit";
-import { ActivityReviewsList } from "../community/ActivityReviews";
 import { UserActivityReview } from "../itineraries/UserActivityReview"
 import { CommunityPage } from "../community/Community"
 import { Profile } from "../profile/Profile";
+import { ActivityContainer } from "../profile/ActivityContainer";
+import { ActivityReviewContainer } from "../community/ActivityReviewContainer";
+import { MyActivities } from "../profile/MyActivities";
 
 export const TravelerViews = () => {
   return (
@@ -33,9 +35,14 @@ export const TravelerViews = () => {
       <Route path="community" element={<CommunityPage />} />
 
 
-      <Route path="community/reviews" element={<ActivityReviewsList />} />
+      <Route path="community/reviews" element={<ActivityReviewContainer />} />
 
       <Route path="profile" element={<Profile />} />
+
+      <Route path="profile/myactivities" element={<ActivityContainer />} />
+
+
+      
 
     
       <Route

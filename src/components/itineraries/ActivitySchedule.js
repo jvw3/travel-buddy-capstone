@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Button, Timeline, Text, Card, Modal, Badge } from "@mantine/core";
+import { showNotification } from "@mantine/notifications";
+import { IconStar } from "@tabler/icons";
 import "./activities.css";
 
 // This component handles the creation of the activity schedule. Props are being passed from IndividualTripDetails component to this component, using deconstruction.
@@ -14,33 +16,34 @@ export const ActivitySchedule = ({
   id,
   itineraryId,
   isComplete,
+  isFavorited,
   review,
-  isPublic
+  isPublic,
 }) => {
- const[userFullName, setFullName] = useState ({})
+  const [userFullName, setFullName] = useState({});
 
   //
   const navigate = useNavigate();
 
-   const [itineraryActivity, updateItineraryActivity] = useState({
-     itineraryId: 0,
-     activityId: 0,
-     description: "",
-     address: "",
-     activityDateTime: "",
-     review: {
-       rating: 0,
-       description: "",
-     },
-     isPublic: false,
-     isComplete: false,
-     reviewIdentity: ""
-   });
+  const [itineraryActivity, updateItineraryActivity] = useState({
+    itineraryId: 0,
+    activityId: 0,
+    description: "",
+    address: "",
+    activityDateTime: "",
+    review: {
+      rating: 0,
+      description: "",
+    },
+    isPublic: false,
+    isComplete: false,
+    reviewIdentity: "",
+    flags: ""
+  });
 
+  const localAppUser = localStorage.getItem("travelbuddy_user");
+  const appUserObject = JSON.parse(localAppUser);
 
-    const localAppUser = localStorage.getItem("travelbuddy_user");
-    const appUserObject = JSON.parse(localAppUser);
-  
   useEffect(() => {
     fetch(`http://localhost:8099/users/${appUserObject?.id}`)
       .then((res) => res.json())
@@ -48,8 +51,6 @@ export const ActivitySchedule = ({
         setFullName(currentUser);
       });
   }, []);
-
-
 
   useEffect(() => {
     fetch(`http://localhost:8099/itineraryActivities/${id}`)
@@ -98,35 +99,48 @@ export const ActivitySchedule = ({
     );
   };
 
-    const completeActivityOnClick = () => {
-      return (
-        <Button
-          variant="light"
-          onClick={(event) => {
-            completeActivityStatusPut(event);
-          }}
-        >
-          Complete Activity 
-        </Button>
-      );
-    };
+  const completeActivityOnClick = () => {
+    return (
+      <Button
+        variant="light"
+        onClick={(event) => {
+          completeActivityStatusPut(event);
+        }}
+      >
+        Complete Activity
+      </Button>
+    );
+  };
 
-    const shareActivityOnClick = () => {
-      return (
-        <Button
-          variant="light"
-          color="violet"
-          onClick={(event) => {
-            shareActivityStatusPut(event);
-          }}
-        >
-          Share Review
-        </Button>
-      );
-    };
+  const shareActivityOnClick = () => {
+    return (
+      <>
+        {isPublic ? (
+          <Button
+            variant="light"
+            color="violet"
+            onClick={(event) => {
+              makeActivityPrivateStatusPut(event);
+            }}
+          >
+            Make Review Private
+          </Button>
+        ) : (
+          <Button
+            variant="light"
+            color="violet"
+            onClick={(event) => {
+              shareActivityStatusPut(event);
+            }}
+          >
+            Share Review
+          </Button>
+        )}
+      </>
+    );
+  };
 
   const completeActivityStatusPut = (event) => {
-
     const itineraryActivityPutToApi = {
       itineraryId: itineraryActivity.itineraryId,
       activityId: itineraryActivity.activityId,
@@ -135,11 +149,13 @@ export const ActivitySchedule = ({
       activityDateTime: itineraryActivity.activityDateTime,
       review: {
         rating: itineraryActivity.review.rating,
-        description: itineraryActivity.review.description
+        description: itineraryActivity.review.description,
       },
       isPublic: itineraryActivity.isPublic,
       isComplete: true,
-      reviewIdentity: ""
+      isFavorited: itineraryActivity.isFavorited,
+      reviewIdentity: itineraryActivity.reviewIdentity,
+      flags: itineraryActivity.flags
     };
 
     return fetch(`http://localhost:8099/itineraryActivities/${id}`, {
@@ -152,6 +168,12 @@ export const ActivitySchedule = ({
       .then((res) => res.json())
       .then(() => {
         getItineraryActivitiesForUser();
+      })
+      .then(() => {
+        showNotification({
+          title: "Notification",
+          message: "Your activity has been completed.",
+        });
       });
   };
 
@@ -168,7 +190,81 @@ export const ActivitySchedule = ({
       },
       isPublic: true,
       isComplete: itineraryActivity.isComplete,
-      reviewIdentity: userFullName.fullName
+      isFavorited: itineraryActivity.isFavorited,
+      reviewIdentity: userFullName.fullName,
+    };
+
+    return fetch(`http://localhost:8099/itineraryActivities/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(itineraryActivityPutToApi),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        getItineraryActivitiesForUser();
+      })
+      .then(() => {
+        showNotification({
+          title: "Notification",
+          message: "Your activity review is now public!",
+        });
+      });
+  };
+
+
+  const makeActivityPrivateStatusPut = (event) => {
+    const itineraryActivityPutToApi = {
+      itineraryId: itineraryActivity.itineraryId,
+      activityId: itineraryActivity.activityId,
+      description: itineraryActivity.description,
+      address: itineraryActivity.address,
+      activityDateTime: itineraryActivity.activityDateTime,
+      review: {
+        rating: itineraryActivity.review.rating,
+        description: itineraryActivity.review.description,
+      },
+      isPublic: false,
+      isComplete: itineraryActivity.isComplete,
+      isFavorited: itineraryActivity.isFavorited,
+      reviewIdentity: ""
+    };
+
+    return fetch(`http://localhost:8099/itineraryActivities/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(itineraryActivityPutToApi),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        getItineraryActivitiesForUser();
+      })
+      .then(() => {
+        showNotification({
+          title: "Notification",
+          message: "Your activity review is now private.",
+        });
+      });
+  };
+
+  const favoriteActivityStatusPut = (event) => {
+    const itineraryActivityPutToApi = {
+      itineraryId: itineraryActivity.itineraryId,
+      activityId: itineraryActivity.activityId,
+      description: itineraryActivity.description,
+      address: itineraryActivity.address,
+      activityDateTime: itineraryActivity.activityDateTime,
+      review: {
+        rating: itineraryActivity.review.rating,
+        description: itineraryActivity.review.description,
+      },
+      isPublic: itineraryActivity.isPublic,
+      isComplete: itineraryActivity.isComplete,
+      isFavorited: true,
+      reviewIdentity: userFullName.fullName,
     };
 
     return fetch(`http://localhost:8099/itineraryActivities/${id}`, {
@@ -182,17 +278,74 @@ export const ActivitySchedule = ({
       .then(() => {
         getItineraryActivitiesForUser();
       });
+  };
 
-  }
+  const unfavoriteActivityStatusPut = (event) => {
+    const itineraryActivityPutToApi = {
+      itineraryId: itineraryActivity.itineraryId,
+      activityId: itineraryActivity.activityId,
+      description: itineraryActivity.description,
+      address: itineraryActivity.address,
+      activityDateTime: itineraryActivity.activityDateTime,
+      review: {
+        rating: itineraryActivity.review.rating,
+        description: itineraryActivity.review.description,
+      },
+      isPublic: itineraryActivity.isPublic,
+      isComplete: itineraryActivity.isComplete,
+      isFavorited: false,
+      reviewIdentity: userFullName.fullName,
+    };
 
-// Display different text depending on if the user has written any text for their review. 
+    return fetch(`http://localhost:8099/itineraryActivities/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(itineraryActivityPutToApi),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        getItineraryActivitiesForUser();
+      });
+  };
+
+  // Display different text depending on if the user has written any text for their review.
   const displayReviewButtonText = () => {
     if (review === "") {
-      return "Leave a review!"
+      return "Leave a review!";
     } else {
-      return "Edit Review"
+      return "Edit Review";
     }
-  }
+  };
+
+  const favoriteActivityOnClick = () => {
+    return (
+      <>
+        {isFavorited ? (
+          <Button
+            variant="filled"
+            color="yellow"
+            onClick={(event) => {
+            unfavoriteActivityStatusPut(event);
+            }}
+          >
+            <IconStar /> Favorited
+          </Button>
+        ) : (
+          <Button
+            variant="filled"
+            color="gray"
+            onClick={(event) => {
+              favoriteActivityStatusPut(event);
+            }}
+          >
+            <IconStar />
+          </Button>
+        )}
+      </>
+    );
+  };
 
   return (
     <>
@@ -201,6 +354,7 @@ export const ActivitySchedule = ({
           <div className="timelineitem">
             <Card withBorder shadow="md">
               <Badge color="green">Completed</Badge>
+              {favoriteActivityOnClick()}
               <Text>{activity}</Text>
               <Text>{activityDescription}</Text>
               <div>Where:{activityAddress}</div>
@@ -223,28 +377,28 @@ export const ActivitySchedule = ({
                 {displayReviewButtonText()}
               </Button>
               {shareActivityOnClick()}
-                {renderDeleteButton()}
+              {renderDeleteButton()}
             </Card>
           </div>
         </Timeline.Item>
       ) : (
         <Timeline.Item>
           <div className="timelineitem">
-          <Card withBorder shadow="md">
-            <Text>{activity}</Text>
-            <Text>{activityDescription}</Text>
-            <div>Where:{activityAddress}</div>
-            <div>When: {activityDateTime}</div>
-            {renderDeleteButton()}
-            <Button
-              color="blue"
-              onClick={() => {
-                navigate(`/trips/${id}/${itineraryId}/editActivity`);
-              }}
-            >
-              <Text size="sm">Edit Activity</Text>
-            </Button>
-            {completeActivityOnClick()}
+            <Card withBorder shadow="md">
+              <Text>{activity}</Text>
+              <Text>{activityDescription}</Text>
+              <div>Where:{activityAddress}</div>
+              <div>When: {activityDateTime}</div>
+              {renderDeleteButton()}
+              <Button
+                color="blue"
+                onClick={() => {
+                  navigate(`/trips/${id}/${itineraryId}/editActivity`);
+                }}
+              >
+                <Text size="sm">Edit Activity</Text>
+              </Button>
+              {completeActivityOnClick()}
             </Card>
           </div>
         </Timeline.Item>

@@ -78,7 +78,6 @@ justify-content: space-between;
     display: flex;
     justify-content: space-evenly;
     padding-top: 20px;
- 
 }
 
 .flightinfo {
@@ -89,7 +88,6 @@ justify-content: space-between;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
 }
 
 .rentalinfo {
@@ -100,15 +98,8 @@ justify-content: space-between;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
 }
 
-/* .activitiesform {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-} */
 
 .schedulecontainer {
     width: 70vw;

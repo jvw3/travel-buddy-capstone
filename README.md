@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+<h1>Travel Buddy</h1>
+Travel Buddy is a travel app that allows users to plan trips by creating itineraries. Inspiration for this application comes from the desire for an easier way to organize my trips, travel history, and trip activities, in one central application. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<h2>Features</h2>
 
-In the project directory, you can run:
+- Separate Views for a Travel Buddy User and a Travel Buddy Admin.
 
-### `npm start`
+- Travel Buddy Users can create, edit, and delete itineraries.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Travel Buddy User's trips are organized by: current, upcoming, and completed trips.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Travel Buddy Users can create, edit, and delete their itinerary activities.
 
-### `npm test`
+- Travel Buddy Users can review their itinerary Activities and share them publicly with other users.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Travel Buddy Users can view activity reviews of all other users in the app.
 
-### `npm run build`
+- Travel Buddy Users can search the full list of reviews, by review description.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Travel Buddy Users can view a list of all activities that they’ve been on, located inside of their profile. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Travel Buddy Users can view a list of all of their favorite activities that they’ve been on.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Travel Buddy Users can search the full list of their activities, by description or review.
 
-### `npm run eject`
+- Travel Buddy Users can add “flags” to other users activity Reviews if they are inappropriate.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Travel Buddy Admin is able to moderate content of reviews, via flag system.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<h2>Initial Setup</h2>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Clone this repository
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Clone the travel buddy API
 
-## Learn More
+Host API using json-server on port 8099
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Host the project  using npm start in the travel buddy directory
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+<h2>Entity Relationship Diagram</h2>
+https://dbdiagram.io/d/631e94450911f91ba585c375 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<h2>Initial Wireframe</h2>
+https://www.figma.com/file/phyeDZmazgMspyC1cfJ0wJ/TravelBuddy%3A-Wireframe 
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<h2>Technologies used:</h2>
 
-### Advanced Configuration
+- HTML
+- CSS
+- Javascript
+- React
+- DbDiagram (Entity relationship Diagram)
+- Figma (Wireframe)
+- Canva (Logo Design)
+- Mantine (UI/CSS)
+- Tabler Icons (Icons)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<h2>Author Info</h2>
 
-### `npm run build` fails to minify
+- Created by Jonathan Woodard
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- LinkedIn: https://www.linkedin.com/in/jonathan-woodard/
+
+

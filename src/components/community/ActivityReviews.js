@@ -20,7 +20,7 @@ export const ActivityReviewsList = ({
   useEffect(() => {
     const searchedReviewsByDescription = itineraryActivities.filter(
       (activity) => {
-        return activity.description
+        return activity.activity.name
           .toLowerCase()
           .includes(descriptionSearchTermState.toLowerCase());
       }
@@ -36,6 +36,7 @@ export const ActivityReviewsList = ({
     });
     setFiltered(searchedReviewsByReview);
   }, [reviewSearchTermState]);
+
 
   return (
     <>

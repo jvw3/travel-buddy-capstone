@@ -10,14 +10,14 @@ export const ActivityReviewSearch = ({ reviewSetterFunction, descriptionSetterFu
               descriptionSetterFunction(changeEvent.target.value);
             }}
             type="text"
-            placeholder="Search by description"
+            placeholder="Search By Activity"
             />    
         <TextInput
           onChange={(changeEvent) => {
               reviewSetterFunction(changeEvent.target.value);
             }}
             type="text"
-            placeholder="Search by review"
+            placeholder="Search By Review"
             />
       </Center>
     </>

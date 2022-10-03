@@ -197,3 +197,5 @@ export const MyActivities = ({ searchTermState }) => {
     </>
   );
 };
+
+

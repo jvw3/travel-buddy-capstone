@@ -46,65 +46,68 @@ export const EditProfile = () => {
   };
 
   return (
-    <Card withBorder shadow="xl">
-      <form>
-        <fieldset>
-          <div>
-            <label htmlFor="description">Full Name</label>
-            <TextInput
-              required
-              autoFocus
-              type="text"
-              value={currentUser?.fullName}
-              onChange={(evt) => {
-                const copy = { ...currentUser };
-                copy.fullName = evt.target.value;
-                updateCurrentUser(copy);
-              }}
-            />
-          </div>
-        </fieldset>
-        <fieldset>
-          <div>
-            <label htmlFor="description">Email Address</label>
-            <TextInput
-              required
-              autoFocus
-              type="text"
-              value={currentUser?.email}
-              onChange={(evt) => {
-                const copy = { ...currentUser };
-                copy.email = evt.target.value;
-                updateCurrentUser(copy);
-              }}
-            />
-          </div>
-        </fieldset>
-        <fieldset>
-          <div className="departure">
-            <label htmlFor="description">Full Name</label>
-            <TextInput
-              required
-              autoFocus
-              type="text"
-              value={currentUser?.hometown}
-              onChange={(evt) => {
-                const copy = { ...currentUser };
-                copy.hometown = evt.target.value;
-                updateCurrentUser(copy);
-              }}
-            />
-          </div>
-        </fieldset>
+    <main className="maincontainer">
+      <Card className="profileeditcard" withBorder shadow="xl">
+        <form>
+          <fieldset>
+            <div>
+              <TextInput
+                required
+                label="Full Name"
+                autoFocus
+                type="text"
+                value={currentUser?.fullName}
+                onChange={(evt) => {
+                  const copy = { ...currentUser };
+                  copy.fullName = evt.target.value;
+                  updateCurrentUser(copy);
+                }}
+              />
+            </div>
+          </fieldset>
+          <fieldset>
+            <div>
+              <TextInput
+                required
+                label="Email Address"
+                description="If you change your email address, the new email will be used to sign in."
+                autoFocus
+                type="text"
+                value={currentUser?.email}
+                onChange={(evt) => {
+                  const copy = { ...currentUser };
+                  copy.email = evt.target.value;
+                  updateCurrentUser(copy);
+                }}
+              />
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="departure">
+              <TextInput
+                required
+                label="Hometown"
+                autoFocus
+                type="text"
+                value={currentUser?.hometown}
+                onChange={(evt) => {
+                  const copy = { ...currentUser };
+                  copy.hometown = evt.target.value;
+                  updateCurrentUser(copy);
+                }}
+              />
+            </div>
+          </fieldset>
 
-        <Button
-          color="violet"
-          onClick={(clickEvent) => userProfilePutRequest(clickEvent)}
-          className="btn btn-primary"
-        >
-          Save Changes!
-        </Button>
-      </form>
-    </Card>
+          <Button
+            color="violet"
+            onClick={(clickEvent) => userProfilePutRequest(clickEvent)}
+            className="btn btn-primary"
+          >
+            Save Changes!
+          </Button>
+        </form>
+      </Card>
+    </main>
   );
 };

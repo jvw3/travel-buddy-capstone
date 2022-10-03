@@ -113,19 +113,7 @@ export const IndividualTripDetails = ({}) => {
         getUpdatedActivityListForUser();
       });
   };
-
-
-  // const formattedDate = () => { 
-  //   let datefound = userItinerary?.itinerary?.departureDate
-  //   datefound.toLocaleDateString("en-US");
-  // console.log(datefound) 
-  // }
   
-  
-  //map through itineraries and if itineraryId === userItineraryObject.itineraryId
-  // const foundItinerary = itineraries.find(
-  //   (itinerary) => itinerary.id === userItinerary?.itineraryId
-  // );
 
   // This useEffect hook fetches the specific itinerary for the current user.
   useEffect(() => {

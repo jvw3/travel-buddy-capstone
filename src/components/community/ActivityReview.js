@@ -29,23 +29,7 @@ const [user, setUser] = useState({})
      });
  }, []);
 
- const renderFlagButton = () => {
-    if (user.fullName !== reviewerName) {
-        return (
-          <Button
-            color="red"
-            onClick={() => {
-              navigate(`/reviews/${id}/report`);
-            }}
-          >
-            {" "}
-            <IconFlag /> Report User
-          </Button>
-        );
-    } else {
-        return ""
-    }
- }
+
 
     return <>
     {
@@ -56,7 +40,6 @@ const [user, setUser] = useState({})
         <Text>Description: {activityDescription}</Text>
         <Text>Address:{activityAddress}</Text>
         <Text>Review: {reviewDescription}</Text>
-        {renderFlagButton()}
     </Card>
     : ""
     }

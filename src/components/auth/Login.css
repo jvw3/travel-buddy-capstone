@@ -5,6 +5,14 @@
     color: black;
 }
 
+.loginlogo {
+    background-image: url(/public/images/travelbuddylogowithtext-purple.svg);
+    height: 50vh;
+    width: 30vw;
+    background-position: center;
+    background-size: cover;
+}
+
 
 
 fieldset {
@@ -75,7 +83,7 @@ fieldset {
 
 .logincard {
     justify-self: center;
-    width: 30vw;
+    width: 33vw;
 }
 
 .loginscreen {
@@ -89,7 +97,7 @@ fieldset {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    width: 40vw;
+    width: 50vw;
 }
 
 .emaillogin {
@@ -111,4 +119,12 @@ html, body {
     background-color: white;
     padding: 5px;
     border-radius: 5px;
+}
+
+
+.registercontainer {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
 }

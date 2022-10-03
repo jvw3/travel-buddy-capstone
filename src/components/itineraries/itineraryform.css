@@ -5,40 +5,47 @@
 }
 
 .itineraryForm {
-    width: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
 }
 
-.flightform {
-    width: 30vw;
-}
+
 input {
     width: 50%;
 }
 
-.mainformbox {
-    height: 20vh;
+.flightformbox {
+        width: 50vw;
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        align-items: center;
+}
+
+.flightformcard {
+    width: 100%;
     display: flex;
+    flex-direction: column;
+    
 }
 
-.otherformsbox {
-    height: 60vh;
+.mainformbox {
+    width: 70vw;
+    display: flex;
+    align-self: center;
 }
 
-.form-control-departingAirline {
-    width: 20vw;
-    height: 2vw;
-    border-radius: 5px;
-    border: 0.9px solid indigo;
-    padding: 12px;
+.fullformcard {
+    width: 70vw;
+    align-self: center;
+    height: 100%;
+}
+.mainformcard {
+    width: 100%;
 }
 
-.form-control-departureDate {
-    width: 20vw;
-        height: 2vw;
-        border-radius: 5px;
-        border: 0.9px solid indigo;
-        padding: 12px;
-}
 
 .departure {
     width: 30%;

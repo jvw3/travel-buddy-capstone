@@ -39,8 +39,7 @@ export const Login = () => {
           <div className="logincard">
             <Card shadow="xl" withBorder>
               <form className="form-outline mb-3" onSubmit={handleLogin}>
-                <h1 className="header">Travel Buddy</h1>
-                <h2>Please sign in</h2>
+                <div className="loginlogo"></div>
                 <fieldset>
                   <TextInput
                     type="email"

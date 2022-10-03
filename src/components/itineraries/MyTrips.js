@@ -87,44 +87,37 @@ export const MyTrips = () => {
   // }
   return (
     <>
-      <section className="tripspageheader"></section>
       <Tabs color="violet" variant="pills" defaultValue="upcoming">
         <Tabs.List position="center">
           <Tabs.Tab value="current" icon={<IconPlaneInflight size={14} />}>
             Current
           </Tabs.Tab>
-          <Tabs.Tab
-            value="upcoming"
-            icon={<IconPlaneDeparture size={14} />}
-          >
+          <Tabs.Tab value="upcoming" icon={<IconPlaneDeparture size={14} />}>
             Upcoming
           </Tabs.Tab>
-          <Tabs.Tab
-            value="completed"
-            icon={<IconChecks size={14} />}
-          >
+          <Tabs.Tab value="completed" icon={<IconChecks size={14} />}>
             Completed
           </Tabs.Tab>
         </Tabs.List>
 
         <Tabs.Panel value="current" pt="xs">
           <section>
-            <h2 className="mytripsheader">Current Trip</h2>
-
-            {userItineraries.map((itinerary) => (
-              <CurrentTrip
-                key={`itinerary--${itinerary?.id}`}
-                travelMethod={itinerary.itinerary.travelMethod}
-                departureDate={itinerary.itinerary.departureDate}
-                returnDate={itinerary.itinerary.returnDate}
-                id={itinerary?.id}
-                itineraryId={itinerary?.itineraryId}
-                isCurrent={itinerary?.itinerary?.isCurrent}
-                userItineraries={userItineraries}
-                userItineraryObject={itinerary}
-                setUserItineraries={setUserItineraries}
-              />
-            ))}
+            <div className="currenttripcontainer">
+              {userItineraries.map((itinerary) => (
+                <CurrentTrip
+                  key={`itinerary--${itinerary?.id}`}
+                  travelMethod={itinerary.itinerary.travelMethod}
+                  departureDate={itinerary.itinerary.departureDate}
+                  returnDate={itinerary.itinerary.returnDate}
+                  id={itinerary?.id}
+                  itineraryId={itinerary?.itineraryId}
+                  isCurrent={itinerary?.itinerary?.isCurrent}
+                  userItineraries={userItineraries}
+                  userItineraryObject={itinerary}
+                  setUserItineraries={setUserItineraries}
+                />
+              ))}
+            </div>
           </section>
         </Tabs.Panel>
         <Tabs.Panel value="upcoming" pt="xs">

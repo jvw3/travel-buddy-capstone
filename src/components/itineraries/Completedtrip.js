@@ -120,16 +120,15 @@ export const CompletedTrip = ({
             className="itineraryimage"
             src={foundLocation?.location?.tripsviewcitypic}
           />
+          <Badge color="violet" >Completed</Badge>
+          <Badge size="xs">Departing on: {departureDate}</Badge>
+          <Badge size="xs">Returning on: {returnDate}</Badge>
           <Text size="xl">{foundLocation?.location.city}</Text>
-          <Badge>Upcoming</Badge>
           <Card.Section>
-            <div className="tripdates">
-              <Text>Departing on: {departureDate}</Text>
-              <Text>Returning on: {returnDate}</Text>
-            </div>
+            <div className="tripdates"></div>
           </Card.Section>
           <Button
-          fullWidth
+            fullWidth
             color="violet"
             onClick={() => {
               navigate(`/trips/${userItineraryObject.itineraryId}/view`);

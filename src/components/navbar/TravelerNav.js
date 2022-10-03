@@ -11,6 +11,8 @@ import {
   IconPlaneTilt,
   IconFriends,
   IconBookmarks,
+  IconLuggage,
+  IconUsers
 } from "@tabler/icons";
 import { ThemeIcon } from "@mantine/core";
 
@@ -56,7 +58,7 @@ export const TravelerNavBar = () => {
         >
           <Menu.Target>
             <Button size="md" color="violet">
-              Trips
+            <IconLuggage /> Trips
             </Button>
           </Menu.Target>
 
@@ -88,7 +90,7 @@ export const TravelerNavBar = () => {
         >
           <Menu.Target>
             <Button size="md" color="violet">
-              Community
+            <IconUsers />  Community
             </Button>
           </Menu.Target>
 

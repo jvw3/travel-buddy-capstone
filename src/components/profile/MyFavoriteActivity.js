@@ -4,7 +4,7 @@ import { useState, useEffect} from "react"
 
 // This component is responsible for rendering each individual activity of the activity list page. 
 // Props are being passed from the MyActivities Parent component.
-export const MyActivity = ({itineraryActivityObject, description, address, review, isPublic, itineraryId}) => {
+export const MyFavoriteActivity = ({itineraryActivityObject, description, address, review, isPublic, itineraryId, isFavorited}) => {
   const [activities, setActivities] = useState([]);
   const navigate = useNavigate();
 
@@ -32,11 +32,12 @@ export const MyActivity = ({itineraryActivityObject, description, address, revie
 
   return (
     <>
-      {isPublic ? (
+      {isFavorited
+      ? (
         <Card withBorder>
           <Badge color="violet">{foundActivity?.name}</Badge>
-          <Badge color="violet" variant="outline">
-            Public
+          <Badge color="yellow" variant="outline">
+            Favorite
           </Badge>
           <Text>Description: {description}</Text>
           <Text>Address: {address}</Text>
@@ -50,26 +51,8 @@ export const MyActivity = ({itineraryActivityObject, description, address, revie
             View itinerary
           </Button>
         </Card>
-      ) : (
-        <Card withBorder>
-          <Badge color="violet">{foundActivity?.name}</Badge>
-          <Badge color="violet" variant="outline">
-            Private
-          </Badge>
-          <Text>Description: {description}</Text>
-          <Text>Address: {address}</Text>
-          <Text>Review: {review}</Text>
-          <Button
-            color="violet"
-            onClick={() => {
-              navigate(`/trips/${itineraryId}/view`);
-            }}
-          >
-            View itinerary
-          </Button>
-        </Card>
+      ) : ( ""
       )}
     </>
-  );
-}
-
+  )
+        }

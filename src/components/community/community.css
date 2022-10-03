@@ -1,30 +1,25 @@
 
-
-.communitycard {
-    height: 40vh;
-}
-
-.carouselpic1 {
-    background-image: url(/public/images/ian-schneider-jk8rarn6lmw-unsplash.jpg);
-    background-position: center;
-    background-size: contain;
-}
-
 .searchbars {
     display: flex;
     flex-direction: row; 
+    justify-self: center;
     width: 100%;
 }
 
 .reviewscontainer {
-    height: 65vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
 }
 
 .commmunitybackground {
-    height: 90vh;
-    background-image: url(/public/images/duy-pham-Cecb0_8Hx-o-unsplash.jpg);
+    height: 91vh;
+    background-image: url(/public/images/natalie-pedigo-wJK9eTiEZHY-unsplash.jpg);
     background-position: center;
     background-size: cover;
 }
@@ -33,14 +28,27 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .communityheader  {
-   display: flex;
-   flex-direction: row;
-   justify-content: space-evenly;
+display: flex;
+width: 100%;
+flex-direction: row;
+justify-content: space-evenly;
+align-self: center;
 }
 
 .headerimagecard {
-    width: 30vw;
+    width: 40vw;
+    height: 25vh;
+    align-self: center;
+    justify-self: flex-end;
 }
+
+.individualreview {
+    height: 20vh;
+}
+

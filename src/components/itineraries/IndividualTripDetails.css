@@ -48,31 +48,6 @@ justify-content: space-between;
     width: 200px;
 }
 
-.Miamitripheader {
-    background-image: url(/public/images/Miamipicdetailedpage.jpg);
-    height: 40vh;
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
-}
-
-.Chicagotripheader {
-    background-image: url(/public/images/Chicagopicdetailedpage.jpg);
-    height: 40vh;
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
-}
-
-.headeroverlay {
-    height: 40vh;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 2;
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
-}
 
 .transportationinfo {
     display: flex;
@@ -100,6 +75,9 @@ justify-content: space-between;
         align-items: center;
 }
 
+.titlesection {
+    width: 100%;
+}
 
 .schedulecontainer {
     width: 70vw;
@@ -108,5 +86,54 @@ justify-content: space-between;
 .scheduleandactivities {
     display: flex;
     flex-direction: row;
+    height: 825px;
+}
 
+.activitiescontainer {
+width: 30vw;
+display: flex;
+justify-content: center;
+}
+
+.activityform {
+    width: 300px;
+}
+
+.Nashvilletripheader {
+    background-image: url(/public/images/NashvilleDetailspic.jpg);
+    height: 68vh;
+        background-size: cover;
+        background-position: center;
+}
+.Miamitripheader {
+    background-image: url(/public/images/Miamipicdetailedpage.jpg);
+    height: 68vh;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.Chicagotripheader {
+    background-image: url(/public/images/Chicagopicdetailedpage.jpg);
+    height: 68vh;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.Washingtontripheader {
+    background-image: url(/public/images/DCdetailspic.jpg);
+    height: 68vh;
+        background-size: cover;
+        background-position: center;
+}
+
+.headeroverlay {
+    height: 68vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

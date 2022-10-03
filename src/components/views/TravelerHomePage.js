@@ -1,6 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import "./HomePage.css";
-import { Button, Card, Text, Blockquote } from "@mantine/core";
+import { Button, Card, Text, Blockquote, Image } from "@mantine/core";
 
 export const HomePageView = () => {
 const navigate= useNavigate();
@@ -11,9 +11,9 @@ const navigate= useNavigate();
         <div class="topsectionoverlay">
           <div class="welcomemessage"></div>
           <div className="getstartedtext">
-            <h2 className="homepageheader">
-              Plan the trip of your dreams today!
-            </h2>
+            <h1 className="homepageheader">
+              Plan the trip of your <Text className="highlightedText" color="violet">dreams</Text> today!
+            </h1>
             <Button
               color="violet"
               onClick={() => {
@@ -31,7 +31,13 @@ const navigate= useNavigate();
           <section className="firstcard">
             <Card className="homepagecard">
               <Text>Plan</Text>
-              <Text>Travel Buddy allows for users to plan for trips by creating itineraries. Users can add transportation and accommodation information, and also create a schedule of activities for their trip. </Text>
+              <div className="planimage"></div>
+              <Text>
+                Travel Buddy allows for users to plan for trips by creating
+                itineraries. Users can add transportation and accommodation
+                information, and also create a schedule of activities for their
+                trip.{" "}
+              </Text>
             </Card>
             <div class="logocontainer">
               <div class="firstcardlogo"></div>
@@ -43,6 +49,7 @@ const navigate= useNavigate();
             </div>
             <Card className="homepagecard">
               <Text>Travel</Text>
+              <div className="travelimage"></div>
               <Text>Go on an adventure and make memories!</Text>
             </Card>
           </section>
@@ -53,7 +60,10 @@ const navigate= useNavigate();
                 Traveling – it leaves you speechless, then turns you into a
                 storyteller.
               </Blockquote>
-              <Text>Don't keep your thoughts to yourself. Share the reviews of your activities and experiences, with other travelers!</Text>
+              <Text>
+                Don't keep your thoughts to yourself. Share the reviews of your
+                activities and experiences, with other travelers!
+              </Text>
             </Card>
             <div class="logocontainer"></div>
           </section>

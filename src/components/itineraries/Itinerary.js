@@ -323,35 +323,30 @@ export const Itinerary = ({
             height={275}
             className="itineraryimage"
             src={foundLocation?.location?.tripsviewcitypic}
-            />
-            <Badge color="violet">Upcoming</Badge>
+          />
+          <Badge color="violet">Upcoming</Badge>
+          <Badge size="xs">Departing: {departureDate}</Badge>
+          <Badge size="xs">Returning: {returnDate}</Badge>
           <div className="citybadge">
             <Text size="xl">{foundLocation?.location.city}</Text>
-            <div className="tripdates">
-              <Text>Departing: {departureDate}</Text>
-              <Text>Returning: {returnDate}</Text>
-            </div>
+            <div className="tripdates"></div>
           </div>
           <Card.Section withBorder p={7}>
-          <div className="buttonsandlinks">
-            {startTripOnClick()}
-            <Button
-              color="violet"
-              variant="light"
-              onClick={() => {
-                navigate(`/trips/${userItineraryObject.itineraryId}/view`);
-              }}
-            >
-              View Trip Details
-            </Button>
-          </div>
+            <Button.Group fullWidth>
+              {startTripOnClick()}
+              <Button
+                color="violet"
+                variant="light"
+                onClick={() => {
+                  navigate(`/trips/${userItineraryObject.itineraryId}/view`);
+                }}
+              >
+                View Trip Details
+              </Button>
+            </Button.Group>
           </Card.Section>
         </Card>
       )}
     </>
   );
 };
-
-// <Link to={`/trips/${userItineraryObject.itineraryId}/view`}>
-//   Expand Trip View
-// </Link>;

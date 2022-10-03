@@ -1,4 +1,6 @@
-import { Card, Text } from "@mantine/core"
+import { Badge, Card, Text, Button } from "@mantine/core"
+import { IconFlag} from "@tabler/icons"
+import { useState, useEffect} from "react"
 
 export const ActivityReview = ({
     id,
@@ -11,18 +13,39 @@ export const ActivityReview = ({
     reviewDescription,
     reviewerName
 }) => {
+const [user, setUser] = useState({})
+ 
+ 
+    const localAppUser = localStorage.getItem("travelbuddy_user");
+ const appUserObject = JSON.parse(localAppUser);
 
 
+ useEffect(() => {
+   fetch(`http://localhost:8099/users/${appUserObject.id}`)
+     .then((res) => res.json())
+     .then((currentUserInfo) => {
+       setUser(currentUserInfo);
+     });
+ }, []);
+
+ const renderFlagButton = () => {
+    if (user.fullName !== reviewerName) {
+        return <Button color="red"> <IconFlag /> Report User</Button>
+    } else {
+        return ""
+    }
+ }
 
     return <>
     {
         isPublic 
-        ?  <Card withBorder>
+        ?  <Card className="individualreview" withBorder>
+        <Badge color="violet">{activity}</Badge>
         <Text>{reviewerName}</Text>
-        <Text>{activity}</Text>
         <Text>Description: {activityDescription}</Text>
         <Text>Address:{activityAddress}</Text>
         <Text>Review: {reviewDescription}</Text>
+        {renderFlagButton()}
     </Card>
     : ""
     }

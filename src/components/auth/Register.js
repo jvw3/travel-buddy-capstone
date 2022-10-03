@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { TextInput, Card, Button, Title, Center} from "@mantine/core"
 
 export const Register = (props) => {
   const [user, setUser] = useState({
     fullName: "",
     email: "",
-    profilePicture: "",
+    hometown: "",
     isAdmin: false,
   });
   let navigate = useNavigate();
@@ -56,36 +57,54 @@ export const Register = (props) => {
   };
 
   return (
-    <main style={{ textAlign: "center" }}>
-      <form className="form--login" onSubmit={handleRegister}>
-        <h1 className="">Please Register for Travel Buddy</h1>
-        <fieldset>
-          <label htmlFor="fullName"> Full Name </label>
-          <input
-            onChange={updateUser}
-            type="text"
-            id="fullName"
-            className="form-control"
-            placeholder="Enter your name"
-            required
-            autoFocus
-          />
-        </fieldset>
-        <fieldset>
-          <label htmlFor="email"> Email address </label>
-          <input
-            onChange={updateUser}
-            type="email"
-            id="email"
-            className="form-control"
-            placeholder="Email address"
-            required
-          />
-        </fieldset>
-        <fieldset>
-          <button type="submit"> Create Account </button>
-        </fieldset>
-      </form>
+    <main className="registercontainer">
+      <Card>
+        <form className="form--login" onSubmit={handleRegister}>
+          <Title>Travel Buddy Registration</Title>
+          <fieldset>
+            <TextInput
+              label="Full Name"
+              description="Please enter first and last name"
+              onChange={updateUser}
+              type="text"
+              id="fullName"
+              placeholder="Enter your name"
+              required
+              autoFocus
+            />
+          </fieldset>
+          <fieldset>
+            <TextInput
+              label="Email Address"
+              description="Please enter a valid email address"
+              onChange={updateUser}
+              type="email"
+              id="email"
+              placeholder="Email address"
+              required
+            />
+          </fieldset>
+          <fieldset>
+            <TextInput
+              label="Hometown"
+              description="Where are you currently located?"
+              onChange={updateUser}
+              type="text"
+              id="hometown"
+              placeholder=""
+              required
+            />
+          </fieldset>
+          <fieldset>
+            <Center>
+              <Button color="violet" type="submit">
+                {" "}
+                Create Account{" "}
+              </Button>
+            </Center>
+          </fieldset>
+        </form>
+      </Card>
     </main>
   );
 };

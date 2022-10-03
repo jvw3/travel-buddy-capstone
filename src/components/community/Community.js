@@ -12,25 +12,26 @@ export const CommunityPage = () => {
         <div className="commmunitybackground">
           <div className="backgroundoverlay">
             <div className="communityheader">
-              <Title color="white" order={1} size={100}>
+              <Title color="violet" order={1} size={100}>
                 Plan.{" "}
               </Title>
-              <Title color="white" order={1} size={100}>
+              <Title color="violet" order={1} size={100}>
                 Travel.{" "}
               </Title>
-              <Title color="white" order={1} size={100}>
+              <Title color="violet" order={1} size={100}>
                 Share.
               </Title>
             </div>
             <Card className="headerimagecard">
               <Card.Section withBorder p={10}>
-              <Blockquote cite="-Unknown" color="violet">
-                A journey well shared is a journey well enjoyed.
-              </Blockquote>
+                <Blockquote cite="-Unknown" color="violet">
+                  A journey well shared is a journey well enjoyed.
+                </Blockquote>
               </Card.Section>
               <Text>
                 Share reviews of activities and experiences with your fellow
-                travelers. Your review could lead to an amazing experience for someone else!
+                travelers. Your review could lead to an amazing experience for
+                someone else!
               </Text>
               <Card.Section withBorder p={10}>
                 <Button
@@ -40,7 +41,7 @@ export const CommunityPage = () => {
                     navigate("/community/reviews");
                   }}
                 >
-                  Reviews
+                  View Reviews!
                 </Button>
               </Card.Section>
             </Card>

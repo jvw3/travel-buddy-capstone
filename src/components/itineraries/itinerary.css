@@ -1,12 +1,7 @@
 body {
     background-color: #EDE7F6
 }
-/* .mytrips-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-} */
+
 .tripsContainer {
     display: flex;
     flex-direction: row;
@@ -19,19 +14,13 @@ body {
     flex-direction: row;
 }
 
-/* .completedtripscontainer {
-    display: flex;
-    flex-direction: row;
-    padding-top: 20px;
-} */
-
 .upcomingtrips {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 50px;
     justify-content: center;
-    height: 65vh;
+    height: 80vh;
     overflow-y: auto;
 }
 
@@ -40,29 +29,11 @@ body {
     justify-content: center;
 }
 
-.tripspageheader {
-    background-image: url();
-}
-
 .allcompletedtrips {
     display: flex;
     flex-direction: row;
     height: 50vh;
 }
-
-/* .showcompletedtrips {
-    background-color: #1F0322;
-    color: white;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-} */
-
-/* .hidecompletedtrips {
-    background-color: #1F0322;
-    color: white;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-} */
 
 .itinerary {
     border: 1px solid black;
@@ -87,10 +58,6 @@ body {
     width: 100%;
 }
 
-/* .startbutton {
-    flex-grow: 4;
-} */
-
 .currenttrip {
     border: 1px solid black;
     padding: 5px;
@@ -112,6 +79,19 @@ body {
 .itineraryCard {
     width: 30vw;
     height: 54vh;
+}
+
+.currentitinerarycard {
+    width: 49vw;
+    height: 80vh;
+}
+
+.itineraryCard:hover {
+    
+}
+
+.currenttripcontainer {
+    
 }
 
 
@@ -149,30 +129,24 @@ body {
         font-size: 0.8rem
 }
 
-.Miamipic {
-
-width: fit-content;
-background-position: center;
-background-size: cover;
-}
-
-
-.Chicagopic {
-    width: 100%;
-    height: 100%;
-    background-image: url(/public/images/max-bender-yb7Yg3Rv7WA-unsplash.jpg);
-    background-size: cover;
-    background-position: center;
-}
-
-.Bostonpic {
-    width: 100%;
-    height: 100%;
-    background-image: url(/public/images/jimmy-woo-man-tsing-SUMtPksZXBE-unsplash.jpg);
-    background-size: cover;
-    background-position: center;
+.itineraryimage {
+    
 }
 
 .mytripsheader {
     color: black;
 }
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(0%);
+    }
+
+    100% {
+        transform: translateY(-2%);
+    }
+}
+
+
+
+

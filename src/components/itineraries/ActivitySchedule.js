@@ -22,7 +22,6 @@ export const ActivitySchedule = ({
 }) => {
   const [userFullName, setFullName] = useState({});
 
-  //
   const navigate = useNavigate();
 
   const [itineraryActivity, updateItineraryActivity] = useState({
@@ -44,7 +43,8 @@ export const ActivitySchedule = ({
   const localAppUser = localStorage.getItem("travelbuddy_user");
   const appUserObject = JSON.parse(localAppUser);
 
-  useEffect(() => {
+//
+useEffect(() => {
     fetch(`http://localhost:8099/users/${appUserObject?.id}`)
       .then((res) => res.json())
       .then((currentUser) => {
@@ -52,6 +52,7 @@ export const ActivitySchedule = ({
       });
   }, []);
 
+  // This useEffect hook fetches the specific itinerary Activity to where we will make the put request. 
   useEffect(() => {
     fetch(`http://localhost:8099/itineraryActivities/${id}`)
       .then((res) => res.json())
@@ -60,6 +61,7 @@ export const ActivitySchedule = ({
       });
   }, []);
 
+  // This function will get all ItineraryActivities for the user. This function will be used in fetch an updated List of itineraryActivities after a put request is made to the API.
   const getItineraryActivitiesForUser = () => {
     fetch(
       `http://localhost:8099/itineraryActivities?_expand=activity&itineraryId=${itineraryId}`
@@ -69,10 +71,6 @@ export const ActivitySchedule = ({
         setItineraryActivities(userItineraryActivitiesArray);
       });
   };
-
-  // const foundItinerary = itineraries.find(
-  //   (itinerary) => itinerary.id === itineraryActivityObject.itineraryId
-  // );
 
   // This function renders the delete button and when clicked, will delete an itinerary.
   const renderDeleteButton = () => {
@@ -103,6 +101,7 @@ export const ActivitySchedule = ({
     return (
       <Button
         variant="light"
+        color="violet"
         onClick={(event) => {
           completeActivityStatusPut(event);
         }}
@@ -279,7 +278,7 @@ export const ActivitySchedule = ({
         getItineraryActivitiesForUser();
       });
   };
-
+// 
   const unfavoriteActivityStatusPut = (event) => {
     const itineraryActivityPutToApi = {
       itineraryId: itineraryActivity.itineraryId,
@@ -319,6 +318,7 @@ export const ActivitySchedule = ({
     }
   };
 
+  // Depending on the value of the isFavorited property, This function will render the button that will favorite the activity for the user, or it will unfavorite the activity for the user. 
   const favoriteActivityOnClick = () => {
     return (
       <>
@@ -389,9 +389,8 @@ export const ActivitySchedule = ({
               <Text>{activityDescription}</Text>
               <div>Where:{activityAddress}</div>
               <div>When: {activityDateTime}</div>
-              {renderDeleteButton()}
               <Button
-                color="blue"
+                color="violet"
                 onClick={() => {
                   navigate(`/trips/${id}/${itineraryId}/editActivity`);
                 }}
@@ -399,6 +398,7 @@ export const ActivitySchedule = ({
                 <Text size="sm">Edit Activity</Text>
               </Button>
               {completeActivityOnClick()}
+              {renderDeleteButton()}
             </Card>
           </div>
         </Timeline.Item>

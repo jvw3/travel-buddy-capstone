@@ -17,6 +17,7 @@ export const MyActivities = ({ searchTermState }) => {
   const localAppUser = localStorage.getItem("travelbuddy_user");
   const appUserObject = JSON.parse(localAppUser);
 
+  // This useEffect hook fetches the current User.
   useEffect(() => {
     fetch(`http://localhost:8099/users/${appUserObject.id}`)
       .then((res) => res.json())
@@ -26,7 +27,7 @@ export const MyActivities = ({ searchTermState }) => {
   }, []);
 
 
-
+// This useEffect hook fetches the array of Itinerary Activities.
   useEffect(() => {
     fetch(`http://localhost:8099/itineraryActivities`)
       .then((res) => res.json())
@@ -35,6 +36,7 @@ export const MyActivities = ({ searchTermState }) => {
       });
   }, []);
 
+  // This useEFfect hook fetches all of the user Itineraries for the current user. 
   useEffect(() => {
     fetch(`http://localhost:8099/userItineraries?userId=${appUserObject.id}`)
       .then((res) => res.json())

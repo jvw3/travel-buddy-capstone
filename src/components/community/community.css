@@ -52,3 +52,7 @@ align-self: center;
     height: 20vh;
 }
 
+.reportcard {
+    height: 60vh;
+    width: 60vw;
+}

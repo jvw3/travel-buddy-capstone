@@ -39,22 +39,42 @@ export const ActivityReviewsList = ({
 
   return (
     <>
-      <div class="reviewscontainer">
-        {filtered.map((itineraryActivity) => (
-          <ActivityReview
-            key={`itineraryactivity--${itineraryActivity?.id}`}
-            id={itineraryActivity?.id}
-            activity={itineraryActivity?.activity?.name}
-            activityDescription={itineraryActivity?.description}
-            activityAddress={itineraryActivity?.address}
-            activityDateTime={itineraryActivity?.activityDateTime}
-            isPublic={itineraryActivity?.isPublic}
-            itineraryActivityObject={itineraryActivity}
-            reviewDescription={itineraryActivity?.review?.description}
-            reviewerName={itineraryActivity?.reviewIdentity}
-          />
-        ))}
-      </div>
+      {descriptionSearchTermState === "" && reviewSearchTermState === "" 
+      ? (
+        <div class="reviewscontainer">
+          {itineraryActivities.map((itineraryActivity) => (
+            <ActivityReview
+              key={`itineraryactivity--${itineraryActivity?.id}`}
+              id={itineraryActivity?.id}
+              activity={itineraryActivity?.activity?.name}
+              activityDescription={itineraryActivity?.description}
+              activityAddress={itineraryActivity?.address}
+              activityDateTime={itineraryActivity?.activityDateTime}
+              isPublic={itineraryActivity?.isPublic}
+              itineraryActivityObject={itineraryActivity}
+              reviewDescription={itineraryActivity?.review?.description}
+              reviewerName={itineraryActivity?.reviewIdentity}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="reviewscontainer">
+          {filtered.map((itineraryActivity) => (
+            <ActivityReview
+              key={`itineraryactivity--${itineraryActivity?.id}`}
+              id={itineraryActivity?.id}
+              activity={itineraryActivity?.activity?.name}
+              activityDescription={itineraryActivity?.description}
+              activityAddress={itineraryActivity?.address}
+              activityDateTime={itineraryActivity?.activityDateTime}
+              isPublic={itineraryActivity?.isPublic}
+              itineraryActivityObject={itineraryActivity}
+              reviewDescription={itineraryActivity?.review?.description}
+              reviewerName={itineraryActivity?.reviewIdentity}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 };

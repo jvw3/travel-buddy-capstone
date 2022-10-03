@@ -1,6 +1,7 @@
 import { Badge, Card, Text, Button } from "@mantine/core"
 import { IconFlag} from "@tabler/icons"
 import { useState, useEffect} from "react"
+import { useNavigate } from "react-router-dom"
 
 export const ActivityReview = ({
     id,
@@ -14,7 +15,7 @@ export const ActivityReview = ({
     reviewerName
 }) => {
 const [user, setUser] = useState({})
- 
+ const navigate = useNavigate()
  
     const localAppUser = localStorage.getItem("travelbuddy_user");
  const appUserObject = JSON.parse(localAppUser);
@@ -30,7 +31,17 @@ const [user, setUser] = useState({})
 
  const renderFlagButton = () => {
     if (user.fullName !== reviewerName) {
-        return <Button color="red"> <IconFlag /> Report User</Button>
+        return (
+          <Button
+            color="red"
+            onClick={() => {
+              navigate(`/reviews/${id}/report`);
+            }}
+          >
+            {" "}
+            <IconFlag /> Report User
+          </Button>
+        );
     } else {
         return ""
     }

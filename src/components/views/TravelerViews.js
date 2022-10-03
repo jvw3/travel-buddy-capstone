@@ -12,6 +12,7 @@ import { ActivityContainer } from "../profile/ActivityContainer";
 import { ActivityReviewContainer } from "../community/ActivityReviewContainer";
 import { MyActivities } from "../profile/MyActivities";
 import { EditProfile } from "../profile/EditProfile";
+import { ReportUser } from "../community/ReportUser";
 
 export const TravelerViews = () => {
   return (
@@ -49,6 +50,11 @@ export const TravelerViews = () => {
       <Route
         path="trips/:usertripId/view"
         element={<IndividualTripDetails />}
+      />
+
+      <Route
+        path="reviews/:id/report"
+        element={<ReportUser />}
       />
 
       <Route

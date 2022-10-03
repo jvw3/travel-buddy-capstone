@@ -6,7 +6,6 @@ import { Button } from "@mantine/core"
 export const EditActivity = () => {
 
     const { itineraryActivityId } = useParams();
-    const { itineraryId } = useParams();
     const [activities, setActivities] = useState([])
 
 const navigate = useNavigate()
@@ -24,7 +23,8 @@ const navigate = useNavigate()
         },
         isPublic: false,
         isComplete: false,
-        reviewIdentity: ""
+        reviewIdentity: "",
+        flags: [0]
     })
 
 

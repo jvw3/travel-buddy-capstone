@@ -1,11 +1,9 @@
-import { Navigate, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { ActivitySchedule } from "./ActivitySchedule";
 import "./IndividualTripDetails.css";
 import { TextInput, Button, Timeline, Text, Drawer, Group } from "@mantine/core";
 import { Card } from "@mantine/core";
-import { getAllActivities } from "../api/APImanager";
 import { showNotification } from "@mantine/notifications";
 
 export const IndividualTripDetails = ({}) => {
@@ -15,23 +13,8 @@ export const IndividualTripDetails = ({}) => {
   const [userItinerary, updateUserItinerary] = useState();
   const [destination, updateDestination] = useState();
   const [itineraryActivities, setItineraryActivities] = useState([]);
-  const [activityFormVisibility, setFormVisibility] = useState(false);
   const [opened, setOpened] = useState(false);
   const navigate = useNavigate();
-
-  // useEffect(
-  //     () => {
-  //         if (!activityFormVisibility) {
-  //             setFormVisibility(true)
-  //         } else if (activityFormVisibility) {
-
-  //         }
-  //     }, [activityFormVisibility]
-  // )
-
-  //Need to get the current itineraryId for the itineraryActivity.
-
-  // iterate through useritineraries to find itineraries for user.
 
   const [itineraryActivity, updateItineraryActivity] = useState({
     activityId: 0,
@@ -115,7 +98,7 @@ export const IndividualTripDetails = ({}) => {
       isComplete: false,
       isFavorited: false,
       reviewIdentity: "",
-      flags: "",
+      flags: [0],
     };
 
     return fetch(`http://localhost:8099/itineraryActivities`, {
@@ -387,9 +370,6 @@ export const IndividualTripDetails = ({}) => {
                 Traveling to {destination?.location?.city},{" "}
                 {destination?.location?.state}
               </h2>
-              <div className="accessCode">
-                Access code: {userItinerary?.itinerary?.accessCode}
-              </div>
               <div>
                 <Button
                   radius="md"

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate} from "react-router-dom"
 import { AdminReviewSearch} from "./AdminSearch";
-import { Title, Button } from "@mantine/core";
+import { Title, Button, Center } from "@mantine/core";
 import { AdminHomePageView } from "./AdminPage";
 
 // The child components (ticketSearch and Tickets) will access state via props.
@@ -14,12 +14,16 @@ const navigate = useNavigate()
 return (
   <>
     <Title>Reviews</Title>
-    <Button
-    color="violet"
-      onClick={() => {
-        navigate("/allusers");
-      }}
-    >View Users</Button>
+    <Center>
+      <Button
+        color="violet"
+        onClick={() => {
+          navigate("/allusers");
+        }}
+      >
+        View Users
+      </Button>
+    </Center>
     <AdminReviewSearch reviewSetterFunction={setReviewSearchTerms} />
     <AdminHomePageView reviewSearchTermState={reviewSearchTerms} />
   </>

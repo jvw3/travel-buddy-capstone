@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { AdminIndividualUser } from "./AdminIndividualUser";
-import { Title } from "@mantine/core";
+import { Title, Center } from "@mantine/core";
 
 
 export const UserList = () => {
@@ -22,7 +22,8 @@ const userList = allUsers.filter(user => {
 
     return (
       <>
-      <Title>All Users</Title>
+          <Title>All Users</Title>
+
         <div className="userlistcontainer">
           {userList.map((user) => (
             <AdminIndividualUser

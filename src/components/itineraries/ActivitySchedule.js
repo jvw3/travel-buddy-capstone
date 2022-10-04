@@ -440,7 +440,7 @@ useEffect(() => {
                     }}
                     color="red"
                   >
-                    Delete Trip
+                    Delete Activity
                   </Menu.Item>
                 </Menu.Dropdown>
               </Menu>
@@ -448,6 +448,7 @@ useEffect(() => {
               <Text>{activityDescription}</Text>
               <div>Where:{activityAddress}</div>
               <div>When: {activityDateTime}</div>
+              <Card.Section withBorder p="sm">
               <Button
                 color="violet"
                 onClick={() => {
@@ -457,6 +458,7 @@ useEffect(() => {
                 <Text size="sm">Edit Activity</Text>
               </Button>
               {completeActivityOnClick()}
+              </Card.Section>
             </Card>
           </div>
         </Timeline.Item>

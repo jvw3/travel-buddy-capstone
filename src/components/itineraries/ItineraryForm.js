@@ -436,7 +436,7 @@ export const ItineraryForm = () => {
   return (
     <main className="maincontainer">
       <form className="itineraryForm">
-        <Title order={1}>Create New Itinerary</Title>
+        <Title className="formtitle" order={1}>Create New Itinerary</Title>
         <Card className="fullformcard" shadow="xl" withBorder>
           {displayMainTripInfo()}
           <div className="otherformsbox">

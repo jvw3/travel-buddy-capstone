@@ -23,7 +23,9 @@ const navigate= useNavigate();
               today!
             </Title>
             <Button
-              color="violet"
+              variant="gradient"
+              gradient={{ from: "violet", to: "blue" }}
+              size="lg"
               onClick={() => {
                 navigate("/createnewtrip");
               }}

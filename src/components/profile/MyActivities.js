@@ -91,7 +91,7 @@ export const MyActivities = ({ searchTermState }) => {
     return (
       <>
         {searchTermState === "" ? (
-          <div>
+          <div className="container">
             {itineraryActivities.map((activity) => (
               <MyActivity
                 key={`itineraryActivity--${activity?.id}`}
@@ -108,7 +108,7 @@ export const MyActivities = ({ searchTermState }) => {
             ))}
           </div>
         ) : (
-          <div>
+          <div className="container">
             {filteredActivities.map((activity) => (
               <MyActivity
                 key={`itineraryActivity--${activity?.id}`}
@@ -180,6 +180,7 @@ export const MyActivities = ({ searchTermState }) => {
 
   return (
     <>
+    <main className="activitypagecontainer">
       <Card>
         <Tabs variant="pills" color="violet" defaultValue="all">
           <Tabs.List>
@@ -213,6 +214,7 @@ export const MyActivities = ({ searchTermState }) => {
           </Tabs.Panel>
         </Tabs>
       </Card>
+      </main>
     </>
   );
 };

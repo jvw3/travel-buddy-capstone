@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+.headertext {
+    font-family: 'Quicksand',
+        sans-serif;
+}
+
+.reviewheader {
+    font-family: 'Quicksand',
+            sans-serif;
+            color: black;
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
 
 .searchbars {
     display: flex;

@@ -225,13 +225,13 @@ export const IndividualTripDetails = ({}) => {
           opened={opened}
           position="right"
           onClose={() => setOpened(false)}
-          title="Register"
+          title="Add Activity To Schedule"
           padding="xl"
-          size="xl"
+          size="lg"
         >
           {
             <form>
-              <div className="row g-3">
+              <div>
                 <fieldset>
                   <div className="col-md-6">
                     <label htmlFor="name">Choose Activity:</label>
@@ -346,6 +346,13 @@ export const IndividualTripDetails = ({}) => {
     );
   }
 
+  const resStartDate = new Date(userItinerary?.itinerary?.rentalCarInfo?.reservationTime)
+  const formattedResStartDate = resStartDate.toLocaleString()
+
+  const resDropOffDate = new Date(userItinerary?.itinerary?.rentalCarInfo?.carDropOffTime)
+ const formattedResDropOffDate = resDropOffDate.toLocaleString()
+
+  
 
 
   return (
@@ -389,12 +396,14 @@ export const IndividualTripDetails = ({}) => {
                 Flight to {destination?.location?.city}:{" "}
                 {userItinerary?.itinerary?.flightInfo?.departFlightNum} leaving
                 at:{" "}
-                {userItinerary?.itinerary?.flightInfo?.flightToDestinationTime}
+                {userItinerary?.itinerary?.flightInfo?.flightToDestinationTime}{" "}
+                ({userItinerary?.itinerary?.flightInfo?.departingAirline})
               </div>
               <div>
                 Return Flight:{" "}
                 {userItinerary?.itinerary?.flightInfo?.returnFlightNum} leaving
-                at: {userItinerary?.itinerary?.flightInfo?.returnFlightTime}{" "}
+                at: {userItinerary?.itinerary?.flightInfo?.returnFlightTime} (
+                {userItinerary?.itinerary?.flightInfo?.returningAirline})
               </div>
             </Card>
             <Card className="rentalinfo" shadow="xl">
@@ -409,11 +418,11 @@ export const IndividualTripDetails = ({}) => {
               </div>
               <div>
                 Reservation start:{" "}
-                {userItinerary?.itinerary?.rentalCarInfo?.reservationTime}
+                {formattedResStartDate}
               </div>
               <div>
                 Car Drop off Time:{" "}
-                {userItinerary?.itinerary?.rentalCarInfo?.carDropOffTime}
+                {formattedResDropOffDate}
               </div>
             </Card>
           </div>

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { ActivityReviewsList } from "./ActivityReviews";
 import { ActivityReviewSearch } from "./ActivityReviewSearch";
-import { Title} from "@mantine/core"
+import { Title, Center} from "@mantine/core"
 
 // The child components (ticketSearch and Tickets) will access state via props.
 export const ActivityReviewContainer = () => {
@@ -13,7 +13,9 @@ export const ActivityReviewContainer = () => {
   // The ticketContainer parent component will return two childe components.
   return (
     <>
-    <Title>Reviews</Title>
+      <Center>
+        <Title className="reviewheader">Reviews</Title>
+      </Center>
       <ActivityReviewSearch
         descriptionSetterFunction={setDescriptionSearchTerms}
         reviewSetterFunction={setReviewSearchTerms}

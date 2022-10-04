@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
 body {
     background-color: #EDE7F6
 }
@@ -113,6 +115,8 @@ body {
 
 .mytripsheader {
     color: black;
+    font-family: 'Quicksand',
+        sans-serif;;
 }
 
 @keyframes slideUp {
@@ -125,6 +129,11 @@ body {
     }
 }
 
+.timelineheader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 
 

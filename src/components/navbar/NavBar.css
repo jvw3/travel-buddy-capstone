@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
 .navbar {
     display: flex;
@@ -16,6 +17,8 @@
 .navtext {
     color: white;
     font-size: 2rem;
+    font-family: 'Quicksand',
+        sans-serif;;
 }
 
 .navbuttoncontainer {

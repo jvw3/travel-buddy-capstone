@@ -1,6 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
+.activitytitle {
+    font-family: 'Quicksand',
+        sans-serif;
+        padding-top: 30px;
+        padding-bottom: 15px;
+}
 .searchbar {
     width: 17vw;
+    padding-bottom: 50px;
 }
 
 .myprofile {
@@ -30,5 +38,12 @@
 }
 
 .profileeditcard {
-    
+
 }
+
+.activitypagecontainer {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+

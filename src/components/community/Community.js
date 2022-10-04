@@ -13,6 +13,7 @@ export const CommunityPage = () => {
           <div className="backgroundoverlay">
             <div className="communityheader">
               <Title
+                className="headertext"
                 variant="gradient"
                 gradient={{ from: "violet", to: "blue" }}
                 order={1}
@@ -21,6 +22,7 @@ export const CommunityPage = () => {
                 Plan.{" "}
               </Title>
               <Title
+                className="headertext"
                 variant="gradient"
                 gradient={{ from: "violet", to: "blue" }}
                 order={1}
@@ -29,6 +31,7 @@ export const CommunityPage = () => {
                 Travel.{" "}
               </Title>
               <Title
+                className="headertext"
                 variant="gradient"
                 gradient={{ from: "violet", to: "blue" }}
                 order={1}
@@ -44,8 +47,8 @@ export const CommunityPage = () => {
                 </Blockquote>
               </Card.Section>
               <Text>
-                Plan your trips. Travel the world. Share your experiences. Your review could lead to an amazing experience for
-                someone else!
+                Plan your trips. Travel the world. Share your experiences. Your
+                review could lead to an amazing experience for someone else!
               </Text>
               <Card.Section withBorder p={10}>
                 <Button

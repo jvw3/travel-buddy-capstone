@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
 .topsection {
     height: 100vh;
@@ -9,7 +9,6 @@
     background-image: url(/public/images/charlotte-noelle-98WPMlTl5xo-unsplash\ \(2\).jpg);
     background-size: cover;
     background-position: center;
-    
 }
 
 
@@ -23,6 +22,14 @@
     font-size: 5rem;
     width: 30vw;
     text-align: left;
+    font-family: 'Quicksand',
+        sans-serif;;
+}
+
+.highlightedText { 
+    font-family: 'Quicksand',
+            sans-serif;
+        ;
 }
 
 .welcomemessage {

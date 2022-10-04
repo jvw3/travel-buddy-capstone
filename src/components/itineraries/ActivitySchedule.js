@@ -353,49 +353,52 @@ useEffect(() => {
         <Timeline.Item>
           <div className="timelineitem">
             <Card withBorder shadow="md">
-              <Menu withinPortal position="left-start" withArrow shadow="sm">
-                <Menu.Target>
-                  <ActionIcon>
-                    <IconDots size={16} />
-                  </ActionIcon>
-                </Menu.Target>
-                <Menu.Dropdown>
-                  <Menu.Item
-                    icon={<IconTrash size={14} />}
-                    onClick={() => {
-                      renderDeleteButton();
-                    }}
-                    color="red"
-                  >
-                    Delete Trip
-                  </Menu.Item>
-                </Menu.Dropdown>
-              </Menu>
+              <div className="timelineheader">
+                <Menu withinPortal position="left-start" withArrow shadow="sm">
+                  <Menu.Target>
+                    <ActionIcon>
+                      <IconDots size={16} />
+                    </ActionIcon>
+                  </Menu.Target>
+                  <Menu.Dropdown>
+                    <Menu.Item
+                      icon={<IconTrash size={14} />}
+                      onClick={() => {
+                        renderDeleteButton();
+                      }}
+                      color="red"
+                    >
+                      Delete Trip
+                    </Menu.Item>
+                  </Menu.Dropdown>
+                </Menu>
+                {favoriteActivityOnClick()}
+              </div>
               <Badge color="green">Completed</Badge>
-              {favoriteActivityOnClick()}
               <Text>{activity}</Text>
               <Text>{activityDescription}</Text>
-              <div>Where:{activityAddress}</div>
+              <div>Where: {activityAddress}</div>
               <div>When: {activityDateTime}</div>
-              <Button
-                color="violet"
-                variant="light"
-                onClick={() => {
-                  navigate(`/trips/${id}/${itineraryId}/editActivity`);
-                }}
-              >
-                <Text size="sm">Edit Activity</Text>
-              </Button>
-              <Button
-                color="violet"
-                onClick={() => {
-                  navigate(`/trips/${id}/finishactivity`);
-                }}
-              >
-                {displayReviewButtonText()}
-              </Button>
-              {shareActivityOnClick()}
-              {renderDeleteButton()}
+              <Card.Section withBorder p="sm">
+                <Button
+                  color="violet"
+                  variant="light"
+                  onClick={() => {
+                    navigate(`/trips/${id}/${itineraryId}/editActivity`);
+                  }}
+                >
+                  <Text size="sm">Edit Activity</Text>
+                </Button>
+                <Button
+                  color="violet"
+                  onClick={() => {
+                    navigate(`/trips/${id}/finishactivity`);
+                  }}
+                >
+                  {displayReviewButtonText()}
+                </Button>
+                {shareActivityOnClick()}
+              </Card.Section>
             </Card>
           </div>
         </Timeline.Item>

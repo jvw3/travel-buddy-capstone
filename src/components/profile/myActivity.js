@@ -4,7 +4,7 @@ import { useState, useEffect} from "react"
 
 // This component is responsible for rendering each individual activity of the activity list page. 
 // Props are being passed from the MyActivities Parent component.
-export const MyActivity = ({itineraryActivityObject, description, address, review, isPublic, itineraryId}) => {
+export const MyActivity = ({itineraryActivityObject, description, address, review, isPublic, itineraryId, activity}) => {
   const [activities, setActivities] = useState([]);
   const navigate = useNavigate();
 

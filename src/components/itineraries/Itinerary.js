@@ -184,13 +184,26 @@ export const Itinerary = ({
       <Button
         color="violet"
         onClick={(event) => {
-          startTripStatusPut(event);
+        checkCurrentTrips()
         }}
       >
         Start Trip
       </Button>
     );
   };
+
+  const checkCurrentTrips = (event) => {
+    userItineraries.forEach(itinerary => {
+      if (itinerary.itinerary.isCurrent === true) {
+         showNotification({
+           title: "Notification",
+           message: "You already have a current trip!",
+         })
+      } else {
+        return startTripStatusPut(event)
+      }
+    })
+  }
 
   // This function sends a put request to the API to change the value of the isCurrent property from false to true.
   const startTripStatusPut = (event) => {

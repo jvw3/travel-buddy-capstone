@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ActivitySchedule } from "./ActivitySchedule";
 import "./IndividualTripDetails.css";
-import { TextInput, Button, Timeline, Text, Drawer, Group } from "@mantine/core";
+import { TextInput, Button, Timeline, Text, Drawer, Group, Title } from "@mantine/core";
 import { Card } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 
@@ -420,7 +420,7 @@ export const IndividualTripDetails = ({}) => {
         </section>
         <div className="scheduleandactivities">
           <section className="schedulecontainer">
-            <h3>My Schedule</h3>
+            <Title>My Schedule</Title>
             {openActivitySideBar()}
             <section className="schedulelist">
               <Timeline color="violet" lineWidth={1}>

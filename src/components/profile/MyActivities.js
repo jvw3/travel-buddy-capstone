@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { Card, Tabs, Badge } from "@mantine/core";
-import {
-IconPlaneInflight,
-IconStar,
-} from "@tabler/icons";
+import { IconPlaneInflight, IconStar } from "@tabler/icons";
 import { MyActivity } from "./myActivity";
-import { MyFavoriteActivity} from "./MyFavoriteActivity"
+import { MyFavoriteActivity } from "./MyFavoriteActivity";
 
 export const MyActivities = ({ searchTermState }) => {
   const [user, setUser] = useState({});
@@ -26,17 +23,16 @@ export const MyActivities = ({ searchTermState }) => {
       });
   }, []);
 
-
-// This useEffect hook fetches the array of Itinerary Activities.
+  // This useEffect hook fetches the array of Itinerary Activities.
   useEffect(() => {
-    fetch(`http://localhost:8099/itineraryActivities`)
+    fetch(`http://localhost:8099/itineraryActivities?_expand=activity`)
       .then((res) => res.json())
       .then((activities) => {
         setItineraryActivities(activities);
       });
   }, []);
 
-  // This useEFfect hook fetches all of the user Itineraries for the current user. 
+  // This useEFfect hook fetches all of the user Itineraries for the current user.
   useEffect(() => {
     fetch(`http://localhost:8099/userItineraries?userId=${appUserObject.id}`)
       .then((res) => res.json())
@@ -45,8 +41,7 @@ export const MyActivities = ({ searchTermState }) => {
       });
   }, []);
 
-
-// This useEffect hook will 
+  // This useEffect hook will
   useEffect(() => {
     const userActivities = [];
     userItineraries.forEach((itinerary) => {
@@ -59,23 +54,21 @@ export const MyActivities = ({ searchTermState }) => {
     setFiltered(userActivities);
   }, []);
 
-  
   useEffect(() => {
     const userFavoriteActivities = [];
     userItineraries.forEach((itinerary) => {
-        if (itinerary.itinerary.isFavorited === true) {
-            itineraryActivities.forEach((activity) => {
-              if (activity.itineraryId === itinerary.itineraryId) {
-                userFavoriteActivities.push(activity);
-              }
-            });
-        }
+      if (itinerary.itinerary.isFavorited === true) {
+        itineraryActivities.forEach((activity) => {
+          if (activity.itineraryId === itinerary.itineraryId) {
+            userFavoriteActivities.push(activity);
+          }
+        });
+      }
     });
     setFilteredFavorites(userFavoriteActivities);
   }, []);
 
-
-  // This useEffect hook sets the search Term State for the activity Container component, which will maintains state for the activity Search component. 
+  // This useEffect hook sets the search Term State for the activity Container component, which will maintains state for the activity Search component.
   useEffect(() => {
     const userActivities = [];
     userItineraries.forEach((itinerary) => {
@@ -87,7 +80,7 @@ export const MyActivities = ({ searchTermState }) => {
     });
 
     const searchedActivities = userActivities.filter((activity) => {
-      return activity.description
+      return activity.activity.name
         .toLowerCase()
         .includes(searchTermState.toLowerCase());
     });
@@ -97,19 +90,40 @@ export const MyActivities = ({ searchTermState }) => {
   const displayFilteredActivities = () => {
     return (
       <>
-        {filteredActivities.map((activity) => (
-          <MyActivity
-            key={`itineraryActivity--${activity?.id}`}
-            description={activity?.description}
-            address={activity?.address}
-            review={activity?.review?.description}
-            id={activity?.id}
-            activityId={activity?.activityId}
-            isPublic={activity?.isPublic}
-            itineraryId={activity?.itineraryId}
-            itineraryActivityObject={activity}
-          />
-        ))}
+        {searchTermState === "" ? (
+          <div>
+            {itineraryActivities.map((activity) => (
+              <MyActivity
+                key={`itineraryActivity--${activity?.id}`}
+                description={activity?.description}
+                activity={activity?.activity?.name}
+                address={activity?.address}
+                review={activity?.review?.description}
+                id={activity?.id}
+                activityId={activity?.activityId}
+                isPublic={activity?.isPublic}
+                itineraryId={activity?.itineraryId}
+                itineraryActivityObject={activity}
+              />
+            ))}
+          </div>
+        ) : (
+          <div>
+            {filteredActivities.map((activity) => (
+              <MyActivity
+                key={`itineraryActivity--${activity?.id}`}
+                description={activity?.description}
+                address={activity?.address}
+                review={activity?.review?.description}
+                id={activity?.id}
+                activityId={activity?.activityId}
+                isPublic={activity?.isPublic}
+                itineraryId={activity?.itineraryId}
+                itineraryActivityObject={activity}
+              />
+            ))}
+          </div>
+        )}
       </>
     );
   };
@@ -126,12 +140,15 @@ export const MyActivities = ({ searchTermState }) => {
 
     return userActivities.length;
   };
-  
+
   const displayUsersFavoriteActivitiesCount = () => {
     const userFavoriteActivities = [];
     userItineraries.forEach((itinerary) => {
       itineraryActivities.forEach((activity) => {
-        if (activity.itineraryId === itinerary.itineraryId && activity.isFavorited === true) {
+        if (
+          activity.itineraryId === itinerary.itineraryId &&
+          activity.isFavorited === true
+        ) {
           userFavoriteActivities.push(activity);
         }
       });
@@ -140,28 +157,26 @@ export const MyActivities = ({ searchTermState }) => {
     return userFavoriteActivities.length;
   };
 
-    const displayFilteredFavoriteActivities = () => {
-      return (
-        <>
-          {filteredActivities.map((activity) => (
-            <MyFavoriteActivity
-              key={`itineraryActivity--${activity?.id}`}
-              description={activity?.description}
-              address={activity?.address}
-              review={activity?.review?.description}
-              id={activity?.id}
-              activityId={activity?.activityId}
-              isPublic={activity?.isPublic}
-              itineraryId={activity?.itineraryId}
-              itineraryActivityObject={activity}
-              isFavorited={activity?.isFavorited}
-            />
-          ))}
-        </>
-      );
-    };
-
-
+  const displayFilteredFavoriteActivities = () => {
+    return (
+      <>
+        {filteredActivities.map((activity) => (
+          <MyFavoriteActivity
+            key={`itineraryActivity--${activity?.id}`}
+            description={activity?.description}
+            address={activity?.address}
+            review={activity?.review?.description}
+            id={activity?.id}
+            activityId={activity?.activityId}
+            isPublic={activity?.isPublic}
+            itineraryId={activity?.itineraryId}
+            itineraryActivityObject={activity}
+            isFavorited={activity?.isFavorited}
+          />
+        ))}
+      </>
+    );
+  };
 
   return (
     <>
@@ -178,7 +193,11 @@ export const MyActivities = ({ searchTermState }) => {
               All Activities
             </Tabs.Tab>
             <Tabs.Tab
-              rightSection={<Badge color="violet" >{displayUsersFavoriteActivitiesCount()}</Badge>}
+              rightSection={
+                <Badge color="violet">
+                  {displayUsersFavoriteActivitiesCount()}
+                </Badge>
+              }
               value="favorites"
               icon={<IconStar size={14} />}
             >
@@ -197,5 +216,3 @@ export const MyActivities = ({ searchTermState }) => {
     </>
   );
 };
-
-

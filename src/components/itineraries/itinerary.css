@@ -58,20 +58,6 @@ body {
     width: 100%;
 }
 
-.currenttrip {
-    border: 1px solid black;
-    padding: 5px;
-    width: 80vw;
-    border-radius: 10px;
-    height: 40vh;
-    transition: ease all 0.25s;
-}
-
-.currenttripoverlay {
-    background-color: rgba(0, 0, 0, 0.421);
-    height: 100%;
-}
-
 .itinerary:hover {
     transform: scale(1.05);
 }
@@ -87,11 +73,7 @@ body {
 }
 
 .itineraryCard:hover {
-    
-}
-
-.currenttripcontainer {
-    
+    animation-name: slideUp;
 }
 
 
@@ -127,10 +109,6 @@ body {
         padding: 2px;
         border-radius: 10px;
         font-size: 0.8rem
-}
-
-.itineraryimage {
-    
 }
 
 .mytripsheader {

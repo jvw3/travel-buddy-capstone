@@ -1,6 +1,6 @@
 import {useNavigate } from "react-router-dom";
 import "./HomePage.css";
-import { Button, Card, Text, Blockquote, Image } from "@mantine/core";
+import { Button, Card, Text, Blockquote, Title } from "@mantine/core";
 
 export const HomePageView = () => {
 const navigate= useNavigate();
@@ -11,9 +11,17 @@ const navigate= useNavigate();
         <div class="topsectionoverlay">
           <div class="welcomemessage"></div>
           <div className="getstartedtext">
-            <h1 className="homepageheader">
-              Plan the trip of your <Text className="highlightedText" color="violet">dreams</Text> today!
-            </h1>
+            <Title className="homepageheader">
+              Plan the trip of your{" "}
+              <Text
+                className="highlightedText"
+                variant="gradient"
+                gradient={{ from: "violet", to: "blue" }}
+              >
+                dreams
+              </Text>{" "}
+              today!
+            </Title>
             <Button
               color="violet"
               onClick={() => {

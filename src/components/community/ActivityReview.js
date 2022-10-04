@@ -31,20 +31,22 @@ const [user, setUser] = useState({})
 
 
 
-    return <>
-    {
-        isPublic 
-        ?  <Card className="individualreview" withBorder>
-        <Badge color="violet">{activity}</Badge>
-        <Text>{reviewerName}</Text>
-        <Text>Description: {activityDescription}</Text>
-        <Text>Address:{activityAddress}</Text>
-        <Text>Review: {reviewDescription}</Text>
-    </Card>
-    : ""
-    }
-    
-    
-    </>
+    return (
+      <>
+        {isPublic ? (
+          <Card className="individualreview" withBorder>
+            <Card.Section className="reviewheader" withBorder p="sm">
+              <Badge color="violet">{activity}</Badge>
+              <Badge>{activityAddress}</Badge>
+            </Card.Section>
+            <Text weight="bold">{reviewerName}</Text>
+            <Text>Description: {activityDescription}</Text>
+            <Text>Review: {reviewDescription}</Text>
+          </Card>
+        ) : (
+          ""
+        )}
+      </>
+    );
 
 }

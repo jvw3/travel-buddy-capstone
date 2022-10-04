@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Button, Timeline, Text, Card, Modal, Badge } from "@mantine/core";
+import { Button, Timeline, Text, Card, Menu, Badge, ActionIcon } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
-import { IconStar } from "@tabler/icons";
+import { IconStar, IconDots, IconTrash } from "@tabler/icons";
 import "./activities.css";
 
 // This component handles the creation of the activity schedule. Props are being passed from IndividualTripDetails component to this component, using deconstruction.
@@ -353,6 +353,24 @@ useEffect(() => {
         <Timeline.Item>
           <div className="timelineitem">
             <Card withBorder shadow="md">
+              <Menu withinPortal position="left-start" withArrow shadow="sm">
+                <Menu.Target>
+                  <ActionIcon>
+                    <IconDots size={16} />
+                  </ActionIcon>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Menu.Item
+                    icon={<IconTrash size={14} />}
+                    onClick={() => {
+                      renderDeleteButton();
+                    }}
+                    color="red"
+                  >
+                    Delete Trip
+                  </Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
               <Badge color="green">Completed</Badge>
               {favoriteActivityOnClick()}
               <Text>{activity}</Text>
@@ -385,6 +403,24 @@ useEffect(() => {
         <Timeline.Item>
           <div className="timelineitem">
             <Card withBorder shadow="md">
+              <Menu withinPortal position="left-start" withArrow shadow="sm">
+                <Menu.Target>
+                  <ActionIcon>
+                    <IconDots size={16} />
+                  </ActionIcon>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Menu.Item
+                    icon={<IconTrash size={14} />}
+                    onClick={() => {
+                      renderDeleteButton();
+                    }}
+                    color="red"
+                  >
+                    Delete Trip
+                  </Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
               <Text>{activity}</Text>
               <Text>{activityDescription}</Text>
               <div>Where:{activityAddress}</div>

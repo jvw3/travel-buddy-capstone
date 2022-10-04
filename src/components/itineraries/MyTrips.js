@@ -36,55 +36,6 @@ export const MyTrips = () => {
 
   
 
-// const findTotalUpcomingTrips = () => {
-//   let upcomingCounter = 0
-//   for (const itinerary of userItineraries) {
-//     if (itinerary?.itinerary?.isCurrent === false && itinerary?.itinerary?.isComplete === false) {
-//       upcomingCounter++;
-//     } else {
-//       return ""
-//     }
-//   } return upcomingCounter;
-// }
-
-// const totalUpcoming = userItineraries.filter((trip) => {
-//   return (
-//     trip?.itinerary?.IsCurrent === false 
-//   );
-// });
-
-// console.log(totalUpcoming.length)
-
-
-
-// const displayCompletedTripCount = () => {
-//   let completedTrips = 0
-//   for (const travel of userItineraries) {
-//     if (
-//       travel.itinerary.isComplete === true
-//     ) {
-//       completedTrips++
-//     } else {
-      
-//     }
-//   }
-//   console.log(completedTrips.length) 
-// }
-// console.log(userItineraries)
-
-  // If isCurrent=true, display trip in CurrentTrip
-  // If isCurrent === false && isCompleted === false, display in Upcoming Trips
-  // If isCompleted === true, display trips in CompletedTrips
-
-  // const setDefaultTab = () => {
-  //   for (const trip of userItineraries) {
-  //     if (trip.itinerary.isCurrent === true) {
-  //       return "current"
-  //     } else {
-  //       return "upcoming"
-  //     }
-  //   }
-  // }
   return (
     <>
       <Tabs color="violet" variant="pills" defaultValue="upcoming">

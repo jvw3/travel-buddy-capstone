@@ -30,7 +30,7 @@
     background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 380px;
 }
 
 .communityheader  {
@@ -43,9 +43,9 @@ align-self: center;
 
 .headerimagecard {
     width: 40vw;
-    height: 25vh;
+    height: 27vh;
     align-self: center;
-    justify-self: flex-end;
+    
 }
 
 .individualreview {
@@ -55,4 +55,9 @@ align-self: center;
 .reportcard {
     height: 60vh;
     width: 60vw;
+}
+
+.reviewheader {
+    display: flex;
+    flex-direction: row;
 }

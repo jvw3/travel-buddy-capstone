@@ -12,13 +12,28 @@ export const CommunityPage = () => {
         <div className="commmunitybackground">
           <div className="backgroundoverlay">
             <div className="communityheader">
-              <Title color="violet" order={1} size={100}>
+              <Title
+                variant="gradient"
+                gradient={{ from: "violet", to: "blue" }}
+                order={1}
+                size={100}
+              >
                 Plan.{" "}
               </Title>
-              <Title color="violet" order={1} size={100}>
+              <Title
+                variant="gradient"
+                gradient={{ from: "violet", to: "blue" }}
+                order={1}
+                size={100}
+              >
                 Travel.{" "}
               </Title>
-              <Title color="violet" order={1} size={100}>
+              <Title
+                variant="gradient"
+                gradient={{ from: "violet", to: "blue" }}
+                order={1}
+                size={100}
+              >
                 Share.
               </Title>
             </div>
@@ -29,8 +44,7 @@ export const CommunityPage = () => {
                 </Blockquote>
               </Card.Section>
               <Text>
-                Share reviews of activities and experiences with your fellow
-                travelers. Your review could lead to an amazing experience for
+                Plan your trips. Travel the world. Share your experiences. Your review could lead to an amazing experience for
                 someone else!
               </Text>
               <Card.Section withBorder p={10}>

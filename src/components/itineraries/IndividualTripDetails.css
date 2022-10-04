@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
 h2 {
     text-align: center;
     color: white
@@ -24,6 +26,7 @@ h2 {
 display: flex;
 flex-direction: row;
 justify-content: space-between;
+padding-top: 40px;
 }
 
 .full-trip-view {
@@ -48,37 +51,12 @@ justify-content: space-between;
     width: 200px;
 }
 
-.Miamitripheader {
-    background-image: url(/public/images/Miamipicdetailedpage.jpg);
-    height: 40vh;
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
-}
-
-.Chicagotripheader {
-    background-image: url(/public/images/Chicagopicdetailedpage.jpg);
-    height: 40vh;
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
-}
-
-.headeroverlay {
-    height: 40vh;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 2;
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
-}
 
 .transportationinfo {
     display: flex;
     justify-content: space-evenly;
     padding-top: 20px;
- 
+    padding-bottom: 60px;
 }
 
 .flightinfo {
@@ -89,7 +67,6 @@ justify-content: space-between;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
 }
 
 .rentalinfo {
@@ -100,22 +77,82 @@ justify-content: space-between;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
 }
 
-/* .activitiesform {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-} */
+.scheduletitle {
+font-family: 'Quicksand',
+    sans-serif;
+    padding-bottom: 20px;
+}
+
+.titlesection {
+    width: 100%;
+}
 
 .schedulecontainer {
-    width: 70vw;
+    width: 100%;
 }
 
+.schedulelist {
+    display: flex;
+    justify-content: center;
+}
 .scheduleandactivities {
     display: flex;
     flex-direction: row;
+    width: 100%;
+    height: 825px;
+}
 
+.timelineitem {
+    width: 60vw;
+}
+
+.activitiescontainer {
+width: 30vw;
+display: flex;
+justify-content: center;
+}
+
+.activityform {
+    width: 300px;
+}
+
+.Nashvilletripheader {
+    background-image: url(/public/images/NashvilleDetailspic.jpg);
+    height: 68vh;
+        background-size: cover;
+        background-position: center;
+}
+.Miamitripheader {
+    background-image: url(/public/images/Miamipicdetailedpage.jpg);
+    height: 68vh;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.Chicagotripheader {
+    background-image: url(/public/images/Chicagopicdetailedpage.jpg);
+    height: 68vh;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.Washingtontripheader {
+    background-image: url(/public/images/DCdetailspic.jpg);
+    height: 68vh;
+        background-size: cover;
+        background-position: center;
+}
+
+.headeroverlay {
+    height: 68vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

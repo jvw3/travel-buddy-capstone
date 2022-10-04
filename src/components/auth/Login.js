@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { BackgroundImage, Button, Card, TextInput } from "@mantine/core"
+import { BackgroundImage, Button, Card, TextInput, Alert } from "@mantine/core"
+import { showNotification } from "@mantine/notifications";
 import "./Login.css";
 
 export const Login = () => {
@@ -14,7 +15,14 @@ export const Login = () => {
     return fetch(`http://localhost:8099/users?email=${email}`)
       .then((res) => res.json())
       .then((foundUsers) => {
-        if (foundUsers.length === 1) {
+        if (foundUsers[0].isSuspended === true) {
+           showNotification({
+             title: "ATTENTION",
+             message: "YOU HAVE BEEN SUSPENDED.",
+             color: "red"
+           });
+        }
+        else if (foundUsers.length === 1) {
           const user = foundUsers[0];
           localStorage.setItem(
             "travelbuddy_user",
@@ -39,8 +47,7 @@ export const Login = () => {
           <div className="logincard">
             <Card shadow="xl" withBorder>
               <form className="form-outline mb-3" onSubmit={handleLogin}>
-                <h1 className="header">Travel Buddy</h1>
-                <h2>Please sign in</h2>
+                <div className="loginlogo"></div>
                 <fieldset>
                   <TextInput
                     type="email"

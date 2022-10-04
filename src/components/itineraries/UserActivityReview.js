@@ -54,7 +54,7 @@ export const UserActivityReview = () => {
   return (
     <>
       <h1 className="finishactivityheader">
-        Review of {itineraryActivity?.description}-
+        Review of {itineraryActivity?.description}
       </h1>
       <h2 className="finishactivityheader">
         Located at: {itineraryActivity?.address}

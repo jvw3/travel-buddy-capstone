@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, Text, Button, Tabs, Badge } from "@mantine/core";
+import { Card, Text, Button, Title, Center } from "@mantine/core";
 import {
   IconPlaneInflight,
   IconChecks,
@@ -7,7 +7,6 @@ import {
   IconStar,
 } from "@tabler/icons";
 import { MyActivity } from "./myActivity";
-import { ActivitySearch } from "./ActivitySearch";
 import { useNavigate } from "react-router-dom";
 
 export const Profile = ({ searchTermState }) => {
@@ -16,7 +15,7 @@ export const Profile = ({ searchTermState }) => {
   const [itineraryActivities, setItineraryActivities] = useState([]);
   const [filteredActivities, setFiltered] = useState([]);
 
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   const localAppUser = localStorage.getItem("travelbuddy_user");
   const appUserObject = JSON.parse(localAppUser);
@@ -38,7 +37,7 @@ export const Profile = ({ searchTermState }) => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:8099/userItineraries?userId=${appUserObject.id}`)
+    fetch(`http://localhost:8099/userItineraries?_expand=itinerary&userId=${appUserObject.userId}`)
       .then((res) => res.json())
       .then((userItinerariesArray) => {
         setUserItineraries(userItinerariesArray);
@@ -65,77 +64,37 @@ export const Profile = ({ searchTermState }) => {
     setFiltered(searchedActivities);
   }, [searchTermState]);
 
-  // const findUserActivities = () => {
-  //   const userActivities = [];
-  //   userItineraries.forEach((itinerary) => {
-  //     itineraryActivities.forEach((activity) => {
-  //       if (activity.itineraryId === itinerary.itineraryId) {
-  //         userActivities.push(activity);
-  //       }
-  //     });
-  //   });
-  //   return userActivities
-  // }
-
-  const displayUsersActivities = () => {
-    const userActivities = [];
-    userItineraries.forEach((itinerary) => {
-      itineraryActivities.forEach((activity) => {
-        if (activity.itineraryId === itinerary.itineraryId) {
-          userActivities.push(activity);
-        }
-      });
-    });
-
-    return (
-      <>
-        {userActivities.map((activity) => (
-          <MyActivity
-            key={`itineraryActivity--${activity?.id}`}
-            description={activity?.description}
-            address={activity?.address}
-            review={activity?.review?.description}
-            id={activity?.id}
-            activityId={activity?.activityId}
-            isPublic={activity?.isPublic}
-            itineraryId={activity?.itineraryId}
-          />
-        ))}
-      </>
-    );
-  };
-
-  const displayUsersActivitiesCount = () => {
-    const userActivities = [];
-    userItineraries.forEach((itinerary) => {
-      itineraryActivities.forEach((activity) => {
-        if (activity.itineraryId === itinerary.itineraryId) {
-          userActivities.push(activity);
-        }
-      });
-    });
-
-    return userActivities.length;
-  };
-
   return (
     <>
-      <Card withBorder>
-        <Text>Name: {user.fullName}</Text>
-        <Text>Email: {user.email}</Text>
-        <Text>Hometown: </Text>
-        <Button color="violet" variant="light">
-          Edit Profile
-        </Button>
-        <Button
-          color="violet"
-          onClick={() => {
-            navigate("/profile/myactivities");
-          }}
-        >
-          View My Activities
-        </Button>
-      </Card>
+      <div className="profilecontainer">
+        <Card className="myprofile" withBorder shadow="lg">
+          <Title className="profileheader" order={1}>My Profile</Title>
+          <Center>
+            <Button
+              color="violet"
+              variant="light"
+              onClick={() => {
+                navigate(`/profile/edit/${appUserObject.id}`);
+              }}
+            >
+              Edit Profile
+            </Button>
+            <Button
+              color="violet"
+              onClick={() => {
+                navigate("/profile/myactivities");
+              }}
+            >
+              View My Activities
+            </Button>
+          </Center>
+          <div className="profileinfo">
+            <Text>Name: {user.fullName}</Text>
+            <Text>Email: {user.email}</Text>
+            <Text>Hometown: {user.hometown} </Text>
+          </div>
+        </Card>
+      </div>
     </>
   );
 };

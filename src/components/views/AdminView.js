@@ -1,26 +1,29 @@
 import { Route, Routes, Outlet } from "react-router-dom"
-import { AdminHomePageView } from "./AdminPage"
+import { AdminReviewContainer } from "../community/AdminReviewContainer"
+import { AdminUserSettings } from "../community/AdminUserSettings";
+import { UserList } from "../community/AdminUsersList";
 
 export const AdminView = () => {
 	return (
-		<Routes>
-			<Route path='/' element={
-				<>
-					<AdminHomePageView />
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <AdminReviewContainer />
 
-					<Outlet />
-				</>
-			}>
+            <Outlet />
+          </>
+        }
+      ></Route>
+
+      <Route path="allusers" element={<UserList/>} />
+
+      <Route path="userinfo/:id" element={<AdminUserSettings/>} />
+    </Routes>
+      
 
 
-				
-			</Route>
-			
-			
-			
-			
 
-
-		</Routes>
-	)
+  );
 }

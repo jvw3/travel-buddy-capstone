@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+.activitytitle {
+    font-family: 'Quicksand',
+        sans-serif;
+        padding-top: 30px;
+        padding-bottom: 15px;
+}
+.searchbar {
+    width: 17vw;
+    padding-bottom: 50px;
+}
+
+.myprofile {
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.profilecontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.profileinfo {
+    height: 50%;
+    width: 50%;
+    justify-self: center;
+    align-self: flex-start;
+    padding: 80px;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.profileeditcard {
+
+}
+
+.profileheader {
+    font-family: 'Quicksand',
+        sans-serif;
+        padding-bottom: 15px;
+}
+
+.activitypagecontainer {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+

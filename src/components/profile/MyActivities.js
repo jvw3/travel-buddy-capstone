@@ -1,23 +1,20 @@
 import { useEffect, useState } from "react";
-import { Card, Text, Button, Tabs, Badge } from "@mantine/core";
-import {
-  IconPlaneInflight,
-  IconChecks,
-  IconPlaneDeparture,
-  IconStar,
-} from "@tabler/icons";
+import { Card, Tabs, Badge } from "@mantine/core";
+import { IconPlaneInflight, IconStar } from "@tabler/icons";
 import { MyActivity } from "./myActivity";
-import { ActivitySearch } from "./ActivitySearch";
+import { MyFavoriteActivity } from "./MyFavoriteActivity";
 
 export const MyActivities = ({ searchTermState }) => {
   const [user, setUser] = useState({});
   const [userItineraries, setUserItineraries] = useState([]);
   const [itineraryActivities, setItineraryActivities] = useState([]);
   const [filteredActivities, setFiltered] = useState([]);
+  const [filteredFavoriteActivities, setFilteredFavorites] = useState([]);
 
   const localAppUser = localStorage.getItem("travelbuddy_user");
   const appUserObject = JSON.parse(localAppUser);
 
+  // This useEffect hook fetches the current User.
   useEffect(() => {
     fetch(`http://localhost:8099/users/${appUserObject.id}`)
       .then((res) => res.json())
@@ -26,14 +23,16 @@ export const MyActivities = ({ searchTermState }) => {
       });
   }, []);
 
+  // This useEffect hook fetches the array of Itinerary Activities.
   useEffect(() => {
-    fetch(`http://localhost:8099/itineraryActivities`)
+    fetch(`http://localhost:8099/itineraryActivities?_expand=activity`)
       .then((res) => res.json())
       .then((activities) => {
         setItineraryActivities(activities);
       });
   }, []);
 
+  // This useEFfect hook fetches all of the user Itineraries for the current user.
   useEffect(() => {
     fetch(`http://localhost:8099/userItineraries?userId=${appUserObject.id}`)
       .then((res) => res.json())
@@ -42,32 +41,7 @@ export const MyActivities = ({ searchTermState }) => {
       });
   }, []);
 
-  // iterate through itineraryActivities and iterate through user itineraries of current user, and if the itineraries match, then
-
-  // const findUserActivities = () => {
-  //   const userActivities = [];
-  //   userItineraries.forEach((itinerary) => {
-  //     itineraryActivities.forEach((activity) => {
-  //       if (activity.itineraryId === itinerary.itineraryId) {
-  //         userActivities.push(activity);
-  //       }
-  //     });
-  //   });
-  //   return userActivities
-  // }
-
-  //    const returnUsersActivities = () => {
-  //      const userActivities = [];
-  //      userItineraries.forEach((itinerary) => {
-  //        itineraryActivities.forEach((activity) => {
-  //          if (activity.itineraryId === itinerary.itineraryId) {
-  //            userActivities.push(activity);
-  //          }
-  //        });
-  //      });
-  //      return userActivities;
-  //    };
-
+  // This useEffect hook will
   useEffect(() => {
     const userActivities = [];
     userItineraries.forEach((itinerary) => {
@@ -81,6 +55,21 @@ export const MyActivities = ({ searchTermState }) => {
   }, []);
 
   useEffect(() => {
+    const userFavoriteActivities = [];
+    userItineraries.forEach((itinerary) => {
+      if (itinerary.itinerary.isFavorited === true) {
+        itineraryActivities.forEach((activity) => {
+          if (activity.itineraryId === itinerary.itineraryId) {
+            userFavoriteActivities.push(activity);
+          }
+        });
+      }
+    });
+    setFilteredFavorites(userFavoriteActivities);
+  }, []);
+
+  // This useEffect hook sets the search Term State for the activity Container component, which will maintains state for the activity Search component.
+  useEffect(() => {
     const userActivities = [];
     userItineraries.forEach((itinerary) => {
       itineraryActivities.forEach((activity) => {
@@ -91,7 +80,7 @@ export const MyActivities = ({ searchTermState }) => {
     });
 
     const searchedActivities = userActivities.filter((activity) => {
-      return activity.description
+      return activity.activity.name
         .toLowerCase()
         .includes(searchTermState.toLowerCase());
     });
@@ -101,18 +90,40 @@ export const MyActivities = ({ searchTermState }) => {
   const displayFilteredActivities = () => {
     return (
       <>
-        {filteredActivities.map((activity) => (
-          <MyActivity
-            key={`itineraryActivity--${activity?.id}`}
-            description={activity?.description}
-            address={activity?.address}
-            review={activity?.review?.description}
-            id={activity?.id}
-            activityId={activity?.activityId}
-            isPublic={activity?.isPublic}
-            itineraryId={activity?.itineraryId}
-          />
-        ))}
+        {searchTermState === "" ? (
+          <div className="container">
+            {itineraryActivities.map((activity) => (
+              <MyActivity
+                key={`itineraryActivity--${activity?.id}`}
+                description={activity?.description}
+                activity={activity?.activity?.name}
+                address={activity?.address}
+                review={activity?.review?.description}
+                id={activity?.id}
+                activityId={activity?.activityId}
+                isPublic={activity?.isPublic}
+                itineraryId={activity?.itineraryId}
+                itineraryActivityObject={activity}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="container">
+            {filteredActivities.map((activity) => (
+              <MyActivity
+                key={`itineraryActivity--${activity?.id}`}
+                description={activity?.description}
+                address={activity?.address}
+                review={activity?.review?.description}
+                id={activity?.id}
+                activityId={activity?.activityId}
+                isPublic={activity?.isPublic}
+                itineraryId={activity?.itineraryId}
+                itineraryActivityObject={activity}
+              />
+            ))}
+          </div>
+        )}
       </>
     );
   };
@@ -130,8 +141,46 @@ export const MyActivities = ({ searchTermState }) => {
     return userActivities.length;
   };
 
+  const displayUsersFavoriteActivitiesCount = () => {
+    const userFavoriteActivities = [];
+    userItineraries.forEach((itinerary) => {
+      itineraryActivities.forEach((activity) => {
+        if (
+          activity.itineraryId === itinerary.itineraryId &&
+          activity.isFavorited === true
+        ) {
+          userFavoriteActivities.push(activity);
+        }
+      });
+    });
+
+    return userFavoriteActivities.length;
+  };
+
+  const displayFilteredFavoriteActivities = () => {
+    return (
+      <>
+        {filteredActivities.map((activity) => (
+          <MyFavoriteActivity
+            key={`itineraryActivity--${activity?.id}`}
+            description={activity?.description}
+            address={activity?.address}
+            review={activity?.review?.description}
+            id={activity?.id}
+            activityId={activity?.activityId}
+            isPublic={activity?.isPublic}
+            itineraryId={activity?.itineraryId}
+            itineraryActivityObject={activity}
+            isFavorited={activity?.isFavorited}
+          />
+        ))}
+      </>
+    );
+  };
+
   return (
     <>
+    <main className="activitypagecontainer">
       <Card>
         <Tabs variant="pills" color="violet" defaultValue="all">
           <Tabs.List>
@@ -145,7 +194,11 @@ export const MyActivities = ({ searchTermState }) => {
               All Activities
             </Tabs.Tab>
             <Tabs.Tab
-              rightSection={<Badge></Badge>}
+              rightSection={
+                <Badge color="violet">
+                  {displayUsersFavoriteActivitiesCount()}
+                </Badge>
+              }
               value="favorites"
               icon={<IconStar size={14} />}
             >
@@ -157,10 +210,11 @@ export const MyActivities = ({ searchTermState }) => {
           </Tabs.Panel>
 
           <Tabs.Panel value="favorites" pt="xs">
-            Messages tab content
+            {displayFilteredFavoriteActivities()}
           </Tabs.Panel>
         </Tabs>
       </Card>
+      </main>
     </>
   );
 };

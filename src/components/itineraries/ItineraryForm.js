@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Title, Button, Collapse } from "@mantine/core";
+import { Title, Button, TextInput, NumberInput, Card, Center } from "@mantine/core";
 
 import "./itineraryform.css";
 
@@ -35,7 +35,6 @@ export const ItineraryForm = () => {
   });
 
   const [locations, setLocations] = useState([]);
-    const [opened, setOpened] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:8099/locations`)
@@ -136,87 +135,72 @@ export const ItineraryForm = () => {
   const displayRentalCarInfo = () => {
     return (
       <>
-        <>
-          <Button color="violet" onClick={() => setOpened((o) => !o)}>
-            Display Rental Car Form
-          </Button>
-
-          <Collapse in={opened}>
-            {
-              <>
-                <div className="flightform">
-                  <h3>Rental Car Info:</h3>
-                  <fieldset>
-                    <div className="row mb-3">
-                      <label htmlFor="description">Reservation Time:</label>
-                      <input
-                        type="datetime-local"
-                        className="form-control"
-                        value={itinerary.reservationTime}
-                        required
-                        onChange={(evt) => {
-                          const copy = { ...itinerary };
-                          copy.reservationTime = evt.target.value;
-                          update(copy);
-                        }}
-                      />
-                    </div>
-                  </fieldset>
-                  <fieldset>
-                    <div className="form-group">
-                      <label htmlFor="description">Drop off Time:</label>
-                      <input
-                        type="datetime-local"
-                        className="form-control"
-                        value={itinerary.carDropOffTime}
-                        required
-                        onChange={(evt) => {
-                          const copy = { ...itinerary };
-                          copy.carDropOffTime = evt.target.value;
-                          update(copy);
-                        }}
-                      />
-                    </div>
-                  </fieldset>
-                  <fieldset>
-                    <div className="form-group">
-                      <label htmlFor="description">Rental Company:</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        value={itinerary.rentalCompany}
-                        required
-                        onChange={(evt) => {
-                          const copy = { ...itinerary };
-                          copy.rentalCompany = evt.target.value;
-                          update(copy);
-                        }}
-                      />
-                    </div>
-                  </fieldset>
-                  <fieldset>
-                    <div className="form-group">
-                      <label htmlFor="description">
-                        Rental reservation Number:
-                      </label>
-                      <input
-                        type="number"
-                        className="form-control"
-                        value={itinerary.reservationNum}
-                        required
-                        onChange={(evt) => {
-                          const copy = { ...itinerary };
-                          copy.reservationNum = evt.target.value;
-                          update(copy);
-                        }}
-                      />
-                    </div>
-                  </fieldset>
-                </div>
-              </>
-            }
-          </Collapse>
-        </>
+        <div className="flightform">
+          <Title order={2}>Rental Car Information</Title>
+          <fieldset>
+            <div className="row mb-3">
+              <label htmlFor="description">Reservation Time:</label>
+              <input
+                type="datetime-local"
+                className="form-control"
+                value={itinerary.reservationTime}
+                required
+                onChange={(evt) => {
+                  const copy = { ...itinerary };
+                  copy.reservationTime = evt.target.value;
+                  update(copy);
+                }}
+              />
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="form-group">
+              <label htmlFor="description">Drop off Time:</label>
+              <input
+                type="datetime-local"
+                className="form-control"
+                value={itinerary.carDropOffTime}
+                required
+                onChange={(evt) => {
+                  const copy = { ...itinerary };
+                  copy.carDropOffTime = evt.target.value;
+                  update(copy);
+                }}
+              />
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="form-group">
+              <TextInput
+                type="text"
+                label="Rental Company"
+                value={itinerary.rentalCompany}
+                required
+                onChange={(evt) => {
+                  const copy = { ...itinerary };
+                  copy.rentalCompany = evt.target.value;
+                  update(copy);
+                }}
+              />
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="form-group">
+              <NumberInput
+                type="number"
+                label="Rental reservation Number"
+                description=""
+                value={itinerary.reservationNum}
+                required
+                onChange={(evt) => {
+                  const copy = { ...itinerary };
+                  copy.reservationNum = evt.target.value;
+                  update(copy);
+                }}
+              />
+            </div>
+          </fieldset>
+        </div>
       </>
     );
   };
@@ -224,151 +208,137 @@ export const ItineraryForm = () => {
   const displayFlightInfo = () => {
     return (
       <>
-        <Button color="violet" onClick={() => setOpened((o) => !o)}>
-          Display Flight Form
-        </Button>
-
-        <Collapse in={opened}>
-          {
-            <>
-              <div className="flightform">
-            <h2>Flight Form</h2>
-                <fieldset>
-                  <div className="form_departingairline">
-                    <label htmlFor="description">Departing Airline:</label>
-                    <input
-                      type="text"
-                      className="form-control-departingAirline"
-                      value={itinerary.departingAirline}
-                      required
-                      onChange={(evt) => {
-                        const copy = { ...itinerary };
-                        copy.departingAirline = evt.target.value;
-                        update(copy);
-                      }}
-                    />
-                  </div>
-                </fieldset>
-                <fieldset>
-                  <div className="form-group">
-                    <label htmlFor="description">Returning Airline:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      value={itinerary.returningAirline}
-                      required
-                      onChange={(evt) => {
-                        const copy = { ...itinerary };
-                        copy.returningAirline = evt.target.value;
-                        update(copy);
-                      }}
-                    />
-                  </div>
-                </fieldset>
-                <fieldset>
-                  <div className="form-group">
-                    <label htmlFor="description">Departing Airport:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      value={itinerary.departingAirport}
-                      required
-                      onChange={(evt) => {
-                        const copy = { ...itinerary };
-                        copy.departingAirport = evt.target.value;
-                        update(copy);
-                      }}
-                    />
-                  </div>
-                </fieldset>
-                <fieldset>
-                  <div className="form-group">
-                    <label htmlFor="description">Return Airport:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      value={itinerary.returnAirport}
-                      required
-                      onChange={(evt) => {
-                        const copy = { ...itinerary };
-                        copy.returnAirport = evt.target.value;
-                        update(copy);
-                      }}
-                    />
-                  </div>
-                </fieldset>
-                <fieldset>
-                  <div className="form-group">
-                    <label htmlFor="description">Departing Flight Time:</label>
-                    <input
-                      type="time"
-                      className="form-control"
-                      value={itinerary.flightToDestinationTime}
-                      required
-                      onChange={(evt) => {
-                        const copy = { ...itinerary };
-                        copy.flightToDestinationTime = evt.target.value;
-                        update(copy);
-                      }}
-                    />
-                  </div>
-                </fieldset>
-                <fieldset>
-                  <div className="form-group">
-                    <label htmlFor="description">Returning Flight Time:</label>
-                    <input
-                      type="time"
-                      className="form-control"
-                      value={itinerary.returnFlight}
-                      required
-                      onChange={(evt) => {
-                        const copy = { ...itinerary };
-                        copy.returnFlight = evt.target.value;
-                        update(copy);
-                      }}
-                    />
-                  </div>
-                </fieldset>
-                <fieldset>
-                  <div className="form-group">
-                    <label htmlFor="description">
-                      Returning Flight Number:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      value={itinerary.returningFlightNumber}
-                      required
-                      onChange={(evt) => {
-                        const copy = { ...itinerary };
-                        copy.returningFlightNumber = evt.target.value;
-                        update(copy);
-                      }}
-                    />
-                  </div>
-                </fieldset>
-                <fieldset>
-                  <div className="form-group">
-                    <label htmlFor="description">
-                      Departing Flight Number:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      value={itinerary.departingFlightNumber}
-                      required
-                      onChange={(evt) => {
-                        const copy = { ...itinerary };
-                        copy.departingFlightNumber = evt.target.value;
-                        update(copy);
-                      }}
-                    />
-                  </div>
-                </fieldset>
+        <div className="flightformbox">
+          <Card.Section className="flightformcard">
+            <Title order={2}>Flight Information</Title>
+            <fieldset>
+              <div className="form_departingairline">
+                <TextInput
+                  type="text"
+                  label="What is your departing airline?"
+                  description="Southwest, Delta, Etc."
+                  value={itinerary.departingAirline}
+                  required
+                  onChange={(evt) => {
+                    const copy = { ...itinerary };
+                    copy.departingAirline = evt.target.value;
+                    update(copy);
+                  }}
+                />
               </div>
-            </>
-          }
-        </Collapse>
+            </fieldset>
+            <fieldset>
+              <div className="form-group">
+                <TextInput
+                  type="text"
+                  label="What is your returning airline?"
+                  description="Southwest, Delta, Etc."
+                  value={itinerary.returningAirline}
+                  required
+                  onChange={(evt) => {
+                    const copy = { ...itinerary };
+                    copy.returningAirline = evt.target.value;
+                    update(copy);
+                  }}
+                />
+              </div>
+            </fieldset>
+            <fieldset>
+              <div className="form-group">
+                <TextInput
+                  type="text"
+                  label="What airport are you departing from?"
+                  description="Please use airport initials or airport name"
+                  value={itinerary.departingAirport}
+                  required
+                  onChange={(evt) => {
+                    const copy = { ...itinerary };
+                    copy.departingAirport = evt.target.value;
+                    update(copy);
+                  }}
+                />
+              </div>
+            </fieldset>
+            <fieldset>
+              <div className="form-group">
+                <TextInput
+                  type="text"
+                  label="What airport are you returning to?"
+                  value={itinerary.returnAirport}
+                  required
+                  onChange={(evt) => {
+                    const copy = { ...itinerary };
+                    copy.returnAirport = evt.target.value;
+                    update(copy);
+                  }}
+                />
+              </div>
+            </fieldset>
+            <fieldset>
+              <div className="form-group">
+                <label htmlFor="description">Departing Flight Time:</label>
+                <input
+                  type="datetime-local"
+                  value={itinerary.flightToDestinationTime}
+                  required
+                  onChange={(evt) => {
+                    const copy = { ...itinerary };
+                    copy.flightToDestinationTime = evt.target.value;
+                    update(copy);
+                  }}
+                />
+              </div>
+            </fieldset>
+            <fieldset>
+              <div className="form-group">
+                <label htmlFor="description">Returning Flight Time:</label>
+                <input
+                  type="datetime-local"
+                  className="form-control"
+                  value={itinerary.returnFlight}
+                  required
+                  onChange={(evt) => {
+                    const copy = { ...itinerary };
+                    copy.returnFlight = evt.target.value;
+                    update(copy);
+                  }}
+                />
+              </div>
+            </fieldset>
+            <fieldset>
+              <div className="form-group">
+                <TextInput
+                  type="text"
+                  label="Returning Flight Number"
+                  description="ex. SW 2343"
+                  value={itinerary.returningFlightNumber}
+                  required
+                  onChange={(evt) => {
+                    const copy = { ...itinerary };
+                    copy.returningFlightNumber = evt.target.value;
+                    update(copy);
+                  }}
+                />
+              </div>
+            </fieldset>
+            <fieldset>
+              <div className="form-group">
+                <TextInput
+                  type="text"
+                  label="Departing Flight Number"
+                  description="ex. SW 2343"
+                  value={itinerary.departingFlightNumber}
+                  required
+                  onChange={(evt) => {
+                    const copy = { ...itinerary };
+                    copy.departingFlightNumber = evt.target.value;
+                    update(copy);
+                  }}
+                />
+              </div>
+            </fieldset>
+          </Card.Section>
+        </div>
       </>
     );
   };
@@ -377,57 +347,54 @@ export const ItineraryForm = () => {
     return (
       <>
         <div className="mainformbox">
-          <fieldset>
-            <div className="form-group">
-              <label htmlFor="name">Where are you traveling?</label>
-              <select
-                className="form-control"
-                value={itineraryLocation.locationId}
-                required
-                autoFocus
-                onChange={(evt) => {
-                  const copy = { ...itineraryLocation };
-                  copy.locationId = evt.target.value;
-                  updateItineraryLocation(copy);
-                }}
-              >
-                <option value="0">Choose your destination</option>
-                {locations.map((location) => {
-                  return (
-                    <option value={location.id} key={location.id}>
-                      {location.city}, {location.state} {location.country}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-          </fieldset>
-          <fieldset>
-            <div className="form-group">
-              <label htmlFor="name">How are you traveling?</label>
-              <select
-                className="form-control"
-                value={itinerary.travelMethod}
-                required
-                onChange={(evt) => {
-                  const copy = { ...itinerary };
-                  copy.travelMethod = evt.target.value;
-                  update(copy);
-                }}
-              >
-                <option value="default">Choose Travel Method...</option>
-                <option value="flight" name="flight">
-                  By Plane
-                </option>
-                <option value="car" name="car">
-                  By Car
-                </option>
-              </select>
-            </div>
-          </fieldset>
-          
             <fieldset>
-              <div className="departure">
+              <div className="form-group">
+                <label htmlFor="name">Where are you traveling?</label>
+                <select
+                  className="form-control"
+                  value={itineraryLocation.locationId}
+                  required
+                  autoFocus
+                  onChange={(evt) => {
+                    const copy = { ...itineraryLocation };
+                    copy.locationId = evt.target.value;
+                    updateItineraryLocation(copy);
+                  }}
+                >
+                  <option value="0">Choose your destination</option>
+                  {locations.map((location) => {
+                    return (
+                      <option value={location.id} key={location.id}>
+                        {location.city}, {location.state} {location.country}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+            </fieldset>
+            <fieldset>
+                <label htmlFor="name">How are you traveling?</label>
+                <select
+                  className="form-control"
+                  value={itinerary.travelMethod}
+                  required
+                  onChange={(evt) => {
+                    const copy = { ...itinerary };
+                    copy.travelMethod = evt.target.value;
+                    update(copy);
+                  }}
+                >
+                  <option value="default">Choose Travel Method...</option>
+                  <option value="flight" name="flight">
+                    By Plane
+                  </option>
+                  <option value="car" name="car">
+                    By Car
+                  </option>
+                </select>
+            </fieldset>
+
+            <fieldset>
                 <label htmlFor="description">Departure Date:</label>
                 <input
                   className="form-control"
@@ -440,10 +407,8 @@ export const ItineraryForm = () => {
                     update(copy);
                   }}
                 />
-              </div>
             </fieldset>
             <fieldset>
-              <div className="return">
                 <label htmlFor="description">Return Date:</label>
                 <input
                   type="date"
@@ -456,9 +421,8 @@ export const ItineraryForm = () => {
                     update(copy);
                   }}
                 />
-              </div>
             </fieldset>
-          </div>
+        </div>
       </>
     );
   };
@@ -466,18 +430,23 @@ export const ItineraryForm = () => {
   return (
     <main className="maincontainer">
       <form className="itineraryForm">
-        <Title order={1}>Create New Itinerary</Title>
-        {displayMainTripInfo()}
-        <div className="otherformsbox">
-        {displayFlightInfo()}
-        {displayRentalCarInfo()}
-        </div>
-        <Button
-        color="violet"
-          onClick={(clickEvent) => createItinerary(clickEvent)}
-        >
-          Create New Itinerary!
-        </Button>
+        <Title className="formtitle" order={1}>Create New Itinerary</Title>
+        <Card className="fullformcard" shadow="xl" withBorder>
+          {displayMainTripInfo()}
+          <div className="otherformsbox">
+            {displayFlightInfo()}
+            {displayRentalCarInfo()}
+          </div>
+          <Center>
+            <Button
+            size="lg"
+              color="violet"
+              onClick={(clickEvent) => createItinerary(clickEvent)}
+            >
+              Create New Itinerary!
+            </Button>
+          </Center>
+        </Card>
       </form>
     </main>
   );

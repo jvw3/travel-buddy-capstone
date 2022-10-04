@@ -1,29 +1,25 @@
-import { TextInput } from "@mantine/core";
+import { TextInput, Center } from "@mantine/core";
 
 export const ActivityReviewSearch = ({ reviewSetterFunction, descriptionSetterFunction }) => {
   return (
     <>
     
-          <div className="searchbars">
-      <div>
+      <Center>
         <TextInput
           onChange={(changeEvent) => {
               descriptionSetterFunction(changeEvent.target.value);
             }}
             type="text"
-            placeholder="Search by description"
-            />
-      </div>
-      <div>
+            placeholder="Search By Activity"
+            />    
         <TextInput
           onChange={(changeEvent) => {
               reviewSetterFunction(changeEvent.target.value);
             }}
             type="text"
-            placeholder="Search by review"
+            placeholder="Search By Review"
             />
-      </div>
-            </div>
+      </Center>
     </>
   );
 };

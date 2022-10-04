@@ -11,6 +11,8 @@ import { Profile } from "../profile/Profile";
 import { ActivityContainer } from "../profile/ActivityContainer";
 import { ActivityReviewContainer } from "../community/ActivityReviewContainer";
 import { MyActivities } from "../profile/MyActivities";
+import { EditProfile } from "../profile/EditProfile";
+import { ReportUser } from "../community/ReportUser";
 
 export const TravelerViews = () => {
   return (
@@ -51,8 +53,18 @@ export const TravelerViews = () => {
       />
 
       <Route
+        path="reviews/:id/report"
+        element={<ReportUser />}
+      />
+
+      <Route
         path="trips/:usertripId/editItinerary"
         element={<EditItinerary />}
+      />
+
+      <Route
+        path="profile/edit/:userId"
+        element={<EditProfile />}
       />
 
       <Route

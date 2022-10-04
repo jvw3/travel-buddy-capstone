@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
-import { ActivityReview } from "./ActivityReview";
-import "./community.css";
 
-export const ActivityReviewsList = ({
-  descriptionSearchTermState,
+
+import { useState, useEffect } from "react";
+import { AdminActivityReview} from "./AdminActivityReview"
+
+
+export const AdminHomePageView = ({
   reviewSearchTermState,
 }) => {
   const [itineraryActivities, setItineraryActivities] = useState([]);
@@ -18,17 +19,6 @@ export const ActivityReviewsList = ({
   }, []);
 
   useEffect(() => {
-    const searchedReviewsByDescription = itineraryActivities.filter(
-      (activity) => {
-        return activity.activity.name
-          .toLowerCase()
-          .includes(descriptionSearchTermState.toLowerCase());
-      }
-    );
-    setFiltered(searchedReviewsByDescription);
-  }, [descriptionSearchTermState]);
-
-  useEffect(() => {
     const searchedReviewsByReview = itineraryActivities.filter((activity) => {
       return activity.review.description
         .toLowerCase()
@@ -37,14 +27,12 @@ export const ActivityReviewsList = ({
     setFiltered(searchedReviewsByReview);
   }, [reviewSearchTermState]);
 
-
   return (
     <>
-      {descriptionSearchTermState === "" && reviewSearchTermState === "" 
-      ? (
+      { reviewSearchTermState === "" ? (
         <div class="reviewscontainer">
           {itineraryActivities.map((itineraryActivity) => (
-            <ActivityReview
+            <AdminActivityReview
               key={`itineraryactivity--${itineraryActivity?.id}`}
               id={itineraryActivity?.id}
               activity={itineraryActivity?.activity?.name}
@@ -61,7 +49,7 @@ export const ActivityReviewsList = ({
       ) : (
         <div class="reviewscontainer">
           {filtered.map((itineraryActivity) => (
-            <ActivityReview
+            <AdminActivityReview
               key={`itineraryactivity--${itineraryActivity?.id}`}
               id={itineraryActivity?.id}
               activity={itineraryActivity?.activity?.name}

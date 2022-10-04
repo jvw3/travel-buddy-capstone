@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Button, Timeline, Text, Card, Menu, Badge, ActionIcon } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { IconStar, IconDots, IconTrash } from "@tabler/icons";
+import { openConfirmModal } from "@mantine/modals";
 import "./activities.css";
 
 // This component handles the creation of the activity schedule. Props are being passed from IndividualTripDetails component to this component, using deconstruction.
@@ -73,29 +74,48 @@ useEffect(() => {
   };
 
   // This function renders the delete button and when clicked, will delete an itinerary.
-  const renderDeleteButton = () => {
+  const deleteTripOnClick = () => {
     return (
       <Button
         color="red"
         onClick={() => {
-          if (window.confirm("Press OK to confirm your delete.")) {
-            fetch(
-              `http://localhost:8099/itineraryActivities/${itineraryActivityObject?.id}`,
-              {
-                method: "DELETE",
-              }
-            ).then(() => {
-              getItineraryActivitiesForUser();
-            });
-          } else {
-            return "";
-          }
+          deleteTripConfirmation()
         }}
       >
         Delete Activity
       </Button>
     );
   };
+
+  
+   const deleteTripConfirmation = () => {
+     openConfirmModal({
+       title: "Are you sure you want to delete your activity?",
+       children: (
+         <Text size="sm">Please click confirm or cancel to proceed.</Text>
+       ),
+       labels: { confirm: "Confirm", cancel: "Cancel" },
+       onCancel: () => "",
+       onConfirm: () => deleteTripRequest(),
+     });
+   };
+
+   const deleteTripRequest = () => {
+     return fetch(`http://localhost:8099/itineraryActivities/${id}`, {
+       method: "DELETE",
+     })
+       .then(() => {
+         getItineraryActivitiesForUser();
+       })
+       .then(() => {
+         showNotification({
+           title: "Notification",
+           message: "Your activity has been deleted.",
+         });
+       });
+   };
+
+
 
   const completeActivityOnClick = () => {
     return (
@@ -364,7 +384,7 @@ useEffect(() => {
                     <Menu.Item
                       icon={<IconTrash size={14} />}
                       onClick={() => {
-                        renderDeleteButton();
+                        deleteTripConfirmation();
                       }}
                       color="red"
                     >
@@ -416,7 +436,7 @@ useEffect(() => {
                   <Menu.Item
                     icon={<IconTrash size={14} />}
                     onClick={() => {
-                      renderDeleteButton();
+                     deleteTripConfirmation();
                     }}
                     color="red"
                   >
@@ -437,7 +457,6 @@ useEffect(() => {
                 <Text size="sm">Edit Activity</Text>
               </Button>
               {completeActivityOnClick()}
-              {renderDeleteButton()}
             </Card>
           </div>
         </Timeline.Item>

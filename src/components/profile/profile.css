@@ -41,6 +41,12 @@
 
 }
 
+.profileheader {
+    font-family: 'Quicksand',
+        sans-serif;
+        padding-bottom: 15px;
+}
+
 .activitypagecontainer {
     padding-left: 50px;
     padding-right: 50px;

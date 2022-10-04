@@ -68,7 +68,7 @@ export const Profile = ({ searchTermState }) => {
     <>
       <div className="profilecontainer">
         <Card className="myprofile" withBorder shadow="lg">
-          <Title order={1}>My Profile</Title>
+          <Title className="profileheader" order={1}>My Profile</Title>
           <Center>
             <Button
               color="violet"

@@ -27,7 +27,6 @@ useEffect(() => {
     );
 }, [id]);
 
-
 const suspendUserOnClick = () => {
   return (
     <Button
@@ -42,6 +41,20 @@ const suspendUserOnClick = () => {
   );
 };
 
+const removeSuspensionOnClick = () => {
+  return (
+    <Button
+      variant="light"
+      color="red"
+      onClick={() => {
+        removeSuspensionConfirmation();
+      }}
+    >
+      End Suspension
+    </Button>
+  );
+};
+
 const suspendUserConfirmation = () =>
   openConfirmModal({
     title: `Are you sure you want to suspend ${user.fullName}`,
@@ -51,12 +64,21 @@ const suspendUserConfirmation = () =>
     onConfirm: (event) => suspendUserStatusPut(event),
   });
 
+const removeSuspensionConfirmation = () =>
+  openConfirmModal({
+    title: `Are you sure you want to end ${user.fullName}'s suspension?`,
+    children: <Text size="sm">Please click confirm or cancel to proceed.</Text>,
+    labels: { confirm: "Confirm", cancel: "Cancel" },
+    onCancel: () => "",
+    onConfirm: (event) => removeSuspensionStatusPut(event),
+  });
+
   const suspendUserStatusPut = (event) => {
     const updatedUserToApi = {
       fullName: user.fullName,
       email: user.email,
       hometown: user.hometown,
-      isAdmin: false,
+      isAdmin: user.isAdmin,
       isSuspended: true,
     };
 
@@ -79,16 +101,53 @@ const suspendUserConfirmation = () =>
       });
   };
 
+  const removeSuspensionStatusPut = (event) => {
+    const updatedUserToApi = {
+      fullName: user.fullName,
+      email: user.email,
+      hometown: user.hometown,
+      isAdmin: user.isAdmin,
+      isSuspended: false,
+    };
+
+    return fetch(`http://localhost:8099/users/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedUserToApi),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        showNotification({
+          title: "ATTENTION",
+          message: `${user.fullName}'s suspension has ended.`,
+        });
+      })
+      .then(() => {
+        navigate(-1);
+      });
+  };
+
 
 
 return (
   <>
-    <Card className="usercard" withBorder>
-      <Text>{user.fullName}</Text>
-      <Text>{user.email}</Text>
-      <Text>{user.hometown}</Text>
-{suspendUserOnClick()}
-    </Card>
+    {user.isSuspended ? (
+      <Card className="usercard" withBorder>
+        <Text>{user.fullName}</Text>
+        <Text>{user.email}</Text>
+        <Text>{user.hometown}</Text>
+        {removeSuspensionOnClick()}
+      </Card>
+    ) : (
+      <Card className="usercard" withBorder>
+        <Text>{user.fullName}</Text>
+        <Text>{user.email}</Text>
+        <Text>{user.hometown}</Text>
+        {suspendUserOnClick()}
+      </Card>
+    )}
   </>
 );
 }

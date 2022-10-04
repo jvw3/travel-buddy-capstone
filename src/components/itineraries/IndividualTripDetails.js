@@ -294,11 +294,9 @@ export const IndividualTripDetails = ({}) => {
                 </div>
               </fieldset>
               <fieldset>
-                <div className="departure">
                   <label htmlFor="description">Activity Time and Date:</label>
                   <input
                     autoFocus
-                    className="form-control"
                     type="datetime-local"
                     value={itineraryActivity.activityDateTime}
                     onChange={(evt) => {
@@ -307,7 +305,6 @@ export const IndividualTripDetails = ({}) => {
                       updateItineraryActivity(copy);
                     }}
                   />
-                </div>
               </fieldset>
               <fieldset>
                 <div>
@@ -350,7 +347,7 @@ export const IndividualTripDetails = ({}) => {
   const formattedResStartDate = resStartDate.toLocaleString()
 
   const resDropOffDate = new Date(userItinerary?.itinerary?.rentalCarInfo?.carDropOffTime)
- const formattedResDropOffDate = resDropOffDate.toLocaleString()
+const formattedResDropOffDate = resDropOffDate.toLocaleString()
 
   
 
@@ -389,9 +386,7 @@ export const IndividualTripDetails = ({}) => {
           </section>
           <div className="transportationinfo">
             <Card className="flightinfo" shadow="xl">
-              <Card.Section className="titlesection" withBorder>
                 <h4>Flight Info:</h4>
-              </Card.Section>
               <div>
                 Flight to {destination?.location?.city}:{" "}
                 {userItinerary?.itinerary?.flightInfo?.departFlightNum} leaving
@@ -429,7 +424,7 @@ export const IndividualTripDetails = ({}) => {
         </section>
         <div className="scheduleandactivities">
           <section className="schedulecontainer">
-            <Title>My Schedule</Title>
+            <Title className="scheduletitle">My Schedule</Title>
             {openActivitySideBar()}
             <section className="schedulelist">
               <Timeline color="violet" lineWidth={1}>

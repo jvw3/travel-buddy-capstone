@@ -39,6 +39,7 @@ input {
 .mainformbox {
     width: 70vw;
     display: flex;
+    justify-content: space-evenly;
     align-self: center;
 }
 

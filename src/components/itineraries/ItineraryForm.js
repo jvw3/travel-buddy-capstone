@@ -373,7 +373,6 @@ export const ItineraryForm = () => {
               </div>
             </fieldset>
             <fieldset>
-              <div className="form-group">
                 <label htmlFor="name">How are you traveling?</label>
                 <select
                   className="form-control"
@@ -393,11 +392,9 @@ export const ItineraryForm = () => {
                     By Car
                   </option>
                 </select>
-              </div>
             </fieldset>
 
             <fieldset>
-              <div className="departure">
                 <label htmlFor="description">Departure Date:</label>
                 <input
                   className="form-control"
@@ -410,10 +407,8 @@ export const ItineraryForm = () => {
                     update(copy);
                   }}
                 />
-              </div>
             </fieldset>
             <fieldset>
-              <div className="return">
                 <label htmlFor="description">Return Date:</label>
                 <input
                   type="date"
@@ -426,7 +421,6 @@ export const ItineraryForm = () => {
                     update(copy);
                   }}
                 />
-              </div>
             </fieldset>
         </div>
       </>

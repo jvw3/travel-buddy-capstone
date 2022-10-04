@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
 h2 {
     text-align: center;
     color: white
@@ -75,6 +77,12 @@ padding-top: 40px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+}
+
+.scheduletitle {
+font-family: 'Quicksand',
+    sans-serif;
+    padding-bottom: 20px;
 }
 
 .titlesection {

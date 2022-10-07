@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { Title, Card, TextInput} from "@mantine/core"
 import { useState, useEffect } from "react";
 
 export const EditItinerary = ({}) => {
@@ -235,8 +236,8 @@ export const EditItinerary = ({}) => {
       <>
         <fieldset>
           <div className="form_departingairline">
-            <label htmlFor="description">Departing Airline:</label>
-            <input
+            <TextInput
+              label="Departing Airline"
               required
               autoFocus
               type="text"
@@ -252,8 +253,8 @@ export const EditItinerary = ({}) => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="description">Returning Airline:</label>
-            <input
+            <TextInput
+              label="Returning Airline"
               required
               autoFocus
               type="text"
@@ -269,8 +270,8 @@ export const EditItinerary = ({}) => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="description">Departing Airport:</label>
-            <input
+            <TextInput
+              label="Departing Airport"
               required
               autoFocus
               type="text"
@@ -286,9 +287,9 @@ export const EditItinerary = ({}) => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="description">Return Airport:</label>
-            <input
+            <TextInput
               required
+              label="Return Airport"
               autoFocus
               type="text"
               className="form-control"
@@ -337,25 +338,8 @@ export const EditItinerary = ({}) => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="description">Returning Flight Number:</label>
-            <input
-              required
-              autoFocus
-              type="text"
-              className="form-control"
-              value={itinerary?.flightInfo?.returnFlightNum}
-              onChange={(evt) => {
-                const copy = { ...itinerary };
-                copy.flightInfo.returnFlightNum = evt.target.value;
-                update(copy);
-              }}
-            />
-          </div>
-        </fieldset>
-        <fieldset>
-          <div className="form-group">
-            <label htmlFor="description">Departing Flight Number:</label>
-            <input
+            <TextInput
+              label="Departing Flight Number"
               required
               autoFocus
               type="text"
@@ -364,6 +348,24 @@ export const EditItinerary = ({}) => {
               onChange={(evt) => {
                 const copy = { ...itinerary };
                 copy.flightInfo.departFlightNum = evt.target.value;
+                update(copy);
+              }}
+            />
+          </div>
+        </fieldset>
+        <fieldset>
+          <div className="form-group">
+            <label htmlFor="description">Returning Flight Number:</label>
+            <TextInput
+              label="Returning Flight Number"
+              required
+              autoFocus
+              type="text"
+              className="form-control"
+              value={itinerary?.flightInfo?.returnFlightNum}
+              onChange={(evt) => {
+                const copy = { ...itinerary };
+                copy.flightInfo.returnFlightNum = evt.target.value;
                 update(copy);
               }}
             />
@@ -458,12 +460,16 @@ export const EditItinerary = ({}) => {
   };
 
   return (
-    <form className="itineraryForm">
-      <h2 className="ticketForm__title">Edit Your Itinerary:</h2>
+    <main className="maincontainer">
+      <form className="itineraryForm">
+        <Title className="formtitle" order={1}>Create New Itinerary</Title>
+        <Card className="fullformcard" shadow="xl" withBorder>
       {displayMainTripInfo()}
       {displayFlightInfo()}
       {displayRentalCarInfo()}
       {UpdateItineraryButton()}
+      </Card>
     </form>
+    </main>
   );
 };

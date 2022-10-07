@@ -44,7 +44,7 @@ export const ActivitySchedule = ({
   const localAppUser = localStorage.getItem("travelbuddy_user");
   const appUserObject = JSON.parse(localAppUser);
 
-//
+// This useEffect hook fetches the current user Data and the setterFunction stores the data in userFullName.
 useEffect(() => {
     fetch(`http://localhost:8099/users/${appUserObject?.id}`)
       .then((res) => res.json())
@@ -53,7 +53,7 @@ useEffect(() => {
       });
   }, []);
 
-  // This useEffect hook fetches the specific itinerary Activity to where we will make the put request. 
+  // This useEffect hook fetches the specific itinerary Activity to where we will make the put request.
   useEffect(() => {
     fetch(`http://localhost:8099/itineraryActivities/${id}`)
       .then((res) => res.json())
@@ -73,22 +73,9 @@ useEffect(() => {
       });
   };
 
-  // This function renders the delete button and when clicked, will delete an itinerary.
-  const deleteTripOnClick = () => {
-    return (
-      <Button
-        color="red"
-        onClick={() => {
-          deleteTripConfirmation()
-        }}
-      >
-        Delete Activity
-      </Button>
-    );
-  };
 
-  
-   const deleteTripConfirmation = () => {
+// This function will run when the menu delete trip button is clicked. User will be prompted with a modal (popup) to confirm or cancel their action.
+  const deleteTripConfirmation = () => {
      openConfirmModal({
        title: "Are you sure you want to delete your activity?",
        children: (
@@ -98,8 +85,9 @@ useEffect(() => {
        onCancel: () => "",
        onConfirm: () => deleteTripRequest(),
      });
-   };
+ };
 
+// If the confirm button is clicked in deleteTripConfirmation, then the deleteTripRequest function will run.
    const deleteTripRequest = () => {
      return fetch(`http://localhost:8099/itineraryActivities/${id}`, {
        method: "DELETE",
@@ -115,8 +103,7 @@ useEffect(() => {
        });
    };
 
-
-
+   // This function renders the delete button and when clicked, will delete an itinerary.
   const completeActivityOnClick = () => {
     return (
       <Button
@@ -338,7 +325,7 @@ useEffect(() => {
     }
   };
 
-  // Depending on the value of the isFavorited property, This function will render the button that will favorite the activity for the user, or it will unfavorite the activity for the user. 
+  // Depending on the value of the isFavorited property, This function will render the button that will favorite the activity for the user, or it will unfavorite the activity for the user.
   const favoriteActivityOnClick = () => {
     return (
       <>

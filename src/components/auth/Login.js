@@ -5,6 +5,7 @@ import { BackgroundImage, Button, Card, TextInput, Alert } from "@mantine/core"
 import { showNotification } from "@mantine/notifications";
 import "./Login.css";
 
+// This component is responsible for the rendering and functionality of the login screen.
 export const Login = () => {
   const [email, set] = useState("");
   const navigate = useNavigate();

@@ -1,14 +1,8 @@
 import { useEffect, useState } from "react";
 import { Card, Text, Button, Title, Center } from "@mantine/core";
-import {
-  IconPlaneInflight,
-  IconChecks,
-  IconPlaneDeparture,
-  IconStar,
-} from "@tabler/icons";
-import { MyActivity } from "./myActivity";
 import { useNavigate } from "react-router-dom";
 
+//This component is responsible for rendering the full view of a users profile.
 export const Profile = ({ searchTermState }) => {
   const [user, setUser] = useState({});
   const [userItineraries, setUserItineraries] = useState([]);
@@ -20,6 +14,7 @@ export const Profile = ({ searchTermState }) => {
   const localAppUser = localStorage.getItem("travelbuddy_user");
   const appUserObject = JSON.parse(localAppUser);
 
+  //useEffect hook responsible for fetching the current user data and storing it in user state Variable.
   useEffect(() => {
     fetch(`http://localhost:8099/users/${appUserObject.id}`)
       .then((res) => res.json())
@@ -28,6 +23,7 @@ export const Profile = ({ searchTermState }) => {
       });
   }, []);
 
+// useEffect hook responsible for fetching the full array of itinerary activities.
   useEffect(() => {
     fetch(`http://localhost:8099/itineraryActivities`)
       .then((res) => res.json())
@@ -36,6 +32,7 @@ export const Profile = ({ searchTermState }) => {
       });
   }, []);
 
+// useEffect hook responsible for fetching all of the userItineraries for the current loggied in user.
   useEffect(() => {
     fetch(`http://localhost:8099/userItineraries?_expand=itinerary&userId=${appUserObject.userId}`)
       .then((res) => res.json())
@@ -44,7 +41,7 @@ export const Profile = ({ searchTermState }) => {
       });
   }, []);
 
-  // iterate through itineraryActivities and iterate through user itineraries of current user, and if the itineraries match, then
+
 
   useEffect(() => {
     const userActivities = [];

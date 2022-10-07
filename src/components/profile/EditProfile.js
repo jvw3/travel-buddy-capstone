@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Button, TextInput, Card } from "@mantine/core";
 
+// This component is responsible for allowing users to edit their profile information, by completing a put request.
 export const EditProfile = () => {
   const { userId } = useParams();
 

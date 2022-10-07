@@ -4,6 +4,7 @@ import { IconPlaneInflight, IconStar } from "@tabler/icons";
 import { MyActivity } from "./myActivity";
 import { MyFavoriteActivity } from "./MyFavoriteActivity";
 
+// This component is responsible for rendering a list of all of the activities for a user's profile. This component will also be passed searchTermState as a prop, so that search terms can be used to filter search results.
 export const MyActivities = ({ searchTermState }) => {
   const [user, setUser] = useState({});
   const [userItineraries, setUserItineraries] = useState([]);

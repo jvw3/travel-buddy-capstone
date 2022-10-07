@@ -22,13 +22,13 @@ export const MyActivity = ({itineraryActivityObject, description, address, revie
     return activity.id === itineraryActivityObject.activityId;
   });
 
-  // Make post request to API to change isPublic property from true to false
+  //TODO Make post request to API to change isPublic property from true to false
 
-  // Make post request to API to change isPublic property from false to true
+  //TODO Make post request to API to change isPublic property from false to true
 
-  // Make post request to API to change isFavorited property from false to true
+  //TODO Make post request to API to change isFavorited property from false to true
 
-  // Make post request to API to change isFavorited property from true to false
+  //TODO Make post request to API to change isFavorited property from true to false
 
   return (
     <>

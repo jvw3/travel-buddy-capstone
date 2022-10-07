@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./NavBar.css";
 import { Button } from "@mantine/core";
-import { Text, Avatar, Group, Menu } from "@mantine/core";
+import { Menu } from "@mantine/core";
 import {
   IconUserCircle,
   IconLogout,
@@ -14,7 +14,6 @@ import {
   IconLuggage,
   IconUsers
 } from "@tabler/icons";
-import { ThemeIcon } from "@mantine/core";
 
 //This component renders the NavBar for users taht are logged in as travelers.
 export const TravelerNavBar = () => {
@@ -24,14 +23,7 @@ export const TravelerNavBar = () => {
   const localAppUser = localStorage.getItem("travelbuddy_user");
   const appUserObject = JSON.parse(localAppUser);
 
-  //   useEffect(() => {
-  //     fetch(`http://localhost:8099/itineraries/${itineraryId}`)
-  //       .then((res) => res.json())
-  //       .then((myItinerary) => {
-  //         update(myItinerary);
-  //       });
-  //   }, []);
-
+// This useEffect hook fetches the data for the current logged in user and stores it in the state variable, currentUser.
   useEffect(() => {
     fetch(`http://localhost:8099/users/${appUserObject?.id}`)
       .then((res) => res.json())

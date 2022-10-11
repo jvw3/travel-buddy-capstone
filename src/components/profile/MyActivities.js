@@ -9,7 +9,9 @@ export const MyActivities = ({ searchTermState }) => {
   const [user, setUser] = useState({});
   const [userItineraries, setUserItineraries] = useState([]);
   const [itineraryActivities, setItineraryActivities] = useState([]);
+  const [favoriteActivities, setFavoriteActivities] = useState([]);
   const [filteredActivities, setFiltered] = useState([]);
+  const [searchedActivities, setSearched] = useState([]);
   const [filteredFavoriteActivities, setFilteredFavorites] = useState([]);
 
   const localAppUser = localStorage.getItem("travelbuddy_user");
@@ -43,17 +45,17 @@ export const MyActivities = ({ searchTermState }) => {
   }, []);
 
   // This useEffect hook will
-  useEffect(() => {
-    const userActivities = [];
-    userItineraries.forEach((itinerary) => {
-      itineraryActivities.forEach((activity) => {
-        if (activity.itineraryId === itinerary.itineraryId) {
-          userActivities.push(activity);
-        }
-      });
-    });
-    setFiltered(userActivities);
-  }, []);
+  // useEffect(() => {
+  //   const userActivities = [];
+  //   userItineraries.forEach((itinerary) => {
+  //     itineraryActivities.forEach((activity) => {
+  //       if (activity.itineraryId === itinerary.itineraryId) {
+  //         userActivities.push(activity);
+  //       }
+  //     });
+  //   });
+  //   setFiltered(userActivities);
+  // }, []);
 
   useEffect(() => {
     const userFavoriteActivities = [];
@@ -66,7 +68,28 @@ export const MyActivities = ({ searchTermState }) => {
         });
       }
     });
-    setFilteredFavorites(userFavoriteActivities);
+    setFavoriteActivities(userFavoriteActivities);
+  }, []);
+
+
+  useEffect(() => {
+    const userFavoriteActivities = [];
+    userItineraries.forEach((itinerary) => {
+      if (itinerary.itinerary.isFavorited === true) {
+        itineraryActivities.forEach((activity) => {
+          if (activity.itineraryId === itinerary.itineraryId) {
+            userFavoriteActivities.push(activity);
+          }
+        });
+      }
+    });
+
+    const searchedFavActivities = userFavoriteActivities.filter((activity) => {
+      return activity.activity.name
+        .toLowerCase()
+        .includes(searchTermState.toLowerCase());
+    })
+    setFilteredFavorites(searchedFavActivities);
   }, []);
 
   // This useEffect hook sets the search Term State for the activity Container component, which will maintains state for the activity Search component.
@@ -85,15 +108,27 @@ export const MyActivities = ({ searchTermState }) => {
         .toLowerCase()
         .includes(searchTermState.toLowerCase());
     });
-    setFiltered(searchedActivities);
+    setSearched(searchedActivities);
   }, [searchTermState]);
 
+
+
   const displayFilteredActivities = () => {
+
+    const userActivities = [];
+    userItineraries.forEach((itinerary) => {
+      itineraryActivities.forEach((activity) => {
+        if (activity.itineraryId === itinerary.itineraryId) {
+          userActivities.push(activity);
+        }
+      });
+    });
+
     return (
       <>
         {searchTermState === "" ? (
           <div className="container">
-            {itineraryActivities.map((activity) => (
+            {userActivities.map((activity) => (
               <MyActivity
                 key={`itineraryActivity--${activity?.id}`}
                 description={activity?.description}
@@ -110,7 +145,7 @@ export const MyActivities = ({ searchTermState }) => {
           </div>
         ) : (
           <div className="container">
-            {filteredActivities.map((activity) => (
+            {searchedActivities.map((activity) => (
               <MyActivity
                 key={`itineraryActivity--${activity?.id}`}
                 description={activity?.description}
@@ -159,22 +194,53 @@ export const MyActivities = ({ searchTermState }) => {
   };
 
   const displayFilteredFavoriteActivities = () => {
+
+    const userActivities = [];
+    userItineraries.forEach((itinerary) => {
+      itineraryActivities.forEach((activity) => {
+        if (activity.itineraryId === itinerary.itineraryId) {
+          userActivities.push(activity);
+        }
+      });
+    });
     return (
       <>
-        {filteredActivities.map((activity) => (
-          <MyFavoriteActivity
-            key={`itineraryActivity--${activity?.id}`}
-            description={activity?.description}
-            address={activity?.address}
-            review={activity?.review?.description}
-            id={activity?.id}
-            activityId={activity?.activityId}
-            isPublic={activity?.isPublic}
-            itineraryId={activity?.itineraryId}
-            itineraryActivityObject={activity}
-            isFavorited={activity?.isFavorited}
-          />
-        ))}
+      {searchTermState === "" ? (
+          <div className="container">
+            {userActivities.map((activity) => (
+              <MyFavoriteActivity
+                key={`itineraryActivity--${activity?.id}`}
+                description={activity?.description}
+                activity={activity?.activity?.name}
+                address={activity?.address}
+                review={activity?.review?.description}
+                id={activity?.id}
+                activityId={activity?.activityId}
+                isPublic={activity?.isPublic}
+                itineraryId={activity?.itineraryId}
+                itineraryActivityObject={activity}
+                isFavorited={activity?.isFavorited}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="container">
+            {searchedActivities.map((activity) => (
+              <MyFavoriteActivity
+                key={`itineraryActivity--${activity?.id}`}
+                description={activity?.description}
+                address={activity?.address}
+                review={activity?.review?.description}
+                id={activity?.id}
+                activityId={activity?.activityId}
+                isPublic={activity?.isPublic}
+                itineraryId={activity?.itineraryId}
+                itineraryActivityObject={activity}
+                isFavorited={activity?.isFavorited}
+              />
+            ))}
+          </div>
+        )}
       </>
     );
   };

@@ -142,7 +142,7 @@ export const ItineraryForm = () => {
               <label htmlFor="description">Reservation Time:</label>
               <input
                 type="datetime-local"
-                className="form-control"
+                className="regularformstyle"
                 value={itinerary.reservationTime}
                 required
                 onChange={(evt) => {
@@ -158,7 +158,7 @@ export const ItineraryForm = () => {
               <label htmlFor="description">Drop off Time:</label>
               <input
                 type="datetime-local"
-                className="form-control"
+                className="regularformstyle"
                 value={itinerary.carDropOffTime}
                 required
                 onChange={(evt) => {
@@ -275,10 +275,11 @@ export const ItineraryForm = () => {
               </div>
             </fieldset>
             <fieldset>
-              <div className="form-group">
-                <label htmlFor="description">Departing Flight Time:</label>
+              <div className="">
+                <label htmlFor="description">Departing Flight Date & Time:</label>
                 <input
                   type="datetime-local"
+                  className="regularformstyle"
                   value={itinerary.flightToDestinationTime}
                   required
                   onChange={(evt) => {
@@ -291,10 +292,10 @@ export const ItineraryForm = () => {
             </fieldset>
             <fieldset>
               <div className="form-group">
-                <label htmlFor="description">Returning Flight Time:</label>
+                <label htmlFor="description">Returning Flight Date & Time:</label>
                 <input
                   type="datetime-local"
-                  className="form-control"
+                  className="regularformstyle"
                   value={itinerary.returnFlight}
                   required
                   onChange={(evt) => {
@@ -351,7 +352,7 @@ export const ItineraryForm = () => {
               <div className="form-group">
                 <label htmlFor="name">Where are you traveling?</label>
                 <select
-                  className="form-control"
+                  className="regularformstyle"
                   value={itineraryLocation.locationId}
                   required
                   autoFocus
@@ -373,31 +374,9 @@ export const ItineraryForm = () => {
               </div>
             </fieldset>
             <fieldset>
-                <label htmlFor="name">How are you traveling?</label>
-                <select
-                  className="form-control"
-                  value={itinerary.travelMethod}
-                  required
-                  onChange={(evt) => {
-                    const copy = { ...itinerary };
-                    copy.travelMethod = evt.target.value;
-                    update(copy);
-                  }}
-                >
-                  <option value="default">Choose Travel Method...</option>
-                  <option value="flight" name="flight">
-                    By Plane
-                  </option>
-                  <option value="car" name="car">
-                    By Car
-                  </option>
-                </select>
-            </fieldset>
-
-            <fieldset>
                 <label htmlFor="description">Departure Date:</label>
                 <input
-                  className="form-control"
+                  className="regularformstyle"
                   type="date"
                   value={itinerary.departureDate}
                   required
@@ -412,7 +391,7 @@ export const ItineraryForm = () => {
                 <label htmlFor="description">Return Date:</label>
                 <input
                   type="date"
-                  className="form-control"
+                  className="regularformstyle"
                   value={itinerary.returnDate}
                   required
                   onChange={(evt) => {

@@ -75,7 +75,7 @@ useEffect(() => {
 
 
 // This function will run when the menu delete trip button is clicked. User will be prompted with a modal (popup) to confirm or cancel their action.
-  const deleteTripConfirmation = () => {
+  const deleteActivityConfirmation = () => {
      openConfirmModal({
        title: "Are you sure you want to delete your activity?",
        children: (
@@ -83,12 +83,12 @@ useEffect(() => {
        ),
        labels: { confirm: "Confirm", cancel: "Cancel" },
        onCancel: () => "",
-       onConfirm: () => deleteTripRequest(),
+       onConfirm: () => deleteActivityRequest(),
      });
  };
 
 // If the confirm button is clicked in deleteTripConfirmation, then the deleteTripRequest function will run.
-   const deleteTripRequest = () => {
+   const deleteActivityRequest = () => {
      return fetch(`http://localhost:8099/itineraryActivities/${id}`, {
        method: "DELETE",
      })
@@ -371,7 +371,7 @@ useEffect(() => {
                     <Menu.Item
                       icon={<IconTrash size={14} />}
                       onClick={() => {
-                        deleteTripConfirmation();
+                        deleteActivityConfirmation();
                       }}
                       color="red"
                     >
@@ -399,7 +399,7 @@ useEffect(() => {
                 <Button
                   color="violet"
                   onClick={() => {
-                    navigate(`/trips/${id}/finishactivity`);
+                    navigate(`/trips/${id}/review`);
                   }}
                 >
                   {displayReviewButtonText()}
@@ -423,7 +423,7 @@ useEffect(() => {
                   <Menu.Item
                     icon={<IconTrash size={14} />}
                     onClick={() => {
-                     deleteTripConfirmation();
+                    deleteActivityConfirmation();
                     }}
                     color="red"
                   >

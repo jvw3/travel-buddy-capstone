@@ -1,4 +1,7 @@
 
+body {
+    padding-top: -70px;
+}
 
 .header {
     font-size: 2.5rem;
@@ -78,7 +81,6 @@ fieldset {
     width: 60vw;
     height: 100vh;
     background-image: url(/public/images/tom-barrett-M0AWNxnLaMw-unsplash.jpg);
-    
     background-size: cover;
 }
 

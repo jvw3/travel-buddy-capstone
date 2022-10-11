@@ -217,7 +217,7 @@ export const IndividualTripDetails = ({}) => {
     );
   };
 
-  // This function opens a Mantine Drawer (sidebar) that allows the user to create a new activity using the form. 
+  // This function opens a Mantine Drawer (sidebar) that allows the user to create a new activity using the form.
   const openActivitySideBar = () => {
     return (
       <>
@@ -343,13 +343,15 @@ export const IndividualTripDetails = ({}) => {
     );
   }
 
+// format reservation date to regular format
   const resStartDate = new Date(userItinerary?.itinerary?.rentalCarInfo?.reservationTime)
   const formattedResStartDate = resStartDate.toLocaleString()
 
+  //format dropoff date to regular format
   const resDropOffDate = new Date(userItinerary?.itinerary?.rentalCarInfo?.carDropOffTime)
 const formattedResDropOffDate = resDropOffDate.toLocaleString()
 
-  
+
 
 
   return (
@@ -358,10 +360,13 @@ const formattedResDropOffDate = resDropOffDate.toLocaleString()
         <section className="full-trip-view">
           <section className={destination?.location.city + "tripheader"}>
             <div className="headeroverlay">
-              <h2>
+              <Title
+              className="itinerarydestinationheader"
+              color="white"
+              order={1}>
                 Traveling to {destination?.location?.city},{" "}
                 {destination?.location?.state}
-              </h2>
+              </Title>
               <div>
                 <Button
                   radius="md"

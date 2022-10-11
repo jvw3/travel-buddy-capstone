@@ -1,7 +1,6 @@
-
-
 import { useState, useEffect } from "react";
 import { AdminActivityReview} from "./AdminActivityReview"
+import "./community.css";
 
 
 export const AdminHomePageView = ({

@@ -28,7 +28,7 @@ export const AdminNavBar = () => {
   return (
     <nav className="navbar">
       <section className="logoandnavtextcontainer">
-        <Link to="/home">
+        <Link to="/">
           <div className="travelbuddylogo"></div>
         </Link>
         <div className="navtext">Travel Buddy</div>

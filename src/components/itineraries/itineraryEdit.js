@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { Title, Card, TextInput} from "@mantine/core"
+import { Title, Card, TextInput, Button, Center} from "@mantine/core"
 import { useState, useEffect } from "react";
 
 export const EditItinerary = ({}) => {
@@ -146,12 +146,16 @@ export const EditItinerary = ({}) => {
 
   const UpdateItineraryButton = () => {
     return (
-      <button
+      <Center>
+      <Button
+      color="violet"
+      size="lg"
         onClick={(clickEvent) => itineraryPutRequest(clickEvent)}
         className="btn btn-primary"
       >
         Save Changes
-      </button>
+      </Button>
+      </Center>
     );
   };
 
@@ -462,7 +466,7 @@ export const EditItinerary = ({}) => {
   return (
     <main className="maincontainer">
       <form className="itineraryForm">
-        <Title className="formtitle" order={1}>Create New Itinerary</Title>
+        <Title className="formtitle" order={1}>Edit Itinerary</Title>
         <Card className="fullformcard" shadow="xl" withBorder>
       {displayMainTripInfo()}
       {displayFlightInfo()}

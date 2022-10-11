@@ -73,7 +73,7 @@ export const TravelerViews = () => {
         element={<EditActivity />}
       />
 
-      <Route path="trips/:itineraryActivityId/finishactivity" element={<UserActivityReview />} />
+      <Route path="trips/:itineraryActivityId/review" element={<UserActivityReview />} />
     </Routes>
   );
 };

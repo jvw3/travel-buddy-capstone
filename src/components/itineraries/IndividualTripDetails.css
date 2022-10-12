@@ -118,6 +118,11 @@ justify-content: center;
     width: 300px;
 }
 
+.itinerarydestinationheader {
+    padding-bottom: 20px;
+    font-size: 4rem;
+}
+
 .Nashvilletripheader {
     background-image: url(/public/images/NashvilleDetailspic.jpg);
     height: 68vh;

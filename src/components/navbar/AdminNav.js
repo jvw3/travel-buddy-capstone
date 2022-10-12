@@ -2,22 +2,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./NavBar.css";
 import { Button } from "@mantine/core";
-import { Text, Avatar, Group, Menu } from "@mantine/core";
+import { Menu } from "@mantine/core";
 import {
   IconUserCheck,
-  IconUserCircle,
   IconLogout,
-  IconCirclePlus,
-  IconNotebook,
-  IconPlaneTilt,
-  IconFriends,
-  IconBookmarks,
-  IconLuggage,
-  IconUsers,
 } from "@tabler/icons";
-import { ThemeIcon } from "@mantine/core";
 
-//This component renders the NavBar for users taht are logged in as travelers.
+//This component renders the NavBar for the admin.
 export const AdminNavBar = () => {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState([]);
@@ -25,14 +16,7 @@ export const AdminNavBar = () => {
   const localAppUser = localStorage.getItem("travelbuddy_user");
   const appUserObject = JSON.parse(localAppUser);
 
-  //   useEffect(() => {
-  //     fetch(`http://localhost:8099/itineraries/${itineraryId}`)
-  //       .then((res) => res.json())
-  //       .then((myItinerary) => {
-  //         update(myItinerary);
-  //       });
-  //   }, []);
-
+// useEffect hook fetches the current user data and stores it in currentUser.
   useEffect(() => {
     fetch(`http://localhost:8099/users/${appUserObject?.id}`)
       .then((res) => res.json())
@@ -44,7 +28,7 @@ export const AdminNavBar = () => {
   return (
     <nav className="navbar">
       <section className="logoandnavtextcontainer">
-        <Link to="/home">
+        <Link to="/">
           <div className="travelbuddylogo"></div>
         </Link>
         <div className="navtext">Travel Buddy</div>

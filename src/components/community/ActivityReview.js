@@ -12,7 +12,8 @@ export const ActivityReview = ({
     isPublic,
     itineraryActivityObject,
     reviewDescription,
-    reviewerName
+    reviewerName,
+    displayReviewerName
 }) => {
 const [user, setUser] = useState({})
  const navigate = useNavigate()
@@ -31,6 +32,7 @@ const [user, setUser] = useState({})
 
 
 
+
     return (
       <>
         {isPublic ? (
@@ -39,7 +41,7 @@ const [user, setUser] = useState({})
               <Badge color="violet">{activity}</Badge>
               <Badge>{activityAddress}</Badge>
             </Card.Section>
-            <Text weight="bold">{reviewerName}</Text>
+            <Text weight="bold">{displayReviewerName(itineraryActivityObject)}</Text>
             <Text>Description: {activityDescription}</Text>
             <Text>Review: {reviewDescription}</Text>
           </Card>

@@ -7,7 +7,7 @@
         padding-bottom: 15px;
 }
 .searchbar {
-    width: 17vw;
+    width: 12vw;
     padding-bottom: 50px;
 }
 
@@ -37,8 +37,10 @@
     justify-content: space-between;
 }
 
-.profileeditcard {
-
+.profileeditcontainer {
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .profileheader {
@@ -52,4 +54,7 @@
     padding-right: 50px;
 }
 
+.profileeditinputfield {
+    width: 35vw;
+}
 

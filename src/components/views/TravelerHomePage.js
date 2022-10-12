@@ -2,6 +2,7 @@ import {useNavigate } from "react-router-dom";
 import "./HomePage.css";
 import { Button, Card, Text, Blockquote, Title } from "@mantine/core";
 
+// This component is responsible for rendering the home page view for a traveler user.
 export const HomePageView = () => {
 const navigate= useNavigate();
 

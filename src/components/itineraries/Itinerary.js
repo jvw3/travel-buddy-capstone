@@ -109,6 +109,25 @@ export const Itinerary = ({
     (itinerary) => itinerary.id === userItineraryObject.itineraryId
   );
 
+
+// const currentTripChecker = () => {
+//   numOfCurrentTrips = 0
+//   userItineraries.forEach(itinerary => {
+//     if (itinerary?.itinerary?.isCurrent) {
+//       numOfCurrentTrips ++
+//     }
+//   })
+
+//   if (numOfCurrentTrips < 1) {
+//   return deleteTripConfirmation()
+//   } else {
+//   return showNotification({
+//           title: "Notification",
+//           message: "You already have a current trip. Please remove it to add another.",
+//         })
+//   }
+// }
+
   // This function renders the delete button and when clicked, will delete an itinerary. A fetch call will be made to get the updated List of itineraries, then a notification will be sent to the screen telling the user that their trip was deleted.
   const deleteTripOnClick = () => {
     return (
@@ -162,6 +181,7 @@ export const Itinerary = ({
         <Text size="sm">Please click confirm or cancel to proceed.</Text>
       ),
       labels: { confirm: "Confirm", cancel: "Cancel" },
+      confirmProps: { color: 'violet' },
       onCancel: () => "",
       onConfirm: (event) => completeTripstatusPut(event),
     });
@@ -173,6 +193,7 @@ export const Itinerary = ({
         <Text size="sm">Please click confirm or cancel to proceed.</Text>
       ),
       labels: { confirm: "Confirm", cancel: "Cancel" },
+      confirmProps: { color: 'red' },
       onCancel: () => "",
       onConfirm: () => deleteTripRequest(),
     });
@@ -184,14 +205,28 @@ export const Itinerary = ({
       <Button
         color="violet"
         onClick={(event) => {
-        startTripStatusPut(event)
+        let numOfCurrentTrips = 0
+  userItineraries.forEach(itinerary => {
+    if (itinerary?.itinerary?.isCurrent) {
+      numOfCurrentTrips ++
+    }
+  })
+
+  if (numOfCurrentTrips < 1) {
+  return startTripStatusPut(event)
+  } else {
+  return showNotification({
+          title: "Notification",
+          message: "You already have a current trip. Please remove it to add another.",
+        })
+  }
         }}
       >
         Start Trip
       </Button>
     );
   };
-  
+
   // This function sends a put request to the API to change the value of the isCurrent property from false to true.
   const startTripStatusPut = (event) => {
     const itineraryPutToApi = {

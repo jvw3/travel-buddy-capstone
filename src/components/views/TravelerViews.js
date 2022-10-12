@@ -14,6 +14,7 @@ import { MyActivities } from "../profile/MyActivities";
 import { EditProfile } from "../profile/EditProfile";
 import { ReportUser } from "../community/ReportUser";
 
+// This component is responsible for rendering all the possible views for traveler users. It contains routes to other components in the application.
 export const TravelerViews = () => {
   return (
     <Routes>
@@ -72,7 +73,7 @@ export const TravelerViews = () => {
         element={<EditActivity />}
       />
 
-      <Route path="trips/:itineraryActivityId/finishactivity" element={<UserActivityReview />} />
+      <Route path="trips/:itineraryActivityId/review" element={<UserActivityReview />} />
     </Routes>
   );
 };

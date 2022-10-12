@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Button, TextInput, Card } from "@mantine/core";
 
+// This component is responsible for allowing users to edit their profile information, by completing a put request.
 export const EditProfile = () => {
   const { userId } = useParams();
 
@@ -46,13 +47,16 @@ export const EditProfile = () => {
   };
 
   return (
-    <main className="maincontainer">
+    <main className="profileeditcontainer">
       <Card className="profileeditcard" withBorder shadow="xl">
         <form>
           <fieldset>
             <div>
               <TextInput
                 required
+                className="profileeditinputfield"
+                size="xl"
+                width={300}
                 label="Full Name"
                 autoFocus
                 type="text"
@@ -69,6 +73,8 @@ export const EditProfile = () => {
             <div>
               <TextInput
                 required
+                className="profileeditinputfield"
+                size="xl"
                 label="Email Address"
                 description="If you change your email address, the new email will be used to sign in."
                 autoFocus
@@ -85,7 +91,9 @@ export const EditProfile = () => {
           <fieldset>
             <div className="departure">
               <TextInput
-                required
+              required
+              className="profileeditinputfield"
+                size="xl"
                 label="Hometown"
                 autoFocus
                 type="text"

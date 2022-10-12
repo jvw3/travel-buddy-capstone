@@ -5,7 +5,7 @@ import { MyActivities } from "./MyActivities";
 import { Title} from "@mantine/core"
 
 
-
+// This component is responsible for managing the state of the activity search bar. searchTerms and setActivitySearchTerms are passed as props to Activity Search and MyActivities.
 export const ActivityContainer = () => {
 const [searchTerms, setActivitySearchTerms] = useState("");
 

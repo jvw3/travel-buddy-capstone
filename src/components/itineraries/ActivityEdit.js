@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "./itinerary.css";
 import { Button, Card } from "@mantine/core"
 
+// This component is responsible for allowing users to edit  an Activity that they have created, by making a put request to the API.
 export const EditActivity = () => {
 
     const { itineraryActivityId } = useParams();

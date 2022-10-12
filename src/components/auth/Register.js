@@ -2,12 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextInput, Card, Button, Title, Center} from "@mantine/core"
 
+// This component is responsible for the rendering and functionality of the register page.
 export const Register = (props) => {
   const [user, setUser] = useState({
     fullName: "",
     email: "",
     hometown: "",
-    isAdmin: false,
+    isAdmin: false
   });
   let navigate = useNavigate();
 

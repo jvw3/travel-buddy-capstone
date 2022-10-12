@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Menu, Text, Card, Button, ActionIcon, Image, Badge} from "@mantine/core"
-import { IconDots, IconCheck, IconTrash, } from "@tabler/icons"
+import { IconDots, IconCheck, IconTrash, IconX } from "@tabler/icons"
 import { showNotification } from "@mantine/notifications";
 import { openConfirmModal } from "@mantine/modals";
 
@@ -169,6 +169,63 @@ export const CurrentTrip = ({
         onConfirm: (event) => completeTripstatusPut(event),
       });
 
+
+    const removeTripFromUpcomingConfirmation = () => {
+      openConfirmModal({
+        title:
+          "Are you sure you want to remove this trip as your current trip?",
+        children: (
+          <Text size="sm">Please click confirm or cancel to proceed.</Text>
+        ),
+        labels: { confirm: "Confirm", cancel: "Cancel" },
+        confirmProps: { color: 'violet' },
+        onCancel: () => "",
+        onConfirm: (event) => removeCurrentStatusPutRequest(event),
+      })
+    }
+
+    const removeCurrentStatusPutRequest = (event) => {
+      const itineraryPutToApi = {
+        travelMethod: itinerary.travelMethod,
+        flightInfo: {
+          flightToDestinationTime: itinerary.flightInfo.flightToDestinationTime,
+          returnFlightTime: itinerary.flightInfo.returnFlightTime,
+          departingAirport: itinerary.flightInfo.departingAirport,
+          returnAirport: itinerary.flightInfo.returnAirport,
+          departingAirline: itinerary.flightInfo.departingAirline,
+          returningAirline: itinerary.flightInfo.returningAirline,
+          departFlightNum: itinerary?.flightInfo?.departFlightNum,
+          returnFlightNum: itinerary.flightInfo.returnFlightNum,
+        },
+        rentalCarInfo: {
+          reservationTime: itinerary.rentalCarInfo.reservationTime,
+          carDropOffTime: itinerary.rentalCarInfo.carDropOffTime,
+          rentalCompany: itinerary.rentalCarInfo.rentalCompany,
+          reservationNum: itinerary.rentalCarInfo.reservationNum,
+        },
+        departureDate: itinerary.departureDate,
+        returnDate: itinerary.returnDate,
+        isShared: itinerary.isShared,
+        isComplete: itinerary.isComplete,
+        isCurrent: false,
+        accessCode: itinerary.accessCode,
+      };
+
+      return fetch(`http://localhost:8099/itineraries/${itineraryId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(itineraryPutToApi),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          getUpdatedItineraryListForUser();
+        });
+      }
+
+
+
     const deleteTripConfirmation = () => {
       openConfirmModal({
         title: "Are you sure you want to delete your trip?",
@@ -176,6 +233,7 @@ export const CurrentTrip = ({
           <Text size="sm">Please click confirm or cancel to proceed.</Text>
         ),
         labels: { confirm: "Confirm", cancel: "Cancel" },
+        confirmProps: { color: 'red' },
         onCancel: () => "",
         onConfirm: () => deleteTripRequest(),
       });
@@ -206,6 +264,15 @@ export const CurrentTrip = ({
                 color="red"
               >
                 Delete Trip
+              </Menu.Item>
+              <Menu.Item
+                icon={<IconX size={14} />}
+                onClick={() => {
+                  removeTripFromUpcomingConfirmation();
+                }}
+
+              >
+                Remove Current Trip
               </Menu.Item>
             </Menu.Dropdown>
           </Menu>

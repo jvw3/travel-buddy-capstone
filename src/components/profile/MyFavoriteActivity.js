@@ -2,7 +2,7 @@ import { Card, Text, Badge, Button } from "@mantine/core"
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect} from "react"
 
-// This component is responsible for rendering each individual activity of the activity list page. 
+// This component is responsible for rendering each individual activity of the activity list page.
 // Props are being passed from the MyActivities Parent component.
 export const MyFavoriteActivity = ({itineraryActivityObject, description, address, review, isPublic, itineraryId, isFavorited}) => {
   const [activities, setActivities] = useState([]);
@@ -22,13 +22,27 @@ export const MyFavoriteActivity = ({itineraryActivityObject, description, addres
     return activity.id === itineraryActivityObject.activityId;
   });
 
-  // Make post request to API to change isPublic property from true to false
+  //TODO Make post request to API to change isPublic property from true to false
 
-  // Make post request to API to change isPublic property from false to true
+  //TODO Make post request to API to change isPublic property from false to true
 
-  // Make post request to API to change isFavorited property from false to true
+  //TODO Make post request to API to change isFavorited property from false to true
 
-  // Make post request to API to change isFavorited property from true to false
+  //TODO Make post request to API to change isFavorited property from true to false
+
+const publicOrPrivate = () => {
+  return <>
+  {
+    isPublic
+    ?  <Badge color="violet" variant="outline">
+            Public
+          </Badge>
+    : <Badge color="violet" variant="outline">
+            Private
+          </Badge>
+  }
+  </>
+}
 
   return (
     <>
@@ -36,6 +50,7 @@ export const MyFavoriteActivity = ({itineraryActivityObject, description, addres
       ? (
         <Card withBorder>
           <Badge color="violet">{foundActivity?.name}</Badge>
+          {publicOrPrivate()}
           <Badge color="yellow" variant="outline">
             Favorite
           </Badge>

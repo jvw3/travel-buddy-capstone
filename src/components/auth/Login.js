@@ -5,6 +5,7 @@ import { BackgroundImage, Button, Card, TextInput, Alert } from "@mantine/core"
 import { showNotification } from "@mantine/notifications";
 import "./Login.css";
 
+// This component is responsible for the rendering and functionality of the login screen.
 export const Login = () => {
   const [email, set] = useState("");
   const navigate = useNavigate();
@@ -62,10 +63,13 @@ export const Login = () => {
                   />
                 </fieldset>
                 <fieldset>
-                  <button className="submitbutton">Sign in</button>
+                  <Button color="violet" onClick={(e) => {
+                  handleLogin(e);
+                }}>Sign in</Button>
                 </fieldset>
               </form>
               <Button
+                className="loginbutton"
                 radius="md"
                 color="violet"
                 variant="outline"

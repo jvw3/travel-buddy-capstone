@@ -8,6 +8,10 @@ export const ActivityReviewsList = ({
 }) => {
   const [itineraryActivities, setItineraryActivities] = useState([]);
   const [filtered, setFiltered] = useState([]);
+  const [userItineraries, setUserItineraries] = useState([]);
+
+  const localAppUser = localStorage.getItem("travelbuddy_user");
+  const appUserObject = JSON.parse(localAppUser);
 
   useEffect(() => {
     fetch(`http://localhost:8099/itineraryActivities?_expand=activity`)
@@ -16,6 +20,8 @@ export const ActivityReviewsList = ({
         setItineraryActivities(itineraryActivitiesArray);
       });
   }, []);
+
+
 
   useEffect(() => {
     const searchedReviewsByDescription = itineraryActivities.filter(
@@ -37,10 +43,23 @@ export const ActivityReviewsList = ({
     setFiltered(searchedReviewsByReview);
   }, [reviewSearchTermState]);
 
+// How to find the user name for a itinerary Activity?
+//Iterate through itineraryActivities and iterate through userItineraries and return the matching itineraryId.
+//
+
+  const displayReviewerName = (itineraryActivityObject) => {
+    let reviewerName = "";
+    userItineraries.forEach((itinerary) => {
+        if (itineraryActivityObject.itineraryId === itinerary.itineraryId) {
+          reviewerName = itinerary?.user?.fullName
+        };
+    });
+    return reviewerName
+  }
 
   return (
     <>
-      {descriptionSearchTermState === "" && reviewSearchTermState === "" 
+      {descriptionSearchTermState === "" && reviewSearchTermState === ""
       ? (
         <div class="reviewscontainer">
           {itineraryActivities.map((itineraryActivity) => (
@@ -55,6 +74,7 @@ export const ActivityReviewsList = ({
               itineraryActivityObject={itineraryActivity}
               reviewDescription={itineraryActivity?.review?.description}
               reviewerName={itineraryActivity?.reviewIdentity}
+              displayReviewerName={displayReviewerName}
             />
           ))}
         </div>

@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+} */
+
 .formtitle {
     font-family: 'Quicksand',
         sans-serif;
@@ -17,7 +24,12 @@
     gap: 50px;
 }
 
-
+.regularformstyle {
+    padding: 7px;
+    border-color: lightgray;
+    border-style: solid;
+    border-width: 1px;
+}
 input {
     width: 50%;
 }

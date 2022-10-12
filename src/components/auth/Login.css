@@ -1,4 +1,7 @@
 
+body {
+    padding-top: -70px !important;
+}
 
 .header {
     font-size: 2.5rem;
@@ -39,6 +42,11 @@ fieldset {
     background-repeat: no-repeat;
 }
 
+.loginbutton {
+    cursor: pointer;
+}
+
+
 .button--close {
     position: relative;
     bottom: -2rem;
@@ -78,7 +86,6 @@ fieldset {
     width: 60vw;
     height: 100vh;
     background-image: url(/public/images/tom-barrett-M0AWNxnLaMw-unsplash.jpg);
-    
     background-size: cover;
 }
 

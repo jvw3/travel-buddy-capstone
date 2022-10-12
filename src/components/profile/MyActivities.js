@@ -164,6 +164,7 @@ export const MyActivities = ({ searchTermState }) => {
     );
   };
 
+  // This function will display all of the itinerary Activities for the current logged in user.
   const displayUsersActivitiesCount = () => {
     const userActivities = [];
     userItineraries.forEach((itinerary) => {
@@ -192,6 +193,7 @@ export const MyActivities = ({ searchTermState }) => {
 
     return userFavoriteActivities.length;
   };
+
 
   const displayFilteredFavoriteActivities = () => {
 

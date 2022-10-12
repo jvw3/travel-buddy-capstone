@@ -66,6 +66,7 @@ export const CompletedTrip = ({
           <Text size="sm">Please click confirm or cancel to proceed.</Text>
         ),
         labels: { confirm: "Confirm", cancel: "Cancel" },
+        confirmProps: { color: 'red' },
         onCancel: () => "",
         onConfirm: () => deleteTripRequest(),
       });

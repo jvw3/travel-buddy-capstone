@@ -34,7 +34,26 @@ export const MyTrips = () => {
       });
   }, []);
 
-  
+const findUpcomingTripCount = () => {
+  let upcomingTripCount = []
+  userItineraries.forEach(itinerary => {
+    if (itinerary?.itinerary?.isCurrent === false && itinerary?.itinerary?.isComplete === false) {
+upcomingTripCount.push(itinerary)
+    }
+  })
+  return upcomingTripCount.length
+}
+
+const findCompletedTripCount = () => {
+  let completedTripCount = []
+  userItineraries.forEach(itinerary => {
+    if (itinerary?.itinerary?.isComplete === true) {
+completedTripCount.push(itinerary)
+    }
+  })
+  return completedTripCount.length
+}
+
 
   return (
     <>
@@ -43,10 +62,23 @@ export const MyTrips = () => {
           <Tabs.Tab value="current" icon={<IconPlaneInflight size={14} />}>
             Current
           </Tabs.Tab>
-          <Tabs.Tab value="upcoming" icon={<IconPlaneDeparture size={14} />}>
+          <Tabs.Tab value="upcoming" icon={<IconPlaneDeparture size={14} />
+        }
+        rightSection={
+            <Badge  color="violet"
+            variant="white">
+              {findUpcomingTripCount()}
+            </Badge>
+          }>
             Upcoming
           </Tabs.Tab>
-          <Tabs.Tab value="completed" icon={<IconChecks size={14} />}>
+          <Tabs.Tab value="completed" icon={<IconChecks size={14} />}
+          rightSection={
+            <Badge  color="violet"
+            variant="white">
+              {findCompletedTripCount()}
+            </Badge>
+          }>
             Completed
           </Tabs.Tab>
         </Tabs.List>

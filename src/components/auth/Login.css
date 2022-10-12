@@ -1,6 +1,6 @@
 
 body {
-    padding-top: -70px;
+    padding-top: -70px !important;
 }
 
 .header {
@@ -41,6 +41,11 @@ fieldset {
     background-blend-mode: overlay;
     background-repeat: no-repeat;
 }
+
+.loginbutton {
+    cursor: pointer;
+}
+
 
 .button--close {
     position: relative;

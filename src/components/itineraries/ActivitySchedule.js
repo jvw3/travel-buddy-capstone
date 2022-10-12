@@ -82,6 +82,7 @@ useEffect(() => {
          <Text size="sm">Please click confirm or cancel to proceed.</Text>
        ),
        labels: { confirm: "Confirm", cancel: "Cancel" },
+       confirmProps: { color: 'red' },
        onCancel: () => "",
        onConfirm: () => deleteActivityRequest(),
      });
@@ -354,6 +355,9 @@ useEffect(() => {
     );
   };
 
+  const newActivityDateTime = new Date(activityDateTime)
+  const formattedActivityDate = newActivityDateTime.toLocaleString()
+
   return (
     <>
       {isComplete ? (
@@ -385,7 +389,7 @@ useEffect(() => {
               <Text>{activity}</Text>
               <Text>{activityDescription}</Text>
               <div>Where: {activityAddress}</div>
-              <div>When: {activityDateTime}</div>
+              <div>When: {formattedActivityDate}</div>
               <Card.Section withBorder p="sm">
                 <Button
                   color="violet"
@@ -431,6 +435,7 @@ useEffect(() => {
                   </Menu.Item>
                 </Menu.Dropdown>
               </Menu>
+              {favoriteActivityOnClick()}
               <Text>{activity}</Text>
               <Text>{activityDescription}</Text>
               <div>Where:{activityAddress}</div>

@@ -60,6 +60,7 @@ const suspendUserConfirmation = () =>
     title: `Are you sure you want to suspend ${user.fullName}`,
     children: <Text size="sm">Please click confirm or cancel to proceed.</Text>,
     labels: { confirm: "Confirm", cancel: "Cancel" },
+    confirmProps: { color: 'red' },
     onCancel: () => "",
     onConfirm: (event) => suspendUserStatusPut(event),
   });
@@ -69,6 +70,7 @@ const removeSuspensionConfirmation = () =>
     title: `Are you sure you want to end ${user.fullName}'s suspension?`,
     children: <Text size="sm">Please click confirm or cancel to proceed.</Text>,
     labels: { confirm: "Confirm", cancel: "Cancel" },
+    confirmProps: { color: 'violet' },
     onCancel: () => "",
     onConfirm: (event) => removeSuspensionStatusPut(event),
   });

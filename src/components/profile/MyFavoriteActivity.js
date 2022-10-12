@@ -30,12 +30,27 @@ export const MyFavoriteActivity = ({itineraryActivityObject, description, addres
 
   //TODO Make post request to API to change isFavorited property from true to false
 
+const publicOrPrivate = () => {
+  return <>
+  {
+    isPublic
+    ?  <Badge color="violet" variant="outline">
+            Public
+          </Badge>
+    : <Badge color="violet" variant="outline">
+            Private
+          </Badge>
+  }
+  </>
+}
+
   return (
     <>
       {isFavorited
       ? (
         <Card withBorder>
           <Badge color="violet">{foundActivity?.name}</Badge>
+          {publicOrPrivate()}
           <Badge color="yellow" variant="outline">
             Favorite
           </Badge>

@@ -177,6 +177,7 @@ export const Itinerary = ({
     openConfirmModal({
       title:
         "Trip has not been started. Are you sure you want to finish your trip?",
+      centered: true,
       children: (
         <Text size="sm">Please click confirm or cancel to proceed.</Text>
       ),
@@ -189,6 +190,7 @@ export const Itinerary = ({
   const deleteTripConfirmation = () => {
     openConfirmModal({
       title: "Are you sure you want to delete your trip?",
+      centered: true,
       children: (
         <Text size="sm">Please click confirm or cancel to proceed.</Text>
       ),

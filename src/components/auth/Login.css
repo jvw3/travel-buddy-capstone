@@ -1,7 +1,4 @@
 
-body {
-    padding-top: -70px !important;
-}
 
 .header {
     font-size: 2.5rem;
@@ -56,8 +53,9 @@ fieldset {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 100vh;
     width: 100%;
+    overflow-y: hidden;
 }
 
 .logincard {
@@ -84,14 +82,13 @@ fieldset {
 
 .logincontainerleft {
     width: 60vw;
-    height: 100vh;
+    height: 100;
     background-image: url(/public/images/tom-barrett-M0AWNxnLaMw-unsplash.jpg);
     background-size: cover;
+    margin:-75px;
 }
 
-html, body {
-    height: 100%;
-}
+
 
 .submitbutton {
     background-color: #5e17eb;

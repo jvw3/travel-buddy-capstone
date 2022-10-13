@@ -62,6 +62,7 @@ export const CompletedTrip = ({
     const deleteTripConfirmation = () => {
       openConfirmModal({
         title: "Are you sure you want to delete your trip?",
+        centered: true,
         children: (
           <Text size="sm">Please click confirm or cancel to proceed.</Text>
         ),

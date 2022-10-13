@@ -135,11 +135,11 @@ export const ItineraryForm = () => {
   const displayRentalCarInfo = () => {
     return (
       <>
-        <div className="flightform">
-          <Title order={2}>Rental Car Information</Title>
+        <div className="flightformbox">
+          <Title className="formtitle" order={2}>Rental Car Information</Title>
           <fieldset>
-            <div className="row mb-3">
-              <label htmlFor="description">Reservation Time:</label>
+            <div className="forminputfield">
+              <label className="formlabel" htmlFor="description">Reservation Time:</label>
               <input
                 type="datetime-local"
                 className="regularformstyle"
@@ -154,8 +154,8 @@ export const ItineraryForm = () => {
             </div>
           </fieldset>
           <fieldset>
-            <div className="form-group">
-              <label htmlFor="description">Drop off Time:</label>
+            <div className="forminputfield">
+              <label className="formlabel" htmlFor="description">Drop off Time:</label>
               <input
                 type="datetime-local"
                 className="regularformstyle"
@@ -170,8 +170,8 @@ export const ItineraryForm = () => {
             </div>
           </fieldset>
           <fieldset>
-            <div className="form-group">
               <TextInput
+                className="mantineinputfield"
                 type="text"
                 label="Rental Company"
                 value={itinerary.rentalCompany}
@@ -182,11 +182,10 @@ export const ItineraryForm = () => {
                   update(copy);
                 }}
               />
-            </div>
           </fieldset>
           <fieldset>
-            <div className="form-group">
               <NumberInput
+                className="mantineinputfield"
                 type="number"
                 label="Rental reservation Number"
                 description=""
@@ -198,7 +197,6 @@ export const ItineraryForm = () => {
                   update(copy);
                 }}
               />
-            </div>
           </fieldset>
         </div>
       </>
@@ -209,10 +207,11 @@ export const ItineraryForm = () => {
     return (
       <>
         <div className="flightformbox">
-          <Card.Section className="flightformcard">
-            <Title order={2}>Flight Information</Title>
+            <Center>
+            <Title className="formtitle" order={2}>Flight Information</Title>
+            </Center>
             <fieldset>
-              <div className="form_departingairline">
+              <div className="mantineinputfield">
                 <TextInput
                   type="text"
                   label="What is your departing airline?"
@@ -230,6 +229,7 @@ export const ItineraryForm = () => {
             <fieldset>
               <div className="form-group">
                 <TextInput
+                  className="mantineinputfield"
                   type="text"
                   label="What is your returning airline?"
                   description="Southwest, Delta, Etc."
@@ -244,8 +244,8 @@ export const ItineraryForm = () => {
               </div>
             </fieldset>
             <fieldset>
-              <div className="form-group">
                 <TextInput
+                  className="mantineinputfield"
                   type="text"
                   label="What airport are you departing from?"
                   description="Please use airport initials or airport name"
@@ -257,11 +257,11 @@ export const ItineraryForm = () => {
                     update(copy);
                   }}
                 />
-              </div>
             </fieldset>
             <fieldset>
               <div className="form-group">
                 <TextInput
+                  className="mantineinputfield"
                   type="text"
                   label="What airport are you returning to?"
                   value={itinerary.returnAirport}
@@ -275,8 +275,8 @@ export const ItineraryForm = () => {
               </div>
             </fieldset>
             <fieldset>
-              <div className="">
-                <label htmlFor="description">Departing Flight Date & Time:</label>
+              <div className="forminputfield">
+                <label className="formlabel" htmlFor="description">Departing Flight Date & Time:</label>
                 <input
                   type="datetime-local"
                   className="regularformstyle"
@@ -291,8 +291,8 @@ export const ItineraryForm = () => {
               </div>
             </fieldset>
             <fieldset>
-              <div className="form-group">
-                <label htmlFor="description">Returning Flight Date & Time:</label>
+              <div className="forminputfield">
+                <label className="formlabel" htmlFor="description">Returning Flight Date & Time:</label>
                 <input
                   type="datetime-local"
                   className="regularformstyle"
@@ -307,8 +307,8 @@ export const ItineraryForm = () => {
               </div>
             </fieldset>
             <fieldset>
-              <div className="form-group">
                 <TextInput
+                  className="mantineinputfield"
                   type="text"
                   label="Returning Flight Number"
                   description="ex. SW 2343"
@@ -320,11 +320,10 @@ export const ItineraryForm = () => {
                     update(copy);
                   }}
                 />
-              </div>
             </fieldset>
             <fieldset>
-              <div className="form-group">
                 <TextInput
+                  className="mantineinputfield"
                   type="text"
                   label="Departing Flight Number"
                   description="ex. SW 2343"
@@ -336,9 +335,7 @@ export const ItineraryForm = () => {
                     update(copy);
                   }}
                 />
-              </div>
             </fieldset>
-          </Card.Section>
         </div>
       </>
     );
@@ -347,10 +344,9 @@ export const ItineraryForm = () => {
   const displayMainTripInfo = () => {
     return (
       <>
-        <div className="mainformbox">
             <fieldset>
-              <div className="form-group">
-                <label htmlFor="name">Where are you traveling?</label>
+              <div className="forminputfield">
+                <label className="formlabel" htmlFor="name">Where are you traveling?</label>
                 <select
                   className="regularformstyle"
                   value={itineraryLocation.locationId}
@@ -374,7 +370,8 @@ export const ItineraryForm = () => {
               </div>
             </fieldset>
             <fieldset>
-                <label htmlFor="description">Departure Date:</label>
+              <div className="forminputfield">
+                <label className="formlabel" htmlFor="description">Departure Date:</label>
                 <input
                   className="regularformstyle"
                   type="date"
@@ -386,9 +383,11 @@ export const ItineraryForm = () => {
                     update(copy);
                   }}
                 />
+                </div>
             </fieldset>
             <fieldset>
-                <label htmlFor="description">Return Date:</label>
+              <div className="forminputfield">
+                <label className="formlabel" htmlFor="description">Return Date:</label>
                 <input
                   type="date"
                   className="regularformstyle"
@@ -400,8 +399,8 @@ export const ItineraryForm = () => {
                     update(copy);
                   }}
                 />
+                </div>
             </fieldset>
-        </div>
       </>
     );
   };

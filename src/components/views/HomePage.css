@@ -19,10 +19,11 @@
 .homepageheader {
     color: white;
     font-size: 5rem;
-    width: 30vw;
+    width: 50%;
     text-align: left;
     font-family: 'Quicksand',
         sans-serif;;
+    padding-bottom: 30px;
 }
 
 .highlightedText { 
@@ -37,6 +38,7 @@
 
 .getstartedtext {
     align-self: center;
+    flex-grow: 1;
 }
 
 .topsectionoverlay {
@@ -45,7 +47,8 @@
     display: flex;
     background-color: rgba(0, 0, 0, 0.719);
     /* background-image: linear-gradient(#000000, #1f032210); */
-    padding-left: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .getStarted {
@@ -95,8 +98,7 @@ h1 {
 
 .firstcardlogo {
     background-image: url(/public/images/travelbuddylogowithtext.svg);
-    width: 100%;
-    height: 100%;
+    width: 40vw;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -108,24 +110,6 @@ h1 {
 }
 
 .logocontainer {
-   width: 50vw;
+width: 50vw;
 
 }
-
-.planimage {
-    height: 80%;
-    background-image: url(/public/images/that-s-her-business-R4sP8_Bq0Bw-unsplash.jpg);
-    background-position: center;
-    background-size: cover;
-}
-
-.travelimage {
-    height: 80%;
-        background-image: url(/public/images/jeshoots-com-mSESwdMZr-A-unsplash.jpg);
-        background-position: center;
-        background-size: cover;
-}
-
-/* .upcomingtrip:hover {
-    transform: scale(1.025);
-} */

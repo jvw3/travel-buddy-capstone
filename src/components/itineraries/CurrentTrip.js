@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Menu, Text, Card, Button, ActionIcon, Image, Badge} from "@mantine/core"
+import { Menu, Text, Card, Button, ActionIcon, Image, Badge, Transition} from "@mantine/core"
 import { IconDots, IconCheck, IconTrash, IconX } from "@tabler/icons"
 import { showNotification } from "@mantine/notifications";
 import { openConfirmModal } from "@mantine/modals";
@@ -161,6 +161,7 @@ export const CurrentTrip = ({
       openConfirmModal({
         title:
           "Are you sure you want to finish your trip?",
+        centered: true,
         children: (
           <Text size="sm">Please click confirm or cancel to proceed.</Text>
         ),
@@ -174,6 +175,7 @@ export const CurrentTrip = ({
       openConfirmModal({
         title:
           "Are you sure you want to remove this trip as your current trip?",
+          centered: true,
         children: (
           <Text size="sm">Please click confirm or cancel to proceed.</Text>
         ),
@@ -229,6 +231,7 @@ export const CurrentTrip = ({
     const deleteTripConfirmation = () => {
       openConfirmModal({
         title: "Are you sure you want to delete your trip?",
+        centered: true,
         children: (
           <Text size="sm">Please click confirm or cancel to proceed.</Text>
         ),

@@ -58,6 +58,7 @@ const removeSuspensionOnClick = () => {
 const suspendUserConfirmation = () =>
   openConfirmModal({
     title: `Are you sure you want to suspend ${user.fullName}`,
+    centered: true,
     children: <Text size="sm">Please click confirm or cancel to proceed.</Text>,
     labels: { confirm: "Confirm", cancel: "Cancel" },
     confirmProps: { color: 'red' },
@@ -68,6 +69,7 @@ const suspendUserConfirmation = () =>
 const removeSuspensionConfirmation = () =>
   openConfirmModal({
     title: `Are you sure you want to end ${user.fullName}'s suspension?`,
+    centered: true,
     children: <Text size="sm">Please click confirm or cancel to proceed.</Text>,
     labels: { confirm: "Confirm", cancel: "Cancel" },
     confirmProps: { color: 'violet' },

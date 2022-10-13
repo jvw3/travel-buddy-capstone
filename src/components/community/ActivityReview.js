@@ -41,7 +41,7 @@ const [user, setUser] = useState({})
               <Badge color="violet">{activity}</Badge>
               <Badge>{activityAddress}</Badge>
             </Card.Section>
-            <Text weight="bold">{displayReviewerName(itineraryActivityObject)}</Text>
+            <Text weight="bold">{reviewerName}</Text>
             <Text>Description: {activityDescription}</Text>
             <Text>Review: {reviewDescription}</Text>
           </Card>

@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Button, Text, Textarea, Card, NumberInput } from "@mantine/core";
-import { IconStar } from "@tabler/icons";
+import { Button, Text, Textarea, Card, Title } from "@mantine/core";
+import "./activities.css";
 
 export const UserActivityReview = () => {
   const { itineraryActivityId } = useParams();
@@ -53,16 +53,16 @@ export const UserActivityReview = () => {
 
   return (
     <>
-      <h1 className="finishactivityheader">
-        Review of {itineraryActivity?.description}
-      </h1>
-      <h2 className="finishactivityheader">
-        Located at: {itineraryActivity?.address}
-      </h2>
-      <Text></Text>
-      <Card withBorder>
+    <main className="activityreviewcontainer">
+      <Title className="finishactivityheader">
+         {itineraryActivity?.description} Review
+      </Title>
+      <Card className="reviewcard" withBorder>
         <form>
           <fieldset>
+            <Text>
+        Address: {itineraryActivity?.address}
+      </Text>
             <Textarea
               autoFocus
               withAsterisk
@@ -77,26 +77,14 @@ export const UserActivityReview = () => {
               }}
             />
           </fieldset>
-          <Button onClick={(event) => activityReviewPutRequest(event)}>
-            Submit Review
+          <Button color="violet" onClick={(event) => activityReviewPutRequest(event)}>
+            Save Review
           </Button>
         </form>
       </Card>
+      </main>
     </>
   );
 };
 
-/* <fieldset>
-  <NumberInput
-    label="Rating (0-10 scale)"
-    description="Decimals can be used in ratings."
-    type="number"
-    withAsterisk
-    value={itineraryActivity?.review?.rating}
-    onChange={(evt) => {
-      const copy = { ...itineraryActivity };
-      copy.review.rating = evt.target.value;
-      updateItineraryActivity(copy);
-    }}
-  />
-</fieldset>; */
+

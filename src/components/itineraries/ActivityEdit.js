@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import "./itinerary.css";
-import { Button, Card } from "@mantine/core"
+import "./activities.css";
+import { Button, Card, TextInput, Title } from "@mantine/core"
 
 // This component is responsible for allowing users to edit  an Activity that they have created, by making a put request to the API.
 export const EditActivity = () => {
@@ -79,13 +79,15 @@ const navigate = useNavigate()
 
 
     return (
+      <div className="activityeditcontainer">
+        <Title className="editactivitytitle">Edit Activity</Title>
       <Card withBorder>
         <form>
           <fieldset>
-            <div className="form-group">
-              <label htmlFor="name">Choose Activity:</label>
+            <div className="forminputfield">
+              <label blassName="formlabel" htmlFor="name">Choose Activity:</label>
               <select
-                className="form-control"
+                className="regularformstyle"
                 value={itineraryActivity?.activityId}
                 required
                 autoFocus
@@ -108,11 +110,10 @@ const navigate = useNavigate()
           </fieldset>
           <fieldset>
             <div className="departure">
-              <label htmlFor="description">Description:</label>
-              <input
-                required
+              <TextInput
+                label="Description"
+                className="mantineinputfield"
                 autoFocus
-                className="form-control"
                 type="text"
                 value={itineraryActivity?.description}
                 onChange={(evt) => {
@@ -124,12 +125,12 @@ const navigate = useNavigate()
             </div>
           </fieldset>
           <fieldset>
-            <div className="departure">
-              <label htmlFor="description">Activity Time and Date:</label>
+            <div className="forminputfield">
+              <label className="formlabel" htmlFor="description">Activity Time and Date:</label>
               <input
                 required
                 autoFocus
-                className="form-control"
+                className="regularformstyle"
                 type="datetime-local"
                 value={itineraryActivity?.activityDateTime}
                 onChange={(evt) => {
@@ -142,11 +143,10 @@ const navigate = useNavigate()
           </fieldset>
           <fieldset>
             <div className="departure">
-              <label htmlFor="description">Activity Address:</label>
-              <input
-                required
+              <TextInput
+                label="Activity Address"
                 autoFocus
-                className="form-control"
+                className="mantineinputfield"
                 type="text"
                 value={itineraryActivity?.address}
                 onChange={(evt) => {
@@ -167,6 +167,7 @@ const navigate = useNavigate()
           </Button>
         </form>
       </Card>
+      </div>
     );
-    
+
 }

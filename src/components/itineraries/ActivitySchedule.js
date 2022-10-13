@@ -78,6 +78,7 @@ useEffect(() => {
   const deleteActivityConfirmation = () => {
      openConfirmModal({
        title: "Are you sure you want to delete your activity?",
+       centered: true,
        children: (
          <Text size="sm">Please click confirm or cancel to proceed.</Text>
        ),

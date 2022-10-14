@@ -59,7 +59,8 @@ fieldset {
 }
 
 .logincard {
-    justify-self: center;
+    padding-left: 75px;
+justify-self: center;    
     width: 33vw;
 }
 
@@ -71,7 +72,6 @@ fieldset {
 .logincontainerright {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     height: 100vh;
     width: 50vw;

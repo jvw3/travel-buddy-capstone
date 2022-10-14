@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { BackgroundImage, Button, Card, TextInput, Alert } from "@mantine/core"
+import { BackgroundImage, Button, Card, TextInput, Alert } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import "./Login.css";
 
@@ -17,13 +17,12 @@ export const Login = () => {
       .then((res) => res.json())
       .then((foundUsers) => {
         if (foundUsers[0].isSuspended === true) {
-           showNotification({
-             title: "ATTENTION",
-             message: "YOU HAVE BEEN SUSPENDED.",
-             color: "red"
-           });
-        }
-        else if (foundUsers.length === 1) {
+          showNotification({
+            title: "ATTENTION",
+            message: "YOU HAVE BEEN SUSPENDED.",
+            color: "red",
+          });
+        } else if (foundUsers.length === 1) {
           const user = foundUsers[0];
           localStorage.setItem(
             "travelbuddy_user",
@@ -63,9 +62,14 @@ export const Login = () => {
                   />
                 </fieldset>
                 <fieldset>
-                  <Button color="violet" onClick={(e) => {
-                  handleLogin(e);
-                }}>Sign in</Button>
+                  <Button
+                    color="violet"
+                    onClick={(e) => {
+                      handleLogin(e);
+                    }}
+                  >
+                    Sign in
+                  </Button>
                 </fieldset>
               </form>
               <Button

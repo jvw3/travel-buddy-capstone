@@ -10,7 +10,13 @@ import {
   Menu,
   ActionIcon,
 } from "@mantine/core";
-import { IconDots, IconFileZip, IconEye, IconTrash, IconCheck } from "@tabler/icons";
+import {
+  IconDots,
+  IconFileZip,
+  IconEye,
+  IconTrash,
+  IconCheck,
+} from "@tabler/icons";
 import { IndividualTripDetails } from "./IndividualTripDetails";
 import { showNotification } from "@mantine/notifications";
 import { openConfirmModal } from "@mantine/modals";
@@ -109,24 +115,23 @@ export const Itinerary = ({
     (itinerary) => itinerary.id === userItineraryObject.itineraryId
   );
 
+  // const currentTripChecker = () => {
+  //   numOfCurrentTrips = 0
+  //   userItineraries.forEach(itinerary => {
+  //     if (itinerary?.itinerary?.isCurrent) {
+  //       numOfCurrentTrips ++
+  //     }
+  //   })
 
-// const currentTripChecker = () => {
-//   numOfCurrentTrips = 0
-//   userItineraries.forEach(itinerary => {
-//     if (itinerary?.itinerary?.isCurrent) {
-//       numOfCurrentTrips ++
-//     }
-//   })
-
-//   if (numOfCurrentTrips < 1) {
-//   return deleteTripConfirmation()
-//   } else {
-//   return showNotification({
-//           title: "Notification",
-//           message: "You already have a current trip. Please remove it to add another.",
-//         })
-//   }
-// }
+  //   if (numOfCurrentTrips < 1) {
+  //   return deleteTripConfirmation()
+  //   } else {
+  //   return showNotification({
+  //           title: "Notification",
+  //           message: "You already have a current trip. Please remove it to add another.",
+  //         })
+  //   }
+  // }
 
   // This function renders the delete button and when clicked, will delete an itinerary. A fetch call will be made to get the updated List of itineraries, then a notification will be sent to the screen telling the user that their trip was deleted.
   const deleteTripOnClick = () => {
@@ -182,7 +187,7 @@ export const Itinerary = ({
         <Text size="sm">Please click confirm or cancel to proceed.</Text>
       ),
       labels: { confirm: "Confirm", cancel: "Cancel" },
-      confirmProps: { color: 'violet' },
+      confirmProps: { color: "violet" },
       onCancel: () => "",
       onConfirm: (event) => completeTripstatusPut(event),
     });
@@ -195,7 +200,7 @@ export const Itinerary = ({
         <Text size="sm">Please click confirm or cancel to proceed.</Text>
       ),
       labels: { confirm: "Confirm", cancel: "Cancel" },
-      confirmProps: { color: 'red' },
+      confirmProps: { color: "red" },
       onCancel: () => "",
       onConfirm: () => deleteTripRequest(),
     });
@@ -207,21 +212,22 @@ export const Itinerary = ({
       <Button
         color="violet"
         onClick={(event) => {
-        let numOfCurrentTrips = 0
-  userItineraries.forEach(itinerary => {
-    if (itinerary?.itinerary?.isCurrent) {
-      numOfCurrentTrips ++
-    }
-  })
+          let numOfCurrentTrips = 0;
+          userItineraries.forEach((itinerary) => {
+            if (itinerary?.itinerary?.isCurrent) {
+              numOfCurrentTrips++;
+            }
+          });
 
-  if (numOfCurrentTrips < 1) {
-  return startTripStatusPut(event)
-  } else {
-  return showNotification({
-          title: "Notification",
-          message: "You already have a current trip. Please remove it to add another.",
-        })
-  }
+          if (numOfCurrentTrips < 1) {
+            return startTripStatusPut(event);
+          } else {
+            return showNotification({
+              title: "Notification",
+              message:
+                "You already have a current trip. Please remove or finish trip to proceed.",
+            });
+          }
         }}
       >
         Start Trip

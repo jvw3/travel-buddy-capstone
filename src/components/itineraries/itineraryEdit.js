@@ -314,7 +314,7 @@ export const EditItinerary = ({}) => {
               className="regularformstyle"
               required
               autoFocus
-              type="time"
+              type="datetime-local"
               value={itinerary?.flightInfo?.flightToDestinationTime}
               onChange={(evt) => {
                 const copy = { ...itinerary };
@@ -331,7 +331,7 @@ export const EditItinerary = ({}) => {
               className="regularformstyle"
               required
               autoFocus
-              type="time"
+              type="datetime-local"
               value={itinerary?.flightInfo?.returnFlightTime}
               onChange={(evt) => {
                 const copy = { ...itinerary };

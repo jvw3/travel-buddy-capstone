@@ -72,7 +72,7 @@ const removeSuspensionConfirmation = () =>
     centered: true,
     children: <Text size="sm">Please click confirm or cancel to proceed.</Text>,
     labels: { confirm: "Confirm", cancel: "Cancel" },
-    confirmProps: { color: 'violet' },
+    confirmProps: { color: 'red' },
     onCancel: () => "",
     onConfirm: (event) => removeSuspensionStatusPut(event),
   });

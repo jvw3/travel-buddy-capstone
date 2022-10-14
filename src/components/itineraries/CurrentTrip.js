@@ -159,13 +159,13 @@ export const CurrentTrip = ({
     //This function renders a popup confirmation from the user to finish their trip. This popup is from Mantine UI and it is called a Modal. When Finish trip button is clicked, Modal is rendered, and an action will be completed depending on user clicking confirm or cancel.
     const finishTripConfirmation = () =>
       openConfirmModal({
-        title:
-          "Are you sure you want to finish your trip?",
+        title: "Are you sure you want to finish your trip?",
         centered: true,
         children: (
           <Text size="sm">Please click confirm or cancel to proceed.</Text>
         ),
         labels: { confirm: "Confirm", cancel: "Cancel" },
+        confirmProps: { color: "violet" },
         onCancel: () => "",
         onConfirm: (event) => completeTripstatusPut(event),
       });

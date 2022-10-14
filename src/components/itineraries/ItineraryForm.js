@@ -136,10 +136,14 @@ export const ItineraryForm = () => {
     return (
       <>
         <div className="flightformbox">
-          <Title className="formtitle" order={2}>Rental Car Information</Title>
+          <Title className="formtitle" order={2}>
+            Rental Car Information
+          </Title>
           <fieldset>
             <div className="forminputfield">
-              <label className="formlabel" htmlFor="description">Reservation Time:</label>
+              <label className="formlabel" htmlFor="description">
+                Reservation Time:
+              </label>
               <input
                 type="datetime-local"
                 className="regularformstyle"
@@ -155,7 +159,9 @@ export const ItineraryForm = () => {
           </fieldset>
           <fieldset>
             <div className="forminputfield">
-              <label className="formlabel" htmlFor="description">Drop off Time:</label>
+              <label className="formlabel" htmlFor="description">
+                Drop off Time:
+              </label>
               <input
                 type="datetime-local"
                 className="regularformstyle"
@@ -170,33 +176,37 @@ export const ItineraryForm = () => {
             </div>
           </fieldset>
           <fieldset>
-              <TextInput
-                className="mantineinputfield"
-                type="text"
-                label="Rental Company"
-                value={itinerary.rentalCompany}
-                required
-                onChange={(evt) => {
-                  const copy = { ...itinerary };
-                  copy.rentalCompany = evt.target.value;
-                  update(copy);
-                }}
-              />
+            <TextInput
+              className="mantineinputfield"
+              type="text"
+              label="Rental Company"
+              value={itinerary.rentalCompany}
+              required
+              onChange={(evt) => {
+                const copy = { ...itinerary };
+                copy.rentalCompany = evt.target.value;
+                update(copy);
+              }}
+            />
           </fieldset>
           <fieldset>
-              <NumberInput
-                className="mantineinputfield"
-                type="number"
-                label="Rental reservation Number"
-                description=""
-                value={itinerary.reservationNum}
+            <div className="forminputfield">
+              <label className="formlabel" htmlFor="description">
+                Rental reservation Number:
+              </label>
+              <input
                 required
+                className="regularformstyle"
+                autoFocus
+                type="number"
+                value={itinerary?.rentalCarInfo?.reservationNum}
                 onChange={(evt) => {
                   const copy = { ...itinerary };
-                  copy.reservationNum = evt.target.value;
+                  copy.rentalCarInfo.reservationNum = evt.target.value;
                   update(copy);
                 }}
               />
+            </div>
           </fieldset>
         </div>
       </>

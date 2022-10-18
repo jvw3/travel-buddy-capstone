@@ -1,7 +1,6 @@
 <h1>Travel Buddy</h1>
 Travel Buddy is a travel app that allows users to plan trips by creating itineraries. Inspiration for this application comes from the desire for an easier way to organize my trips, travel history, and trip activities, in one central application. 
 
-
 <h2>Features</h2>
 
 - Separate Views for a Travel Buddy User and a Travel Buddy Admin.
@@ -12,21 +11,25 @@ Travel Buddy is a travel app that allows users to plan trips by creating itinera
 
 - Travel Buddy Users can create, edit, and delete their itinerary activities.
 
+- Travel Buddy Users can add a new activity to the database of activities.
+
 - Travel Buddy Users can review their itinerary Activities and share them publicly with other users.
 
 - Travel Buddy Users can view activity reviews of all other users in the app.
 
-- Travel Buddy Users can search the full list of reviews, by review description.
+- Travel Buddy Users can search the full list of reviews, by review description and activity description.
 
 - Travel Buddy Users can view a list of all activities that they’ve been on, located inside of their profile. 
 
 - Travel Buddy Users can view a list of all of their favorite activities that they’ve been on.
 
-- Travel Buddy Users can search the full list of their activities, by description or review.
+- Travel Buddy Users can search the full list of their activities, by activity description.
 
-- Travel Buddy Users can add “flags” to other users activity Reviews if they are inappropriate.
+- Travel Buddy Admin is able to moderate content of reviews, and suspend users.
 
-- Travel Buddy Admin is able to moderate content of reviews, via flag system.
+<h2>Travel Buddy Demo<h2>
+
+[![Travel Buddy Video Demo](https://img.youtube.com/vi/xbmfv558S3I/maxresdefault.jpg)](https://www.youtube.com/watch?v=xbmfv558S3I)
 
 <h2>Initial Setup</h2>
 

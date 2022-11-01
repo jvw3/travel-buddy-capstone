@@ -33,19 +33,25 @@ Travel Buddy is a travel app that allows users to plan trips by creating itinera
 
 <h2>Initial Setup</h2>
 
-Clone this repository
-
-SSH:
-```git clone git@github.com:jvw3/travel-buddy-capstone.git```
+Clone this repository (SSH OR HTTPS)
+```
+<!--  SSH: -->
+  git clone git@github.com:jvw3/travel-buddy-capstone.git
   
- HTTPS:
-```https://github.com/jvw3/travel-buddy-capstone.git```
+<!--   HTTPS: -->
+  git clone https://github.com/jvw3/travel-buddy-capstone.git
+  ```
 
 
-Clone the travel buddy API 
+Clone the travel buddy API (SSH OR HTTPS)
 
-SSH:
-```git clone git@github.com:jvw3/travel-buddy-api.git```
+```
+<!-- SSH: -->
+  git clone git@github.com:jvw3/travel-buddy-api.git
+
+<!-- HTTPs:  -->
+  git clone https://github.com/jvw3/travel-buddy-api.git
+```
 
 Host API using json-server on port 8099
 

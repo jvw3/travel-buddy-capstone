@@ -49,11 +49,17 @@ SSH:
 
 Host API using json-server on port 8099
 
-```json-server database.json -p 8099 -w```
+```
+cd travel-buddy-api
+json-server database.json -p 8099 -w
+```
 
 Host the project using npm start in the travel buddy directory
 
-```npm start```
+```
+cd travel-buddy-capstone
+npm start
+```
 
 <h2>Entity Relationship Diagram</h2>
 https://dbdiagram.io/d/631e94450911f91ba585c375 

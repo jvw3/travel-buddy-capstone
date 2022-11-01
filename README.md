@@ -36,7 +36,7 @@ Travel Buddy is a travel app that allows users to plan trips by creating itinera
 Clone this repository
 
 Clone the travel buddy API 
-https://github.com/jvw3/travel-buddy-api
+```git clone https://github.com/jvw3/travel-buddy-api```
 
 Host API using json-server on port 8099
 

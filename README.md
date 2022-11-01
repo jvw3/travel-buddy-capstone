@@ -37,15 +37,15 @@ Clone this repository
 
 SSH:
 ```git clone git@github.com:jvw3/travel-buddy-capstone.git```
+  
+ HTTPS:
+```https://github.com/jvw3/travel-buddy-capstone.git```
 
 
 Clone the travel buddy API 
 
 SSH:
 ```git clone git@github.com:jvw3/travel-buddy-api.git```
-
-HTTPS:
-```https://github.com/jvw3/travel-buddy-capstone.git```
 
 Host API using json-server on port 8099
 

@@ -19,14 +19,14 @@
 .homepageheader {
     color: white;
     font-size: 5rem;
-    width: 50%;
-    text-align: left;
+    width: 90%;
+    text-align: center;
     font-family: 'Quicksand',
         sans-serif;;
     padding-bottom: 30px;
 }
 
-.highlightedText { 
+.highlightedText {
     font-family: 'Quicksand',
             sans-serif;
         ;
@@ -37,31 +37,33 @@
 }
 
 .getstartedtext {
-    align-self: center;
-    flex-grow: 1;
+    /* align-self: center;
+    flex-grow: 1; */
+    justify-content: center;
+    align-content: center;
 }
 
 .topsectionoverlay {
     height: 100vh;
     width: 100vw;
     display: flex;
+    flex-direction: column;
     background-color: rgba(0, 0, 0, 0.719);
     /* background-image: linear-gradient(#000000, #1f032210); */
     padding-left: 50px;
     padding-right: 50px;
+
 }
 
-.getStarted {
+/* .getStarted {
     border: 1px solid white;
     padding: 5px;
     background-color: white;
     border-radius: 10px;
     text-decoration: none;
-}
+} */
 
 .bottomsection {
-    height: 1500px;
-    background: #170033;
     display: flex;
     flex-direction: column;
 }
@@ -69,13 +71,6 @@
 h1 {
     text-align: center;
     color: white;
-}
-
-.upcomingtripcontainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-content: space-between;
 }
 
 
@@ -87,21 +82,119 @@ h1 {
     justify-content: flex-start;
     justify-content: space-evenly;
     align-items: center;
-    gap: 100px;
 }
 
 .firstcard {
     display: flex;
-    width: 100%;
-    height: 30%;
+    width: 50vw;
+    height: 30vh;
+    justify-self: center;
+}
+
+.thirdcard {
+display: flex;
+width: 100%;
+height: 100%;
+transition: ease all 0.5s;
+}
+
+
+
+.travelheaderanimate {
+    animation: fadeIn 2s;
+}
+
+.travelheader {
+    visibility: hidden;
+}
+
+.travelquoteanimate {
+    animation: fadeIn 2s;
+    animation-delay: 500ms;
+    animation-fill-mode: backwards;
+}
+
+.travelquote{
+    visibility: hidden;
+}
+
+
+
+.planheaderanimate {
+    animation: fadeIn 2s;
+}
+
+.planheader {
+    visibility: hidden;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+
+.photo {
+    background-image: url(/public/images/that-s-her-business-R4sP8_Bq0Bw-unsplash.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 30vw;
+    height: 30vh;
+    animation: fadeIn 3s;
+}
+
+.photo {
+    background-image: url(/public/images/element5-digital-uE2T1tCFsn8-unsplash\ \(1\).jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 30vw;
+    height: 30vh;
+    animation: fadeIn 3s;
+}
+
+.card {
+    display: flex;
+        width: 100%;
+        height: 100%;
+}
+
+.firstcontainer {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 40vh;
+    justify-self: center;
+    background-color: #170033;
+}
+
+.secondcontainer {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 40vh;
+    justify-self: center;
+    background-color: #170033;
+}
+
+.thirdcontainer {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 30vh;
+    justify-self: center;
+    background-color: #170033;
 }
 
 .firstcardlogo {
     background-image: url(/public/images/travelbuddylogowithtext.svg);
-    width: 40vw;
+    width: 500px;
+    height: 500px;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+    align-self: center;
+}
+.getstartedbutton {
+   align-self: center;
 }
 
 .homepagecard {
@@ -111,5 +204,12 @@ h1 {
 
 .logocontainer {
 width: 50vw;
+}
 
+/* styling for bottom section of  */
+.quotebox {
+    display: flex;
+    flex-direction: row;
+    padding-left: 50px;
+    padding-right: 50px;
 }

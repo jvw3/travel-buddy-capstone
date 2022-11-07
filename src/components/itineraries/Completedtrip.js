@@ -5,6 +5,8 @@ import { showNotification } from "@mantine/notifications";
 import { openConfirmModal } from "@mantine/modals";
 import { IconDots } from "@tabler/icons";
 import { IconTrash } from "@tabler/icons";
+import "./itinerary.css";
+
 
 export const CompletedTrip = ({
   isComplete,
@@ -12,7 +14,7 @@ export const CompletedTrip = ({
   returnDate,
   userItineraryObject,
   itineraryId,
-  setUserItineraries, 
+  setUserItineraries,
 }) => {
   const [itineraryLocations, setItineraryLocations] = useState([]);
 
@@ -44,20 +46,6 @@ export const CompletedTrip = ({
         setUserItineraries(userItinerariesArray);
       });
   };
-
-    const deleteTripOnClick = () => {
-      return (
-        <Button
-        fullWidth
-          color="red"
-          onClick={() => {
-            deleteTripConfirmation();
-          }}
-        >
-          Delete Trip
-        </Button>
-      );
-    };
 
     const deleteTripConfirmation = () => {
       openConfirmModal({
@@ -92,7 +80,7 @@ export const CompletedTrip = ({
     <>
       {isComplete ? (
         <Card
-          className="itineraryCard"
+          className="completedtrip_itineraryCard"
           shadow="xl"
           radius="md"
           p="sm"
@@ -130,7 +118,6 @@ export const CompletedTrip = ({
             <div className="tripdates"></div>
           </Card.Section>
           <Button
-            fullWidth
             color="violet"
             onClick={() => {
               navigate(`/trips/${userItineraryObject.itineraryId}/view`);

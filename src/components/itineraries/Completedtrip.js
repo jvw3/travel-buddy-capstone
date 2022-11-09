@@ -6,6 +6,7 @@ import { openConfirmModal } from "@mantine/modals";
 import { IconDots } from "@tabler/icons";
 import { IconTrash } from "@tabler/icons";
 import "./itinerary.css";
+import { useFetch } from "../api/APImanager";
 
 
 export const CompletedTrip = ({
@@ -23,15 +24,7 @@ export const CompletedTrip = ({
 
   const navigate = useNavigate()
 
-  useEffect(() => {
-    fetch(
-      `http://localhost:8099/itineraryLocations?_expand=itinerary&_expand=location`
-    )
-      .then((res) => res.json())
-      .then((itineraryLocationsArray) => {
-        setItineraryLocations(itineraryLocationsArray);
-      });
-  }, []);
+  useFetch("http://localhost:8099/itineraryLocations?_expand=itinerary&_expand=location", setItineraryLocations);
 
   const foundLocation = itineraryLocations.find(
     (location) => location.itineraryId === userItineraryObject.itineraryId

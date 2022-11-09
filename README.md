@@ -1,5 +1,5 @@
 <h1>Travel Buddy</h1>
-Travel Buddy is a travel app that allows users to plan trips by creating itineraries. Inspiration for this application comes from the desire for an easier way to organize my trips, travel history, and trip activities, in one central application. 
+Travel Buddy is a web application that allows users to plan trips by creating itineraries. Inspiration for this application comes from the desire for an easier way to organize my trips, travel history, and trip activities, all contained in one central application. 
 
 <h2>Features</h2>
 

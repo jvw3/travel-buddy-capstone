@@ -152,6 +152,20 @@ justify-content: center;
         background-position: center;
 }
 
+.Bostontripheader {
+    background-image: url(/public/images/bostontripheader.jpg);
+    height: 68vh;
+        background-size: cover;
+        background-position: center;
+}
+
+.Bostontripheader {
+    background-image: url(/public/images/bostontripheader.jpg);
+    height: 68vh;
+        background-size: cover;
+        background-position: center;
+}
+
 .headeroverlay {
     height: 68vh;
     background-color: rgba(0, 0, 0, 0.6);

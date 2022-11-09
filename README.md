@@ -60,7 +60,9 @@ cd travel-buddy-api
 json-server database.json -p 8099 -w
 ```
 
-Host the project using npm start in the travel buddy directory
+Change to travel-buddy-capstone directory using "cd"
+
+In the travel-buddy-capstone directory, Host the project using npm start.
 
 ```
 cd travel-buddy-capstone

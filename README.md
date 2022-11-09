@@ -64,7 +64,7 @@ Host the project using npm start in the travel buddy directory
 
 ```
 cd travel-buddy-capstone
-npm install
+npm install 
 npm start
 ```
 *To Sign in to the application as a Traveler, use the following email: woodard@gmail.com*

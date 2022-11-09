@@ -9,7 +9,7 @@ import { Title} from "@mantine/core"
 export const ActivityContainer = () => {
 const [searchTerms, setActivitySearchTerms] = useState("");
 
-  // The ticketContainer parent component will return two childe components.
+  // The ticketContainer parent component will return two children components.
   return (
     <> 
     <Title className="activitytitle" order={1}>My Activities</Title>

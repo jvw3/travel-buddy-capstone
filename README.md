@@ -54,6 +54,8 @@ Travel Buddy is a web application that allows users to plan trips by creating it
   git clone https://github.com/jvw3/travel-buddy-api.git
 ```
 
+- Change to the travel-buddy-api directory 
+  
 - Host API using json-server on port 8099
 
 ```
@@ -61,7 +63,7 @@ cd travel-buddy-api
 json-server database.json -p 8099 -w
 ```
 
-- Change to travel-buddy-capstone directory using "cd"
+- Change to travel-buddy-capstone directory 
   
 - Install dependencies using npm install
 

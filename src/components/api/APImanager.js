@@ -20,3 +20,9 @@ export const useFetchObservingState = (url, setter, observedState) => {
       .then((data) => setter(data));
   }, [observedState]);
 };
+
+
+export const useFetchForPutRequest = (url, setter, id) => {
+
+
+}

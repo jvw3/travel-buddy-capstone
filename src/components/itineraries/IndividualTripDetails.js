@@ -202,6 +202,7 @@ export const IndividualTripDetails = ({}) => {
   const addActivityButton = () => {
     return (
       <Button
+      className="activitybutton"
       color="violet"
       compact
         onClick={(event) => {
@@ -233,7 +234,7 @@ export const IndividualTripDetails = ({}) => {
             <form>
               <div>
                 <fieldset>
-                  <div className="col-md-6">
+                  <div className="">
                     <label htmlFor="name">Choose Activity:</label>
                     <select
                       value={itineraryActivity.activityId}
@@ -257,7 +258,7 @@ export const IndividualTripDetails = ({}) => {
                   </div>
                 </fieldset>
                 <fieldset>
-                  <div className="col-md-6">
+                  <div className="addactivityform">
                     <TextInput
                       required
                       width={300}
@@ -381,10 +382,10 @@ const formattedResDropOffDate = resDropOffDate.toLocaleString()
                 </Button>
                 {renderDeleteItineraryButton()}
               </div>
-              <h3 class="departuredate">
+              <h3 className="departuredate">
                 Leaving on: {userItinerary?.itinerary?.departureDate}
               </h3>
-              <h3 class="returndate">
+              <h3 className="returndate">
                 Returning on: {userItinerary?.itinerary?.returnDate}
               </h3>
             </div>

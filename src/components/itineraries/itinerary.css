@@ -1,43 +1,82 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
-@media (min-width: 1025px) and (max-width: 1200px) {
+@media (min-width: 864px) and (max-width: 1200px) {
     .upcomingtrip_itineraryCard {
-            width: 50vw;
-            height: 52vh;
+            width: 600px;
+            height: 475px;
             transition: ease all 300ms;
         }
 
-    .upcomingtrip_itineraryCard {
+    .completedtrip_itineraryCard {
+            width: 40vw;
+            height: 45vh;
+            transition: ease all 300ms;
+        }
+
+        .currenttrip_itineraryCard {
             width: 50vw;
-            height: 52%;
+            height: 45vh;
             transition: ease all 300ms;
         }
 }
 @media (min-width: 1201px) and (max-width: 1600px){
     .upcomingtrip_itineraryCard {
-            width: 50vw;
-            height: 52vh;
-            transition: ease all 300ms;
-        }
-
-    .upcomingtrip_itineraryCard {
-            width: 50vw;
-            height: 52vh;
-            transition: ease all 300ms;
-        }
-}
-
-@media (min-width: 675px) and (max-width: 863px) {
-
-    .upcomingtrip_itineraryCard {
-            width: 62vw;
-            height: 45vh;
+        width: 700px;
+            height: 475px;
             transition: ease all 300ms;
         }
 
     .completedtrip_itineraryCard {
-                    width: 62vw;
-                    height: 45vh;
+            width: 40vw;
+            height: 45vh;
+            transition: ease all 300ms;
+        }
+}
+
+@media (min-width: 1600px) {
+    .upcomingtrip_itineraryCard {
+            width: 700px;
+            height: 450px;
+            transition: ease all 300ms;
+        }
+
+        .completedtrip_itineraryCard {
+            width: 450px;
+            height: 450px;
+            transition: ease all 300ms;
+        }
+}
+
+@media (max-height: 680px){
+    .upcomingtrip_itineraryCard {
+        width: 62vw;
+        height: 70vh;
+        transition: ease all 300ms;
+    }
+
+    .completedtrip_itineraryCard {
+        width: 62vw;
+        height: 45vh;
+        transition: ease all 300ms;
+    }
+
+    .currenttrip_itineraryCard {
+        width: 50vw;
+        height: 45vh;
+        transition: ease all 300ms;
+    }
+}
+
+@media (min-width: 530px) and (max-width: 863px) {
+    .upcomingtrip_itineraryCard {
+            width: 500px;
+            height: 450px;
+            transition: ease all 300ms;
+        }
+
+    .completedtrip_itineraryCard {
+                    width: 475px;
+                    height: 425px;
                     transition: ease all 300ms;
                 }
 
@@ -46,29 +85,30 @@
             height: 45vh;
             transition: ease all 300ms;
         }
+
 }
+
 /* Iphone media query */
-@media (max-width: 450px) {
+@media (max-width: 530px) {
 
     .upcomingtrip_itineraryCard {
-            width: 85vw;
-            height: 52vh;
+            width: 375px;
+            height: 450px;
             transition: ease all 300ms;
         }
 
     .currenttrip_itinerarycard {
-        width: 80vw;
-        height: 78vh;
+        width: 375px;
+        height: 650px;
         transition: ease all 300ms;
     }
 
         .completedtrip_itineraryCard {
-            width: 80vw;
-            height: 52vh;
+            width: 375px;
+            height: 450px;
             transition: ease all 300ms;
         }
 }
-
 
 
 
@@ -103,6 +143,7 @@ body {
 .currenttripcontainer {
     display: flex;
     justify-content: center;
+    padding-top: 85px;
 }
 
 .allcompletedtrips {
@@ -142,10 +183,10 @@ body {
     transition: ease all 300ms;
 } */
 
-.itineraryCard:hover {
+/* .itineraryCard:hover {
     transform: translateY(-2%);
     transition: ease 300ms;
-}
+} */
 
 /* .currenttrip_itinerarycard {
     width: 49vw;
@@ -153,7 +194,15 @@ body {
     transition: ease all 300ms;
 } */
 
-.currenttrip_itinerarycard:hover {
+.currenttrip_itineraryCard:hover {
+    transform: translateY(-2%);
+        transition: ease 300ms;
+}
+.upcomingtrip_itineraryCard:hover {
+    transform: translateY(-2%);
+        transition: ease 300ms;
+}
+.completedtrip_itineraryCard:hover {
     transform: translateY(-2%);
         transition: ease 300ms;
 }

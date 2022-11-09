@@ -1,15 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
-.navbar {
-    display: flex;
-    flex-direction: row;
-    background-color: black;
-    padding-top: 20px;
-    padding-bottom: 7px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 999;
+/* Iphone media query */
+@media (min-width: 390px) and (max-width: 844px) {
+    .navbar {
+            display: flex;
+            flex-direction: row;
+            background-color: black;
+            padding-top: 20px;
+            padding-bottom: 7px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        .travelbuddylogo {
+            background-image: url(/public/images/travelbuddynavlogo.svg);
+            background-position: center;
+            background-size: cover;
+            width: 30px;
+            height: 30px;
+        }
+                .navtext {
+                    color: white;
+                    font-size: 20px;
+                    font-family: 'Quicksand',
+                        sans-serif;
+                    ;
+                }
+}
+
+@media (min-width: 845px) and (max-width: 2500px) {
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        background-color: black;
+        padding-top: 20px;
+        padding-bottom: 7px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 999;
+    }
+
+    .travelbuddylogo {
+        background-image: url(/public/images/travelbuddynavlogo.svg);
+        background-position: center;
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+    }
+
+    .navtext {
+        color: white;
+        font-size: 30px;
+        font-family: 'Quicksand',
+            sans-serif;
+        ;
+    }
 }
 
 .logoandnavtextcontainer {
@@ -18,25 +66,25 @@
     flex-direction: row;
 }
 
-.navtext {
+/* .navtext {
     color: white;
     font-size: 2rem;
     font-family: 'Quicksand',
         sans-serif;;
-}
+} */
 
-.navbuttoncontainer {
-    flex-grow: 1;
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.travelbuddylogo {
+/* .travelbuddylogo {
     background-image: url(/public/images/travelbuddynavlogo.svg);
     background-position: center;
     background-size: cover;
     width: 50px;
     height: 50px;
+} */
+
+.navbuttoncontainer {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 /* CSS styles for the  */
@@ -46,6 +94,10 @@
     padding: 5px;
     background-color: #1F0322;
     transition: ease all 0.25s;
+}
+
+.displayedtripinfo {
+flex-grow: 1;
 }
 
 

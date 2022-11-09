@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
 
-@media (min-width: 390px) and (max-width: 844px) {
+@media (min-width: 390px) and (max-width: 864px) {
     .individualreview {
             height: 20vh;
             width: 80vw;
@@ -9,6 +9,56 @@
         }
 
     .reviewheader {
+            font-family: 'Quicksand',
+                sans-serif;
+            color: black;
+            padding-top: 30px;
+            padding-bottom: 15px;
+            display: flex;
+        }
+}
+
+@media (min-width: 864px) and (max-width: 1200px) {
+    .individualreview {
+            height: 20vh;
+            width: 375px;
+            transition: ease all 300ms;
+        }
+
+        .reviewheader {
+            font-family: 'Quicksand',
+                sans-serif;
+            color: black;
+            padding-top: 30px;
+            padding-bottom: 15px;
+            display: flex;
+        }
+}
+
+@media (min-width: 1201px) and (max-width: 1600px) {
+    .individualreview {
+            height: 20vh;
+            width: 350px;
+            transition: ease all 300ms;
+        }
+
+        .reviewheader {
+            font-family: 'Quicksand',
+                sans-serif;
+            color: black;
+            padding-top: 30px;
+            padding-bottom: 15px;
+            display: flex;
+        }
+}
+@media(min-width: 1600px) {
+    .individualreview {
+            height: 20vh;
+            width: 30vw;
+            transition: ease all 300ms;
+        }
+
+        .reviewheader {
             font-family: 'Quicksand',
                 sans-serif;
             color: black;
@@ -74,8 +124,8 @@ align-self: center;
 }
 
 .headerimagecard {
-    width: 40vw;
-    height: 27vh;
+    width: 400px;
+    height: 275px;
     align-self: center;
 }
 
@@ -96,10 +146,10 @@ transform: translateY(-2%);
     width: 60vw;
 }
 
-.reviewheader {
+/* .reviewheader {
     display: flex;
     flex-direction: row;
-}
+} */
 
 .userlistcontainer {
     padding-left: 50px;

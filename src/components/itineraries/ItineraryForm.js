@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Title, Button, TextInput, NumberInput, Card, Center } from "@mantine/core";
+import { Title, Button, TextInput, Card, Center } from "@mantine/core";
 
 import "./itineraryform.css";
 
@@ -197,7 +197,6 @@ export const ItineraryForm = () => {
               <input
                 required
                 className="regularformstyle"
-                autoFocus
                 type="number"
                 value={itinerary?.rentalCarInfo?.reservationNum}
                 onChange={(evt) => {

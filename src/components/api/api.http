@@ -1,6 +1,0 @@
-GET https://api.yelp.com/v3/businesses/search?location=NYC HTTP/1.1
-Host: api.yelp.com
-Authorization: Bearer B-FITUAekpCDC6X9c-c7FhhZt1AAS9XpKDzJs4R6pcXXm4AwDS3wJnBWSRmCKdVajMMYhXgOou__CDEAXByCrldMgokSzRc8Qic3R9W86tqnZwJxeGXI2V02k1AdY3Yx
-Cache-Control: no-cache
-
-###

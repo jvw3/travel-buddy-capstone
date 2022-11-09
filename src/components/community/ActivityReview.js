@@ -1,8 +1,6 @@
-import { Badge, Card, Text, Button } from "@mantine/core"
-import { IconFlag} from "@tabler/icons"
-import { useState, useEffect} from "react"
-import { useNavigate } from "react-router-dom"
+import { Badge, Card, Text} from "@mantine/core"
 
+// This component is responsible for rendering the individual review.
 export const ActivityReview = ({
     id,
     activity,
@@ -12,34 +10,19 @@ export const ActivityReview = ({
     isPublic,
     itineraryActivityObject,
     reviewDescription,
-    reviewerName,
-    displayReviewerName
+    reviewerName
 }) => {
-const [user, setUser] = useState({})
- const navigate = useNavigate()
- 
-    const localAppUser = localStorage.getItem("travelbuddy_user");
- const appUserObject = JSON.parse(localAppUser);
-
-
- useEffect(() => {
-   fetch(`http://localhost:8099/users/${appUserObject.id}`)
-     .then((res) => res.json())
-     .then((currentUserInfo) => {
-       setUser(currentUserInfo);
-     });
- }, []);
-
-
-
-
     return (
       <>
         {isPublic ? (
-          <Card className="individualreview" withBorder>
+          <Card shadow="xl" className="individualreview" withBorder>
             <Card.Section className="reviewheader" withBorder p="sm">
+              <div>
               <Badge color="violet">{activity}</Badge>
+              </div>
+              <div>
               <Badge>{activityAddress}</Badge>
+              </div>
             </Card.Section>
             <Text weight="bold">{reviewerName}</Text>
             <Text>Description: {activityDescription}</Text>

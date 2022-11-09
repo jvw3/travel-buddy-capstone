@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./itinerary.css";
+import { useFetch } from "../api/APImanager";
 import {
   Card,
   Image,
@@ -12,8 +13,6 @@ import {
 } from "@mantine/core";
 import {
   IconDots,
-  IconFileZip,
-  IconEye,
   IconTrash,
   IconCheck,
 } from "@tabler/icons";
@@ -62,24 +61,10 @@ export const Itinerary = ({
   });
 
   // useEffect fetches all the itineraries from the database.
-  useEffect(() => {
-    fetch(`http://localhost:8099/itineraries`)
-      .then((res) => res.json())
-      .then((itinerariesArray) => {
-        setItineraries(itinerariesArray);
-      });
-  }, []);
+  useFetch("http://localhost:8099/itineraries", setItineraries)
 
   //This useEffect fetches all of the itinerary Locations, expanded by locationId.
-  useEffect(() => {
-    fetch(
-      `http://localhost:8099/itineraryLocations?_expand=itinerary&_expand=location`
-    )
-      .then((res) => res.json())
-      .then((itineraryLocationsArray) => {
-        setItineraryLocations(itineraryLocationsArray);
-      });
-  }, []);
+  useFetch("http://localhost:8099/itineraryLocations?_expand=itinerary&_expand=location", setItineraryLocations )
 
   const localAppUser = localStorage.getItem("travelbuddy_user");
   const appUserObject = JSON.parse(localAppUser);
@@ -114,24 +99,6 @@ export const Itinerary = ({
   const foundItinerary = itineraries.find(
     (itinerary) => itinerary.id === userItineraryObject.itineraryId
   );
-
-  // const currentTripChecker = () => {
-  //   numOfCurrentTrips = 0
-  //   userItineraries.forEach(itinerary => {
-  //     if (itinerary?.itinerary?.isCurrent) {
-  //       numOfCurrentTrips ++
-  //     }
-  //   })
-
-  //   if (numOfCurrentTrips < 1) {
-  //   return deleteTripConfirmation()
-  //   } else {
-  //   return showNotification({
-  //           title: "Notification",
-  //           message: "You already have a current trip. Please remove it to add another.",
-  //         })
-  //   }
-  // }
 
   // This function renders the delete button and when clicked, will delete an itinerary. A fetch call will be made to get the updated List of itineraries, then a notification will be sent to the screen telling the user that their trip was deleted.
   const deleteTripOnClick = () => {
@@ -329,7 +296,7 @@ export const Itinerary = ({
         ""
       ) : (
         <Card
-          className="itineraryCard"
+          className="upcomingtrip_itineraryCard"
           shadow="xl"
           radius="md"
           p="sm"
@@ -375,7 +342,7 @@ export const Itinerary = ({
             <div className="tripdates"></div>
           </div>
           <Card.Section withBorder p={7}>
-            <Button.Group fullWidth>
+            <Button.Group>
               {startTripOnClick()}
               <Button
                 color="violet"

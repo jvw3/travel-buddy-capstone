@@ -64,8 +64,10 @@ Host the project using npm start in the travel buddy directory
 
 ```
 cd travel-buddy-capstone
+npm install
 npm start
 ```
+*To Sign in for testing, use the following email: woodard@gmail.com*
 
 <h2>Entity Relationship Diagram</h2>
 https://dbdiagram.io/d/631e94450911f91ba585c375 

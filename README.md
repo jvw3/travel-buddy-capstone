@@ -33,7 +33,8 @@ Travel Buddy is a travel app that allows users to plan trips by creating itinera
 
 <h2>Initial Setup</h2>
 
-Clone this repository (SSH OR HTTPS)
+- Clone this repository (SSH OR HTTPS)
+  
 ```
 <!--  SSH: -->
   git clone git@github.com:jvw3/travel-buddy-capstone.git
@@ -43,7 +44,7 @@ Clone this repository (SSH OR HTTPS)
   ```
 
 
-Clone the travel buddy API (SSH OR HTTPS)
+- Clone the travel buddy API (SSH OR HTTPS)
 
 ```
 <!-- SSH: -->
@@ -53,16 +54,18 @@ Clone the travel buddy API (SSH OR HTTPS)
   git clone https://github.com/jvw3/travel-buddy-api.git
 ```
 
-Host API using json-server on port 8099
+- Host API using json-server on port 8099
 
 ```
 cd travel-buddy-api
 json-server database.json -p 8099 -w
 ```
 
-Change to travel-buddy-capstone directory using "cd"
+- Change to travel-buddy-capstone directory using "cd"
+  
+- Install dependencies using npm install
 
-In the travel-buddy-capstone directory, Host the project using npm start.
+- In the travel-buddy-capstone directory, Host the project using npm start.
 
 ```
 cd travel-buddy-capstone

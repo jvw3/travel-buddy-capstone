@@ -1,26 +1,17 @@
 import { useState, useEffect } from "react";
+import { useFetch } from "../api/APImanager";
 import { ActivityReview } from "./ActivityReview";
 import "./community.css";
 
+// This component is responsible for rendering the full list of activity reviews.
 export const ActivityReviewsList = ({
   descriptionSearchTermState,
   reviewSearchTermState,
 }) => {
   const [itineraryActivities, setItineraryActivities] = useState([]);
   const [filtered, setFiltered] = useState([]);
-  const [userItineraries, setUserItineraries] = useState([]);
 
-  const localAppUser = localStorage.getItem("travelbuddy_user");
-  const appUserObject = JSON.parse(localAppUser);
-
-  useEffect(() => {
-    fetch(`http://localhost:8099/itineraryActivities?_expand=activity`)
-      .then((res) => res.json())
-      .then((itineraryActivitiesArray) => {
-        setItineraryActivities(itineraryActivitiesArray);
-      });
-  }, []);
-
+  useFetch("http://localhost:8099/itineraryActivities?_expand=activity", setItineraryActivities)
 
 
   useEffect(() => {
@@ -45,23 +36,12 @@ export const ActivityReviewsList = ({
 
 // How to find the user name for a itinerary Activity?
 //Iterate through itineraryActivities and iterate through userItineraries and return the matching itineraryId.
-//
-
-  const displayReviewerName = (itineraryActivityObject) => {
-    let reviewerName = "";
-    userItineraries.forEach((itinerary) => {
-        if (itineraryActivityObject.itineraryId === itinerary.itineraryId) {
-          reviewerName = itinerary?.user?.fullName
-        };
-    });
-    return reviewerName
-  }
 
   return (
     <>
       {descriptionSearchTermState === "" && reviewSearchTermState === ""
       ? (
-        <div class="reviewscontainer">
+        <div className="reviewscontainer">
           {itineraryActivities.map((itineraryActivity) => (
             <ActivityReview
               key={`itineraryactivity--${itineraryActivity?.id}`}
@@ -74,12 +54,11 @@ export const ActivityReviewsList = ({
               itineraryActivityObject={itineraryActivity}
               reviewDescription={itineraryActivity?.review?.description}
               reviewerName={itineraryActivity?.reviewIdentity}
-              displayReviewerName={displayReviewerName}
             />
           ))}
         </div>
       ) : (
-        <div class="reviewscontainer">
+        <div className="reviewscontainer">
           {filtered.map((itineraryActivity) => (
             <ActivityReview
               key={`itineraryactivity--${itineraryActivity?.id}`}

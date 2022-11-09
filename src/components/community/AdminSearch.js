@@ -1,5 +1,6 @@
 import { TextInput, Center } from "@mantine/core";
 
+// This component is responsible for rendering the Search Bar
 export const AdminReviewSearch = ({
   reviewSetterFunction
 }) => {

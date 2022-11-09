@@ -67,7 +67,9 @@ cd travel-buddy-capstone
 npm install
 npm start
 ```
-*To Sign in to the application, use the following email: woodard@gmail.com*
+*To Sign in to the application as a Traveler, use the following email: woodard@gmail.com*
+
+*To Sign in to the application as an Admin, use the following email: admin@travelbuddy.com*
 
 <h2>Entity Relationship Diagram</h2>
 https://dbdiagram.io/d/631e94450911f91ba585c375 

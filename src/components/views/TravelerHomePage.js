@@ -1,6 +1,6 @@
 import {useNavigate } from "react-router-dom";
 import "./HomePage.css";
-import { Button, Card, Text, Blockquote, Title } from "@mantine/core";
+import { Button, Card, Text, Blockquote, Title, Center } from "@mantine/core";
 import { useRef, useEffect, useState } from "react";
 import { useInView} from "react-intersection-observer";
 import { TravelerNavBar } from "../navbar/TravelerNav";
@@ -107,7 +107,9 @@ return <>
     <>
       <div className="topsection">
         <div className="topsectionoverlay">
+        <div className="firstcardlogo"></div>
           <div className="getstartedtext">
+            <Center>
             <Title className="homepageheader">
               Plan the trip of your{" "}
               <Text
@@ -119,8 +121,10 @@ return <>
               </Text>{" "}
               today!
             </Title>
-            <div className="getstartedbutton">
+            </Center>
+              <Center>
             <Button
+              className="createformbutton"
               variant="gradient"
               gradient={{ from: "violet", to: "blue" }}
               size="lg"
@@ -130,9 +134,8 @@ return <>
             >
               Get Started
             </Button>
-            </div>
+              </Center>
           </div>
-          <div className="firstcardlogo"></div>
         </div>
       </div>
       <div className="bottomsection">

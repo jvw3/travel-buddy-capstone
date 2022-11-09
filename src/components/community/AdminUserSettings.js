@@ -4,6 +4,7 @@ import { openConfirmModal } from "@mantine/modals";
 import { showNotification } from "@mantine/notifications"
 import { Card, Text, Button} from "@mantine/core"
 
+// This component is responsible for rendering the admin settings for the user.
 export const AdminUserSettings = () => {
 const navigate = useNavigate()
 const {id} = useParams()

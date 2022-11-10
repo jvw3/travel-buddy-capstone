@@ -99,14 +99,23 @@ height: 100%;
 transition: ease all 0.5s;
 }
 
+.plancard {
+    width: 500px;
+    height: 200px;
+}
 
 
 .travelheaderanimate {
     animation: fadeIn 2s;
+    font-size: 3rem;
+    font-family: 'Quicksand',
+            sans-serif;
 }
 
 .travelheader {
     visibility: hidden;
+    font-family: 'Quicksand',
+            sans-serif;
 }
 
 .travelquoteanimate {
@@ -116,6 +125,38 @@ transition: ease all 0.5s;
 }
 
 .travelquote{
+    visibility: hidden;
+}
+
+.sharequoteanimate {
+    animation: fadeIn 2s;
+    animation-delay: 500ms;
+    animation-fill-mode: backwards;
+    font-family: 'Quicksand',
+            sans-serif;
+        ;
+    width: 350px;
+}
+
+.sharequote{
+    visibility: hidden;
+    font-family: 'Quicksand',
+            sans-serif;
+        ;
+}
+
+.planquoteanimate {
+    padding-top: 50px;
+    animation: fadeIn 2s;
+    animation-delay: 500ms;
+    animation-fill-mode: backwards;
+    font-size: 1.25rem;
+    font-family: 'Quicksand',
+            sans-serif;
+}
+
+.planquote{
+    padding-top: 50px;
     visibility: hidden;
 }
 
@@ -159,10 +200,11 @@ transition: ease all 0.5s;
 }
 
 .firstcontainer {
+    padding-top: 30px;
     display: flex;
     flex-direction: column;
     width: 100vw;
-    height: 40vh;
+    height: 35vh;
     justify-self: center;
     background-color: #170033;
 }
@@ -171,7 +213,7 @@ transition: ease all 0.5s;
     display: flex;
     flex-direction: column;
     width: 100vw;
-    height: 40vh;
+    height: 35vh;
     justify-self: center;
     background-color: #170033;
 }
@@ -180,7 +222,7 @@ transition: ease all 0.5s;
     display: flex;
     flex-direction: column;
     width: 100vw;
-    height: 30vh;
+    height: 35vh;
     justify-self: center;
     background-color: #170033;
 }
@@ -213,4 +255,14 @@ width: 50vw;
     flex-direction: row;
     padding-left: 50px;
     padding-right: 50px;
+}
+
+.sharequotebox {
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 1.25rem;
 }

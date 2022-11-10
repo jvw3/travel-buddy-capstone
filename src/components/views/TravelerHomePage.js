@@ -20,6 +20,14 @@ const { ref: travelRef, inView: travelSectionVisible} = useInView({
 const { ref: planRef, inView: planSectionVisible} = useInView({
   threshold: 0.6
 });
+
+const { ref: planQuoteRef, inView: planQuoteVisible} = useInView({
+  threshold: 0.6
+});
+
+const { ref: shareQuoteRef, inView: shareQuoteVisible} = useInView({
+  threshold: 0.6
+});
 // IntersectionObserver enables scroll triggered animations
 const { ref: travelQuoteRef, inView: travelQuoteVisible} = useInView({
   threshold: 0.6
@@ -75,13 +83,55 @@ return <>
 </>
 }
 
-const setFirstTravelQuote = () => {
+const setPlanQuote = () => {
+return <>
+{ planQuoteVisible
+  ? <Text ref={planQuoteRef} color="white" className="planquoteanimate">
+            The trip of your dreams is only a few clicks away!
+            <br />
+            <br />
+            Travel Buddy allows users plan trips using itineraries. Users can choose from 25+ cities to travel from, and a variety of activities to their itineraries.
+
+        </Text>
+  : <Text ref={planQuoteRef} color="white" className="planquote">
+            The trip of your dreams is only a few clicks away!
+            <br />
+            <br />
+            Travel Buddy allows users plan trips using itineraries. Users can choose from 25+ cities to travel from, and a variety of activities to their itineraries.
+        </Text>
+
+}
+</>
+}
+
+const setTravelQuote = () => {
 return <>
 { travelQuoteVisible
-  ? <Text ref={travelQuoteRef} color="white" className="travelquoteanimate">
+  ? <Text ref={travelQuoteRef} color="white" className="planquoteanimate">
+            Travel the world and make memories that will last a lifetime!
+            <br />
+            <br />
+            “To Travel is to Live” – Hans Christian Andersen
+
+        </Text>
+  : <Text ref={travelQuoteRef} color="white" className="planquote">
+            Travel the world and make memories that will last a lifetime!
+            <br />
+            <br />
+            “To Travel is to Live” – Hans Christian Andersen
+        </Text>
+
+}
+</>
+}
+
+const setFirstShareQuote = () => {
+return <>
+{ shareQuoteVisible
+  ? <Text ref={shareQuoteRef} color="white" className="sharequoteanimate">
             A journey well shared is a journey well enjoyed. -Unknown
         </Text>
-  : <Text ref={travelQuoteRef} color="white" className="travelquote">
+  : <Text ref={shareQuoteRef} color="white" className="sharequote">
             A journey well shared is a journey well enjoyed. -Unknown
         </Text>
 
@@ -89,13 +139,13 @@ return <>
 </>
 }
 
-const setSecondTravelQuote = () => {
+const setSecondShareQuote = () => {
 return <>
 { ibnQuoteVisible
-  ? <Text ref={ibnQuoteRef} color="white" className="travelquoteanimate">
+  ? <Text ref={ibnQuoteRef} color="white" className="sharequoteanimate">
             Traveling – it leaves you speechless, then turns you into a storyteller.” – Ibn Battuta
         </Text>
-  : <Text ref={ibnQuoteRef} color="white" className="travelquote">
+  : <Text ref={ibnQuoteRef} color="white" className="sharequote">
             Traveling – it leaves you speechless, then turns you into a storyteller.” – Ibn Battuta
         </Text>
 
@@ -142,18 +192,21 @@ return <>
         <div className="infocardsbox">
         <div className="firstcontainer">
           {setPlanClass()}
-          <Card className="plancard">
-            <div className="photo"></div>
-          </Card>
+          <div className="quotebox">
+          {setPlanQuote()}
+          </div>
         </div>
         <div className="secondcontainer">
           {setTravelClass()}
+          <div className="quotebox">
+          {setTravelQuote()}
+          </div>
         </div>
         <div className="thirdcontainer">
           {setShareClass()}
-          <div className="quotebox">
-          {setFirstTravelQuote()}
-          {setSecondTravelQuote()}
+          <div className="sharequotebox">
+          {setFirstShareQuote()}
+          {setSecondShareQuote()}
           </div>
         </div>
         </div>

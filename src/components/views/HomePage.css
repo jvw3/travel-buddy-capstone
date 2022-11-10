@@ -175,24 +175,6 @@ transition: ease all 0.5s;
     100% {opacity: 1}
 }
 
-.photo {
-    background-image: url(/public/images/that-s-her-business-R4sP8_Bq0Bw-unsplash.jpg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 30vw;
-    height: 30vh;
-    animation: fadeIn 3s;
-}
-
-.photo {
-    background-image: url(/public/images/element5-digital-uE2T1tCFsn8-unsplash\ \(1\).jpg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 30vw;
-    height: 30vh;
-    animation: fadeIn 3s;
-}
-
 .card {
     display: flex;
         width: 100%;

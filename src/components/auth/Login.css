@@ -1,17 +1,64 @@
 
+@media (min-width: 1500px) {
+    .logincontainerright {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            width: 50vw;
+        }
+
+        .logincard {
+            padding-left: 75px;
+            justify-self: center;
+            width: 33vw;
+        }
+
+        .loginlogo {
+            background-image: url(/public/images/travelbuddylogowithtext-purple.svg);
+            height: 50vh;
+            width: 30vw;
+            background-position: center;
+            background-size: cover;
+        }
+}
+@media (min-width: 840px) and (max-width: 1499px) {
+    .loginlogo {
+            background-image: url(/public/images/travelbuddylogowithtext-purple.svg);
+            height: 250px;
+            width: 30vw;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .logincontainerright {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            width: 60vw;
+        }
+
+        .logincard {
+            padding-left: 100px;
+            justify-self: center;
+            width: 33vw;
+            height: 50%;
+        }
+}
 
 .header {
     font-size: 2.5rem;
     color: black;
 }
 
-.loginlogo {
+/* .loginlogo {
     background-image: url(/public/images/travelbuddylogowithtext-purple.svg);
     height: 50vh;
     width: 30vw;
     background-position: center;
     background-size: cover;
-}
+} */
 
 
 
@@ -57,12 +104,12 @@ fieldset {
     width: 100%;
     overflow-y: hidden;
 }
-
+/* 
 .logincard {
     padding-left: 75px;
 justify-self: center;    
     width: 33vw;
-}
+} */
 
 .loginscreen {
     display: flex;
@@ -75,9 +122,6 @@ justify-self: center;
     align-items: center;
     height: 100vh;
     width: 50vw;
-}
-
-.emaillogin {
 }
 
 .logincontainerleft {

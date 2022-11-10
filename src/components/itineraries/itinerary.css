@@ -1,5 +1,117 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
+@media (min-width: 864px) and (max-width: 1200px) {
+    .upcomingtrip_itineraryCard {
+            width: 600px;
+            height: 475px;
+            transition: ease all 300ms;
+        }
+
+    .completedtrip_itineraryCard {
+            width: 40vw;
+            height: 45vh;
+            transition: ease all 300ms;
+        }
+
+        .currenttrip_itineraryCard {
+            width: 50vw;
+            height: 45vh;
+            transition: ease all 300ms;
+        }
+}
+@media (min-width: 1201px) and (max-width: 1600px){
+    .upcomingtrip_itineraryCard {
+        width: 700px;
+            height: 475px;
+            transition: ease all 300ms;
+        }
+
+    .completedtrip_itineraryCard {
+            width: 40vw;
+            height: 45vh;
+            transition: ease all 300ms;
+        }
+}
+
+@media (min-width: 1600px) {
+    .upcomingtrip_itineraryCard {
+            width: 700px;
+            height: 450px;
+            transition: ease all 300ms;
+        }
+
+        .completedtrip_itineraryCard {
+            width: 450px;
+            height: 450px;
+            transition: ease all 300ms;
+        }
+}
+
+@media (max-height: 680px){
+    .upcomingtrip_itineraryCard {
+        width: 62vw;
+        height: 70vh;
+        transition: ease all 300ms;
+    }
+
+    .completedtrip_itineraryCard {
+        width: 62vw;
+        height: 45vh;
+        transition: ease all 300ms;
+    }
+
+    .currenttrip_itineraryCard {
+        width: 50vw;
+        height: 45vh;
+        transition: ease all 300ms;
+    }
+}
+
+@media (min-width: 530px) and (max-width: 863px) {
+    .upcomingtrip_itineraryCard {
+            width: 500px;
+            height: 450px;
+            transition: ease all 300ms;
+        }
+
+    .completedtrip_itineraryCard {
+                    width: 475px;
+                    height: 425px;
+                    transition: ease all 300ms;
+                }
+
+    .currenttrip_itineraryCard {
+            width: 50vw;
+            height: 45vh;
+            transition: ease all 300ms;
+        }
+
+}
+
+/* Iphone media query */
+@media (max-width: 530px) {
+
+    .upcomingtrip_itineraryCard {
+            width: 375px;
+            height: 450px;
+            transition: ease all 300ms;
+        }
+
+    .currenttrip_itinerarycard {
+        width: 375px;
+        height: 650px;
+        transition: ease all 300ms;
+    }
+
+        .completedtrip_itineraryCard {
+            width: 375px;
+            height: 450px;
+            transition: ease all 300ms;
+        }
+}
+
+
+
 body {
     background-color: #EDE7F6;
     padding-top: 75px;
@@ -25,11 +137,13 @@ body {
     justify-content: center;
     height: 80vh;
     overflow-y: auto;
+    padding-top: 15px;
 }
 
 .currenttripcontainer {
     display: flex;
     justify-content: center;
+    padding-top: 85px;
 }
 
 .allcompletedtrips {
@@ -38,22 +152,22 @@ body {
     height: 50vh;
 }
 
-.itinerary {
+/* .itinerary {
     border: 1px solid black;
     padding: 5px;
-    width: 40vw;
+    width: 20vw;
     border-radius: 10px;
     height: 30vh;
     transition: ease all 0.25s;
-}
+} */
 /* CSS styling for the overlay on each itinerary card */
-.itineraryoverlay {
+/* .itineraryoverlay {
     background-color: rgba(0, 0, 0, 0.421);
     height: 100%;
     flex: 1;
     flex-direction: column;
     align-items: stretch;
-}
+} */
 
 
 .buttonsandlinks {
@@ -61,23 +175,49 @@ body {
     width: 100%;
 }
 
-.itinerary:hover {
-    transform: scale(1.05);
-}
 
-.itineraryCard {
+/* Css Styling for current, upcoming and completed itinerary cards */
+/* .itineraryCard {
     width: 30vw;
     height: 54vh;
-}
+    transition: ease all 300ms;
+} */
 
-.currentitinerarycard {
+/* .itineraryCard:hover {
+    transform: translateY(-2%);
+    transition: ease 300ms;
+} */
+
+/* .currenttrip_itinerarycard {
     width: 49vw;
     height: 80vh;
+    transition: ease all 300ms;
+} */
+
+.currenttrip_itineraryCard:hover {
+    transform: translateY(-2%);
+        transition: ease 300ms;
+}
+.upcomingtrip_itineraryCard:hover {
+    transform: translateY(-2%);
+        transition: ease 300ms;
+}
+.completedtrip_itineraryCard:hover {
+    transform: translateY(-2%);
+        transition: ease 300ms;
 }
 
-.itineraryCard:hover {
-    animation-name: slideUp;
+@keyframes slideUp {
+    0% {
+        transform: translateY(0%);
+    }
+
+    100% {
+        transform: translateY(-2%);
+    }
 }
+
+
 
 
 /* CSS Styling for the city name on each itinerary card */
@@ -120,15 +260,7 @@ body {
         sans-serif;;
 }
 
-@keyframes slideUp {
-    0% {
-        transform: translateY(0%);
-    }
 
-    100% {
-        transform: translateY(-2%);
-    }
-}
 
 .timelineheader {
     display: flex;

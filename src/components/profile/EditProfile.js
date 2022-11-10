@@ -14,6 +14,7 @@ export const EditProfile = () => {
     hometown:""
   });
 
+  // This useEffect hook is responsible for fetching the current user for the put request.
   useEffect(() => {
     fetch(`http://localhost:8099/users/${userId}`)
       .then((res) => res.json())
@@ -25,7 +26,7 @@ export const EditProfile = () => {
       );
   }, [userId]);
 
-
+// This function creates a put request for user profile
   const userProfilePutRequest = (event) => {
     event.preventDefault();
 

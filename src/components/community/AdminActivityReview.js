@@ -3,6 +3,7 @@ import { IconFlag } from "@tabler/icons";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+// This component is responsible for rendering the individual view for each activity review on the admin home page.
 export const AdminActivityReview = ({
   id,
   activity,

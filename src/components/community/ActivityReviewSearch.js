@@ -1,9 +1,10 @@
 import { TextInput, Center } from "@mantine/core";
 
+// This component is responsible for rendering the search bar for Activity Review Search Bar.
 export const ActivityReviewSearch = ({ reviewSetterFunction, descriptionSetterFunction }) => {
   return (
     <>
-    
+
       <Center>
         <TextInput
           onChange={(changeEvent) => {

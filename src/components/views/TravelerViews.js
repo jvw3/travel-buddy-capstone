@@ -10,9 +10,8 @@ import { CommunityPage } from "../community/Community"
 import { Profile } from "../profile/Profile";
 import { ActivityContainer } from "../profile/ActivityContainer";
 import { ActivityReviewContainer } from "../community/ActivityReviewContainer";
-import { MyActivities } from "../profile/MyActivities";
 import { EditProfile } from "../profile/EditProfile";
-import { ReportUser } from "../community/ReportUser";
+
 
 // This component is responsible for rendering all the possible views for traveler users. It contains routes to other components in the application.
 export const TravelerViews = () => {
@@ -45,17 +44,9 @@ export const TravelerViews = () => {
       <Route path="profile/myactivities" element={<ActivityContainer />} />
 
 
-      
-
-    
       <Route
         path="trips/:usertripId/view"
         element={<IndividualTripDetails />}
-      />
-
-      <Route
-        path="reviews/:id/report"
-        element={<ReportUser />}
       />
 
       <Route

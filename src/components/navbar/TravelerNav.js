@@ -1,7 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
 import "./NavBar.css";
-import { Button } from "@mantine/core";
+import { Button, Title } from "@mantine/core";
 import { Menu } from "@mantine/core";
 import {
   IconUserCircle,
@@ -41,6 +42,8 @@ export const TravelerNavBar = () => {
         </Link>
           <div className="navtext">Travel Buddy</div>
       </section>
+      <div className="displayedtripinfo">
+      </div>
       <section className="navbuttoncontainer">
         <Menu
           transition="scale"
@@ -49,7 +52,7 @@ export const TravelerNavBar = () => {
           closeDelay={100}
         >
           <Menu.Target>
-            <Button size="md" color="violet">
+            <Button size="sm" color="violet">
             <IconLuggage /> Trips
             </Button>
           </Menu.Target>
@@ -81,7 +84,7 @@ export const TravelerNavBar = () => {
           closeDelay={100}
         >
           <Menu.Target>
-            <Button size="md" color="violet">
+            <Button size="sm" color="violet">
             <IconUsers />  Community
             </Button>
           </Menu.Target>
@@ -113,7 +116,7 @@ export const TravelerNavBar = () => {
           closeDelay={100}
         >
           <Menu.Target>
-            <Button size="md" color="violet">
+            <Button size="sm" color="violet">
             <IconUserCircle /> {currentUser.fullName}
             </Button>
           </Menu.Target>

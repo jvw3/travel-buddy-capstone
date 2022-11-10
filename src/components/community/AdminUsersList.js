@@ -2,19 +2,13 @@
 import { useState, useEffect } from "react";
 import { AdminIndividualUser } from "./AdminIndividualUser";
 import { Title, Center } from "@mantine/core";
+import { useFetch } from "../api/APImanager";
 
-
+// This component is responsible for rendering the full list of users for the admin view.
 export const UserList = () => {
 const[allUsers, setUsers] = useState([])
 
-
-useEffect(() => {
-  fetch(`http://localhost:8099/users`)
-    .then((res) => res.json())
-    .then((currentUserInfo) => {
-      setUsers(currentUserInfo);
-    });
-}, []);
+useFetch("http://localhost:8099/users", setUsers);
 
 const userList = allUsers.filter(user => {
   return user.isAdmin === false

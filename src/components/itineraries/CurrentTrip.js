@@ -4,6 +4,7 @@ import { Menu, Text, Card, Button, ActionIcon, Image, Badge, Transition} from "@
 import { IconDots, IconCheck, IconTrash, IconX } from "@tabler/icons"
 import { showNotification } from "@mantine/notifications";
 import { openConfirmModal } from "@mantine/modals";
+import "./itinerary.css";
 
 export const CurrentTrip = ({
   isCurrent,
@@ -246,7 +247,7 @@ export const CurrentTrip = ({
     <>
       {isCurrent ? (
         <Card
-          className="currentitinerarycard"
+          className="currenttrip_itinerarycard"
           shadow="xl"
           radius="md"
           p="sm"

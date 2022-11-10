@@ -1,20 +1,85 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
 
+@media (min-width: 390px) and (max-width: 864px) {
+    .individualreview {
+            height: 20vh;
+            width: 80vw;
+            transition: ease all 300ms;
+        }
 
+    .reviewheader {
+            font-family: 'Quicksand',
+                sans-serif;
+            color: black;
+            padding-top: 30px;
+            padding-bottom: 15px;
+            display: flex;
+        }
+}
+
+@media (min-width: 864px) and (max-width: 1200px) {
+    .individualreview {
+            height: 20vh;
+            width: 375px;
+            transition: ease all 300ms;
+        }
+
+        .reviewheader {
+            font-family: 'Quicksand',
+                sans-serif;
+            color: black;
+            padding-top: 30px;
+            padding-bottom: 15px;
+            display: flex;
+        }
+}
+
+@media (min-width: 1201px) and (max-width: 1600px) {
+    .individualreview {
+            height: 20vh;
+            width: 350px;
+            transition: ease all 300ms;
+        }
+
+        .reviewheader {
+            font-family: 'Quicksand',
+                sans-serif;
+            color: black;
+            padding-top: 30px;
+            padding-bottom: 15px;
+            display: flex;
+        }
+}
+@media(min-width: 1600px) {
+    .individualreview {
+            height: 20vh;
+            width: 30vw;
+            transition: ease all 300ms;
+        }
+
+        .reviewheader {
+            font-family: 'Quicksand',
+                sans-serif;
+            color: black;
+            padding-top: 30px;
+            padding-bottom: 15px;
+            display: flex;
+        }
+}
 
 .headertext {
     font-family: 'Quicksand',
         sans-serif;
 }
 
-.reviewheader {
+/* .reviewheader {
     font-family: 'Quicksand',
             sans-serif;
             color: black;
     padding-top: 30px;
     padding-bottom: 15px;
-}
+} */
 
 .searchbars {
     display: flex;
@@ -24,14 +89,14 @@
 }
 
 .reviewscontainer {
-    height: 100%;
     display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 50px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 50px;
+        justify-content: center;
+        height: 80vh;
+        overflow-y: auto;
+        padding-top: 15px;
 }
 
 .commmunitybackground {
@@ -59,32 +124,35 @@ align-self: center;
 }
 
 .headerimagecard {
-    width: 40vw;
-    height: 27vh;
+    width: 400px;
+    height: 275px;
     align-self: center;
-    
 }
 
-.individualreview {
+/* .individualreview {
     height: 20vh;
+    width: 30vw;
+    transition: ease all 300ms;
+} */
+
+.individualreview:hover {
+transform: translateY(-2%);
+    transition: ease 300ms;
 }
+
 
 .reportcard {
     height: 60vh;
     width: 60vw;
 }
 
-.reviewheader {
+/* .reviewheader {
     display: flex;
     flex-direction: row;
-}
+} */
 
 .userlistcontainer {
     padding-left: 50px;
     padding-right: 50px;
     padding-top: 50px;
-}
-
-.usercard {
-    
 }

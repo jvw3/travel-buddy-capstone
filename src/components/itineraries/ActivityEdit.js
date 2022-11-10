@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./activities.css";
 import { Button, Card, TextInput, Title } from "@mantine/core"
+import { useFetch } from "../api/APImanager";
 
 // This component is responsible for allowing users to edit  an Activity that they have created, by making a put request to the API.
 export const EditActivity = () => {
@@ -40,14 +41,7 @@ const navigate = useNavigate()
         );
     }, [itineraryActivityId]);
 
-
-     useEffect(() => {
-       fetch(`http://localhost:8099/activities`)
-         .then((res) => res.json())
-         .then((activitiesData) => {
-           setActivities(activitiesData);
-         });
-     }, []);
+  useFetch("http://localhost:8099/activities", setActivities)
 
 
     const itineraryActivityPutRequest = (event) => {

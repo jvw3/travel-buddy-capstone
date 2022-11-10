@@ -3,98 +3,27 @@ import { Card, Tabs, Badge } from "@mantine/core";
 import { IconPlaneInflight, IconStar } from "@tabler/icons";
 import { MyActivity } from "./myActivity";
 import { MyFavoriteActivity } from "./MyFavoriteActivity";
+import { useFetch } from "../api/APImanager";
 
 // This component is responsible for rendering a list of all of the activities for a user's profile. This component will also be passed searchTermState as a prop, so that search terms can be used to filter search results.
 export const MyActivities = ({ searchTermState }) => {
-  const [user, setUser] = useState({});
   const [userItineraries, setUserItineraries] = useState([]);
   const [itineraryActivities, setItineraryActivities] = useState([]);
-  const [favoriteActivities, setFavoriteActivities] = useState([]);
-  const [filteredActivities, setFiltered] = useState([]);
   const [searchedActivities, setSearched] = useState([]);
-  const [filteredFavoriteActivities, setFilteredFavorites] = useState([]);
 
   const localAppUser = localStorage.getItem("travelbuddy_user");
   const appUserObject = JSON.parse(localAppUser);
 
-  // This useEffect hook fetches the current User.
-  useEffect(() => {
-    fetch(`http://localhost:8099/users/${appUserObject.id}`)
-      .then((res) => res.json())
-      .then((currentUserInfo) => {
-        setUser(currentUserInfo);
-      });
-  }, []);
-
   // This useEffect hook fetches the array of Itinerary Activities.
-  useEffect(() => {
-    fetch(`http://localhost:8099/itineraryActivities?_expand=activity`)
-      .then((res) => res.json())
-      .then((activities) => {
-        setItineraryActivities(activities);
-      });
-  }, []);
+  useFetch(`http://localhost:8099/itineraryActivities?_expand=activity`, setItineraryActivities)
 
   // This useEFfect hook fetches all of the user Itineraries for the current user.
-  useEffect(() => {
-    fetch(`http://localhost:8099/userItineraries?userId=${appUserObject.id}`)
-      .then((res) => res.json())
-      .then((userItinerariesArray) => {
-        setUserItineraries(userItinerariesArray);
-      });
-  }, []);
-
-  // This useEffect hook will
-  // useEffect(() => {
-  //   const userActivities = [];
-  //   userItineraries.forEach((itinerary) => {
-  //     itineraryActivities.forEach((activity) => {
-  //       if (activity.itineraryId === itinerary.itineraryId) {
-  //         userActivities.push(activity);
-  //       }
-  //     });
-  //   });
-  //   setFiltered(userActivities);
-  // }, []);
-
-  useEffect(() => {
-    const userFavoriteActivities = [];
-    userItineraries.forEach((itinerary) => {
-      if (itinerary.itinerary.isFavorited === true) {
-        itineraryActivities.forEach((activity) => {
-          if (activity.itineraryId === itinerary.itineraryId) {
-            userFavoriteActivities.push(activity);
-          }
-        });
-      }
-    });
-    setFavoriteActivities(userFavoriteActivities);
-  }, []);
-
-
-  useEffect(() => {
-    const userFavoriteActivities = [];
-    userItineraries.forEach((itinerary) => {
-      if (itinerary.itinerary.isFavorited === true) {
-        itineraryActivities.forEach((activity) => {
-          if (activity.itineraryId === itinerary.itineraryId) {
-            userFavoriteActivities.push(activity);
-          }
-        });
-      }
-    });
-
-    const searchedFavActivities = userFavoriteActivities.filter((activity) => {
-      return activity.activity.name
-        .toLowerCase()
-        .includes(searchTermState.toLowerCase());
-    })
-    setFilteredFavorites(searchedFavActivities);
-  }, []);
+  useFetch(`http://localhost:8099/userItineraries?userId=${appUserObject.id}`, setUserItineraries )
 
   // This useEffect hook sets the search Term State for the activity Container component, which will maintains state for the activity Search component.
   useEffect(() => {
     const userActivities = [];
+
     userItineraries.forEach((itinerary) => {
       itineraryActivities.forEach((activity) => {
         if (activity.itineraryId === itinerary.itineraryId) {
@@ -112,7 +41,7 @@ export const MyActivities = ({ searchTermState }) => {
   }, [searchTermState]);
 
 
-
+// This function will display the searched results for activities.
   const displayFilteredActivities = () => {
 
     const userActivities = [];
@@ -178,6 +107,7 @@ export const MyActivities = ({ searchTermState }) => {
     return userActivities.length;
   };
 
+// This function will display the current count for the amount of user's favorite activities.
   const displayUsersFavoriteActivitiesCount = () => {
     const userFavoriteActivities = [];
     userItineraries.forEach((itinerary) => {
@@ -194,7 +124,7 @@ export const MyActivities = ({ searchTermState }) => {
     return userFavoriteActivities.length;
   };
 
-
+// This function will display the search results for favorite activities.
   const displayFilteredFavoriteActivities = () => {
 
     const userActivities = [];

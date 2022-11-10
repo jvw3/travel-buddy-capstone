@@ -5,6 +5,9 @@ import { showNotification } from "@mantine/notifications";
 import { openConfirmModal } from "@mantine/modals";
 import { IconDots } from "@tabler/icons";
 import { IconTrash } from "@tabler/icons";
+import "./itinerary.css";
+import { useFetch } from "../api/APImanager";
+
 
 export const CompletedTrip = ({
   isComplete,
@@ -12,7 +15,7 @@ export const CompletedTrip = ({
   returnDate,
   userItineraryObject,
   itineraryId,
-  setUserItineraries, 
+  setUserItineraries,
 }) => {
   const [itineraryLocations, setItineraryLocations] = useState([]);
 
@@ -21,15 +24,7 @@ export const CompletedTrip = ({
 
   const navigate = useNavigate()
 
-  useEffect(() => {
-    fetch(
-      `http://localhost:8099/itineraryLocations?_expand=itinerary&_expand=location`
-    )
-      .then((res) => res.json())
-      .then((itineraryLocationsArray) => {
-        setItineraryLocations(itineraryLocationsArray);
-      });
-  }, []);
+  useFetch("http://localhost:8099/itineraryLocations?_expand=itinerary&_expand=location", setItineraryLocations);
 
   const foundLocation = itineraryLocations.find(
     (location) => location.itineraryId === userItineraryObject.itineraryId
@@ -44,20 +39,6 @@ export const CompletedTrip = ({
         setUserItineraries(userItinerariesArray);
       });
   };
-
-    const deleteTripOnClick = () => {
-      return (
-        <Button
-        fullWidth
-          color="red"
-          onClick={() => {
-            deleteTripConfirmation();
-          }}
-        >
-          Delete Trip
-        </Button>
-      );
-    };
 
     const deleteTripConfirmation = () => {
       openConfirmModal({
@@ -92,7 +73,7 @@ export const CompletedTrip = ({
     <>
       {isComplete ? (
         <Card
-          className="itineraryCard"
+          className="completedtrip_itineraryCard"
           shadow="xl"
           radius="md"
           p="sm"
@@ -130,7 +111,6 @@ export const CompletedTrip = ({
             <div className="tripdates"></div>
           </Card.Section>
           <Button
-            fullWidth
             color="violet"
             onClick={() => {
               navigate(`/trips/${userItineraryObject.itineraryId}/view`);

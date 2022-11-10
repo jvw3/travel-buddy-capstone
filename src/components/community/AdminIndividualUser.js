@@ -3,7 +3,7 @@ import { openConfirmModal } from "@mantine/modals";
 import { useNavigate } from "react-router-dom";
 
 
-
+// This component is responsible for rendering the view for an individual user from the admin's view.
 export const AdminIndividualUser = ({fullName, id, isSuspended}) => {
 const navigate = useNavigate()
 

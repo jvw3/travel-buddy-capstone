@@ -10,7 +10,7 @@ export const AdminReviewContainer = () => {
 const [reviewSearchTerms, setReviewSearchTerms] = useState("");
 const navigate = useNavigate()
 
-  // The ticketContainer parent component will return two childe components.
+  // The ticketContainer parent component will return two child components.
 return (
   <>
     <Title>Reviews</Title>

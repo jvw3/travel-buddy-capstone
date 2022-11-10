@@ -1,6 +1,7 @@
 import { Card, Text, Badge, Button } from "@mantine/core"
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect} from "react"
+import { useFetch } from "../api/APImanager";
 
 // This component is responsible for rendering each individual activity of the activity list page.
 // Props are being passed from the MyActivities Parent component.
@@ -9,27 +10,22 @@ export const MyFavoriteActivity = ({itineraryActivityObject, description, addres
   const navigate = useNavigate();
 
   // This useEffect hook is fetching the full array of activities from the API.
-  useEffect(() => {
-    fetch(`http://localhost:8099/activities/`)
-      .then((res) => res.json())
-      .then((activitiesArray) => {
-        setActivities(activitiesArray);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(`http://localhost:8099/activities`)
+  //     .then((res) => res.json())
+  //     .then((activitiesArray) => {
+  //       setActivities(activitiesArray);
+  //     });
+  // }, []);
+
+  useFetch("http://localhost:8099/activities/",setActivities )
 
   //
   const foundActivity = activities.find((activity) => {
     return activity.id === itineraryActivityObject.activityId;
   });
 
-  //TODO Make post request to API to change isPublic property from true to false
-
-  //TODO Make post request to API to change isPublic property from false to true
-
-  //TODO Make post request to API to change isFavorited property from false to true
-
-  //TODO Make post request to API to change isFavorited property from true to false
-
+// This function will return a ternary statement that will determine if the Badge will display Public or Private.
 const publicOrPrivate = () => {
   return <>
   {

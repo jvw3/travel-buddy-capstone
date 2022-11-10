@@ -1,40 +1,18 @@
 import { Card, Text, Badge, Button } from "@mantine/core"
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect} from "react"
+import { useFetch } from "../api/APImanager";
 
 // This component is responsible for rendering each individual activity of the activity list page. 
 // Props are being passed from the MyActivities Parent component.
-export const MyActivity = ({itineraryActivityObject, description, address, review, isPublic, itineraryId, activity}) => {
-  const [activities, setActivities] = useState([]);
+export const MyActivity = ({description, address, review, isPublic, itineraryId, activity}) => {
   const navigate = useNavigate();
-
-  // This useEffect hook is fetching the full array of activities from the API.
-  useEffect(() => {
-    fetch(`http://localhost:8099/activities/`)
-      .then((res) => res.json())
-      .then((activitiesArray) => {
-        setActivities(activitiesArray);
-      });
-  }, []);
-
-  //
-  const foundActivity = activities.find((activity) => {
-    return activity.id === itineraryActivityObject.activityId;
-  });
-
-  //TODO Make post request to API to change isPublic property from true to false
-
-  //TODO Make post request to API to change isPublic property from false to true
-
-  //TODO Make post request to API to change isFavorited property from false to true
-
-  //TODO Make post request to API to change isFavorited property from true to false
 
   return (
     <>
       {isPublic ? (
         <Card withBorder>
-          <Badge color="violet">{foundActivity?.name}</Badge>
+          <Badge color="violet">{activity}</Badge>
           <Badge color="violet" variant="outline">
             Public
           </Badge>
@@ -52,7 +30,7 @@ export const MyActivity = ({itineraryActivityObject, description, address, revie
         </Card>
       ) : (
         <Card withBorder>
-          <Badge color="violet">{foundActivity?.name}</Badge>
+          <Badge color="violet">{activity}</Badge>
           <Badge color="violet" variant="outline">
             Private
           </Badge>

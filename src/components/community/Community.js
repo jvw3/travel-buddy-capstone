@@ -3,10 +3,11 @@ from "@mantine/core";
 import "./community.css";
 import { useNavigate } from "react-router-dom";
 
+// This component is responsible for rendering the community homepage for travel buddy.
 export const CommunityPage = () => {
-  
+
   const navigate = useNavigate();
-  
+
     return (
       <>
         <div className="commmunitybackground">
@@ -52,7 +53,6 @@ export const CommunityPage = () => {
               </Text>
               <Card.Section withBorder p={10}>
                 <Button
-                  fullWidth
                   color="violet"
                   onClick={() => {
                     navigate("/community/reviews");

@@ -88,6 +88,7 @@ https://www.figma.com/file/phyeDZmazgMspyC1cfJ0wJ/TravelBuddy%3A-Wireframe
 
 
 <h2>Technologies used:</h2>
+
 - Javascript
 - React
 - DbDiagram (Entity relationship Diagram)

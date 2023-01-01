@@ -88,15 +88,13 @@ https://www.figma.com/file/phyeDZmazgMspyC1cfJ0wJ/TravelBuddy%3A-Wireframe
 
 
 <h2>Technologies used:</h2>
-
-- HTML
-- CSS
 - Javascript
 - React
 - DbDiagram (Entity relationship Diagram)
 - Figma (Wireframe)
 - Canva (Logo Design)
 - Mantine (UI/CSS)
+- CSS3
 - Tabler Icons (Icons)
 
 
